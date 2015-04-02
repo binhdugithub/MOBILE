@@ -13,6 +13,15 @@
     
 }
 
+enum STATEGAME
+{
+    FIRSTWIEW,
+    BACKVIEW,
+    PREPAREPLAY,
+    PLAYING
+};
+
 - (void)NumberClick: (UIButton*)sender;
-- (void)SetNeedRefreshGUI: (BOOL) p_true;
+- (void)SetStateGame: (NSInteger) p_state;
+- (void)SetArrayNumber: (NSMutableArray*) p_array;
 @end

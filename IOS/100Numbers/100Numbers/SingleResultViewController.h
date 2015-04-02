@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SingleResultViewController : UIViewController
+{
+    
+}
 
+- (void)SetArrayNumber: (NSMutableArray*) p_array;
+- (void)SetCurrentNumber: (NSInteger) p_index;
 @end

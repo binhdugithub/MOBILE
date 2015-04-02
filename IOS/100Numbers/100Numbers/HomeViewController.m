@@ -8,14 +8,17 @@
 
 #import "HomeViewController.h"
 #import "SoundController.h"
+#import "SinglePlayerViewController.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) SoundController *m_Audio;
+
 
 @end
 
 @implementation HomeViewController
 @synthesize m_Audio;
+
 
 - (void)viewDidLoad
 {
@@ -31,9 +34,12 @@
 }
 
 
+
+
 - (IBAction)SinglePlayerClick:(id)sender
 {
     [m_Audio PlayClick];
+    [self performSegueWithIdentifier:@"SegueSinglePlayer" sender:self];
 }
 
 - (IBAction)TwoPlayersClick:(id)sender
@@ -59,6 +65,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"SegueSinglePlayer"])
+    {
+        SinglePlayerViewController *MySinglePlayer = (SinglePlayerViewController *)[segue destinationViewController];
+        [MySinglePlayer SetStateGame:FIRSTWIEW];
+    }
     
 }
 @end

@@ -8,6 +8,7 @@
 //
 
 #import "SinglePlayerViewController.h"
+#import "SingleResultViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "SoundController.h"
 
@@ -18,9 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
 
 @property (nonatomic, strong)NSMutableArray *m_Array100Number;
-@property (nonatomic, assign)NSUInteger m_CurrentNumber;
-@property (nonatomic, assign)BOOL m_IsStart;
-@property (nonatomic, assign)BOOL m_NeedRefreshGUI;
+@property (nonatomic, assign)NSInteger m_CurrentNumber;
+@property (nonatomic, assign)NSInteger  m_Sate;
 
 @property (nonatomic, strong) SoundController *m_Sounder;
 @end
@@ -28,44 +28,85 @@
 @implementation SinglePlayerViewController
 @synthesize m_UIButtonPlay, m_UIView100Number, m_UIViewFooter, m_UIViewHeader;
 @synthesize m_Array100Number, m_CurrentNumber;
-@synthesize m_NeedRefreshGUI;
-@synthesize m_IsStart;
+@synthesize m_Sate;
 @synthesize m_Sounder;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     m_Sounder = [[SoundController alloc] init];
-    m_CurrentNumber = 1;
-    m_IsStart = FALSE;
+    switch (m_Sate)
+    {
+        case FIRSTWIEW:
+            [self InitFirstView];
+            break;
+        case BACKVIEW:
+            [self InitBackView];
+            break;
+        default:
+            break;
+    }
+    
+   
+    
+}
+
+
+
+- (void)SetStateGame: (NSInteger) p_state
+{
+    m_Sate = p_state;
+}
+
+- (void)SetArrayNumber: (NSMutableArray*) p_array
+{
+    CGRect frm = m_UIView100Number.frame;
+    frm.origin.x = 0;
+    frm.size.width = [UIScreen mainScreen].bounds.size.width;
+    frm.size.height = [UIScreen mainScreen].bounds.size.width;
+    
+    m_UIView100Number.frame = frm;
     
     m_Array100Number = [[NSMutableArray alloc] init];
-    [self Init100Number];
+    for (UIButton *l_number in p_array)
+    {
+        UIButton *MyNumber = [[UIButton alloc] initWithFrame:l_number.frame];
+        MyNumber.tag = l_number.tag;
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
+        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
+        [MyNumber setBackgroundColor:l_number.backgroundColor];
+        
+        [m_UIView100Number addSubview:MyNumber];
+         [m_Array100Number addObject:MyNumber];
+    }
+}
+
+
+- (void)InitBackView
+{
+    for (UIButton *MyNumber in m_Array100Number)
+    {
+        [m_UIView100Number addSubview:MyNumber];
+    }
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    //Init 100Button
-    
-}
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)InitFirstView
 {
-    
-    [super viewDidAppear:animated];
-}
-
-- (void)SetNeedRefreshGUI: (BOOL) p_true
-{
-    
-}
-
-- (void)Init100Number
-{
+    m_Array100Number = [[NSMutableArray alloc] init];
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/8 + 10);
     CGFloat h = w;
+    
+    CGRect frm = m_UIView100Number.frame;
+    frm.origin.x = 0;
+    frm.size.width = [UIScreen mainScreen].bounds.size.width;
+    frm.size.height = [UIScreen mainScreen].bounds.size.width;
+    m_UIView100Number.frame = frm;
+    
     for (NSUInteger i=0; i < 100; i++)
     {
         CGFloat x = (i % 10) * (1.0/ 8 + 1) * w;
@@ -80,12 +121,7 @@
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:[UIColor whiteColor]];
-        CGRect frm = m_UIView100Number.frame;
-        frm.origin.x = 0;
-        frm.size.width = [UIScreen mainScreen].bounds.size.width;
-        frm.size.height = [UIScreen mainScreen].bounds.size.width;
-       
-        m_UIView100Number.frame = frm;
+        
         //[m_UIView100Number setBackgroundColor:[UIColor whiteColor]];
         [m_UIView100Number addSubview:MyNumber];
         
@@ -117,16 +153,29 @@
 
 - (void)NumberClick: (UIButton*)sender
 {
-    if (!m_IsStart)
-        return;
+    switch (m_Sate)
+    {
+        case FIRSTWIEW:
+        case BACKVIEW:
+            return;
+        case PREPAREPLAY:
+            m_Sate = PLAYING;
+            break;
+        case PLAYING:
+            m_Sate = PLAYING;
+            break;
+        default:
+            return;
+    }
     
-    if (sender.tag == m_CurrentNumber)
+    if (sender.tag == (m_CurrentNumber + 1))
     {
         m_CurrentNumber += 1;
         [sender setBackgroundColor:[UIColor greenColor]];
     }
     else
     {
+        [sender setBackgroundColor:[UIColor redColor]];
         [self GameOver];
     }
 
@@ -140,8 +189,30 @@
 - (IBAction)PlayClick:(id)sender
 {
     [m_Sounder PlayClick];
-    m_IsStart = (m_IsStart)? FALSE : TRUE;
-    [self ReArange100Number];
+    m_CurrentNumber = 0;
+    
+    switch (m_Sate)
+    {
+        case FIRSTWIEW:
+            m_Sate = PREPAREPLAY;
+            [self ReArange100Number];
+            break;
+        case BACKVIEW:
+            m_Sate = PREPAREPLAY;
+            [self ReArange100Number];
+            break;
+        case PREPAREPLAY:
+            m_Sate = PREPAREPLAY;
+            [self ReArange100Number];
+            break;
+        case PLAYING:
+            m_Sate = PREPAREPLAY;
+            [self ReArange100Number];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)GameOver
@@ -160,9 +231,18 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+
+    if ([[segue identifier] isEqualToString:@"SegueSingleResult"])
+    {
+        SingleResultViewController *MyView = (SingleResultViewController*)[segue destinationViewController];
+        [MyView SetArrayNumber:m_Array100Number];
+        [MyView SetCurrentNumber:m_CurrentNumber];
+    
+    }
 }
 
 
