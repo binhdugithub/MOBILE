@@ -7,24 +7,46 @@
 //
 
 #import "AboutViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "SoundController.h"
 
 @interface AboutViewController ()
-
+@property (nonatomic, strong) SoundController *m_Sounder;
 @end
 
 @implementation AboutViewController
+@synthesize m_Sounder;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    m_Sounder = [[SoundController alloc] init];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
+- (IBAction)HomeClick:(id)sender
+{
+    [m_Sounder PlayClick];
+}
+- (IBAction)RemoveAdsClick:(id)sender
+{
+    [m_Sounder PlayClick];
+}
+- (IBAction)RestoreClick:(id)sender
+{
+    [m_Sounder PlayClick];
+}
+- (IBAction)m_MoreApp:(id)sender
+{
+    [m_Sounder PlayClick];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -32,6 +54,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -8,6 +8,8 @@
 //
 
 #import "SinglePlayerViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "SoundController.h"
 
 @interface SinglePlayerViewController ()
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
@@ -17,27 +19,36 @@
 
 @property (nonatomic, strong)NSMutableArray *m_Array100Number;
 @property (nonatomic, assign)NSUInteger m_CurrentNumber;
+@property (nonatomic, assign)BOOL m_IsStart;
 @property (nonatomic, assign)BOOL m_NeedRefreshGUI;
+
+@property (nonatomic, strong) SoundController *m_Sounder;
 @end
 
 @implementation SinglePlayerViewController
 @synthesize m_UIButtonPlay, m_UIView100Number, m_UIViewFooter, m_UIViewHeader;
 @synthesize m_Array100Number, m_CurrentNumber;
 @synthesize m_NeedRefreshGUI;
+@synthesize m_IsStart;
+@synthesize m_Sounder;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Do dai cua mang: %i", m_Array100Number.count);
+    m_Sounder = [[SoundController alloc] init];
+    m_CurrentNumber = 1;
+    m_IsStart = FALSE;
+    
+    m_Array100Number = [[NSMutableArray alloc] init];
+    [self Init100Number];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     //Init 100Button
-    m_CurrentNumber = 1;
-    m_Array100Number = [[NSMutableArray alloc] init];
-    [self Init100Number];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,12 +109,17 @@
         frm.origin.y = y;
         MyNumber.frame = frm;
         
+        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        
         i++;
     }
 }
 
 - (void)NumberClick: (UIButton*)sender
 {
+    if (!m_IsStart)
+        return;
+    
     if (sender.tag == m_CurrentNumber)
     {
         m_CurrentNumber += 1;
@@ -116,9 +132,15 @@
 
 }
 
+- (IBAction)HomeClick:(id)sender
+{
+    [m_Sounder PlayClick];
+}
 
 - (IBAction)PlayClick:(id)sender
 {
+    [m_Sounder PlayClick];
+    m_IsStart = (m_IsStart)? FALSE : TRUE;
     [self ReArange100Number];
 }
 
@@ -134,7 +156,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -142,6 +164,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

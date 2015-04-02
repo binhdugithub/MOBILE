@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -26,7 +26,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ai9-gY-0KQ" kind="modal" id="u2n-Om-ifY"/>
+                                    <action selector="SinglePlayerClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Fma-0f-OBP"/>
+                                    <segue destination="Ai9-gY-0KQ" kind="modal" identifier="SegueSinglePlayer" modalTransitionStyle="crossDissolve" id="u2n-Om-ifY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-q8-wU5">
@@ -37,6 +38,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TwoPlayersClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AVO-Dy-CAh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-2C-hNb">
                                 <rect key="frame" x="21" y="518" width="42" height="30"/>
@@ -44,6 +48,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="AboutClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sM1-TW-vtF"/>
                                     <segue destination="irn-OG-BXG" kind="modal" id="Hqs-VT-966"/>
                                 </connections>
                             </button>
@@ -52,6 +57,9 @@
                                 <state key="normal" title="Speaker">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="SpeakerClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3gP-Gv-8in"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 NUMBERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3d-6W-m2K">
                                 <rect key="frame" x="59" y="129" width="202" height="40"/>
@@ -86,15 +94,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-MJ-Iad">
-                                <rect key="frame" x="16" y="20" width="41" height="30"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="modal" id="yQO-az-1IK"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEi-cw-jpa">
                                 <rect key="frame" x="70" y="340" width="180" height="40"/>
                                 <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -103,6 +102,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="RestoreClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="JGn-zF-utC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xp9-c0-iRp">
                                 <rect key="frame" x="70" y="390" width="180" height="40"/>
@@ -112,6 +114,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="m_MoreApp:" destination="irn-OG-BXG" eventType="touchUpInside" id="Itb-pJ-H1A"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YtB-Y5-ary">
                                 <rect key="frame" x="70" y="290" width="180" height="40"/>
@@ -121,11 +126,24 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="RemoveAdsClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="1hV-wF-rVF"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xG-Ig-FT4">
                                 <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-MJ-Iad">
+                                <rect key="frame" x="263" y="10" width="41" height="30"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="HomeClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="P6D-vu-976"/>
+                                    <segue destination="vXZ-lx-hvc" kind="modal" id="yQO-az-1IK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -133,21 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANd-ew-I0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="219" y="1091"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="baU-Pb-HR1">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z1o-di-fC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="En6-wy-iTu" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OvH-kY-QRp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="151" y="-363"/>
+            <point key="canvasLocation" x="227" y="1226"/>
         </scene>
         <!--Single Result View Controller-->
         <scene sceneID="r1D-zI-ucZ">
@@ -167,6 +171,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PU-Am-TpO">
+                                <rect key="frame" x="10" y="10" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="BackClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="1P9-sR-eWe"/>
+                                    <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="wPq-XG-KLt"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-dh-n6O">
                                 <rect key="frame" x="10" y="80" width="300" height="150"/>
                                 <subviews>
@@ -184,7 +198,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bh-iK-QdI">
-                                <rect key="frame" x="70" y="332" width="180" height="40"/>
+                                <rect key="frame" x="70" y="348" width="180" height="40"/>
                                 <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="STATISTICS">
@@ -193,19 +207,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXn-CJ-Df9">
-                                <rect key="frame" x="70" y="382" width="180" height="40"/>
+                                <rect key="frame" x="70" y="398" width="180" height="40"/>
                                 <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="SHARE SCORE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fr-sM-3c4">
-                                <rect key="frame" x="70" y="282" width="180" height="40"/>
-                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="PLAY AGAIN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -215,22 +220,38 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ7-go-VTy">
-                                <rect key="frame" x="10" y="5" width="51" height="30"/>
-                                <state key="normal" title="Back">
+                                <rect key="frame" x="264" y="10" width="51" height="30"/>
+                                <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ai9-gY-0KQ" kind="modal" id="jMi-0J-gGf"/>
+                                    <action selector="HomeClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="bwH-gd-XRz"/>
+                                    <segue destination="vXZ-lx-hvc" kind="modal" id="yv0-fJ-Pvd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fr-sM-3c4">
+                                <rect key="frame" x="70" y="298" width="180" height="40"/>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="PLAY AGAIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="PlayAgainClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="0X7-h4-Vez"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="Ai9-gY-0KQ" kind="modal" identifier="SegueBack" id="eek-Vz-4ld"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmb-vr-mmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="-281"/>
+            <point key="canvasLocation" x="616" y="-276"/>
         </scene>
         <!--Single Player View Controller-->
         <scene sceneID="27G-ah-dAF">
@@ -266,11 +287,12 @@
                                 <rect key="frame" x="0.0" y="2" width="320" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-dA-43L">
-                                        <rect key="frame" x="8" y="19" width="41" height="30"/>
+                                        <rect key="frame" x="268" y="19" width="41" height="30"/>
                                         <state key="normal" title="Home">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="k6D-Q1-ca7"/>
                                             <segue destination="vXZ-lx-hvc" kind="modal" id="geN-Mz-MUc"/>
                                         </connections>
                                     </button>
@@ -295,7 +317,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="geN-Mz-MUc"/>
-        <segue reference="jMi-0J-gGf"/>
+        <segue reference="eek-Vz-4ld"/>
+        <segue reference="yv0-fJ-Pvd"/>
     </inferredMetricsTieBreakers>
 </document>

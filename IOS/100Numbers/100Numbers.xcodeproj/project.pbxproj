@@ -18,6 +18,13 @@
 		AF91D2091ACC5BB2009A1B12 /* TwoPalyersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */; };
 		AF91D20C1ACC5BD0009A1B12 /* SingleResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */; };
 		AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */; };
+		AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDFB4411ACCF3130007C5A9 /* SoundController.m */; };
+		AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4441ACCF8570007C5A9 /* click.mp3 */; };
+		AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4451ACCF8570007C5A9 /* congratulation.mp3 */; };
+		AFDFB4501ACCF8570007C5A9 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4461ACCF8570007C5A9 /* correct.mp3 */; };
+		AFDFB4511ACCF8570007C5A9 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4471ACCF8570007C5A9 /* gameover.mp3 */; };
+		AFDFB4521ACCF8570007C5A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4491ACCF8570007C5A9 /* LaunchScreen.xib */; };
+		AFDFB4531ACCF8570007C5A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB44B1ACCF8570007C5A9 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,14 @@
 		AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleResultViewController.m; sourceTree = "<group>"; };
 		AF91D20D1ACC5BEF009A1B12 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		AFDFB4401ACCF3130007C5A9 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
+		AFDFB4411ACCF3130007C5A9 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
+		AFDFB4441ACCF8570007C5A9 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		AFDFB4451ACCF8570007C5A9 /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulation.mp3; sourceTree = "<group>"; };
+		AFDFB4461ACCF8570007C5A9 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
+		AFDFB4471ACCF8570007C5A9 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameover.mp3; sourceTree = "<group>"; };
+		AFDFB44A1ACCF8570007C5A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		AFDFB44C1ACCF8570007C5A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +110,8 @@
 			children = (
 				AF91D1E21ACC4785009A1B12 /* AppDelegate.h */,
 				AF91D1E31ACC4785009A1B12 /* AppDelegate.m */,
+				AFDFB4401ACCF3130007C5A9 /* SoundController.h */,
+				AFDFB4411ACCF3130007C5A9 /* SoundController.m */,
 				AF91D1E51ACC4785009A1B12 /* HomeViewController.h */,
 				AF91D1E61ACC4785009A1B12 /* HomeViewController.m */,
 				AF91D2041ACC5B77009A1B12 /* SinglePlayerViewController.h */,
@@ -116,6 +133,9 @@
 		AF91D1DE1ACC4785009A1B12 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFDFB4431ACCF8570007C5A9 /* audios */,
+				AFDFB4481ACCF8570007C5A9 /* Base.lproj */,
+				AFDFB44D1ACCF8570007C5A9 /* images */,
 				AF91D1DF1ACC4785009A1B12 /* Info.plist */,
 				AF91D1E01ACC4785009A1B12 /* main.m */,
 			);
@@ -137,6 +157,33 @@
 				AF91D1F91ACC4785009A1B12 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFDFB4431ACCF8570007C5A9 /* audios */ = {
+			isa = PBXGroup;
+			children = (
+				AFDFB4441ACCF8570007C5A9 /* click.mp3 */,
+				AFDFB4451ACCF8570007C5A9 /* congratulation.mp3 */,
+				AFDFB4461ACCF8570007C5A9 /* correct.mp3 */,
+				AFDFB4471ACCF8570007C5A9 /* gameover.mp3 */,
+			);
+			path = audios;
+			sourceTree = "<group>";
+		};
+		AFDFB4481ACCF8570007C5A9 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				AFDFB4491ACCF8570007C5A9 /* LaunchScreen.xib */,
+				AFDFB44B1ACCF8570007C5A9 /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		AFDFB44D1ACCF8570007C5A9 /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +266,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDFB4511ACCF8570007C5A9 /* gameover.mp3 in Resources */,
+				AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */,
 				AF91D1EA1ACC4785009A1B12 /* Main.storyboard in Resources */,
+				AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */,
+				AFDFB4521ACCF8570007C5A9 /* LaunchScreen.xib in Resources */,
 				AF91D1EF1ACC4785009A1B12 /* LaunchScreen.xib in Resources */,
+				AFDFB4531ACCF8570007C5A9 /* Main.storyboard in Resources */,
 				AF91D1EC1ACC4785009A1B12 /* Images.xcassets in Resources */,
+				AFDFB4501ACCF8570007C5A9 /* correct.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF91D1E71ACC4785009A1B12 /* HomeViewController.m in Sources */,
+				AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */,
 				AF91D20C1ACC5BD0009A1B12 /* SingleResultViewController.m in Sources */,
 				AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */,
 				AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */,
@@ -282,6 +336,22 @@
 				AF91D1EE1ACC4785009A1B12 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		AFDFB4491ACCF8570007C5A9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFDFB44A1ACCF8570007C5A9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		AFDFB44B1ACCF8570007C5A9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFDFB44C1ACCF8570007C5A9 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -438,6 +508,7 @@
 				AF91D2001ACC4785009A1B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF91D2011ACC4785009A1B12 /* Build configuration list for PBXNativeTarget "100NumbersTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +517,7 @@
 				AF91D2031ACC4785009A1B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
