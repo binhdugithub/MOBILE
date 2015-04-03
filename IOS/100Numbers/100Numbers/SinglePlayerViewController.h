@@ -18,7 +18,8 @@ enum STATEGAME
     FIRSTWIEW,
     BACKVIEW,
     PREPAREPLAY,
-    PLAYING
+    PLAYING,
+    GAMEOVER
 };
 
 - (void)NumberClick: (UIButton*)sender;

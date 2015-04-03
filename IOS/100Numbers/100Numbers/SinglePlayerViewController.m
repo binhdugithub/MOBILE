@@ -78,6 +78,7 @@
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:l_number.backgroundColor];
+        MyNumber.alpha = l_number.alpha;
         
         [m_UIView100Number addSubview:MyNumber];
          [m_Array100Number addObject:MyNumber];
@@ -121,6 +122,7 @@
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.alpha = 0.95;
         
         //[m_UIView100Number setBackgroundColor:[UIColor whiteColor]];
         [m_UIView100Number addSubview:MyNumber];
@@ -146,6 +148,7 @@
         MyNumber.frame = frm;
         
         [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.alpha = 0.95;
         
         i++;
     }
@@ -153,6 +156,9 @@
 
 - (void)NumberClick: (UIButton*)sender
 {
+    if (sender.tag < m_CurrentNumber)
+        return;
+    
     switch (m_Sate)
     {
         case FIRSTWIEW:
@@ -171,15 +177,20 @@
     if (sender.tag == (m_CurrentNumber + 1))
     {
         m_CurrentNumber += 1;
-        [sender setBackgroundColor:[UIColor greenColor]];
+        sender.alpha = 0.5;
+        //[sender setBackgroundColor:[UIColor greenColor]];
     }
     else
     {
         [sender setBackgroundColor:[UIColor redColor]];
+        sender.alpha = 0.5;
         [self GameOver];
     }
 
 }
+
+
+
 
 - (IBAction)HomeClick:(id)sender
 {
@@ -206,13 +217,27 @@
             [self ReArange100Number];
             break;
         case PLAYING:
-            m_Sate = PREPAREPLAY;
-            [self ReArange100Number];
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"END GAME" message:@"You are about to QUIT the game!\n\nAre you sure?" delegate:self  cancelButtonTitle:@"NO"  otherButtonTitles:@"YES" ,nil];
+            //alert.tag = 1000;
+            [alert show];
+        }
             break;
         default:
             break;
     }
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (/*alertView.tag == 1000 && */buttonIndex == 1)
+    {
+        //code for opening settings app in iOS 8
+        m_Sate = PREPAREPLAY;
+        [self ReArange100Number];
+    }
 }
 
 - (void)GameOver
@@ -226,6 +251,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 #pragma mark - Navigation
