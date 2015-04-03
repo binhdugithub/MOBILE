@@ -13,6 +13,12 @@
     
 }
 
-- (id)init;
-- (void) PlayClick;
++(instancetype) GetSingleton;
+- (void) PlayClickButton;
+- (void) PlaySoundGameOver;
+- (void) PlaySoundCongratulation;
+- (void) PlaySoundCorrect;
+- (void) ChangeMute;
+- (BOOL) GetMute;
+   
 @end

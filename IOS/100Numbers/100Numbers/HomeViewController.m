@@ -11,19 +11,18 @@
 #import "SinglePlayerViewController.h"
 
 @interface HomeViewController ()
-@property (nonatomic, strong) SoundController *m_Audio;
 
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker;
 
 @end
 
 @implementation HomeViewController
-@synthesize m_Audio;
-
+@synthesize m_UIButtonSpeaker;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    m_Audio = [[SoundController alloc] init];
+    [self ShowSpeaker];
     
 }
 
@@ -35,26 +34,41 @@
 
 
 
-
 - (IBAction)SinglePlayerClick:(id)sender
 {
-    [m_Audio PlayClick];
+    [[SoundController GetSingleton] PlayClickButton];
     [self performSegueWithIdentifier:@"SegueSinglePlayer" sender:self];
 }
 
 - (IBAction)TwoPlayersClick:(id)sender
 {
-    [m_Audio PlayClick];
+    [[SoundController GetSingleton] PlayClickButton];
 }
 
 - (IBAction)AboutClick:(id)sender
 {
-    [m_Audio PlayClick];
+   [[SoundController GetSingleton] PlayClickButton];
+}
+
+- (void) ShowSpeaker
+{
+    if ([[SoundController GetSingleton] GetMute])
+    {
+        NSLog(@"Mute");
+        [m_UIButtonSpeaker setImage:[UIImage imageNamed:@"btn_mute.png"] forState: UIControlStateNormal];
+    }
+    else
+    {
+        NSLog(@"UnMute");
+        [m_UIButtonSpeaker setImage:[UIImage imageNamed:@"btn_unmute.png"] forState: UIControlStateNormal];
+    }
 }
 
 - (IBAction)SpeakerClick:(id)sender
 {
-   [m_Audio PlayClick];
+   [[SoundController GetSingleton] PlayClickButton];
+    [[SoundController GetSingleton] ChangeMute];
+    [self ShowSpeaker];
 }
 
 

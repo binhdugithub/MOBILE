@@ -42,8 +42,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-2C-hNb">
-                                <rect key="frame" x="10" y="518" width="40" height="40"/>
-                                <state key="normal" title="About" image="bg_about.png">
+                                <rect key="frame" x="10" y="518" width="30" height="30"/>
+                                <state key="normal" title="About" image="btn_about.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjy-xA-kI5">
-                                <rect key="frame" x="270" y="518" width="40" height="40"/>
+                                <rect key="frame" x="270" y="518" width="30" height="30"/>
                                 <state key="normal" title="Speaker" image="btn_mute.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -67,10 +67,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.081480041480000001" green="0.27203654189999998" blue="0.046024718159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="m_UIButtonSpeaker" destination="Tjy-xA-kI5" id="xIf-yH-XVK"/>
                         <segue destination="Ai9-gY-0KQ" kind="modal" identifier="SegueSinglePlayer" id="417-B6-pBx"/>
                     </connections>
                 </viewController>
@@ -138,10 +139,16 @@
                                 </subviews>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4E1-xE-Q5E" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ABOUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-cs-84e">
+                                        <rect key="frame" x="0.0" y="5" width="320" height="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-MJ-Iad">
-                                        <rect key="frame" x="270" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="280" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -150,16 +157,10 @@
                                             <segue destination="vXZ-lx-hvc" kind="modal" id="yQO-az-1IK"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ABOUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-cs-84e">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="40"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.081480041480000001" green="0.27203654189999998" blue="0.046024718159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -188,7 +189,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="M0W-mB-ffK" kind="modal" id="64C-oU-k7k"/>
+                                    <action selector="StatisticsClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="kki-ZD-niK"/>
+                                    <segue destination="M0W-mB-ffK" kind="modal" identifier="Segue2Statistics" id="64C-oU-k7k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXn-CJ-Df9">
@@ -199,6 +201,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ShareScoreClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="Iwg-id-6Or"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zH-fs-268" userLabel="Footer View">
                                 <rect key="frame" x="0.0" y="508" width="320" height="60"/>
@@ -223,17 +228,42 @@
                                     <action selector="PlayAgainClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="0X7-h4-Vez"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-dh-n6O" userLabel="100Number View">
+                                <rect key="frame" x="15" y="80" width="290" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 / 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-vp-S67">
+                                        <rect key="frame" x="0.0" y="60" width="290" height="60"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                        <color key="textColor" red="0.73656486742424243" green="0.31517636652071346" blue="0.2391066150217615" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOUR SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pc-Lx-PVz">
+                                        <rect key="frame" x="0.0" y="8" width="300" height="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPa-Te-Q60">
+                                        <rect key="frame" x="250" y="10" width="29" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.73656486740000005" green="0.31517636650000003" blue="0.23910661499999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbE-sb-Lka" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQx-V8-d8H">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="5" width="320" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ7-go-VTy">
-                                        <rect key="frame" x="270" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="270" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -243,8 +273,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PU-Am-TpO">
-                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
-                                        <state key="normal" title="Back" image="bg_back.png">
+                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                        <state key="normal" title="Back" image="btn_back.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -254,36 +284,13 @@
                                     </button>
                                 </subviews>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-dh-n6O" userLabel="100Number View">
-                                <rect key="frame" x="15" y="80" width="290" height="150"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 / 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-vp-S67">
-                                        <rect key="frame" x="0.0" y="60" width="290" height="60"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOUR SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pc-Lx-PVz">
-                                        <rect key="frame" x="0.0" y="8" width="300" height="40"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPa-Te-Q60">
-                                        <rect key="frame" x="250" y="10" width="29" height="21"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.081480041480000001" green="0.27203654189999998" blue="0.046024718159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="m_UILabelScore" destination="jUE-vp-S67" id="KEZ-1H-kcV"/>
-                        <segue destination="Ai9-gY-0KQ" kind="modal" identifier="SegueBack" id="eek-Vz-4ld"/>
+                        <segue destination="Ai9-gY-0KQ" kind="modal" identifier="Segue2SinglePlayer" id="eek-Vz-4ld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmb-vr-mmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,28 +313,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iK8-1Q-U4J">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="5" width="320" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyv-XR-N6J">
-                                        <rect key="frame" x="270" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="270" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="HomeClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="fB7-Ml-WTI"/>
+                                            <segue destination="vXZ-lx-hvc" kind="modal" id="ho0-TZ-vaQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUz-9g-uLK">
-                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
-                                        <state key="normal" title="Back" image="bg_back.png">
+                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                        <state key="normal" title="Back" image="btn_back.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="BackClick:" destination="M0W-mB-ffK" eventType="touchUpInside" id="S8f-0C-Abf"/>
                                             <action selector="BackClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="vPX-ca-L4y"/>
                                             <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="bNR-jD-SEh"/>
+                                            <segue destination="Ai9-gY-0KQ" kind="modal" identifier="Segue2SinglePlayer" id="M8T-pJ-XLe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -338,22 +348,24 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BEST SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPv-rU-TYk">
                                         <rect key="frame" x="0.0" y="8" width="300" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWo-aI-1lQ">
                                         <rect key="frame" x="250" y="10" width="29" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.73656486740000005" green="0.31517636650000003" blue="0.23910661499999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 / 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdJ-Lp-HMF">
                                         <rect key="frame" x="0.0" y="56" width="290" height="60"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                        <color key="textColor" red="0.73656486740000005" green="0.31517636650000003" blue="0.23910661499999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dk-O8-Kmq" userLabel="100Number View">
                                 <rect key="frame" x="15" y="250" width="290" height="150"/>
@@ -361,30 +373,35 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OVERALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zq9-2M-24T">
                                         <rect key="frame" x="0.0" y="8" width="300" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GAMES PALYED:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgT-1H-a7u">
                                         <rect key="frame" x="10" y="94" width="150" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q56-Sp-VP2">
                                         <rect key="frame" x="230" y="60" width="50" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.73656486740000005" green="0.31517636650000003" blue="0.23910661499999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ga-It-Whq">
                                         <rect key="frame" x="230" y="87" width="50" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.73656486740000005" green="0.31517636650000003" blue="0.23910661499999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AVERAGE SCORE:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-bd-dFf">
                                         <rect key="frame" x="10" y="60" width="150" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsd-R5-yUa">
                                 <rect key="frame" x="15" y="420" width="135" height="40"/>
@@ -395,6 +412,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="ClearScoreClick:" destination="M0W-mB-ffK" eventType="touchUpInside" id="UMY-3F-x0d"/>
                                     <action selector="PlayAgainClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="VnC-h4-gKa"/>
                                 </connections>
                             </button>
@@ -408,6 +426,7 @@
                                 </state>
                                 <connections>
                                     <action selector="PlayAgainClick:" destination="XoZ-kc-tof" eventType="touchUpInside" id="lRA-nw-f2x"/>
+                                    <action selector="ShareFacebook:" destination="M0W-mB-ffK" eventType="touchUpInside" id="zCK-1G-3nw"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFj-Jh-6kH" userLabel="Footer View">
@@ -422,7 +441,7 @@
                                 </subviews>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.081480041479274817" green="0.27203654188948301" blue="0.046024718161887364" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -433,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFL-d9-ajJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="-276"/>
+            <point key="canvasLocation" x="1049" y="176"/>
         </scene>
         <!--Single Player View Controller-->
         <scene sceneID="27G-ah-dAF">
@@ -458,9 +477,6 @@
                                     <action selector="PlayClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="Mlc-1P-alO"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IIG-Sh-t0u" userLabel="100Number View">
-                                <rect key="frame" x="0.0" y="75" width="320" height="320"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KfY-Yk-E44" userLabel="Footer View">
                                 <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                                 <subviews>
@@ -473,28 +489,26 @@
                                 </subviews>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8l0-We-0JU" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="2" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="300" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVm-IG-oIB">
+                                        <rect key="frame" x="110" y="5" width="100" height="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgw-wR-bGJ" userLabel="Speaker">
-                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_unmute.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="IFx-VQ-DVV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NZ-gd-hRo" userLabel="Score">
-                                        <rect key="frame" x="135" y="5" width="50" height="50"/>
-                                        <state key="normal" title="Home" image="bg_clock.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="QVR-mn-Ct8"/>
+                                            <action selector="SpeakerClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="YgN-WB-57j"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-dA-43L">
-                                        <rect key="frame" x="270" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="280" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -504,23 +518,30 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arB-zt-wDt" userLabel="Statistics">
-                                        <rect key="frame" x="140" y="10" width="40" height="40"/>
-                                        <state key="normal" title="Home" image="bg_statistics.png">
+                                        <rect key="frame" x="145" y="10" width="30" height="30"/>
+                                        <state key="normal" title="Home" image="btn_statistics.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="Lbv-sC-WQA"/>
-                                            <segue destination="M0W-mB-ffK" kind="modal" id="Xq0-Ez-enU"/>
+                                            <action selector="StatisticsClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="Onr-e7-ZWh"/>
+                                            <segue destination="M0W-mB-ffK" kind="modal" identifier="Segue2SinglePlayer" id="Xq0-Ez-enU"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IIG-Sh-t0u" userLabel="100Number View">
+                                <rect key="frame" x="0.0" y="75" width="320" height="320"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.081480041480000001" green="0.27203654189999998" blue="0.046024718159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="m_UIButtonHome" destination="MSy-dA-43L" id="aYg-Xg-5dK"/>
                         <outlet property="m_UIButtonPlay" destination="AsQ-Lr-F6K" id="4ej-eZ-0R9"/>
+                        <outlet property="m_UIButtonSpeaker" destination="hgw-wR-bGJ" id="ekO-h9-Eyw"/>
+                        <outlet property="m_UIButtonStatistics" destination="arB-zt-wDt" id="6Ki-Bq-mwT"/>
+                        <outlet property="m_UILabelTime" destination="BVm-IG-oIB" id="6bb-T1-E6D"/>
                         <outlet property="m_UIView100Number" destination="IIG-Sh-t0u" id="JOc-us-WFX"/>
                         <outlet property="m_UIViewFooter" destination="KfY-Yk-E44" id="DXq-E5-orE"/>
                         <outlet property="m_UIViewHeader" destination="8l0-We-0JU" id="fiY-su-Qq3"/>
@@ -529,21 +550,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUr-Y0-IVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="409"/>
+            <point key="canvasLocation" x="616" y="566"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bg_about.png" width="300" height="300"/>
-        <image name="bg_back.png" width="300" height="300"/>
-        <image name="bg_clock.png" width="300" height="300"/>
-        <image name="bg_statistics.png" width="300" height="300"/>
+        <image name="btn_about.png" width="300" height="300"/>
+        <image name="btn_back.png" width="300" height="300"/>
         <image name="btn_home.png" width="256" height="256"/>
         <image name="btn_mute.png" width="300" height="300"/>
+        <image name="btn_statistics.png" width="300" height="300"/>
         <image name="btn_unmute.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="64C-oU-k7k"/>
-        <segue reference="eek-Vz-4ld"/>
         <segue reference="yQO-az-1IK"/>
+        <segue reference="417-B6-pBx"/>
+        <segue reference="Xq0-Ez-enU"/>
     </inferredMetricsTieBreakers>
 </document>

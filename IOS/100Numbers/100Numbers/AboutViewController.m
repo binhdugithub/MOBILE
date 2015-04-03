@@ -32,19 +32,19 @@
 
 - (IBAction)HomeClick:(id)sender
 {
-    [m_Sounder PlayClick];
+    [m_Sounder PlayClickButton];
 }
 - (IBAction)RemoveAdsClick:(id)sender
 {
-    [m_Sounder PlayClick];
+    [m_Sounder PlayClickButton];
 }
 - (IBAction)RestoreClick:(id)sender
 {
-    [m_Sounder PlayClick];
+    [m_Sounder PlayClickButton];
 }
 - (IBAction)m_MoreApp:(id)sender
 {
-    [m_Sounder PlayClick];
+    [m_Sounder PlayClickButton];
 }
 
 #pragma mark - Navigation

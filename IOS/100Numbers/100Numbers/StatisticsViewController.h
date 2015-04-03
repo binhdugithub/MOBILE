@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface StatisticsViewController : UIViewController
+{
+    
+}
 
+- (void)SetArrayNumber: (NSMutableArray*) p_array;
 @end
