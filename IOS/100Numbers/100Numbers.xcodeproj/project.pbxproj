@@ -22,6 +22,7 @@
 		AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */; };
 		AF4C67351ACE95F8007FF5BF /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67341ACE95F8007FF5BF /* Data.plist */; };
 		AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */; };
+		AF880EEC1ACFA35200E5397A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF880EEB1ACFA35200E5397A /* GameKit.framework */; };
 		AF91D1E11ACC4785009A1B12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E01ACC4785009A1B12 /* main.m */; };
 		AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E31ACC4785009A1B12 /* AppDelegate.m */; };
 		AF91D1E71ACC4785009A1B12 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E61ACC4785009A1B12 /* HomeViewController.m */; };
@@ -69,6 +70,7 @@
 		AF4C67341ACE95F8007FF5BF /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AF880EEB1ACFA35200E5397A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AF91D1DB1ACC4785009A1B12 /* 100Numbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100Numbers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF91D1DF1ACC4785009A1B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF91D1E01ACC4785009A1B12 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF880EEC1ACFA35200E5397A /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +124,7 @@
 		AF91D1D21ACC4785009A1B12 = {
 			isa = PBXGroup;
 			children = (
+				AF880EEB1ACFA35200E5397A /* GameKit.framework */,
 				AF91D1DD1ACC4785009A1B12 /* 100Numbers */,
 				AF91D1F71ACC4785009A1B12 /* 100NumbersTests */,
 				AF91D1DC1ACC4785009A1B12 /* Products */,
@@ -147,10 +151,10 @@
 				AF91D1E61ACC4785009A1B12 /* HomeViewController.m */,
 				AF91D2041ACC5B77009A1B12 /* SinglePlayerViewController.h */,
 				AF91D2051ACC5B77009A1B12 /* SinglePlayerViewController.m */,
-				AF91D2071ACC5BB2009A1B12 /* TwoPalyersViewController.h */,
-				AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */,
 				AF91D20A1ACC5BD0009A1B12 /* SingleResultViewController.h */,
 				AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */,
+				AF91D2071ACC5BB2009A1B12 /* TwoPalyersViewController.h */,
+				AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */,
 				AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */,
 				AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */,
 				AF91D20D1ACC5BEF009A1B12 /* AboutViewController.h */,
@@ -282,6 +286,12 @@
 				TargetAttributes = {
 					AF91D1DA1ACC4785009A1B12 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 9UR3AC9H38;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					AF91D1F31ACC4785009A1B12 = {
 						CreatedOnToolsVersion = 6.2;
@@ -499,10 +509,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 100Numbers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -510,10 +523,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 100Numbers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -164,6 +164,8 @@
 
 - (void)ShowTimeDurration
 {
+    //m_UILabelTime.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
+    m_UILabelTime.text = [NSString stringWithFormat:@"%i", TIME_MAX];
     m_UIButtonSpeaker.hidden = TRUE;
     m_UIButtonStatistics.hidden = TRUE;
     m_UIButtonHome.hidden = TRUE;
@@ -187,6 +189,7 @@
     {
         [p_timer invalidate];
         p_timer = nil;
+        NSLog(@"Time out");
         [self GameOver];
     }
 }
@@ -203,7 +206,7 @@
             return;
         case PREPAREPLAY:
         {
-            m_UILabelTime.text = [NSString stringWithFormat:@"%i", TIME_MAX];
+            //m_UILabelTime.text = [NSString stringWithFormat:@"%i", TIME_MAX];
             [self ShowTimeDurration];
             _m_Timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                              target:self
@@ -234,6 +237,7 @@
     }
     else
     {
+        NSLog(@"Press button: %i", sender.tag);
         [sender setBackgroundColor:[UIColor redColor]];
         sender.alpha = 0.8;
         [self GameOver];
