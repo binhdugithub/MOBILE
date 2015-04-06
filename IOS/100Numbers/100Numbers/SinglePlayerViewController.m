@@ -10,7 +10,6 @@
 #import "SinglePlayerViewController.h"
 #import "SingleResultViewController.h"
 #import  "StatisticsViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "SoundController.h"
 
 #define TIME_MAX 300
@@ -129,7 +128,7 @@
         
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        [MyNumber setBackgroundColor:[UIColor yellowColor]];
         MyNumber.alpha = 0.8;
         
         //[m_UIView100Number setBackgroundColor:[UIColor whiteColor]];

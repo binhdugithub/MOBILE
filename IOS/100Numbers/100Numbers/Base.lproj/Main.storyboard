@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -149,7 +149,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-MJ-Iad">
-                                        <rect key="frame" x="280" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="8" y="5" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -498,23 +498,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgw-wR-bGJ" userLabel="Speaker">
-                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="275" y="10" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_unmute.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="IFx-VQ-DVV"/>
                                             <action selector="SpeakerClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="YgN-WB-57j"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-dA-43L">
-                                        <rect key="frame" x="280" y="10" width="30" height="30"/>
-                                        <state key="normal" title="Home" image="btn_home.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="k6D-Q1-ca7"/>
-                                            <segue destination="vXZ-lx-hvc" kind="modal" id="geN-Mz-MUc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arB-zt-wDt" userLabel="Statistics">
@@ -525,6 +515,16 @@
                                         <connections>
                                             <action selector="StatisticsClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="Onr-e7-ZWh"/>
                                             <segue destination="M0W-mB-ffK" kind="modal" identifier="Segue2SinglePlayer" id="Xq0-Ez-enU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-dA-43L">
+                                        <rect key="frame" x="0.0" y="10" width="30" height="30"/>
+                                        <state key="normal" title="Home" image="btn_home.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="HomeClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="k6D-Q1-ca7"/>
+                                            <segue destination="vXZ-lx-hvc" kind="modal" id="geN-Mz-MUc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -553,10 +553,10 @@
             </objects>
             <point key="canvasLocation" x="723" y="109"/>
         </scene>
-        <!--View Controller-->
+        <!--Two Palyers View Controller-->
         <scene sceneID="7ne-WF-zo4">
             <objects>
-                <viewController id="lLX-pR-JXa" sceneMemberID="viewController">
+                <viewController id="lLX-pR-JXa" customClass="TwoPalyersViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qoc-jy-Tlz"/>
                         <viewControllerLayoutGuide type="bottom" id="9kJ-nf-pls"/>
@@ -566,7 +566,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI5-WM-LVo">
-                                <rect key="frame" x="0.0" y="104" width="320" height="160"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kd8-rh-Fdz">
@@ -587,15 +587,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAn-I6-WCP">
                                 <rect key="frame" x="0.0" y="440" width="320" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCK-Ut-zNa">
-                                        <rect key="frame" x="8" y="15" width="30" height="30"/>
-                                        <state key="normal" title="Speaker" image="btn_mute.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SpeakerClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jg1-BE-iEJ"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXo-j5-jtC">
                                         <rect key="frame" x="282" y="15" width="30" height="30"/>
                                         <state key="normal" title="Home" image="btn_home.png">
@@ -603,6 +594,8 @@
                                         </state>
                                         <connections>
                                             <action selector="HomeClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="HYt-IF-qHT"/>
+                                            <action selector="HomeClick:" destination="lLX-pR-JXa" eventType="touchUpInside" id="TMS-4f-cac"/>
+                                            <segue destination="vXZ-lx-hvc" kind="modal" id="FKv-CK-PZ8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnn-CA-3jp">
@@ -614,13 +607,23 @@
                                         </state>
                                         <connections>
                                             <action selector="PlayClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="kZr-zW-IL0"/>
+                                            <action selector="Player1Click:" destination="lLX-pR-JXa" eventType="touchUpInside" id="lWz-gw-3a6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCK-Ut-zNa">
+                                        <rect key="frame" x="8" y="15" width="30" height="30"/>
+                                        <state key="normal" title="Speaker" image="btn_mute.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SpeakerClick:" destination="lLX-pR-JXa" eventType="touchUpInside" id="Adr-JM-rOM"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="isO-Wn-bQd">
-                                <rect key="frame" x="0.0" y="37" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="-1" width="320" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBa-3I-h4F">
                                         <rect key="frame" x="8" y="15" width="30" height="30"/>
@@ -628,16 +631,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="SpeakerClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gCf-Ap-26w"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmV-S3-DCt">
-                                        <rect key="frame" x="282" y="15" width="30" height="30"/>
-                                        <state key="normal" title="Home" image="btn_home.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="HomeClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="MaV-Oc-wrh"/>
+                                            <action selector="SpeakerClick:" destination="lLX-pR-JXa" eventType="touchUpInside" id="Rd7-BJ-x2g"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M26-jW-acl">
@@ -649,19 +643,42 @@
                                         </state>
                                         <connections>
                                             <action selector="PlayClick:" destination="Ai9-gY-0KQ" eventType="touchUpInside" id="wgn-Hq-EBe"/>
+                                            <action selector="Player2Click:" destination="lLX-pR-JXa" eventType="touchUpInside" id="yur-6V-lG4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmV-S3-DCt">
+                                        <rect key="frame" x="282" y="22" width="30" height="30"/>
+                                        <state key="normal" title="Home" image="btn_home.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="HomeClick:" destination="irn-OG-BXG" eventType="touchUpInside" id="MaV-Oc-wrh"/>
+                                            <action selector="HomeClick:" destination="lLX-pR-JXa" eventType="touchUpInside" id="kul-yN-foW"/>
+                                            <segue destination="vXZ-lx-hvc" kind="modal" id="jq6-5N-QS0"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="173-3b-L4f">
+                                <rect key="frame" x="72" y="248" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.081480041480000001" green="0.27203654189999998" blue="0.046024718159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="m_UIButtonPlayer1" destination="Nnn-CA-3jp" id="vUI-Ef-y9i"/>
+                        <outlet property="m_UIButtonPlayer2" destination="M26-jW-acl" id="z0I-WP-cis"/>
+                        <outlet property="m_UIButtonSpeaker1" destination="VCK-Ut-zNa" id="adL-ty-CTm"/>
+                        <outlet property="m_UIButtonSpeaker2" destination="yBa-3I-h4F" id="Tbe-qB-J7e"/>
+                        <outlet property="m_UIView1to50" destination="Kd8-rh-Fdz" id="wS6-eD-C8v"/>
+                        <outlet property="m_UIView51to100" destination="aI5-WM-LVo" id="Hc3-bN-iuM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXN-Ob-bH5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="657"/>
+            <point key="canvasLocation" x="728" y="802"/>
         </scene>
     </scenes>
     <resources>
@@ -673,8 +690,8 @@
         <image name="btn_unmute.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yv0-fJ-Pvd"/>
-        <segue reference="eek-Vz-4ld"/>
-        <segue reference="64C-oU-k7k"/>
+        <segue reference="Xq0-Ez-enU"/>
+        <segue reference="M8T-pJ-XLe"/>
+        <segue reference="jq6-5N-QS0"/>
     </inferredMetricsTieBreakers>
 </document>
