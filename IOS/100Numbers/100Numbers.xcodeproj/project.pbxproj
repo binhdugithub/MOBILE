@@ -22,6 +22,8 @@
 		AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */; };
 		AF4C67351ACE95F8007FF5BF /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67341ACE95F8007FF5BF /* Data.plist */; };
 		AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */; };
+		AF7A20BF1AD4431B0028D9C3 /* bg_number_found.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7A20BD1AD4431B0028D9C3 /* bg_number_found.png */; };
+		AF7A20C01AD4431B0028D9C3 /* bg_number_lastfound.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7A20BE1AD4431B0028D9C3 /* bg_number_lastfound.png */; };
 		AF880EEC1ACFA35200E5397A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF880EEB1ACFA35200E5397A /* GameKit.framework */; };
 		AF91D1E11ACC4785009A1B12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E01ACC4785009A1B12 /* main.m */; };
 		AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E31ACC4785009A1B12 /* AppDelegate.m */; };
@@ -70,6 +72,8 @@
 		AF4C67341ACE95F8007FF5BF /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AF7A20BD1AD4431B0028D9C3 /* bg_number_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_number_found.png; sourceTree = "<group>"; };
+		AF7A20BE1AD4431B0028D9C3 /* bg_number_lastfound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_number_lastfound.png; sourceTree = "<group>"; };
 		AF880EEB1ACFA35200E5397A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AF91D1DB1ACC4785009A1B12 /* 100Numbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100Numbers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF91D1DF1ACC4785009A1B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 		AFDFB44D1ACCF8570007C5A9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AF7A20BD1AD4431B0028D9C3 /* bg_number_found.png */,
+				AF7A20BE1AD4431B0028D9C3 /* bg_number_lastfound.png */,
 				AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */,
 				AF4C67301ACE3DA6007FF5BF /* btn_back.png */,
 				AF4C67161ACE3991007FF5BF /* btn_about.png */,
@@ -328,6 +334,7 @@
 				AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */,
 				AF4C67261ACE3991007FF5BF /* bg_main.png in Resources */,
 				AF4C672F1ACE3991007FF5BF /* btn_unmute.png in Resources */,
+				AF7A20C01AD4431B0028D9C3 /* bg_number_lastfound.png in Resources */,
 				AF91D1EA1ACC4785009A1B12 /* Main.storyboard in Resources */,
 				AF4C67351ACE95F8007FF5BF /* Data.plist in Resources */,
 				AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */,
@@ -341,6 +348,7 @@
 				AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */,
 				AFDFB4531ACCF8570007C5A9 /* Main.storyboard in Resources */,
 				AF91D1EC1ACC4785009A1B12 /* Images.xcassets in Resources */,
+				AF7A20BF1AD4431B0028D9C3 /* bg_number_found.png in Resources */,
 				AF4C67251ACE3991007FF5BF /* bg_lose.png in Resources */,
 				AF4C67241ACE3991007FF5BF /* bg_clock.png in Resources */,
 				AF4C672E1ACE3991007FF5BF /* btn_replay.png in Resources */,

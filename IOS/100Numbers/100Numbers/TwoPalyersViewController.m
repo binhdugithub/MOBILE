@@ -14,6 +14,8 @@ enum
     READY0,
     READY1,
     READY2,
+    REJECTGAME,
+    STOPGAME
     
 };
 
@@ -26,21 +28,35 @@ enum
     NSInteger m_CurrentNumber;
     NSInteger  m_Sate;
     NSTimer *m_Timer;
+    
+    UIButton *m_TempNumber1;
+    UIButton *m_TempNumber2;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker1;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker2;
-@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlayer1;
-@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlayer2;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonReady1;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonReady2;
 @property (weak, nonatomic) IBOutlet UIView *m_UIView51to100;
 @property (weak, nonatomic) IBOutlet UIView *m_UIView1to50;
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewResult1;
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewResult2;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome2;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin1;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin2;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore1;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore2;
 
 @end
 
 @implementation TwoPalyersViewController
 @synthesize m_UIButtonSpeaker1, m_UIButtonSpeaker2;
 @synthesize m_UIView1to50, m_UIView51to100;
-
+@synthesize m_UIViewResult1, m_UIViewResult2;
+@synthesize m_UIButtonReady1, m_UIButtonReady2;
+@synthesize m_UIButtonHome2;
+@synthesize m_UILabelScore1, m_UILabelScore2;
+@synthesize m_UILabelWin1, m_UILabelWin2;
 
 
 - (void)viewDidLoad
@@ -60,6 +76,13 @@ enum
 
 - (void)InitView
 {
+    m_UIButtonReady2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    m_UIButtonSpeaker2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    m_UIButtonHome2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    
+    m_UILabelWin2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    m_UILabelScore2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/16 + 10);
     CGFloat h = w;
     CGRect frm = m_UIView1to50.frame;
@@ -85,108 +108,207 @@ enum
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:11 weight:3];
-        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+        [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor yellowColor]];
+        //[MyNumber setBackgroundColor:[UIColor yellowColor]];
+        //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
          MyNumber.alpha = 1;
         
-        [m_UIView1to50 setBackgroundColor:[UIColor blackColor]];
-        [m_UIView1to50 addSubview:MyNumber];
+        [m_UIView1to50 setBackgroundColor:[UIColor whiteColor]];
         
+        
+        [m_UIView1to50 addSubview:MyNumber];
         [m_Array1to50Number addObject:MyNumber];
     }
     
     
     m_Array51to100Number = [[NSMutableArray alloc] init];
-    for (NSUInteger i=50; i < 100; i++)
+    frm = m_UIView51to100.frame;
+    for (NSUInteger i=0; i < 50; i++)
     {
-        NSInteger j= i % 50;
+        CGFloat x = (i % 10) * (1.0/ 16 + 1) * w;
+        CGFloat y = (i / 10) * (1.0/16 + 1) * h;
        
-        CGFloat x = (j % 10) * (1.0/ 16 + 1) * w;
-        CGFloat y = (j / 10) * (1.0/16 + 1) * h;
-        
-        UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        MyNumber.frame = CGRectMake(x, y, w, h);
+        UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake( frm.size.width- x - w, frm.size.height - y - h, w, h)];
+        //MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:11 weight:3];
-        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+        [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag - 50) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor yellowColor]];
+        [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag ) ] forState:UIControlStateNormal];
+        //[MyNumber setBackgroundColor:[UIColor yellowColor]];
+        //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
         MyNumber.alpha = 1;
         
-        [m_UIView51to100 setBackgroundColor:[UIColor blackColor]];
-        [m_UIView51to100 addSubview:MyNumber];
+        [m_UIView51to100 setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+        //MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 1.0f, 0.0f, 0.0f);
+        //MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
+
         
+        [m_UIView51to100 addSubview:MyNumber];
         [m_Array51to100Number addObject:MyNumber];
     }
+    
+    
+    CGRect frm1 = m_UIView1to50.frame;
+    frm1.origin.y = frm1.size.height;
+    m_UIViewResult1.frame = frm1;
+    
+    CGRect frm2 = m_UIView51to100.frame;
+    frm2.origin.y = - frm2.size.height;
+    m_UIViewResult2.frame = frm2;
+    
+    [m_UIView1to50 addSubview:m_UIViewResult1];
+    [m_UIView51to100 addSubview:m_UIViewResult2];
+    
 }
 
-- (void)NumberClick: (UIButton*)sender
+- (void)NumberClick1: (UIButton*)sender
 {
     if (m_Sate == READY0 || m_Sate == READY1)
         return;
     
-    NSInteger l_tag = (sender.tag > 50)? (sender.tag - 50) : (sender.tag);
-    if (l_tag != m_CurrentNumber)
+   
+    if (sender.tag != m_CurrentNumber)
         return;
     
-    if (sender.tag <= 50)
+   
+    m_ScorePlayer1 += 1;
+    [m_TempNumber1 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
+    [m_TempNumber2 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
+    
+    //sender.alpha = 0.8;
+    //[sender setBackgroundColor:[UIColor greenColor]];
+    [sender setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+    for (UIButton *l_number in m_Array51to100Number)
     {
-        m_ScorePlayer1 += 1;
-        m_CurrentNumber += 1;
-        sender.alpha = 0.8;
-        [sender setBackgroundColor:[UIColor greenColor]];
-        for (UIButton *l_number in m_Array51to100Number)
+        if (l_number.tag == sender.tag)
         {
-            if (l_number.tag == sender.tag + 50)
-            {
-                [l_number setBackgroundColor:[UIColor greenColor]];
-            }
+            //[l_number setBackgroundColor:[UIColor greenColor]];
+            [l_number setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+            //l_number.alpha = 0.8;
+            
+            m_TempNumber2 = l_number;
         }
-        if (m_CurrentNumber == 100)
-        {
-            [self Player1Win];
-        }
+    }
+    
+    
+    if (m_CurrentNumber == 50)
+    {
+        
+        [self GameOver];
     }
     else
     {
-        m_ScorePlayer2 += 1;
+        m_TempNumber1 = sender;
         m_CurrentNumber += 1;
-        sender.alpha = 0.8;
-        [sender setBackgroundColor:[UIColor greenColor]];
-        for (UIButton *l_number in m_Array1to50Number)
+    }
+
+}
+
+
+- (void)NumberClick2: (UIButton*)sender
+{
+    if (m_Sate == READY0 || m_Sate == READY1)
+        return;
+    
+    
+    if (sender.tag != m_CurrentNumber)
+        return;
+    
+    
+    m_ScorePlayer2 += 1;
+    [m_TempNumber1 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
+    [m_TempNumber2 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
+    
+    //sender.alpha = 0.8;
+    //[sender setBackgroundColor:[UIColor greenColor]];
+    [sender setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+    for (UIButton *l_number in m_Array1to50Number)
+    {
+        if (l_number.tag == sender.tag)
         {
-            if (l_number.tag == sender.tag - 50)
-            {
-                [l_number setBackgroundColor:[UIColor greenColor]];
-            }
-        }
-        if (m_CurrentNumber == 100)
-        {
-            [self Player2Win];
+            //[l_number setBackgroundColor:[UIColor greenColor]];
+            [l_number setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+            //l_number.alpha = 0.8;
+            m_TempNumber2 = l_number;
         }
     }
+   
+    
+    if (m_CurrentNumber == 50)
+    {
+        [self GameOver];
+    }
+    else
+    {
+        
+        m_TempNumber1 = sender;
+        m_CurrentNumber += 1;    }
     
 }
 
-- (void) Player1Win
+
+- (void) GameOver
 {
     
-}
-
-- (void) Player2Win
-{
+    if (m_ScorePlayer1 < m_ScorePlayer2)
+    {
+        m_UILabelWin2.text = @"YOU WIN";
+        m_UILabelWin1.text = @"YOU LOSE";
+    }
+    else
+    {
+        m_UILabelWin2.text = @"YOU LOSE";
+        m_UILabelWin1.text = @"YOU WIN";
+    }
     
+    m_UILabelScore1.text = [NSString stringWithFormat:@"%i / 50", m_ScorePlayer1];
+    m_UILabelScore2.text = [NSString stringWithFormat:@"%i / 50", m_ScorePlayer2];
+    
+    [self ShowResult];
 }
 
-- (IBAction)Player1Click:(id)sender
+- (void) ShowResult
 {
-    if (m_Sate != READY2)
+    CGRect frm1 = m_UIView1to50.frame;
+    frm1.origin.y = 0;
+    
+    CGRect frm2 = m_UIView51to100.frame;
+    frm2.origin.y = 0;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    m_UIViewResult1.frame = frm1;
+    m_UIViewResult2.frame = frm2;
+    [UIView commitAnimations];
+}
+
+
+- (void) HideResult
+{
+    CGRect frm1 = m_UIView1to50.frame;
+    frm1.origin.y = frm1.size.height;
+    
+    CGRect frm2 = m_UIView51to100.frame;
+    frm2.origin.y = -frm2.size.height;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    m_UIViewResult1.frame = frm1;
+    m_UIViewResult2.frame = frm2;
+    [UIView commitAnimations];
+}
+
+
+- (IBAction)ReadyClick:(UIButton*)sender
+{
+    if (m_Sate == READY0 || m_Sate == READY1)
     {
         m_Sate++;
         if (m_Sate == READY2)
@@ -194,34 +316,95 @@ enum
             m_CurrentNumber = 1;
             m_ScorePlayer1 = 0;
             m_ScorePlayer2 = 0;
+            m_TempNumber1 = nil;
+            m_TempNumber2 = nil;
+            
+            m_UIButtonReady1.enabled = TRUE;
+            m_UIButtonReady2.enabled = TRUE;
+            m_UIButtonReady1.alpha = 1;
+            m_UIButtonHome2.alpha = 1;
+            
+            [self ReArange20BodyIcon];
         }
-    
-    }
-    else
-    {
-        
-    }
-    
-}
-
-
-- (IBAction)Player2Click:(id)sender
-{
-    if (m_Sate != READY2)
-    {
-        m_Sate++;
-        if (m_Sate == READY2)
+        else
         {
-            m_CurrentNumber = 1;
+            sender.alpha = 0.5;
+            sender.enabled = FALSE;
+        }
+    }
+    else if(m_Sate == READY2)
+    {
+        if ([sender isEqual:m_UIButtonReady1])
+        {
             m_ScorePlayer1 = 0;
+            m_ScorePlayer2 = 50;
+        }
+        else
+        {
+            m_ScorePlayer1 = 50;
             m_ScorePlayer2 = 0;
         }
-    }
-    else
-    {
         
+        m_Sate = REJECTGAME;
+        [self GameOver];
     }
+    else if(m_Sate == REJECTGAME || m_Sate == STOPGAME)
+    {
+        m_Sate = READY0;
+        [self HideResult];
+    }
+    
 }
+
+
+- (void)ReArange20BodyIcon
+{
+    for (NSUInteger i = m_Array1to50Number.count-1; i > 0; i--)
+    {
+        NSUInteger j = arc4random_uniform(i+1);
+        [m_Array1to50Number exchangeObjectAtIndex:i withObjectAtIndex:j];
+        [m_Array51to100Number exchangeObjectAtIndex:i withObjectAtIndex:j];
+    }
+    
+    
+        NSInteger i = 0;
+        for (UIButton *l_Number in m_Array1to50Number)
+        {
+            [l_Number setBackgroundImage:nil forState:UIControlStateNormal];
+            CGRect frm = l_Number.frame;
+            frm.origin.x = (i % 10) * (1.0/ 16 + 1) * frm.size.width;
+            frm.origin.y = (i / 10) * (1.0/16 + 1) * frm.size.height;
+            
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:1];
+            l_Number.frame = frm;
+            [UIView commitAnimations];
+            
+            i++;
+        }
+        
+        
+        i = 0;
+        CGRect frmV = m_UIView51to100.frame;
+        for (UIButton *l_Number in m_Array51to100Number)
+        {
+            [l_Number setBackgroundImage:nil forState:UIControlStateNormal];
+            CGRect frm = l_Number.frame;
+            frm.origin.x = frmV.size.width-(i % 10) * (1.0/ 16 + 1) * frm.size.width - frm.size.width;
+            frm.origin.y = frmV.size.height -(i / 10) * (1.0/16 + 1) * frm.size.height - frm.size.height;
+            
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:0.6];
+            l_Number.frame = frm;
+            [UIView commitAnimations];
+            
+            i++;
+        }
+    
+    
+}
+
+
 
 - (IBAction)SpeakerClick:(id)sender
 {
