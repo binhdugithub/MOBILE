@@ -60,7 +60,7 @@ enum
 
 - (void)InitView
 {
-    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/8 + 10);
+    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/16 + 10);
     CGFloat h = w;
     CGRect frm = m_UIView1to50.frame;
     frm.origin.x = 0;
@@ -79,19 +79,19 @@ enum
     m_Array1to50Number = [[NSMutableArray alloc] init];
     for (NSUInteger i=0; i < 50; i++)
     {
-        CGFloat x = (i % 10) * (1.0/ 8 + 1) * w;
-        CGFloat y = (i / 10) * (1.0/8 + 1) * h;
+        CGFloat x = (i % 10) * (1.0/ 16 + 1) * w;
+        CGFloat y = (i / 10) * (1.0/16 + 1) * h;
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:11 weight:3];
         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:[UIColor yellowColor]];
-        MyNumber.alpha = 0.8;
+         MyNumber.alpha = 1;
         
         [m_UIView1to50 setBackgroundColor:[UIColor blackColor]];
         [m_UIView1to50 addSubview:MyNumber];
@@ -105,19 +105,19 @@ enum
     {
         NSInteger j= i % 50;
        
-        CGFloat x = (j % 10) * (1.0/ 8 + 1) * w;
-        CGFloat y = (j / 10) * (1.0/8 + 1) * h;
+        CGFloat x = (j % 10) * (1.0/ 16 + 1) * w;
+        CGFloat y = (j / 10) * (1.0/16 + 1) * h;
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:11 weight:3];
         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag - 50) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:[UIColor yellowColor]];
-        MyNumber.alpha = 0.8;
+        MyNumber.alpha = 1;
         
         [m_UIView51to100 setBackgroundColor:[UIColor blackColor]];
         [m_UIView51to100 addSubview:MyNumber];
