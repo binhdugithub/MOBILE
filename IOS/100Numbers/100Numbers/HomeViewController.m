@@ -6,9 +6,14 @@
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
+@import GoogleMobileAds;
+
+
 #import "HomeViewController.h"
 #import "SoundController.h"
 #import "SinglePlayerViewController.h"
+
+
 
 @interface HomeViewController ()
 
@@ -23,6 +28,8 @@
 {
     [super viewDidLoad];
     [self ShowSpeaker];
+    
+    NSLog(@"Google Mobile Ads SDK version: %@", [GADRequest sdkVersion]);
     
 }
 
