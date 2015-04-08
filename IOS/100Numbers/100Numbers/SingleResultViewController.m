@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
+@import GoogleMobileAds;
+
 #import "SingleResultViewController.h"
 #import "SinglePlayerViewController.h"
 #import "StatisticsViewController.h"
@@ -19,6 +21,8 @@
 
 @property (nonatomic, strong)NSMutableArray *m_Array100Number;
 @property (nonatomic, assign)NSInteger m_CurrentNumber;
+
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation SingleResultViewController
@@ -29,7 +33,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [m_UILabelScore setText:[NSString stringWithFormat:@"%i / 100", m_CurrentNumber]];
+    
+    //Advertisement
+    self.interstitial = [[GADInterstitial alloc] init];
+    self.interstitial = [[GADInterstitial alloc] init];
+    self.interstitial.adUnitID = @"ca-app-pub-2735696870763171/8572538847";
+    [self.interstitial loadRequest:[GADRequest request]];
+    //End Advertisement
+    
+    [m_UILabelScore setText:[NSString stringWithFormat:@"%li / 100", (long)m_CurrentNumber]];
+    
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                target:self
+                                selector:@selector(ShowAdvertisement:)
+                                userInfo:nil
+                                repeats:YES];
+}
+
+- (void) ShowAdvertisement: (NSTimer*)p_timer
+{
+    if ([self.interstitial isReady])
+    {
+        [p_timer invalidate];
+        [self.interstitial presentFromRootViewController:self];
+        
+    }else
+    {
+        NSLog(@"GADInterstitial not ready");
+    }
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
