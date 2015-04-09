@@ -47,14 +47,14 @@
                                 target:self
                                 selector:@selector(ShowAdvertisement:)
                                 userInfo:nil
-                                repeats:YES];
+                                repeats:NO];
 }
 
 - (void) ShowAdvertisement: (NSTimer*)p_timer
 {
     if ([self.interstitial isReady])
     {
-        [p_timer invalidate];
+        
         [self.interstitial presentFromRootViewController:self];
         
     }else
@@ -62,6 +62,8 @@
         NSLog(@"GADInterstitial not ready");
     }
     
+    
+    [p_timer invalidate];
     
 }
 
