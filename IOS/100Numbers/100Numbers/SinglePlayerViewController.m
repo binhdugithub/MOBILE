@@ -18,12 +18,14 @@
 @property (weak, nonatomic) IBOutlet UIView *m_UIView100Number;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlay;
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
+@property (weak, nonatomic) IBOutlet UILabel *m_UIlabelCopyright;
 
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonStatistics;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelTime;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
 
+@property (weak, nonatomic) IBOutlet UIImageView *m_UIImageViewBackGround;
 
 @property (nonatomic, strong)NSMutableArray *m_Array100Number;
 @property (nonatomic, assign)NSInteger m_CurrentNumber;
@@ -33,8 +35,8 @@
 @end
 
 @implementation SinglePlayerViewController
-@synthesize m_UIButtonPlay, m_UIView100Number, m_UIViewFooter, m_UIViewHeader;
-@synthesize m_UIButtonSpeaker, m_UIButtonStatistics, m_UIButtonHome;
+@synthesize m_UIButtonPlay, m_UIView100Number, m_UIViewFooter,m_UIlabelCopyright, m_UIViewHeader;
+@synthesize m_UIButtonSpeaker, m_UIButtonStatistics, m_UIButtonHome,m_UIImageViewBackGround;
 @synthesize m_UILabelTime;
 @synthesize m_Array100Number, m_CurrentNumber;
 @synthesize m_Sate;
@@ -43,6 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self CalculateView];
+    
     [self ShowSpeaker];
     [self HideTimeDurration];
     
@@ -58,6 +62,82 @@
             break;
     }
     
+}
+
+
+-(void)CalculateView
+{
+    CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    CGFloat H = [UIScreen mainScreen].bounds.size.height;
+  
+    //1 bacground
+    CGRect frm = m_UIImageViewBackGround.frame;
+    frm.size.width = W;
+    frm.size.height = H;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIImageViewBackGround.frame = frm;
+    
+    //2. Header
+    frm = m_UIViewHeader.frame;
+    frm.size.width = W;
+    frm.size.height = 3.0/2 * 1.0/9 * W;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIViewHeader.frame = frm;
+    // About
+    frm = m_UIButtonHome.frame;
+    frm.size.width = 1.0/9 * W;
+    frm.size.height = frm.size.width;
+    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.y = 1.0/4 * frm.size.height;
+    m_UIButtonHome.frame =frm;
+    
+    //Speaker
+    frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
+    m_UIButtonSpeaker.frame = frm;
+    
+    //statistics
+    frm.origin.x = 1.0/2 * (m_UIViewHeader.frame.size.width - frm.size.width);
+    m_UIButtonStatistics.frame = frm;
+    
+    //time
+    frm = m_UIViewHeader.frame;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelTime.frame = frm;
+    
+    //3 100Numbers
+    frm = m_UIView100Number.frame;
+    frm.size.width = W;
+    frm.size.height = frm.size.width;
+    frm.origin.x = 0;
+    frm.origin.y = m_UIViewHeader.frame.size.height;
+    m_UIView100Number.frame = frm;
+    
+    // 4 play
+    
+    frm = m_UIButtonPlay.frame;
+    frm.size.width = 1.0/2 * W;
+    frm.size.height = 1.0/12 * H;
+    frm.origin.x = 1.0/4 * W;
+    frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
+    m_UIButtonPlay.frame = frm;
+    
+    //5Footer
+    frm = m_UIViewFooter.frame;
+    frm.size.width = W;
+    frm.size.height = H - (m_UIButtonPlay.frame.origin.y + 5.0/4 * m_UIButtonPlay.frame.size.height);
+    frm.origin.x = 0;
+    frm.origin.y = H - frm.size.height;
+    m_UIViewFooter.frame = frm;
+    
+    //Copyrith
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIlabelCopyright.frame = frm;
+    
+   
 }
 
 - (void)SetStateGame: (NSInteger) p_state
@@ -140,7 +220,7 @@
 
 - (void)ReArange100Number
 {
-    for (NSUInteger i = m_Array100Number.count-1; i > 0; i--)
+    for (u_int32_t i = m_Array100Number.count-1; i > 0; i--)
         [m_Array100Number exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(i+1)];
     
     NSInteger i = 0;
