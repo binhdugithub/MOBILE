@@ -10,19 +10,46 @@
 #import "SoundController.h"
 #import "SinglePlayerViewController.h"
 #import <Social/Social.h>
+#import "GADMasterViewController.h"
 
 @interface StatisticsViewController ()
+{
+   NSMutableArray *m_Array100Number;
+}
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitle;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonBack;
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewBestSocre;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitleBestScore;
+
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelBestScore;
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewOverall;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelAverageScore;
-@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTimesPlayed;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelGamesPlayed;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitleAverageScore;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTileGamesPlayed;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitleOverall;
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIView2Buttons;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonClearScore;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonShareScore;
 
 
-@property (nonatomic, strong)NSMutableArray *m_Array100Number;
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright;
+
 @end
 
 @implementation StatisticsViewController
-@synthesize m_UILabelAverageScore, m_UILabelBestScore, m_UILabelTimesPlayed;
-@synthesize m_Array100Number;
+@synthesize m_UIViewFooter, m_UIButtonBack, m_UIButtonClearScore, m_UIButtonHome,
+m_UIButtonShareScore, m_UILabelAverageScore,m_UILabelBestScore, m_UILabelCopyright,
+m_UILabelGamesPlayed, m_UILabelTileGamesPlayed, m_UILabelTitle, m_UILabelTitleAverageScore,
+m_UILabelTitleBestScore, m_UILabelTitleOverall, m_UIView2Buttons, m_UIViewBestSocre,
+m_UIViewHeader, m_UIViewOverall;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,6 +61,8 @@
     
     [super viewWillAppear:animated];
     [self LoadData];
+    [self CalculateView];
+    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +71,144 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)CalculateView
+{
+    CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    CGFloat H = [UIScreen mainScreen].bounds.size.height;
+    
+    //1 bacground
+    
+    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
+    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    //2. Header
+    
+    // back
+    CGRect frm = m_UIButtonBack.frame;
+    frm.size.width = W_ICON * W;
+    frm.size.height = frm.size.width;
+    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.y = 1.0/4 * frm.size.height;
+    m_UIButtonBack.frame =frm;
+    
+    // header
+    frm = m_UIViewHeader.frame;
+    frm.size.width = W;
+    frm.size.height = 3.0/2 * m_UIButtonBack.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIViewHeader.frame = frm;
+    
+    //home
+    frm = m_UIButtonBack.frame;
+    frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
+    m_UIButtonHome.frame = frm;
+    
+    //title
+    frm = m_UIViewHeader.frame;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelTitle.frame = frm;
+    
+    
+    //3 Best Score
+    frm = m_UIViewBestSocre.frame;
+    frm.size.width = W - m_UIButtonBack.frame.size.width;
+    frm.size.height = H_YOURSCORE * H;
+    frm.origin.x = m_UIButtonBack.frame.origin.x + 1.0/4 * m_UIButtonBack.frame.size.width;
+    frm.origin.y =m_UIViewHeader.frame.origin.y + m_UIViewHeader.frame.size.height +  1.0/2 * m_UIButtonBack.frame.size.height;
+    m_UIViewBestSocre.frame = frm;
+    
+    //Bestscore title
+    frm = m_UIViewBestSocre.frame;
+    frm.size.height = 1.0/4 * frm.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelTitleBestScore.frame = frm;
+    
+    //best score
+    frm = m_UILabelBestScore.frame;
+    frm.size.width = m_UIViewBestSocre.frame.size.width;
+    frm.size.height = 1.0/4 * m_UIViewBestSocre.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = (m_UIViewBestSocre.frame.size.height - frm.size.height) * 1.0/2;
+    m_UILabelBestScore.frame = frm;
+    
+    //4. Overall
+    frm = m_UIViewBestSocre.frame;
+    frm.origin.y = frm.origin.y + frm.size.height + 1.0/2 * m_UIButtonBack.frame.size.height;
+    m_UIViewOverall.frame = frm;
+    
+    //title
+    frm = m_UIViewOverall.frame;
+    frm.size.height = 1.0/4 * frm.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelTitleOverall.frame = frm;
+    //average score title
+    frm = m_UILabelTitleAverageScore.frame;
+    frm.size.width = m_UIViewOverall.frame.size.width;
+    frm.size.height = 1.0/5 * m_UIViewOverall.frame.size.height;
+    frm.origin.x = 1.0/20 * m_UIViewOverall.frame.size.width;
+    frm.origin.y = (m_UIViewOverall.frame.size.height - frm.size.height) * 1.0/2;
+    m_UILabelTitleAverageScore.frame = frm;
+    
+    //averagesocore
+    frm = m_UILabelTitleAverageScore.frame;
+    frm.origin.x = -1.0/20 * m_UIViewOverall.frame.size.width;
+    m_UILabelAverageScore.frame = frm;
+    
+    //Games palyed title
+    frm = m_UILabelTitleAverageScore.frame;
+    frm.origin.y = frm.origin.y + frm.size.height;
+    m_UILabelTileGamesPlayed.frame = frm;
+    
+    //game played
+    frm = m_UILabelTileGamesPlayed.frame;
+    frm.origin.x = m_UILabelAverageScore.frame.origin.x;
+    m_UILabelGamesPlayed.frame = frm;
+    
+    
+    //4 View 2Buttons
+    frm = m_UIView2Buttons.frame;
+    frm.size.width = m_UIViewOverall.frame.size.width;
+    frm.size.height = H_3BUTTONS * H * 1.0/3.5;
+    frm.origin.x = m_UIViewOverall.frame.origin.x;
+    frm.origin.y = m_UIViewOverall.frame.origin.y + m_UIViewOverall.frame.size.height + 1.0/2 * m_UIButtonBack.frame.size.height;
+    m_UIView2Buttons.frame = frm;
+    
+    //play clear score
+    frm = m_UIView2Buttons.frame;
+    frm.size.width = 1.0/2 * (m_UIView2Buttons.frame.size.width - 1.0/16*m_UIView2Buttons.frame.size.width);
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIButtonClearScore.frame = frm;
+    m_UIButtonClearScore.layer.cornerRadius = 10;
+    [m_UIButtonClearScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //share score
+    frm = m_UIButtonClearScore.frame;
+    frm.origin.x = frm.origin.x + frm.size.width + 1.0/8 * frm.size.width;
+    m_UIButtonShareScore.frame = frm;
+    m_UIButtonShareScore.layer.cornerRadius = 10;
+    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //5 Footer
+    frm = m_UIViewFooter.frame;
+    frm.size.width = W;
+    frm.size.height = H_FOOTER * H;
+    frm.origin.x = 0;
+    frm.origin.y = H - frm.size.height;
+    m_UIViewFooter.frame = frm;
+    
+    //Copyrith
+    frm.size.height =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm.origin.x = 0;
+    frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
+    m_UILabelCopyright.frame = frm;
+    
+    
+}
 
 - (void)LoadData
 {
@@ -54,7 +221,7 @@
         {
             m_UILabelBestScore.text = @"--";
             m_UILabelAverageScore.text = @"--";
-            m_UILabelTimesPlayed.text = @"--";
+            m_UILabelGamesPlayed.text = @"--";
         }
         else
         {
@@ -63,7 +230,7 @@
                                        [dicData[@"BestScore"] intValue]];
             m_UILabelAverageScore.text = [NSString stringWithFormat:@"%i",
                                        [dicData[@"AverageScore"] intValue]];
-             m_UILabelTimesPlayed.text = [NSString stringWithFormat:@"%i", l_timesPlayed];
+             m_UILabelGamesPlayed.text = [NSString stringWithFormat:@"%li", (long)l_timesPlayed];
         }
         
     }
@@ -167,7 +334,7 @@
         
         m_UILabelBestScore.text = @"--";
         m_UILabelAverageScore.text = @"--";
-        m_UILabelTimesPlayed.text = @"--";
+        m_UILabelGamesPlayed.text = @"--";
     }
 }
 

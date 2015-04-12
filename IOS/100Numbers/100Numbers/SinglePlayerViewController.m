@@ -11,9 +11,17 @@
 #import "SingleResultViewController.h"
 #import  "StatisticsViewController.h"
 #import "SoundController.h"
+#import "GADMasterViewController.h"
 
-#define TIME_MAX 300
+
 @interface SinglePlayerViewController ()
+{
+    NSMutableArray *m_Array100Number;
+    NSInteger m_CurrentNumber;
+    NSInteger  m_Sate;
+    NSTimer *m_Timer;
+    NSInteger  m_currentTime;
+}
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
 @property (weak, nonatomic) IBOutlet UIView *m_UIView100Number;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlay;
@@ -25,29 +33,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelTime;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
 
-@property (weak, nonatomic) IBOutlet UIImageView *m_UIImageViewBackGround;
 
-@property (nonatomic, strong)NSMutableArray *m_Array100Number;
-@property (nonatomic, assign)NSInteger m_CurrentNumber;
-@property (nonatomic, assign)NSInteger  m_Sate;
-@property (strong, nonatomic) NSTimer *m_Timer;
+
 
 @end
 
 @implementation SinglePlayerViewController
 @synthesize m_UIButtonPlay, m_UIView100Number, m_UIViewFooter,m_UIlabelCopyright, m_UIViewHeader;
-@synthesize m_UIButtonSpeaker, m_UIButtonStatistics, m_UIButtonHome,m_UIImageViewBackGround;
+@synthesize m_UIButtonSpeaker, m_UIButtonStatistics, m_UIButtonHome;
 @synthesize m_UILabelTime;
-@synthesize m_Array100Number, m_CurrentNumber;
-@synthesize m_Sate;
+
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self CalculateView];
-    
     [self ShowSpeaker];
+    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     [self HideTimeDurration];
     
     switch (m_Sate)
@@ -71,41 +74,45 @@
     CGFloat H = [UIScreen mainScreen].bounds.size.height;
   
     //1 bacground
-    CGRect frm = m_UIImageViewBackGround.frame;
-    frm.size.width = W;
-    frm.size.height = H;
-    frm.origin.x = 0;
-    frm.origin.y = 0;
-    m_UIImageViewBackGround.frame = frm;
     
+    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
+    [self.view setBackgroundColor:[UIColor darkGrayColor]];
     //2. Header
-    frm = m_UIViewHeader.frame;
-    frm.size.width = W;
-    frm.size.height = 3.0/2 * 1.0/9 * W;
-    frm.origin.x = 0;
-    frm.origin.y = 0;
-    m_UIViewHeader.frame = frm;
-    // About
-    frm = m_UIButtonHome.frame;
-    frm.size.width = 1.0/9 * W;
+    
+    //2.2 About
+    CGRect frm = m_UIButtonHome.frame;
+    frm.size.width = W_ICON * W;
     frm.size.height = frm.size.width;
     frm.origin.x = 1.0/4 * frm.size.width;
     frm.origin.y = 1.0/4 * frm.size.height;
     m_UIButtonHome.frame =frm;
     
-    //Speaker
+    //2.4 header
+    frm = m_UIViewHeader.frame;
+    frm.size.width = W;
+    frm.size.height = 3.0/2 * m_UIButtonHome.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIViewHeader.frame = frm;
+    
+    //2.3Speaker
+    frm = m_UIButtonHome.frame;
     frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
     m_UIButtonSpeaker.frame = frm;
     
-    //statistics
+    //2.4statistics
     frm.origin.x = 1.0/2 * (m_UIViewHeader.frame.size.width - frm.size.width);
     m_UIButtonStatistics.frame = frm;
     
-    //time
+    
+    
+    
+    //2.5 time
     frm = m_UIViewHeader.frame;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTime.frame = frm;
+   
     
     //3 100Numbers
     frm = m_UIView100Number.frame;
@@ -115,29 +122,31 @@
     frm.origin.y = m_UIViewHeader.frame.size.height;
     m_UIView100Number.frame = frm;
     
-    // 4 play
-    
-    frm = m_UIButtonPlay.frame;
-    frm.size.width = 1.0/2 * W;
-    frm.size.height = 1.0/12 * H;
-    frm.origin.x = 1.0/4 * W;
-    frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
-    m_UIButtonPlay.frame = frm;
-    
-    //5Footer
+    //4 Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = H - (m_UIButtonPlay.frame.origin.y + 5.0/4 * m_UIButtonPlay.frame.size.height);
+    frm.size.height = H_FOOTER * H;
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     m_UIViewFooter.frame = frm;
     
     //Copyrith
+    frm.size.height =  H_FOOTER * H * 1.0/2;
     frm.origin.x = 0;
-    frm.origin.y = 0;
+    frm.origin.y =  H_FOOTER * H * 1.0/2;
     m_UIlabelCopyright.frame = frm;
     
-   
+    //5 Play
+    frm = m_UIButtonPlay.frame;
+    frm.size.width = 1.0/2 * W;
+    frm.size.height = 2.0/3 * (m_UIViewFooter.frame.origin.y - m_UIView100Number.frame.origin.y - m_UIView100Number.frame.size.height);
+    frm.origin.x = (W - frm.size.width ) * 1.0/2;
+    frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
+    m_UIButtonPlay.frame = frm;
+    m_UIButtonPlay.layer.cornerRadius = 10;
+    [m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+
+    
 }
 
 - (void)SetStateGame: (NSInteger) p_state
@@ -163,12 +172,14 @@
         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
+        [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:l_number.backgroundColor];
         MyNumber.alpha = l_number.alpha;
         
+        [MyNumber setBackgroundImage:[l_number backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
+        
         [m_UIView100Number addSubview:MyNumber];
-         [m_Array100Number addObject:MyNumber];
+        [m_Array100Number addObject:MyNumber];
     }
 }
 
@@ -206,22 +217,25 @@
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        //[MyNumber setTitleColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1] forState:UIControlStateNormal];
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor yellowColor]];
-        MyNumber.alpha = 0.8;
+        [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
+        //MyNumber.alpha = 0.8;
+        [MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
         
-        //[m_UIView100Number setBackgroundColor:[UIColor whiteColor]];
         [m_UIView100Number addSubview:MyNumber];
-        
         [m_Array100Number addObject:MyNumber];
     }
 }
 
 - (void)ReArange100Number
 {
-    for (u_int32_t i = m_Array100Number.count-1; i > 0; i--)
-        [m_Array100Number exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(i+1)];
+    for (NSUInteger i = m_Array100Number.count-1; i > 0; i--)
+    {
+        NSUInteger l_temp = arc4random_uniform(i+1);
+        [m_Array100Number exchangeObjectAtIndex:i withObjectAtIndex:l_temp];
+         
+    }
     
     NSInteger i = 0;
     for (UIButton *MyNumber in m_Array100Number)
@@ -234,8 +248,9 @@
         frm.origin.y = y;
         MyNumber.frame = frm;
         
-        [MyNumber setBackgroundColor:[UIColor whiteColor]];
-        MyNumber.alpha = 0.8;
+        [MyNumber setBackgroundColor:[UIColor clearColor]];
+        [MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
+        MyNumber.alpha = 1;
         
         i++;
     }
@@ -244,7 +259,10 @@
 - (void)ShowTimeDurration
 {
     //m_UILabelTime.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
-    m_UILabelTime.text = [NSString stringWithFormat:@"%i", TIME_MAX];
+    m_currentTime = TIME_MAX;
+    NSInteger l_m = m_currentTime / 60;
+    NSInteger l_s = (m_currentTime % 60);
+    m_UILabelTime.text = [NSString stringWithFormat:@"%2li:%2li", (long)l_m, (long)l_s];
     m_UIButtonSpeaker.hidden = TRUE;
     m_UIButtonStatistics.hidden = TRUE;
     m_UIButtonHome.hidden = TRUE;
@@ -261,14 +279,15 @@
 
 - (void)TimeOut: (NSTimer*)p_timer
 {
-    NSString *str_time = m_UILabelTime.text;
-    NSInteger int_time = [str_time integerValue] - 1;
-    m_UILabelTime.text = [NSString stringWithFormat:@"%i", int_time];
-    if (int_time == 0)
+    m_currentTime -= 1;
+    NSInteger l_m = m_currentTime / 60;
+    NSInteger l_s = (m_currentTime % 60);
+    m_UILabelTime.text = [NSString stringWithFormat:@"%02li:%02li", (long)l_m, (long)l_s];
+    if (m_currentTime == 0)
     {
-        [p_timer invalidate];
-        p_timer = nil;
-        NSLog(@"Time out");
+        //[p_timer invalidate];
+        //p_timer = nil;
+        //NSLog(@"Time out");
         [self GameOver];
     }
 }
@@ -287,7 +306,7 @@
         {
             //m_UILabelTime.text = [NSString stringWithFormat:@"%i", TIME_MAX];
             [self ShowTimeDurration];
-            _m_Timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+            m_Timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                              target:self
                                            selector:@selector(TimeOut:)
                                            userInfo:nil
@@ -307,7 +326,7 @@
         [[SoundController GetSingleton] PlaySoundCorrect];
         m_CurrentNumber += 1;
         sender.alpha = 0.8;
-        [sender setBackgroundColor:[UIColor greenColor]];
+        [sender setBackgroundImage:[UIImage imageNamed:@"bg_circle.png"] forState:UIControlStateNormal];
         
         if (m_CurrentNumber == 100)
         {
@@ -316,7 +335,7 @@
     }
     else
     {
-        NSLog(@"Press button: %i", sender.tag);
+        NSLog(@"Press button: %li", (long)sender.tag);
         [sender setBackgroundColor:[UIColor redColor]];
         sender.alpha = 0.8;
         [self GameOver];
@@ -395,8 +414,8 @@
     if (/*alertView.tag == 1000 && */buttonIndex == 1)
     {
         //code for opening settings app in iOS 8
-        [_m_Timer invalidate];
-        _m_Timer = nil;
+        [m_Timer invalidate];
+        m_Timer = nil;
         
         m_Sate = PREPAREPLAY;
         [self HideTimeDurration];
@@ -408,6 +427,8 @@
 {
     NSLog(@"Keu game over !!)");
     [[SoundController GetSingleton] PlaySoundGameOver];
+    
+    [m_Timer invalidate];
     [self performSegueWithIdentifier:@"SegueSingleResult" sender:self];
 }
 
@@ -415,6 +436,7 @@
 {
     [[SoundController GetSingleton] PlaySoundCongratulation];
     
+    [m_Timer invalidate];
     [self performSegueWithIdentifier:@"SegueSingleResult" sender:self];
 }
 

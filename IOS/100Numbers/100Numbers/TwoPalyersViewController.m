@@ -112,7 +112,7 @@ enum
         [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
         [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag) ] forState:UIControlStateNormal];
+        [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         //[MyNumber setBackgroundColor:[UIColor yellowColor]];
         //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
          MyNumber.alpha = 1;
@@ -139,7 +139,7 @@ enum
         [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
         
         [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [MyNumber setTitle:[NSString stringWithFormat:@"%i", (MyNumber.tag ) ] forState:UIControlStateNormal];
+        [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag ) ] forState:UIControlStateNormal];
         //[MyNumber setBackgroundColor:[UIColor yellowColor]];
         //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
         MyNumber.alpha = 1;
@@ -268,8 +268,8 @@ enum
         m_UILabelWin1.text = @"YOU WIN";
     }
     
-    m_UILabelScore1.text = [NSString stringWithFormat:@"%i / 50", m_ScorePlayer1];
-    m_UILabelScore2.text = [NSString stringWithFormat:@"%i / 50", m_ScorePlayer2];
+    m_UILabelScore1.text = [NSString stringWithFormat:@"%li / 50", (long)m_ScorePlayer1];
+    m_UILabelScore2.text = [NSString stringWithFormat:@"%li / 50", (long)m_ScorePlayer2];
     
     [self ShowResult];
 }

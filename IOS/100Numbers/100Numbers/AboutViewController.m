@@ -9,28 +9,29 @@
 @import GoogleMobileAds;
 
 #import "AboutViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "SoundController.h"
+#import "Define.h"
 
 @interface AboutViewController ()
-@property (nonatomic, strong) SoundController *m_Sounder;
 @property (weak, nonatomic) IBOutlet GADBannerView *m_UIViewAdvertisement;
 @end
 
 @implementation AboutViewController
-@synthesize m_Sounder;
 @synthesize m_UIViewAdvertisement;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    m_Sounder = [[SoundController alloc] init];
-    // Do any additional setup after loading the view.
-    
-    self.m_UIViewAdvertisement.adUnitID = @"ca-app-pub-2735696870763171/1666550849";
+    [self SetupAdvertisementFooter];
+}
+
+- (void) SetupAdvertisementFooter
+{
+    self.m_UIViewAdvertisement.adUnitID = AMOD_BANNER_FOOTER_UNIT;
     self.m_UIViewAdvertisement.rootViewController = self;
     [self.m_UIViewAdvertisement loadRequest:[GADRequest request]];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,19 +41,19 @@
 
 - (IBAction)HomeClick:(id)sender
 {
-    [m_Sounder PlayClickButton];
+    [[SoundController GetSingleton] PlayClickButton];
 }
 - (IBAction)RemoveAdsClick:(id)sender
 {
-    [m_Sounder PlayClickButton];
+    [[SoundController GetSingleton] PlayClickButton];
 }
 - (IBAction)RestoreClick:(id)sender
 {
-    [m_Sounder PlayClickButton];
+    [[SoundController GetSingleton] PlayClickButton];
 }
 - (IBAction)m_MoreApp:(id)sender
 {
-    [m_Sounder PlayClickButton];
+    [[SoundController GetSingleton] PlayClickButton];
 }
 
 #pragma mark - Navigation

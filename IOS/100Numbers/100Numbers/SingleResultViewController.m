@@ -5,7 +5,6 @@
 //  Created by Binh Du  on 4/2/15.
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
-
 @import GoogleMobileAds;
 
 #import "SingleResultViewController.h"
@@ -13,49 +12,80 @@
 #import "StatisticsViewController.h"
 #import "SoundController.h"
 #import <Social/Social.h>
+#import "GADMasterViewController.h"
 
 
 @interface SingleResultViewController ()
+{
+    NSMutableArray *m_Array100Number;
+    NSInteger m_CurrentNumber;
+    GADInterstitial *interstitial;
+    NSTimer *m_Timer;
+}
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitle;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonBack;
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewSocre;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelYourScore;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore;
 
+@property (weak, nonatomic) IBOutlet UIView *m_UIView3Buttons;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlayAgain;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonStatistics;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonShareScore;
 
-@property (nonatomic, strong)NSMutableArray *m_Array100Number;
-@property (nonatomic, assign)NSInteger m_CurrentNumber;
 
-@property(nonatomic, strong) GADInterstitial *interstitial;
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright;
+
 @end
 
 @implementation SingleResultViewController
-@synthesize m_UILabelScore;
-@synthesize m_Array100Number;
-@synthesize m_CurrentNumber;
+@synthesize m_UIButtonBack, m_UIViewFooter,m_UIButtonHome,m_UIButtonPlayAgain,
+m_UIButtonShareScore, m_UIButtonStatistics, m_UILabelCopyright,
+m_UILabelScore, m_UILabelTitle, m_UILabelYourScore,
+m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //Advertisement
-    self.interstitial = [[GADInterstitial alloc] init];
-    self.interstitial = [[GADInterstitial alloc] init];
-    self.interstitial.adUnitID = @"ca-app-pub-2735696870763171/8572538847";
-    [self.interstitial loadRequest:[GADRequest request]];
-    //End Advertisement
+    [self CalculateView];
+    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    [self SetupAdvertisementInterstitial];
     
     [m_UILabelScore setText:[NSString stringWithFormat:@"%li / 100", (long)m_CurrentNumber]];
     
-    [NSTimer scheduledTimerWithTimeInterval:3.0
-                                target:self
-                                selector:@selector(ShowAdvertisement:)
-                                userInfo:nil
-                                repeats:NO];
+    
+}
+
+
+- (void) SetupAdvertisementInterstitial
+{
+    //Advertisement
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+    [interstitial loadRequest:[GADRequest request]];
+    //End Advertisement
+    
+    m_Timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                     target:self
+                                   selector:@selector(ShowAdvertisement:)
+                                   userInfo:nil
+                                    repeats:NO];
+
 }
 
 - (void) ShowAdvertisement: (NSTimer*)p_timer
 {
-    if ([self.interstitial isReady])
+    if ([interstitial isReady])
     {
         
-        [self.interstitial presentFromRootViewController:self];
+        [interstitial presentFromRootViewController:self];
         
     }else
     {
@@ -64,6 +94,118 @@
     
     
     [p_timer invalidate];
+    p_timer = nil;
+    
+}
+
+
+
+-(void)CalculateView
+{
+    CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    CGFloat H = [UIScreen mainScreen].bounds.size.height;
+    
+    //1 bacground
+    
+    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
+    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    //2. Header
+    
+    // back
+    CGRect frm = m_UIButtonBack.frame;
+    frm.size.width = W_ICON * W;
+    frm.size.height = frm.size.width;
+    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.y = 1.0/4 * frm.size.height;
+    m_UIButtonBack.frame =frm;
+    
+    // header
+    frm = m_UIViewHeader.frame;
+    frm.size.width = W;
+    frm.size.height = 3.0/2 * m_UIButtonBack.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIViewHeader.frame = frm;
+    
+    //home
+    frm = m_UIButtonBack.frame;
+    frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
+    m_UIButtonHome.frame = frm;
+    
+    //time
+    frm = m_UIViewHeader.frame;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelTitle.frame = frm;
+    
+    
+    //3 Your Score
+    frm = m_UIViewSocre.frame;
+    frm.size.width = W - m_UIButtonBack.frame.size.width;
+    frm.size.height = H_YOURSCORE * H;
+    frm.origin.x = m_UIButtonBack.frame.origin.x + 1.0/4 * m_UIButtonBack.frame.size.width;
+    frm.origin.y =m_UIViewHeader.frame.origin.y + m_UIViewHeader.frame.size.height +  1.0/2 * m_UIButtonBack.frame.size.height;
+    m_UIViewSocre.frame = frm;
+    
+    //title
+    frm = m_UIViewSocre.frame;
+    frm.size.height = 1.0/4 * frm.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UILabelYourScore.frame = frm;
+    //score
+    frm = m_UILabelScore.frame;
+    frm.size.width = m_UIViewSocre.frame.size.width;
+    frm.size.height = 1.0/4 * m_UIViewSocre.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = (m_UIViewSocre.frame.size.height - frm.size.height) * 1.0/2;
+    m_UILabelScore.frame = frm;
+    
+    //4 View 3Buttons
+    frm = m_UIView3Buttons.frame;
+    frm.size.width = m_UILabelScore.frame.size.width - 2 * m_UIButtonBack.frame.size.width;
+    frm.size.height = H_3BUTTONS * H;
+    frm.origin.x = (W - frm.size.width) * 1.0/2;
+    frm.origin.y = m_UIViewSocre.frame.origin.y + m_UIViewSocre.frame.size.height+ m_UIButtonBack.frame.size.height;
+    m_UIView3Buttons.frame = frm;
+    //play agian
+    frm = m_UIButtonPlayAgain.frame;
+    frm.size.width = m_UIView3Buttons.frame.size.width;
+    frm.size.height = 1/3.5 * m_UIView3Buttons.frame.size.height;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    m_UIButtonPlayAgain.frame = frm;
+    m_UIButtonPlayAgain.layer.cornerRadius = 10;
+    [m_UIButtonPlayAgain setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //statistics
+    frm.origin.y = m_UIButtonPlayAgain.frame.origin.y + m_UIButtonPlayAgain.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
+    m_UIButtonStatistics.frame = frm;
+    m_UIButtonStatistics.layer.cornerRadius = 10;
+    [m_UIButtonStatistics setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //share score
+    frm.origin.y = m_UIButtonStatistics.frame.origin.y + m_UIButtonStatistics.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
+    m_UIButtonShareScore.frame = frm;
+    m_UIButtonShareScore.layer.cornerRadius = 10;
+    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    
+    
+    //5 Footer
+    frm = m_UIViewFooter.frame;
+    frm.size.width = W;
+    frm.size.height = H_FOOTER * H;
+    frm.origin.x = 0;
+    frm.origin.y = H - frm.size.height;
+    m_UIViewFooter.frame = frm;
+    
+    //Copyrith
+    frm.size.height =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm.origin.x = 0;
+    frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
+    m_UILabelCopyright.frame = frm;
+    
+    
+    
     
 }
 
@@ -76,14 +218,14 @@
     
     if (dicData != nil)
     {
-        NSInteger l_timesPlayed = [dicData[@"TimesPlayed"] intValue];
-        NSInteger l_NewAverage = ([dicData[@"AverageScore"] intValue] * l_timesPlayed + m_CurrentNumber ) / (l_timesPlayed + 1);
+        int l_timesPlayed = [dicData[@"TimesPlayed"] intValue];
+        int l_NewAverage = ([dicData[@"AverageScore"] intValue] * l_timesPlayed + (int)m_CurrentNumber ) / (l_timesPlayed + 1);
         
         [dicData setObject:[NSNumber numberWithInt:l_NewAverage] forKey:@"AverageScore"];
         [dicData setObject:[NSNumber numberWithInt:(l_timesPlayed + 1)] forKey:@"TimesPlayed"];
         if (m_CurrentNumber > [dicData[@"BestScore"] intValue])
         {
-            [dicData setObject:[NSNumber numberWithInt: m_CurrentNumber] forKey:@"BestScore"];
+            [dicData setObject:[NSNumber numberWithInt: (int)m_CurrentNumber] forKey:@"BestScore"];
         }
         
         [dicData writeToFile:pathData atomically:YES];
@@ -246,6 +388,13 @@
 
     if ([[segue identifier] isEqualToString:@"Segue2SinglePlayer"])
     {
+        if (m_Timer != nil)
+        {
+            [m_Timer invalidate];
+            m_Timer = nil;
+        }
+        
+       
         SinglePlayerViewController *MyView = (SinglePlayerViewController*)[segue destinationViewController];
         [MyView SetArrayNumber:m_Array100Number];
         [MyView SetStateGame:BACKVIEW];
