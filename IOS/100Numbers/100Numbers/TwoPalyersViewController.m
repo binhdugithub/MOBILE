@@ -8,6 +8,7 @@
 
 #import "TwoPalyersViewController.h"
 #import "SoundController.h"
+#import "GADMasterViewController.h"
 
 enum
 {
@@ -33,19 +34,29 @@ enum
     UIButton *m_TempNumber2;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewGroup1;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker1;
-@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker2;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonReady1;
-@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonReady2;
-@property (weak, nonatomic) IBOutlet UIView *m_UIView51to100;
 @property (weak, nonatomic) IBOutlet UIView *m_UIView1to50;
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewResult1;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin1;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore1;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome1;
+
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewGroup2;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker2;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonReady2;
+@property (weak, nonatomic) IBOutlet UIView *m_UIView51to100;
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewResult2;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome2;
-@property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin1;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin2;
-@property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore1;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore2;
+
+
+@property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright;
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright2;
 
 @end
 
@@ -57,13 +68,17 @@ enum
 @synthesize m_UIButtonHome2;
 @synthesize m_UILabelScore1, m_UILabelScore2;
 @synthesize m_UILabelWin1, m_UILabelWin2;
+@synthesize m_UIButtonHome1, m_UIViewFooter, m_UILabelCopyright;
+@synthesize m_UIViewGroup1, m_UIViewGroup2;
+@synthesize m_UILabelCopyright2;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self CalculateView];
+    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     [self ShowSpeaker];
-    [self InitView];
     m_Sate = READY0;
     m_CurrentNumber = 1;
     
@@ -74,8 +89,89 @@ enum
     // Dispose of any resources that can be recreated.
 }
 
-- (void)InitView
+
+-(void)CalculateView
 {
+    CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    CGFloat H = [UIScreen mainScreen].bounds.size.height;
+    
+    //1 bacground
+    
+    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
+    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    //2. group 1
+    CGRect frm = m_UIViewGroup1.frame;
+    frm.size.width = W;
+    frm.size.height = 1.0/3 * (H - W);
+    frm.origin.x = 0;
+    frm.origin.y = H - frm.size.height;
+    m_UIViewGroup1.frame = frm;
+    
+    //speaker1
+    frm = m_UIButtonSpeaker1.frame;
+    frm.size.height = 1.0/2 * m_UIViewGroup1.frame.size.height;
+    frm.size.width = frm.size.height;
+    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
+    m_UIButtonSpeaker1.frame = frm;
+    //home 1
+    frm = m_UIButtonSpeaker1.frame;
+    frm.origin.x = m_UIViewGroup1.frame.size.width - 1.0/4 * frm.size.width - frm.size.width;
+    m_UIButtonHome1.frame = frm;
+    //ready 1
+    frm = m_UIViewGroup1.frame;
+    frm.size.width = 1.0/2 * frm.size.width;
+    frm.size.height = frm.size.height - 1.0/4 * frm.size.height;
+    frm.origin.x = 1.0/4 * m_UIViewGroup1.frame.size.width;
+    frm.origin.y = 1.0/8 * m_UIViewGroup1.frame.size.height;
+    m_UIButtonReady1.frame = frm;
+    m_UIButtonReady1.layer.cornerRadius = 10;
+    [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //3 group 2
+    frm = m_UIViewGroup1.frame;
+    frm.origin.y = 0;
+    m_UIViewGroup2.frame = frm;
+    //speaker 2
+    frm = m_UIButtonHome1.frame;
+    m_UIButtonSpeaker2.frame = frm;
+    //home 2
+    frm = m_UIButtonSpeaker1.frame;
+    m_UIButtonHome2.frame = frm;
+    //ready 2
+    frm = m_UIButtonReady1.frame;
+    m_UIButtonReady2.frame = frm;
+    m_UIButtonReady2.layer.cornerRadius = 10;
+    [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //4 group advertisement
+    frm = m_UIViewGroup1.frame;
+    frm.origin.y = m_UIViewGroup2.frame.size.height + 1.0/2 * W;
+    m_UIViewFooter.frame = frm;
+    //coptyright
+    frm = m_UIViewFooter.frame;
+    frm.size.height = 1.0/2 * frm.size.height;
+    frm.origin.y = m_UIViewFooter.frame.size.height - frm.size.height;
+    m_UILabelCopyright.frame = frm;
+    
+    //copyright 2
+    frm = m_UILabelCopyright.frame;
+    frm.origin.y = 0;
+    m_UILabelCopyright2.frame = frm;
+    m_UILabelCopyright2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
+    
+    //5 1->50
+    frm = m_UIView1to50.frame;
+    frm.size.width = W;
+    frm.size.height = 1.0/2 * W;
+    frm.origin.x = 0;
+    frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height;
+    m_UIView1to50.frame = frm;
+    //51 -> 100
+    frm = m_UIView1to50.frame;
+    frm.origin.y = m_UIViewGroup2.frame.origin.y + m_UIViewGroup2.frame.size.height;
+    m_UIView51to100.frame = frm;
+    
     m_UIButtonReady2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UIButtonSpeaker2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UIButtonHome2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
@@ -85,18 +181,6 @@ enum
     
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/16 + 10);
     CGFloat h = w;
-    CGRect frm = m_UIView1to50.frame;
-    frm.origin.x = 0;
-    frm.size.width = [UIScreen mainScreen].bounds.size.width;
-    frm.size.height = [UIScreen mainScreen].bounds.size.width / 2;
-    m_UIView1to50.frame = frm;
-    
-    
-    frm = m_UIView51to100.frame;
-    frm.origin.x = 0;
-    frm.size.width = [UIScreen mainScreen].bounds.size.width;
-    frm.size.height = [UIScreen mainScreen].bounds.size.width / 2;
-    m_UIView51to100.frame = frm;
     
     
     m_Array1to50Number = [[NSMutableArray alloc] init];
@@ -111,14 +195,11 @@ enum
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
         [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
-        //[MyNumber setBackgroundColor:[UIColor yellowColor]];
-        //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
-         MyNumber.alpha = 1;
+        MyNumber.alpha = 1;
         
         [m_UIView1to50 setBackgroundColor:[UIColor whiteColor]];
-        
         
         [m_UIView1to50 addSubview:MyNumber];
         [m_Array1to50Number addObject:MyNumber];
@@ -131,24 +212,18 @@ enum
     {
         CGFloat x = (i % 10) * (1.0/ 16 + 1) * w;
         CGFloat y = (i / 10) * (1.0/16 + 1) * h;
-       
+        
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake( frm.size.width- x - w, frm.size.height - y - h, w, h)];
-        //MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
         [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
         
-        [MyNumber setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag ) ] forState:UIControlStateNormal];
-        //[MyNumber setBackgroundColor:[UIColor yellowColor]];
-        //[MyNumber setBackgroundImage:[UIImage imageNamed:@"bg_clock.png"] forState:UIControlStateNormal];
         MyNumber.alpha = 1;
         
         [m_UIView51to100 setBackgroundColor:[UIColor whiteColor]];
         MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
-        //MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 1.0f, 0.0f, 0.0f);
-        //MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
-
         
         [m_UIView51to100 addSubview:MyNumber];
         [m_Array51to100Number addObject:MyNumber];
@@ -322,7 +397,7 @@ enum
             m_UIButtonReady1.enabled = TRUE;
             m_UIButtonReady2.enabled = TRUE;
             m_UIButtonReady1.alpha = 1;
-            m_UIButtonHome2.alpha = 1;
+            m_UIButtonReady2.alpha = 1;
             
             [self ReArange20BodyIcon];
         }
@@ -361,7 +436,7 @@ enum
 {
     for (NSUInteger i = m_Array1to50Number.count-1; i > 0; i--)
     {
-        NSUInteger j = arc4random_uniform(i+1);
+        NSUInteger j = (NSUInteger)arc4random_uniform(i+1);
         [m_Array1to50Number exchangeObjectAtIndex:i withObjectAtIndex:j];
         [m_Array51to100Number exchangeObjectAtIndex:i withObjectAtIndex:j];
     }
