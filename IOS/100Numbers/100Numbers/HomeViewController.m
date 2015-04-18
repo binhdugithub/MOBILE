@@ -15,6 +15,7 @@
 
 @interface HomeViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *m_UILabel100;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButton1Player;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButton2Players;
@@ -29,6 +30,7 @@
 @synthesize m_UIButtonSpeaker, m_UIButtonAbout;
 @synthesize m_UIButton1Player,m_UIButton2Players;
 @synthesize m_UIlabelCopyright, m_UIViewFooter;
+@synthesize m_UILabel100;
 
 - (void)viewDidLoad
 {
@@ -80,6 +82,10 @@
     //m_UIButton1Player.layer.borderColor = [UIColor whiteColor].CGColor;
     //m_UIButton1Player.layer.borderWidth = 2.0f;
     
+    //100
+    frm = m_UIButton1Player.frame;
+    frm.origin.y = frm.origin.y - frm.size.height;
+    m_UILabel100.frame = frm;
     //Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;

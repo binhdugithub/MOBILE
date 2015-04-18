@@ -12,6 +12,7 @@
 #import "SoundController.h"
 #import "GADMasterViewController.h"
 
+
 @interface AboutViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
@@ -93,9 +94,6 @@
     frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
     m_UILabelCopyright.frame = frm;
     
-    
-    
-    
 }
 
 
@@ -121,6 +119,12 @@
 - (IBAction)m_MoreApp:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@",YOUR_APP_ID];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]])
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+    
 }
 
 #pragma mark - Navigation
