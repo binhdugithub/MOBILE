@@ -374,6 +374,7 @@
     
     if (gameOver)
     {
+        [sender setBackgroundColor:[UIColor redColor]];
         NSString *msg = [NSString stringWithFormat:@"Your result is: %li/100", (long)m_CurrentCount];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GAME OVER" message:msg delegate:self  cancelButtonTitle:@"OK"  otherButtonTitles:@"Facebook" ,nil];
          alert.tag = 101;
