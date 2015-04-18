@@ -24,6 +24,9 @@ enum STATEGAME
 };
 
 
+- (void)SetStateGame: (NSInteger) p_state;
+- (void)SetArrayNumber: (NSMutableArray*) p_array;
+
 
 @end
 

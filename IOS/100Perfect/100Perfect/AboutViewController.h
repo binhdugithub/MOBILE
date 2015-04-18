@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
+{
+    NSMutableArray *m_Array100Number;
+
+}
+
+- (void)SetArrayNumber: (NSMutableArray*) p_array;
 
 @end

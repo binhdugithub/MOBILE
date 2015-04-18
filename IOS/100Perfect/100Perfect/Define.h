@@ -9,6 +9,8 @@
 #ifndef _00Numbers_Define_h
 #define _00Numbers_Define_h
 
+#define YOUR_APP_ID @"123456"
+
 #define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/1666550849"
 #define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/8572538847"
 
@@ -27,3 +29,4 @@
 
 
 #endif
+
