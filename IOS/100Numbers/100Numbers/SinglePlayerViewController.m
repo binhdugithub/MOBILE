@@ -259,7 +259,7 @@
 - (void)ShowTimeDurration
 {
     //m_UILabelTime.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
-    m_currentTime = TIME_MAX;
+    m_currentTime = TIME_MAX - 1;
     NSInteger l_m = m_currentTime / 60;
     NSInteger l_s = (m_currentTime % 60);
     m_UILabelTime.text = [NSString stringWithFormat:@"%2li:%2li", (long)l_m, (long)l_s];
@@ -379,8 +379,7 @@
 - (IBAction)PlayClick:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
-    m_CurrentNumber = 0;
-    
+   
     switch (m_Sate)
     {
         case FIRSTWIEW:
@@ -418,6 +417,7 @@
         m_Timer = nil;
         
         m_Sate = PREPAREPLAY;
+        m_CurrentNumber = 0;
         [self HideTimeDurration];
         [self ReArange100Number];
     }
