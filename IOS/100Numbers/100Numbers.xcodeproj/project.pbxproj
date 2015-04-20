@@ -19,7 +19,6 @@
 		AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */; };
 		AF7A20BF1AD4431B0028D9C3 /* bg_number_found.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7A20BD1AD4431B0028D9C3 /* bg_number_found.png */; };
 		AF7A20C01AD4431B0028D9C3 /* bg_number_lastfound.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7A20BE1AD4431B0028D9C3 /* bg_number_lastfound.png */; };
-		AF880EEC1ACFA35200E5397A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF880EEB1ACFA35200E5397A /* GameKit.framework */; };
 		AF91D1E11ACC4785009A1B12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E01ACC4785009A1B12 /* main.m */; };
 		AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E31ACC4785009A1B12 /* AppDelegate.m */; };
 		AF91D1E71ACC4785009A1B12 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E61ACC4785009A1B12 /* HomeViewController.m */; };
@@ -32,6 +31,7 @@
 		AF91D20C1ACC5BD0009A1B12 /* SingleResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */; };
 		AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */; };
 		AFA982B61AD4E9570089FA53 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */; };
+		AFC3C86D1AE55F9B00A86122 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC3C86C1AE55F9B00A86122 /* GameKit.framework */; };
 		AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDFB4411ACCF3130007C5A9 /* SoundController.m */; };
 		AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4441ACCF8570007C5A9 /* click.mp3 */; };
 		AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4451ACCF8570007C5A9 /* congratulation.mp3 */; };
@@ -67,7 +67,6 @@
 		AF7A20BD1AD4431B0028D9C3 /* bg_number_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_number_found.png; sourceTree = "<group>"; };
 		AF7A20BE1AD4431B0028D9C3 /* bg_number_lastfound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_number_lastfound.png; sourceTree = "<group>"; };
 		AF8495781ADA53600034B061 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
-		AF880EEB1ACFA35200E5397A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AF91D1DB1ACC4785009A1B12 /* 100Numbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100Numbers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF91D1DF1ACC4785009A1B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF91D1E01ACC4785009A1B12 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		AF91D20D1ACC5BEF009A1B12 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		AFC3C86C1AE55F9B00A86122 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AFDFB4401ACCF3130007C5A9 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
 		AFDFB4411ACCF3130007C5A9 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
 		AFDFB4441ACCF8570007C5A9 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFA982B61AD4E9570089FA53 /* GoogleMobileAds.framework in Frameworks */,
-				AF880EEC1ACFA35200E5397A /* GameKit.framework in Frameworks */,
+				AFC3C86D1AE55F9B00A86122 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +123,8 @@
 		AF91D1D21ACC4785009A1B12 = {
 			isa = PBXGroup;
 			children = (
+				AFC3C86C1AE55F9B00A86122 /* GameKit.framework */,
 				AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */,
-				AF880EEB1ACFA35200E5397A /* GameKit.framework */,
 				AF91D1DD1ACC4785009A1B12 /* 100Numbers */,
 				AF91D1F71ACC4785009A1B12 /* 100NumbersTests */,
 				AF91D1DC1ACC4785009A1B12 /* Products */,

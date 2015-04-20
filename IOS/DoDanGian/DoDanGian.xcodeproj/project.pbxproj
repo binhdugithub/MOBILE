@@ -60,6 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AFBEB8B61AE57C9D00C7749E /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		AFBEB8B71AE57CA700C7749E /* mp3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = mp3;
+			sourceTree = "<group>";
+		};
 		AFED2BAE1AE550390093D4CE = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +110,8 @@
 		AFED2BBA1AE550390093D4CE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFBEB8B71AE57CA700C7749E /* mp3 */,
+				AFBEB8B61AE57C9D00C7749E /* images */,
 				AFED2BBB1AE550390093D4CE /* Info.plist */,
 				AFED2BBC1AE550390093D4CE /* main.m */,
 			);
@@ -348,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DoDanGian/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -358,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DoDanGian/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +434,7 @@
 				AFED2BDC1AE550390093D4CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFED2BDD1AE550390093D4CE /* Build configuration list for PBXNativeTarget "DoDanGianTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +443,7 @@
 				AFED2BDF1AE550390093D4CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

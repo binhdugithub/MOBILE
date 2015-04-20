@@ -13,6 +13,7 @@
 #import "GADMasterViewController.h"
 
 
+
 @interface AboutViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
@@ -115,16 +116,40 @@
 - (IBAction)RestoreClick:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
+    
+   /* GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        //The next three lines are the lines of interest...
+        gameCenterController.viewState = GKGameCenterViewControllerStateDefault;
+        gameCenterController.leaderboardTimeScope = GKLeaderboardTimeScopeToday;
+        gameCenterController.leaderboardCategory = leaderboardID;
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }*/
 }
 - (IBAction)m_MoreApp:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@",YOUR_APP_ID];
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]])
+  
+#if TARGET_IPHONE_SIMULATOR
+    NSLog(@"APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
+#else
+    
+    NSString *MyApp =[NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", YOUR_APP_ID];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        MyApp = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", MyApp];
     }
     
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:MyApp]];
+    
+    //The link for all your Apps, if you have more than one:
+        
+    //#define MYCOMPANY_URL_PATH @"http://appstore.com/mycompany"
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString: MYCOMPANY_URL_PATH]];
+    
+#endif
 }
 
 #pragma mark - Navigation
