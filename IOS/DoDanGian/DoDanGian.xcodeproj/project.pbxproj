@@ -25,6 +25,15 @@
 		AF456E651AE6BC700055D41D /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF456E641AE6BC700055D41D /* PlayViewController.m */; };
 		AF456E671AE6C4A20055D41D /* lbl_score.png in Resources */ = {isa = PBXBuildFile; fileRef = AF456E661AE6C4A20055D41D /* lbl_score.png */; };
 		AF456E691AE6DC3D0055D41D /* lbl_level.png in Resources */ = {isa = PBXBuildFile; fileRef = AF456E681AE6DC3D0055D41D /* lbl_level.png */; };
+		AFD0B17F1AE78F8700253933 /* GADMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B17C1AE78F8700253933 /* GADMasterViewController.m */; };
+		AFD0B1801AE78F8700253933 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B17E1AE78F8700253933 /* SoundController.m */; };
+		AFD0B1831AE78FD100253933 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B1811AE78FD100253933 /* Data.plist */; };
+		AFD0B1851AE7904100253933 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B1841AE7904100253933 /* Social.framework */; };
+		AFD0B1871AE7905100253933 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B1861AE7905100253933 /* libsqlite3.dylib */; };
+		AFD0B18B1AE790F300253933 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B1891AE790F300253933 /* DBManager.m */; };
+		AFD0B18C1AE790F300253933 /* DoDanGian.sql in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B18A1AE790F300253933 /* DoDanGian.sql */; };
+		AFD0B18E1AE7915200253933 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */; };
+		AFD0B1901AE7C22F00253933 /* emotion_thinking.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */; };
 		AFED2BBD1AE550390093D4CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BBC1AE550390093D4CE /* main.m */; };
 		AFED2BC01AE550390093D4CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BBF1AE550390093D4CE /* AppDelegate.m */; };
 		AFED2BC31AE550390093D4CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BC21AE550390093D4CE /* HomeViewController.m */; };
@@ -64,6 +73,19 @@
 		AF456E641AE6BC700055D41D /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		AF456E661AE6C4A20055D41D /* lbl_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lbl_score.png; sourceTree = "<group>"; };
 		AF456E681AE6DC3D0055D41D /* lbl_level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lbl_level.png; sourceTree = "<group>"; };
+		AFD0B17B1AE78F8700253933 /* GADMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMasterViewController.h; sourceTree = "<group>"; };
+		AFD0B17C1AE78F8700253933 /* GADMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMasterViewController.m; sourceTree = "<group>"; };
+		AFD0B17D1AE78F8700253933 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
+		AFD0B17E1AE78F8700253933 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
+		AFD0B1811AE78FD100253933 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		AFD0B1821AE78FD100253933 /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		AFD0B1841AE7904100253933 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AFD0B1861AE7905100253933 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		AFD0B1881AE790F300253933 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		AFD0B1891AE790F300253933 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		AFD0B18A1AE790F300253933 /* DoDanGian.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoDanGian.sql; sourceTree = "<group>"; };
+		AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emotion_thinking.png; sourceTree = "<group>"; };
 		AFED2BB71AE550390093D4CE /* DoDanGian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoDanGian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED2BBB1AE550390093D4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFED2BBC1AE550390093D4CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD0B18E1AE7915200253933 /* GoogleMobileAds.framework in Frameworks */,
+				AFD0B1871AE7905100253933 /* libsqlite3.dylib in Frameworks */,
+				AFD0B1851AE7904100253933 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +125,7 @@
 		AFBEB8B61AE57C9D00C7749E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */,
 				AF456E681AE6DC3D0055D41D /* lbl_level.png */,
 				AF456E661AE6C4A20055D41D /* lbl_score.png */,
 				AF456E611AE6BA8D0055D41D /* btn_suggestion.png */,
@@ -131,6 +157,9 @@
 		AFED2BAE1AE550390093D4CE = {
 			isa = PBXGroup;
 			children = (
+				AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */,
+				AFD0B1861AE7905100253933 /* libsqlite3.dylib */,
+				AFD0B1841AE7904100253933 /* Social.framework */,
 				AFED2BB91AE550390093D4CE /* DoDanGian */,
 				AFED2BD31AE550390093D4CE /* DoDanGianTests */,
 				AFED2BB81AE550390093D4CE /* Products */,
@@ -151,6 +180,13 @@
 			children = (
 				AFED2BBE1AE550390093D4CE /* AppDelegate.h */,
 				AFED2BBF1AE550390093D4CE /* AppDelegate.m */,
+				AFD0B1821AE78FD100253933 /* Define.h */,
+				AFD0B17B1AE78F8700253933 /* GADMasterViewController.h */,
+				AFD0B17C1AE78F8700253933 /* GADMasterViewController.m */,
+				AFD0B17D1AE78F8700253933 /* SoundController.h */,
+				AFD0B17E1AE78F8700253933 /* SoundController.m */,
+				AFD0B1881AE790F300253933 /* DBManager.h */,
+				AFD0B1891AE790F300253933 /* DBManager.m */,
 				AFED2BC11AE550390093D4CE /* HomeViewController.h */,
 				AFED2BC21AE550390093D4CE /* HomeViewController.m */,
 				AF456E631AE6BC700055D41D /* PlayViewController.h */,
@@ -170,6 +206,8 @@
 				AFBEB8B61AE57C9D00C7749E /* images */,
 				AFED2BBB1AE550390093D4CE /* Info.plist */,
 				AFED2BBC1AE550390093D4CE /* main.m */,
+				AFD0B1811AE78FD100253933 /* Data.plist */,
+				AFD0B18A1AE790F300253933 /* DoDanGian.sql */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,11 +309,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD0B1831AE78FD100253933 /* Data.plist in Resources */,
 				AF456E551AE665D10055D41D /* btn_clear.png in Resources */,
 				AF456E511AE665D10055D41D /* btn_fb.png in Resources */,
+				AFD0B1901AE7C22F00253933 /* emotion_thinking.png in Resources */,
 				AF456E521AE665D10055D41D /* btn_home.png in Resources */,
 				AF456E581AE665D10055D41D /* btn_unmute.png in Resources */,
 				AFED2BC61AE550390093D4CE /* Main.storyboard in Resources */,
+				AFD0B18C1AE790F300253933 /* DoDanGian.sql in Resources */,
 				AFED2BCB1AE550390093D4CE /* LaunchScreen.xib in Resources */,
 				AF456E4F1AE665D10055D41D /* btn_about.png in Resources */,
 				AF456E5D1AE665E20055D41D /* click.mp3 in Resources */,
@@ -308,10 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD0B18B1AE790F300253933 /* DBManager.m in Sources */,
+				AFD0B17F1AE78F8700253933 /* GADMasterViewController.m in Sources */,
 				AF456E651AE6BC700055D41D /* PlayViewController.m in Sources */,
 				AFED2BC31AE550390093D4CE /* HomeViewController.m in Sources */,
 				AFED2BC01AE550390093D4CE /* AppDelegate.m in Sources */,
 				AFED2BBD1AE550390093D4CE /* main.m in Sources */,
+				AFD0B1801AE78F8700253933 /* SoundController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +481,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DoDanGian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -448,6 +496,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DoDanGian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
