@@ -32,5 +32,11 @@
 #define H_3BUTTONS  1.0/3
 
 
+
+#define NUM_RANDOM_BUTTON 18
+#define ALPHABETA @"QWERTYUIOPASDFGHKLXCVBNM"
+#define RUBY_FOR_NEXT_LEVEL 12
+
+
 #endif
 

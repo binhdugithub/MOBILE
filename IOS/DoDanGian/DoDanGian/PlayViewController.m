@@ -17,11 +17,15 @@
 {
     NSInteger m_Level;
     NSInteger m_Score;
+    NSString *m_Question;
     NSString *m_EKey;
     NSString *m_VKey;
+    NSString *m_Suggestion;
     NSMutableArray *m_ArrayAnswerButton;
     NSMutableArray *m_ArraySuggestionButton;
     NSArray *m_ArrayAllQuestion;
+  
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *VHeader;
 @property (weak, nonatomic) IBOutlet UIButton *BtnBack;
@@ -54,8 +58,14 @@
     [super viewDidLoad];
     [self CalculateView];
     [self LoadConfig];
-    [self LoadQuestion];
-   
+    [self LoadData];
+    [self NextQuestion];
+    [self ResetContent];
+    
+    [[GADMasterViewController singleton]resetAdBannerView:self AtFrame:_VFooter.frame];
+    
+    
+    
    /* UIImage *img = [UIImage imageNamed:@"btn_fb.png"];
     CGSize imgSize = _LblScore.frame.size;
     
@@ -72,6 +82,128 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)LoadData
+{
+    [[DBManager GetSingletone] SetDatabaseFilename:@"DoDanGian.sql"];
+    NSString *query = @"SELECT * FROM CauDo";
+    m_ArrayAllQuestion = [[NSArray alloc] initWithArray:[[DBManager GetSingletone] loadDataFromDB:query]];
+  
+}
+- (void)ResetContent
+{
+    _TVQuestion.text = m_Question;
+     [_TVQuestion setTextAlignment:NSTextAlignmentCenter];
+   _TVQuestion.font = [UIFont systemFontOfSize:15 weight:1];
+    [self ResetArrayAnswerButton];
+    [self ResetArraySuggestionButton];
+}
+
+
+- (void)ResetArrayAnswerButton
+{
+    m_ArrayAnswerButton = [[NSMutableArray alloc] init];
+    
+    CGFloat W = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat w = W * 1.0 / ( 10 + 11.0/ 4);
+    CGFloat start_x = 0.0;
+    
+    int k = 0;
+    int line = 0;
+    for (int i = 0; i < m_EKey.length; i++)
+    {
+        char ch = [m_EKey characterAtIndex:i];
+        if (ch == ' ' || i == m_EKey.length - 1)
+        {
+            NSString *Line = [m_EKey substringWithRange:NSMakeRange(k, i - k)];
+            if (i == m_EKey.length - 1)
+            {
+                Line = [m_EKey substringWithRange:NSMakeRange(k, i + 1 - k)];
+            }
+            
+            NSLog(@"Line: %@", Line);
+            start_x = 1.0/2 * (_VAnswer.frame.size.width - Line.length * w - (Line.length - 1) * 1.0/8 * w);
+            
+            for (int j = 0; j < Line.length; j++)
+            {
+                UIButton *AnswerButton = [[UIButton alloc] init];
+                CGRect frm = AnswerButton.frame;
+                frm.size.width = w;
+                frm.size.height = w;
+                frm.origin.x = start_x + (j + 1) * 1.0/8 * w + j * w;
+                frm.origin.y = 1.0/ 4 * w + line * (1 + 1.0/4) * w;
+                AnswerButton.frame = frm;
+                
+                AnswerButton.layer.cornerRadius = 3;
+                AnswerButton.backgroundColor = [UIColor whiteColor];
+                AnswerButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:2];
+                [AnswerButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                [AnswerButton addTarget:self action:@selector(AnswerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+                AnswerButton.tag= -1;
+                
+                [m_ArrayAnswerButton addObject:AnswerButton];
+                [_VAnswer addSubview:AnswerButton];
+            }
+            
+            k = i + 1;
+            line ++;
+        }
+    }
+    
+    for (int i = 0; i < k; i++)
+    {
+        
+    }
+}
+
+- (void)ResetArraySuggestionButton
+{
+    //NSLog(@"Vao Reset Array Suggestion Button");
+    for(int i = 0 ; i < NUM_RANDOM_BUTTON ; i++)
+    {
+        UIButton *rdButton= m_ArraySuggestionButton[i];
+        NSString *title = [NSString stringWithFormat:@"%c", [m_Suggestion characterAtIndex:i]];
+        [rdButton setTitle:title forState:UIControlStateNormal];
+        [rdButton addTarget:self action:@selector(SuggestionButtonClick:)forControlEvents:UIControlEventTouchUpInside];
+        rdButton.tag= i + 1;
+        
+       // NSLog(@"%@", title);
+        
+    }
+    
+}
+                 
+- (void)AnswerButtonClick: (UIButton *)sender
+{
+    for(UIButton *MyButton in m_ArraySuggestionButton)
+    {
+        if(MyButton.tag == sender.tag)
+        {
+            [MyButton setTitle:[sender titleLabel].text forState:UIControlStateNormal];
+           [sender setTitle:@"" forState:UIControlStateNormal];
+            sender.tag = -1;
+            
+            break;
+            
+        }
+    }
+                     
+};
+
+- (void)SuggestionButtonClick: (UIButton*)sender
+{
+    for(UIButton *MyButton in m_ArrayAnswerButton)
+    {
+        if(MyButton.tag == -1)
+        {
+            [MyButton setTitle:[sender titleLabel].text forState:UIControlStateNormal];
+            MyButton.tag = sender.tag;
+            
+            [sender setTitle:@"" forState:UIControlStateNormal];
+            
+            break;
+        }
+    }
+}
 
 -(void)CalculateView
 {
@@ -101,6 +233,8 @@
     CGFloat BTN_W = W * 4.0/41;
     frm.size.width = BTN_W;
     frm.size.height = BTN_W;
+    
+    m_ArraySuggestionButton = [[NSMutableArray alloc] init];
     for (NSUInteger i = 0; i < 18; i++)
     {
         UIButton *MyButton = [[UIButton alloc] init];
@@ -109,7 +243,13 @@
         MyButton.frame = frm;
         MyButton.layer.cornerRadius = 5;
         MyButton.backgroundColor = [UIColor darkGrayColor];
+        MyButton.titleLabel.font = [UIFont systemFontOfSize:20 weight:3];
+        [MyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        MyButton.tag = - 1;
         
+        [MyButton setTitle:@"A" forState:UIControlStateNormal];
+        
+        [m_ArraySuggestionButton addObject:MyButton];
         [_VSuggestion addSubview:MyButton];
     }
     
@@ -212,7 +352,6 @@
     
     _TVQuestion.frame = frm;
     _TVQuestion.layer.cornerRadius = 10;
-    
 
     //Emotion
     frm = _BtnSpeaker.frame;
@@ -241,32 +380,78 @@
     
 }
 
-- (void)LoadQuestion
+- (void)NextQuestion
 {
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        [[DBManager GetSingletone] SetDatabaseFilename:@"DoDanGian.sql"];
-         NSString *query = @"SELECT * FROM CauDo";
-        m_ArrayAllQuestion = [[NSArray alloc] initWithArray:[[DBManager GetSingletone] loadDataFromDB:query]];
-    });
-    
-   
-    
-   
-        NSArray *Question = [[NSArray alloc] initWithArray:m_ArrayAllQuestion[m_Level]];
+    if (m_Level > m_ArrayAllQuestion.count)
+    {
+        NSLog(@"Vui long cap nhat ung dung");
+        return;
+    }
+    else
+    {
+        NSArray *Question = [[NSArray alloc] initWithArray:m_ArrayAllQuestion[m_Level - 1]];
         
-        //NSInteger indexOfQuestiong = [self.dbManager.arrColumnNames indexOfObject:@"Question"];
-        //NSInteger indexOfEKey = [self.dbManager.arrColumnNames indexOfObject:@"EKey"];
-        //NSInteger indexVKey = [self.dbManager.arrColumnNames indexOfObject:@"VKey"];
+        NSInteger indexOfQuestiong = [[DBManager GetSingletone].arrColumnNames indexOfObject:@"Question"];
+        NSInteger indexOfEKey = [[DBManager GetSingletone].arrColumnNames indexOfObject:@"EKey"];
+        NSInteger indexVKey = [[DBManager GetSingletone].arrColumnNames indexOfObject:@"VKey"];
     
     
-        NSString *question = [NSString stringWithFormat:@"%@",[Question objectAtIndex:0]];
-        NSString *eKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:1]];
-        NSString *vKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:2]];
+        m_Question = [NSString stringWithFormat:@"%@",[Question objectAtIndex:indexOfQuestiong]];
+        m_Question = [m_Question stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+       // m_Question = [m_Question uppercaseString];
         
-        NSLog(@"%@ | %@ | %@", question, eKey, vKey);
+        m_EKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:indexOfEKey]];
+        m_EKey = [m_EKey stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        m_EKey = [m_EKey uppercaseString];
+        
+        m_VKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:indexVKey]];
+        m_VKey = [m_VKey stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        m_VKey = [m_VKey uppercaseString];
+        
+        m_Suggestion = [NSString stringWithFormat:@"%@", [self createEnSuggestResult:m_EKey]];
+        m_Suggestion = [m_Suggestion stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        
+        NSLog(@"Question: %@ EKey: %@ VKey: %@ Suggestion: %@", m_Question, m_EKey, m_VKey, m_Suggestion);
+        
+    }
     
+}
+
+
+- (NSString*) createEnSuggestResult :(NSString*) enResult
+{
+    NSMutableString *str1 = [[NSMutableString alloc]initWithString:enResult];
+    
+    for (int i= 0 ; i < NUM_RANDOM_BUTTON - [enResult length] ; i++)
+    {
+        int k = arc4random() % [ALPHABETA length];
+        char ch = [ALPHABETA characterAtIndex:k];
+        [str1 appendFormat:@"%c", ch];
+    }
+    
+    for (int i = 0; i < str1.length; i++)
+    {
+        char ch = [str1 characterAtIndex:i];
+        if (ch == ' ')
+        {
+            int k = arc4random() % [ALPHABETA length];
+            char ch2 = [ALPHABETA characterAtIndex:k];
+            [str1 replaceCharactersInRange:NSMakeRange(i,1) withString:[NSString stringWithFormat:@"%c", ch2]];
+        }
+    };
+    
+    NSMutableString *str2 = [[NSMutableString alloc] init];
+    while ([str1 length] > 0)
+    {
+        int i = arc4random() % [str1 length];
+        NSRange range = NSMakeRange(i,1);
+        NSString *sub = [str1 substringWithRange:range];
+        [str2 appendString:sub];
+        [str1 replaceOccurrencesOfString:sub withString:@"" options:nil range:range];
+    }
+    
+    return str2;
 }
 
 

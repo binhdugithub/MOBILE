@@ -31,9 +31,9 @@
 		AFD0B1851AE7904100253933 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B1841AE7904100253933 /* Social.framework */; };
 		AFD0B1871AE7905100253933 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B1861AE7905100253933 /* libsqlite3.dylib */; };
 		AFD0B18B1AE790F300253933 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B1891AE790F300253933 /* DBManager.m */; };
-		AFD0B18C1AE790F300253933 /* DoDanGian.sql in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B18A1AE790F300253933 /* DoDanGian.sql */; };
 		AFD0B18E1AE7915200253933 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */; };
 		AFD0B1901AE7C22F00253933 /* emotion_thinking.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */; };
+		AFEA35611AE813020025D840 /* DoDanGian.sql in Resources */ = {isa = PBXBuildFile; fileRef = AFEA35601AE813020025D840 /* DoDanGian.sql */; };
 		AFED2BBD1AE550390093D4CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BBC1AE550390093D4CE /* main.m */; };
 		AFED2BC01AE550390093D4CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BBF1AE550390093D4CE /* AppDelegate.m */; };
 		AFED2BC31AE550390093D4CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFED2BC21AE550390093D4CE /* HomeViewController.m */; };
@@ -83,9 +83,9 @@
 		AFD0B1861AE7905100253933 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		AFD0B1881AE790F300253933 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		AFD0B1891AE790F300253933 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		AFD0B18A1AE790F300253933 /* DoDanGian.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoDanGian.sql; sourceTree = "<group>"; };
 		AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emotion_thinking.png; sourceTree = "<group>"; };
+		AFEA35601AE813020025D840 /* DoDanGian.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = DoDanGian.sql; sourceTree = "<group>"; };
 		AFED2BB71AE550390093D4CE /* DoDanGian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoDanGian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED2BBB1AE550390093D4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFED2BBC1AE550390093D4CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 		AFED2BB91AE550390093D4CE /* DoDanGian */ = {
 			isa = PBXGroup;
 			children = (
+				AFEA35601AE813020025D840 /* DoDanGian.sql */,
 				AFED2BBE1AE550390093D4CE /* AppDelegate.h */,
 				AFED2BBF1AE550390093D4CE /* AppDelegate.m */,
 				AFD0B1821AE78FD100253933 /* Define.h */,
@@ -207,7 +208,6 @@
 				AFED2BBB1AE550390093D4CE /* Info.plist */,
 				AFED2BBC1AE550390093D4CE /* main.m */,
 				AFD0B1811AE78FD100253933 /* Data.plist */,
-				AFD0B18A1AE790F300253933 /* DoDanGian.sql */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -309,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEA35611AE813020025D840 /* DoDanGian.sql in Resources */,
 				AFD0B1831AE78FD100253933 /* Data.plist in Resources */,
 				AF456E551AE665D10055D41D /* btn_clear.png in Resources */,
 				AF456E511AE665D10055D41D /* btn_fb.png in Resources */,
@@ -316,7 +317,6 @@
 				AF456E521AE665D10055D41D /* btn_home.png in Resources */,
 				AF456E581AE665D10055D41D /* btn_unmute.png in Resources */,
 				AFED2BC61AE550390093D4CE /* Main.storyboard in Resources */,
-				AFD0B18C1AE790F300253933 /* DoDanGian.sql in Resources */,
 				AFED2BCB1AE550390093D4CE /* LaunchScreen.xib in Resources */,
 				AF456E4F1AE665D10055D41D /* btn_about.png in Resources */,
 				AF456E5D1AE665E20055D41D /* click.mp3 in Resources */,

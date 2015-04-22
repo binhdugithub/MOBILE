@@ -29,6 +29,21 @@
     return ShareDBManager ;
 }
 
+-(instancetype)initWithDatabaseFilename:(NSString *)dbFilename
+{
+    self = [super init];
+    if (self)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+        self.documentsDirectory = [paths objectAtIndex:0];
+        
+        self.databaseFilename = [NSString stringWithFormat:@"%@", dbFilename];
+        [self copyDatabaseIntoDocumentsDirectory];
+    }
+    
+    return self;
+}
+
 -(void)SetDatabaseFilename:(NSString *)dbFilename
 {
     
