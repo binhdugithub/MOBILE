@@ -7,9 +7,22 @@
 //
 
 #import "PlayViewController.h"
+#import <Social/Social.h>
+#import "SoundController.h"
+#import "GADMasterViewController.h"
+#import "DBManager.h"
 #import "Define.h"
 
 @interface PlayViewController ()
+{
+    NSInteger m_Level;
+    NSInteger m_Score;
+    NSString *m_EKey;
+    NSString *m_VKey;
+    NSMutableArray *m_ArrayAnswerButton;
+    NSMutableArray *m_ArraySuggestionButton;
+    NSArray *m_ArrayAllQuestion;
+}
 @property (weak, nonatomic) IBOutlet UIView *VHeader;
 @property (weak, nonatomic) IBOutlet UIButton *BtnBack;
 @property (weak, nonatomic) IBOutlet UIButton *BtnLevel;
@@ -40,6 +53,8 @@
 {
     [super viewDidLoad];
     [self CalculateView];
+    [self LoadConfig];
+    [self LoadQuestion];
    
    /* UIImage *img = [UIImage imageNamed:@"btn_fb.png"];
     CGSize imgSize = _LblScore.frame.size;
@@ -207,6 +222,164 @@
     frm.origin.y = _VQuestion.frame.size.height - 1.0/8 * frm.size.height - frm.size.height;
     
     _IVThinking.frame = frm;
+}
+
+
+- (void)LoadConfig
+{
+    NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
+    NSDictionary *dicData = [NSDictionary dictionaryWithContentsOfFile:pathData];
+    if (dicData != nil)
+    {
+        m_Level = [dicData[@"Level"] intValue];
+        m_Score = [dicData[@"Score"] intValue];
+    }
+    else
+    {
+        NSLog(@"Load User info fail !!");
+    }
+    
+}
+
+- (void)LoadQuestion
+{
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        [[DBManager GetSingletone] SetDatabaseFilename:@"DoDanGian.sql"];
+         NSString *query = @"SELECT * FROM CauDo";
+        m_ArrayAllQuestion = [[NSArray alloc] initWithArray:[[DBManager GetSingletone] loadDataFromDB:query]];
+    });
+    
+   
+    
+   
+        NSArray *Question = [[NSArray alloc] initWithArray:m_ArrayAllQuestion[m_Level]];
+        
+        //NSInteger indexOfQuestiong = [self.dbManager.arrColumnNames indexOfObject:@"Question"];
+        //NSInteger indexOfEKey = [self.dbManager.arrColumnNames indexOfObject:@"EKey"];
+        //NSInteger indexVKey = [self.dbManager.arrColumnNames indexOfObject:@"VKey"];
+    
+    
+        NSString *question = [NSString stringWithFormat:@"%@",[Question objectAtIndex:0]];
+        NSString *eKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:1]];
+        NSString *vKey = [NSString stringWithFormat:@"%@",[Question objectAtIndex:2]];
+        
+        NSLog(@"%@ | %@ | %@", question, eKey, vKey);
+    
+}
+
+
+- (IBAction)SpeakerClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+}
+
+- (IBAction)ClearClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+    
+}
+
+
+
+- (IBAction)SuggestClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+    
+}
+- (IBAction)BackClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+}
+
+
+
+- (IBAction)ShareClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+    [[SoundController GetSingleton] PlayClickButton];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *fbSheet = [SLComposeViewController
+                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbSheet setInitialText:@"Help me! in #DoVuiDanGian"];
+        [fbSheet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id123456789"]];
+        [fbSheet addImage:[self TakeScreenshot]];
+        
+        [self presentViewController:fbSheet animated:YES completion:nil];
+    }
+    else
+    {
+        NSString *title = @"No Facebook Account" ;
+        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
+        NSString *titleCancel = @"Cancel";
+        NSString *titleSetting   = @"Setting";
+        
+        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+        //if (canOpenSettings) {
+        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+            alert.tag = 100;
+            [alert show];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+            alert.tag = 100;
+            [alert show];
+        }
+        
+    }
+    
+}
+
+
+- (UIImage*) TakeScreenshot
+{
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != /* DISABLES CODE */ (&UIGraphicsBeginImageContextWithOptions))
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    else
+        UIGraphicsBeginImageContext(imageSize);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Iterate over every window from back to front
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
+        {
+            // -renderInContext: renders in the coordinate space of the layer,
+            // so we must first apply the layer's geometry to the graphics context
+            CGContextSaveGState(context);
+            // Center the context around the window's anchor point
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            // Apply the window's transform about the anchor point
+            CGContextConcatCTM(context, [window transform]);
+            // Offset by the portion of the bounds left of and above the anchor point
+            CGContextTranslateCTM(context,
+                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
+                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
+            
+            // Render the layer hierarchy to the current context
+            [[window layer] renderInContext:context];
+            
+            // Restore the context
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    // Retrieve the screenshot image
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
+    
+    return screenImage;
+    
 }
 
 /*

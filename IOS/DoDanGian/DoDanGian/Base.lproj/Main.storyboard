@@ -38,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dYa-Os-pL5" kind="modal" id="59z-hM-NLJ"/>
+                                    <segue destination="dYa-Os-pL5" kind="modal" identifier="SeguePlay" id="59z-hM-NLJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -69,6 +69,10 @@
                                         <state key="normal" title="Home" image="btn_back.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="BackClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="tnH-sE-FUB"/>
+                                            <segue destination="vXZ-lx-hvc" kind="modal" identifier="SegueHome" id="Fyi-vI-rLt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uZ3-Kj-9CC" userLabel="Score">
                                         <rect key="frame" x="100" y="5" width="120" height="40"/>
@@ -132,6 +136,9 @@
                                         <state key="normal" title="Home" image="btn_unmute.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="SpeakerClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kXv-lv-YeB"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YHi-YM-vGc" userLabel="Back">
                                         <rect key="frame" x="8" y="76" width="30" height="30"/>
@@ -139,6 +146,9 @@
                                         <state key="normal" title="Home" image="btn_clear.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ClearClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kVu-uf-RTm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nh6-vA-bgb" userLabel="Back">
                                         <rect key="frame" x="282" y="19" width="30" height="30"/>
@@ -146,6 +156,9 @@
                                         <state key="normal" title="Home" image="btn_fb.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ShareClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="haL-dI-gg7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xh6-mE-vLT" userLabel="Back">
                                         <rect key="frame" x="282" y="74" width="30" height="30"/>
@@ -153,6 +166,9 @@
                                         <state key="normal" title="Home" image="btn_suggestion.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="SuggestClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="Xid-Gp-D6m"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

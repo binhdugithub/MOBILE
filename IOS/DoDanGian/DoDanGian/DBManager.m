@@ -16,20 +16,28 @@
 @end
 
 @implementation DBManager
-
--(instancetype)initWithDatabaseFilename:(NSString *)dbFilename
++(instancetype) GetSingletone
 {
-    self = [super init];
-    if (self)
-    {
+    static DBManager *ShareDBManager = nil ;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        ShareDBManager = [[DBManager alloc] init] ;
+    });
+    
+    return ShareDBManager ;
+}
+
+-(void)SetDatabaseFilename:(NSString *)dbFilename
+{
+    
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
         self.documentsDirectory = [paths objectAtIndex:0];
         
         self.databaseFilename = [NSString stringWithFormat:@"%@", dbFilename];
         [self copyDatabaseIntoDocumentsDirectory];
-    }
-    
-    return self;
+   
 }
 
 -(void)copyDatabaseIntoDocumentsDirectory

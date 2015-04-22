@@ -49,7 +49,7 @@
         // Check if any error occurred during copying and display it.
         if (error != nil)
         {
-            NSLog(@"%@", [error localizedDescription]);
+            NSLog(@"Error: %@", [error localizedDescription]);
         }
     }
 }

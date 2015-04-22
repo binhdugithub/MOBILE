@@ -19,9 +19,9 @@
 
 
 -(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
--(instancetype) initWithDatabaseFilename:(NSString *)dbFilename;
+-(void) SetDatabaseFilename:(NSString *)dbFilename;
 -(NSArray *)loadDataFromDB:(NSString *)query;
 
 -(void)executeQuery:(NSString *)query;
-
++(instancetype)GetSingletone;
 @end
