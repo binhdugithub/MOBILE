@@ -170,6 +170,10 @@
                                             <action selector="SuggestClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="Xid-Gp-D6m"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emotion_wrong.png" id="PYp-tK-deY">
+                                        <rect key="frame" x="249" y="45" width="35" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -177,6 +181,60 @@
                                 <rect key="frame" x="0.0" y="362" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="oc5-u6-7PF" userLabel="VCongratulation">
+                                <rect key="frame" x="999999" y="225" width="303" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="heO-oF-W3d">
+                                        <rect key="frame" x="13" y="8" width="279" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đáp án chính xác !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JPa-z9-2Xc">
+                                                <rect key="frame" x="68" y="8" width="143" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bạn được +12 $" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oap-Du-0Os">
+                                                <rect key="frame" x="68" y="37" width="127" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                <color key="textColor" red="1" green="0.045046627148553564" blue="0.040531110894751476" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.3802602019809605" green="0.82273910984848486" blue="0.43555591414171907" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="aTY-AF-rJ2">
+                                        <rect key="frame" x="14" y="76" width="279" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ăn Cơm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fUe-3d-2HW">
+                                                <rect key="frame" x="107" y="22" width="64" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <color key="textColor" red="1" green="0.96707746370000003" blue="0.46309034300000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.23018568278834858" green="0.49954624368686873" blue="0.26906252959827093" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RaH-62-Dcq">
+                                        <rect key="frame" x="111" y="157" width="83" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.38026020199999999" green="0.82273910979999998" blue="0.4355559141" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                        <state key="normal" title="TIẾP TỤC">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="NextLevelClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="f0H-RV-eJc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,10 +249,18 @@
                         <outlet property="BtnLevel" destination="uZ3-Kj-9CC" id="194-9V-ExI"/>
                         <outlet property="BtnShare" destination="Nh6-vA-bgb" id="mzQ-QW-CfG"/>
                         <outlet property="BtnSpeaker" destination="cQJ-Wc-82X" id="90m-Bc-dKT"/>
+                        <outlet property="BtnVcgNext" destination="RaH-62-Dcq" id="r7W-2N-yeZ"/>
                         <outlet property="IVThinking" destination="60s-M4-rxx" id="PnX-LE-KwG"/>
+                        <outlet property="IVWrong" destination="PYp-tK-deY" id="TyY-kF-gUc"/>
+                        <outlet property="LblAddScore" destination="oap-Du-0Os" id="KEK-oC-UTi"/>
+                        <outlet property="LblAnswer" destination="fUe-3d-2HW" id="agZ-Nj-OFy"/>
                         <outlet property="LblCopyright" destination="szg-5W-gD9" id="sbJ-Bz-Xre"/>
+                        <outlet property="LblExactly" destination="JPa-z9-2Xc" id="ONP-e7-7bh"/>
                         <outlet property="TVQuestion" destination="yKg-6a-7jP" id="aEX-Te-nWA"/>
                         <outlet property="VAnswer" destination="oU7-9W-SgM" id="t4d-Ha-fqJ"/>
+                        <outlet property="VCgrBody" destination="aTY-AF-rJ2" id="Q20-wc-EDQ"/>
+                        <outlet property="VCgrHeader" destination="heO-oF-W3d" id="uQ7-sd-jgj"/>
+                        <outlet property="VCongratulation" destination="oc5-u6-7PF" id="ncm-85-4Vb"/>
                         <outlet property="VFooter" destination="fM8-YT-OyH" id="fOD-1e-dzQ"/>
                         <outlet property="VHeader" destination="v5R-Vn-ua5" id="860-u4-lt0"/>
                         <outlet property="VQuestion" destination="Ajy-Ft-whI" id="pcK-1I-4X2"/>
@@ -213,6 +279,7 @@
         <image name="btn_suggestion.png" width="300" height="300"/>
         <image name="btn_unmute.png" width="300" height="300"/>
         <image name="emotion_thinking.png" width="500" height="500"/>
+        <image name="emotion_wrong.png" width="300" height="300"/>
         <image name="lbl_level.png" width="900" height="300"/>
         <image name="lbl_score.png" width="675" height="225"/>
     </resources>
