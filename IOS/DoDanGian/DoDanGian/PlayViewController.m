@@ -41,6 +41,8 @@
 @property (weak, nonatomic) IBOutlet UIView *VQuestion;
 @property (weak, nonatomic) IBOutlet UITextView *TVQuestion;
 @property (weak, nonatomic) IBOutlet UIImageView *IVThinking;
+@property (weak, nonatomic) IBOutlet UIImageView *IVQuestionBoard;
+@property (weak, nonatomic) IBOutlet UIImageView *IVQuestionFooter;
 
 @property (weak, nonatomic) IBOutlet UIView *VAnswer;
 //@property (weak, nonatomic) IBOutlet UIView *V3Line;
@@ -515,20 +517,21 @@
     frm.origin.y = _VHeader.frame.origin.y + _VHeader.frame.size.height;
     
     _VQuestion.frame = frm;
+    _VQuestion.alpha = 0.95;
     
     //Text Question
     frm = _VQuestion.frame;
-    frm.size.width = frm.size.width - 1.0/40 * frm.size.width;
-    frm.size.height = frm.size.height  - 1.0/40 * frm.size.height;
+    frm.size.width = frm.size.width - 1.0/10 * frm.size.width;
+    frm.size.height = frm.size.height  - 1.0/10 * frm.size.height;
     frm.origin.x = 1.0/2 * (_VQuestion.frame.size.width - frm.size.width);
     frm.origin.y = 1.0/2 * (_VQuestion.frame.size.height - frm.size.height);
     
     _TVQuestion.frame = frm;
-    _TVQuestion.layer.borderWidth = 4.0;
+   /* _TVQuestion.layer.borderWidth = 4.0;
     _TVQuestion.layer.masksToBounds = YES;
     _TVQuestion.layer.borderColor = [[UIColor whiteColor] CGColor];
     _TVQuestion.layer.cornerRadius = 10.0;
-    _TVQuestion.backgroundColor = [UIColor colorWithRed:167.0/255 green:120.0/255 blue:38.0/255 alpha:1];
+    _TVQuestion.backgroundColor = [UIColor colorWithRed:167.0/255 green:120.0/255 blue:38.0/255 alpha:1];*/
     
 
     //Emotion
@@ -539,6 +542,21 @@
     frm.origin.y = _VQuestion.frame.size.height - 2.0/8 * frm.size.height - frm.size.height;
     
     _IVThinking.frame = frm;
+    
+    //VQuestionBoard
+    frm = _VQuestion.frame;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    _IVQuestionBoard.frame = frm;
+    
+    //VQuestionFooter
+    frm = _VQuestion.frame;
+    frm.size.width = W;
+    frm.size.height = [UIScreen mainScreen].bounds.size.height - _VQuestion.frame.size.height - _VQuestion.frame.origin.y;
+    frm.origin.x = 0;
+    frm.origin.y =    _VQuestion.frame.origin.y + _VQuestion.frame.size.height ;
+    _IVQuestionFooter.frame = frm;
+    _IVQuestionFooter.alpha = 0.95;
     
     
     //7. View congratulation

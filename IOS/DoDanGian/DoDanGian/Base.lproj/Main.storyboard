@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
@@ -106,8 +105,12 @@
                                 <rect key="frame" x="0.0" y="54" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_vquestion.png" id="Fnx-MT-zLE">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" text="Lorem ipsum " textAlignment="center" selectable="NO" id="yKg-6a-7jP">
-                                        <rect key="frame" x="8" y="8" width="304" height="150"/>
+                                        <rect key="frame" x="8" y="8" width="200" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.23018568280000001" green="0.4995462437" blue="0.26906252959999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -121,6 +124,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_footer_question.png" id="ReM-s5-FNN" userLabel="IV Footer Question">
+                                <rect key="frame" x="0.0" y="219" width="320" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" id="fM8-YT-OyH" userLabel="ViewFooter" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -260,6 +267,8 @@
                         <outlet property="BtnSpeaker" destination="cQJ-Wc-82X" id="90m-Bc-dKT"/>
                         <outlet property="BtnVcgNext" destination="RaH-62-Dcq" id="r7W-2N-yeZ"/>
                         <outlet property="IVBackground" destination="Ybs-g5-JQf" id="uc6-aW-bm4"/>
+                        <outlet property="IVQuestionBoard" destination="Fnx-MT-zLE" id="hPf-Hn-w3P"/>
+                        <outlet property="IVQuestionFooter" destination="ReM-s5-FNN" id="Dhw-3C-2IL"/>
                         <outlet property="IVThinking" destination="60s-M4-rxx" id="PnX-LE-KwG"/>
                         <outlet property="IVWrong" destination="PYp-tK-deY" id="TyY-kF-gUc"/>
                         <outlet property="LblAddScore" destination="oap-Du-0Os" id="KEK-oC-UTi"/>
@@ -283,7 +292,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_main.png" width="512" height="800"/>
+        <image name="bg_footer_question.png" width="300" height="300"/>
+        <image name="bg_main.png" width="640" height="1136"/>
+        <image name="bg_vquestion.png" width="500" height="300"/>
         <image name="btn_back.png" width="677" height="226"/>
         <image name="btn_clear.png" width="270" height="270"/>
         <image name="btn_fb.png" width="361" height="361"/>

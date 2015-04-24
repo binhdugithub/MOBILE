@@ -26,6 +26,8 @@
 		AF456E671AE6C4A20055D41D /* lbl_score.png in Resources */ = {isa = PBXBuildFile; fileRef = AF456E661AE6C4A20055D41D /* lbl_score.png */; };
 		AF456E691AE6DC3D0055D41D /* lbl_level.png in Resources */ = {isa = PBXBuildFile; fileRef = AF456E681AE6DC3D0055D41D /* lbl_level.png */; };
 		AF8BAC081AE9EFEC00A50407 /* bg_main.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8BAC071AE9EFEC00A50407 /* bg_main.png */; };
+		AF9DC08F1AEA9D53005CFEFD /* bg_footer_question.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9DC08D1AEA9D53005CFEFD /* bg_footer_question.png */; };
+		AF9DC0901AEA9D53005CFEFD /* bg_vquestion.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9DC08E1AEA9D53005CFEFD /* bg_vquestion.png */; };
 		AFD0B17F1AE78F8700253933 /* GADMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B17C1AE78F8700253933 /* GADMasterViewController.m */; };
 		AFD0B1801AE78F8700253933 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD0B17E1AE78F8700253933 /* SoundController.m */; };
 		AFD0B1831AE78FD100253933 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD0B1811AE78FD100253933 /* Data.plist */; };
@@ -76,6 +78,8 @@
 		AF456E661AE6C4A20055D41D /* lbl_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lbl_score.png; sourceTree = "<group>"; };
 		AF456E681AE6DC3D0055D41D /* lbl_level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lbl_level.png; sourceTree = "<group>"; };
 		AF8BAC071AE9EFEC00A50407 /* bg_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_main.png; sourceTree = "<group>"; };
+		AF9DC08D1AEA9D53005CFEFD /* bg_footer_question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_footer_question.png; sourceTree = "<group>"; };
+		AF9DC08E1AEA9D53005CFEFD /* bg_vquestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_vquestion.png; sourceTree = "<group>"; };
 		AFD0B17B1AE78F8700253933 /* GADMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMasterViewController.h; sourceTree = "<group>"; };
 		AFD0B17C1AE78F8700253933 /* GADMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMasterViewController.m; sourceTree = "<group>"; };
 		AFD0B17D1AE78F8700253933 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 		AFBEB8B61AE57C9D00C7749E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AF9DC08D1AEA9D53005CFEFD /* bg_footer_question.png */,
+				AF9DC08E1AEA9D53005CFEFD /* bg_vquestion.png */,
 				AF8BAC071AE9EFEC00A50407 /* bg_main.png */,
 				AFD6EAC21AE8B0DB00736AB1 /* emotion_wrong.png */,
 				AFD0B18F1AE7C22F00253933 /* emotion_thinking.png */,
@@ -325,6 +331,7 @@
 				AFED2BC61AE550390093D4CE /* Main.storyboard in Resources */,
 				AFED2BCB1AE550390093D4CE /* LaunchScreen.xib in Resources */,
 				AF456E4F1AE665D10055D41D /* btn_about.png in Resources */,
+				AF9DC0901AEA9D53005CFEFD /* bg_vquestion.png in Resources */,
 				AF456E5D1AE665E20055D41D /* click.mp3 in Resources */,
 				AFD6EAC31AE8B0DB00736AB1 /* emotion_wrong.png in Resources */,
 				AF456E541AE665D10055D41D /* btn_mute.png in Resources */,
@@ -336,6 +343,7 @@
 				AF456E531AE665D10055D41D /* btn_more.png in Resources */,
 				AF456E601AE665E20055D41D /* gameover.mp3 in Resources */,
 				AF456E671AE6C4A20055D41D /* lbl_score.png in Resources */,
+				AF9DC08F1AEA9D53005CFEFD /* bg_footer_question.png in Resources */,
 				AF8BAC081AE9EFEC00A50407 /* bg_main.png in Resources */,
 				AFED2BC81AE550390093D4CE /* Images.xcassets in Resources */,
 				AF456E501AE665D10055D41D /* btn_back.png in Resources */,

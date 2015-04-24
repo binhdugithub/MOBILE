@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoDanGian/PlayViewController.m"
-            timestampString = "451562078.561956"
+            timestampString = "451584085.705164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-SuggestionButtonClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoDanGian/PlayViewController.m"
-            timestampString = "451541297.664828"
+            timestampString = "451584085.705164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-ResetArrayAnswerButton"
             landmarkType = "5">
          </BreakpointContent>
