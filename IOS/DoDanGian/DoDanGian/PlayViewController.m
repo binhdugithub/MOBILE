@@ -31,6 +31,7 @@
   
     
 }
+@property (weak, nonatomic) IBOutlet UIImageView *IVBackground;
 
 @property (weak, nonatomic) IBOutlet UIView *VHeader;
 @property (weak, nonatomic) IBOutlet UIButton *BtnBack;
@@ -108,10 +109,12 @@
 - (void)ResetContent
 {
     NSString *ABC = [NSString stringWithFormat:@"%@%@", m_Question, @"\nLà Cái Gì"];
-    _TVQuestion.text = ABC;
     
+    _TVQuestion.text = ABC;
      [_TVQuestion setTextAlignment:NSTextAlignmentCenter];
    _TVQuestion.font = [UIFont systemFontOfSize:17 weight:0];
+    _TVQuestion.textColor = [UIColor whiteColor];
+    
     [self ResetArrayAnswerButton];
     [self ResetArraySuggestionButton];
     
@@ -172,9 +175,13 @@
                 AnswerButton.frame = frm;
                 
                 AnswerButton.layer.cornerRadius = 3;
-                AnswerButton.backgroundColor = [UIColor whiteColor];
-                AnswerButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:2];
-                [AnswerButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                //AnswerButton.backgroundColor = [UIColor whiteColor];
+                //[AnswerButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                //AnswerButton.backgroundColor = [UIColor colorWithRed:95.0/255 green:111.0/255 blue:44.0/255 alpha:1];
+                AnswerButton.backgroundColor = [UIColor colorWithRed:167.0/255 green:120.0/255 blue:38.0/255 alpha:1];
+                [AnswerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+                AnswerButton.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+                
                 [AnswerButton addTarget:self action:@selector(AnswerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
                 AnswerButton.tag= -1;
                 
@@ -213,7 +220,7 @@
                  
 - (void)AnswerButtonClick: (UIButton *)sender
 {
-    if (sender.tag == 0) {
+    if (sender.tag <= 0) {
         return;
     }
     [[SoundController GetSingleton] PlayClickButton];
@@ -293,6 +300,7 @@
         
         m_Level += 1;
         m_Score += RUBY_FOR_NEXT_LEVEL;
+        [self SaveConfig];
         
         [_BtnLevel setTitle:[NSString stringWithFormat:@"%li", (long)m_Level] forState:UIControlStateNormal];
         [_BtnCoint setTitle:[NSString stringWithFormat:@"%li", (long)m_Score] forState:UIControlStateNormal];
@@ -320,7 +328,7 @@
             for (UIButton *MyButton in m_ArrayAnswerButton)
             {
                 if (MyButton.tag != 0) {
-                    [MyButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                    [MyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 }
                 else if(MyButton.tag == 0)
                 {
@@ -352,11 +360,17 @@
     
     //1. background
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
-    
+    CGRect frm = _IVBackground.frame;
+    frm.size.width = W;
+    frm.size.height = H;
+    frm.origin.x = 0;
+    frm.origin.y = 0;
+    _IVBackground.frame = frm;
+    _IVBackground.alpha = 0.75;
     //2 100number
     
     //3 Footer
-    CGRect frm = _VFooter.frame;
+    frm = _VFooter.frame;
     frm.size.width = W;
     frm.size.height = H_FOOTER * H;
     frm.origin.x = 0;
@@ -382,12 +396,16 @@
         frm.origin.y = 1.0/8 * frm.size.height + (i / 9) * ( frm.size.height + 1.0/8 * frm.size.height);
         MyButton.frame = frm;
         MyButton.layer.cornerRadius = 5;
-        MyButton.backgroundColor = [UIColor darkGrayColor];
-        MyButton.titleLabel.font = [UIFont systemFontOfSize:20 weight:3];
+        //MyButton.backgroundColor = [UIColor darkGrayColor];
+        MyButton.backgroundColor = [UIColor colorWithRed:95.0/255 green:111.0/255 blue:44.0/255 alpha:1];
+        MyButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:1];
         [MyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         MyButton.tag = - 1;
         
-        [MyButton setTitle:@"A" forState:UIControlStateNormal];
+        //MyButton.layer.borderWidth = 2.0;
+        //MyButton.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        //[MyButton setTitle:@"A" forState:UIControlStateNormal];
         
         [m_ArraySuggestionButton addObject:MyButton];
         [_VSuggestion addSubview:MyButton];
@@ -506,14 +524,19 @@
     frm.origin.y = 1.0/2 * (_VQuestion.frame.size.height - frm.size.height);
     
     _TVQuestion.frame = frm;
-    _TVQuestion.layer.cornerRadius = 10;
+    _TVQuestion.layer.borderWidth = 4.0;
+    _TVQuestion.layer.masksToBounds = YES;
+    _TVQuestion.layer.borderColor = [[UIColor whiteColor] CGColor];
+    _TVQuestion.layer.cornerRadius = 10.0;
+    _TVQuestion.backgroundColor = [UIColor colorWithRed:167.0/255 green:120.0/255 blue:38.0/255 alpha:1];
+    
 
     //Emotion
     frm = _BtnSpeaker.frame;
     frm.size.width *= 2;
     frm.size.height *=2;
-    frm.origin.x = _VQuestion.frame.size.width - 1.0/8 * frm.size.width - frm.size.width;
-    frm.origin.y = _VQuestion.frame.size.height - 1.0/8 * frm.size.height - frm.size.height;
+    frm.origin.x = _VQuestion.frame.size.width - 2.0/8 * frm.size.width - frm.size.width;
+    frm.origin.y = _VQuestion.frame.size.height - 2.0/8 * frm.size.height - frm.size.height;
     
     _IVThinking.frame = frm;
     
@@ -695,17 +718,6 @@
         [str1 appendFormat:@"%c", ch];
     }
     
-    /*for (int i = 0; i < str1.length; i++)
-    {
-        char ch = [str1 characterAtIndex:i];
-        if (ch == ' ')
-        {
-            int k = arc4random() % [ALPHABETA length];
-            char ch2 = [ALPHABETA characterAtIndex:k];
-            [str1 replaceCharactersInRange:NSMakeRange(i,1) withString:[NSString stringWithFormat:@"%c", ch2]];
-        }
-    };*/
-    
     NSMutableString *str2 = [[NSMutableString alloc] init];
     while ([str1 length] > 0)
     {
@@ -790,6 +802,9 @@
                 
                 for (UIButton *SuggestionButton in m_ArraySuggestionButton)
                 {
+                    if (SuggestionButton.tag == 0)
+                        continue;
+                    
                     if ([title compare:[SuggestionButton titleForState:UIControlStateNormal]] == 0)
                     {
                         SuggestionButton.hidden = TRUE;
@@ -899,6 +914,17 @@
     return screenImage;
     
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView.tag == 100 && buttonIndex == 1)
+    {
+        //code for opening settings app in iOS 8
+        [[UIApplication sharedApplication] openURL:[NSURL  URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+ }
 
 /*
 #pragma mark - Navigation

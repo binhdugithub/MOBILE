@@ -13,6 +13,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_main.png" id="gsC-8B-8Ne">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yhn-iK-UAs">
                                 <rect key="frame" x="82" y="373" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,6 +63,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_main.png" id="Ybs-g5-JQf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" id="v5R-Vn-ua5" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -101,7 +109,8 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" text="Lorem ipsum " textAlignment="center" selectable="NO" id="yKg-6a-7jP">
                                         <rect key="frame" x="8" y="8" width="304" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.97492503156565657" green="0.97492503156565657" blue="0.97492503156565657" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.23018568280000001" green="0.4995462437" blue="0.26906252959999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                                     </textView>
@@ -110,7 +119,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="fM8-YT-OyH" userLabel="ViewFooter" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="430" width="320" height="50"/>
@@ -250,6 +259,7 @@
                         <outlet property="BtnShare" destination="Nh6-vA-bgb" id="mzQ-QW-CfG"/>
                         <outlet property="BtnSpeaker" destination="cQJ-Wc-82X" id="90m-Bc-dKT"/>
                         <outlet property="BtnVcgNext" destination="RaH-62-Dcq" id="r7W-2N-yeZ"/>
+                        <outlet property="IVBackground" destination="Ybs-g5-JQf" id="uc6-aW-bm4"/>
                         <outlet property="IVThinking" destination="60s-M4-rxx" id="PnX-LE-KwG"/>
                         <outlet property="IVWrong" destination="PYp-tK-deY" id="TyY-kF-gUc"/>
                         <outlet property="LblAddScore" destination="oap-Du-0Os" id="KEK-oC-UTi"/>
@@ -273,6 +283,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bg_main.png" width="512" height="800"/>
         <image name="btn_back.png" width="677" height="226"/>
         <image name="btn_clear.png" width="270" height="270"/>
         <image name="btn_fb.png" width="361" height="361"/>
