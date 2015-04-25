@@ -16,28 +16,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yhn-iK-UAs">
-                                <rect key="frame" x="82" y="373" width="32" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_titlegame.png" id="u1o-7a-N7f">
+                                <rect key="frame" x="0.0" y="50" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Rate">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bfj-Tk-c62">
-                                <rect key="frame" x="200" y="373" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="leaderboard">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="u1o-7a-N7f">
-                                <rect key="frame" x="69" y="42" width="183" height="128"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_play.png" id="z6p-4I-WEn">
+                                <rect key="frame" x="136" y="264" width="138" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="23h-BX-RSF">
-                                <rect key="frame" x="145" y="286" width="30" height="30"/>
+                                <rect key="frame" x="136" y="294" width="142" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -49,10 +39,16 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="BtnPlay" destination="23h-BX-RSF" id="T1Q-rV-9l7"/>
+                        <outlet property="IVMain" destination="gsC-8B-8Ne" id="EZl-MO-bBQ"/>
+                        <outlet property="IVTitleGame" destination="u1o-7a-N7f" id="MLK-Gk-zbK"/>
+                        <outlet property="IVWelcome" destination="z6p-4I-WEn" id="1dq-HT-j9U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.866666666666667" y="376.77333333333331"/>
+            <point key="canvasLocation" x="29" y="376"/>
         </scene>
         <!--Play View Controller-->
         <scene sceneID="wrm-QZ-hwz">
@@ -81,20 +77,20 @@
                                             <segue destination="vXZ-lx-hvc" kind="modal" identifier="SegueHome" id="Fyi-vI-rLt"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y1o-Bg-T03" userLabel="coint">
+                                        <rect key="frame" x="247" y="13" width="72" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="    1222" backgroundImage="lbl_score.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uZ3-Kj-9CC" userLabel="Score">
-                                        <rect key="frame" x="100" y="5" width="120" height="40"/>
+                                        <rect key="frame" x="119" y="2" width="80" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="22" backgroundImage="lbl_level.png">
                                             <color key="titleColor" red="0.97279434970000001" green="0.031966847219999997" blue="0.070672344159999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y1o-Bg-T03" userLabel="coint">
-                                        <rect key="frame" x="247" y="13" width="72" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="    1222" backgroundImage="lbl_score.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -139,57 +135,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="oU7-9W-SgM" userLabel="ViewAnswer">
-                                <rect key="frame" x="0.0" y="231" width="320" height="106"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cQJ-Wc-82X" userLabel="Back">
-                                        <rect key="frame" x="8" y="13" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Home" image="btn_unmute.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SpeakerClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kXv-lv-YeB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YHi-YM-vGc" userLabel="Back">
-                                        <rect key="frame" x="8" y="76" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Home" image="btn_clear.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="ClearClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kVu-uf-RTm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nh6-vA-bgb" userLabel="Back">
-                                        <rect key="frame" x="282" y="19" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Home" image="btn_fb.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="ShareClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="haL-dI-gg7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xh6-mE-vLT" userLabel="Back">
-                                        <rect key="frame" x="282" y="74" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Home" image="btn_suggestion.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SuggestClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="Xid-Gp-D6m"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emotion_wrong.png" id="PYp-tK-deY">
-                                        <rect key="frame" x="249" y="45" width="35" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -252,6 +197,57 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="oU7-9W-SgM" userLabel="ViewAnswer">
+                                <rect key="frame" x="0.0" y="228" width="320" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cQJ-Wc-82X" userLabel="Back">
+                                        <rect key="frame" x="8" y="13" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Home" image="btn_unmute.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SpeakerClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kXv-lv-YeB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YHi-YM-vGc" userLabel="Back">
+                                        <rect key="frame" x="8" y="76" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Home" image="btn_clear.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ClearClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="kVu-uf-RTm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nh6-vA-bgb" userLabel="Back">
+                                        <rect key="frame" x="282" y="19" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Home" image="btn_fb.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ShareClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="haL-dI-gg7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xh6-mE-vLT" userLabel="Back">
+                                        <rect key="frame" x="282" y="74" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Home" image="btn_suggestion.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SuggestClick:" destination="dYa-Os-pL5" eventType="touchUpInside" id="Xid-Gp-D6m"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emotion_wrong.png" id="PYp-tK-deY">
+                                        <rect key="frame" x="249" y="45" width="35" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -294,16 +290,18 @@
     <resources>
         <image name="bg_footer_question.png" width="300" height="300"/>
         <image name="bg_main.png" width="640" height="1136"/>
+        <image name="bg_play.png" width="500" height="800"/>
+        <image name="bg_titlegame.png" width="800" height="400"/>
         <image name="bg_vquestion.png" width="500" height="300"/>
-        <image name="btn_back.png" width="677" height="226"/>
-        <image name="btn_clear.png" width="270" height="270"/>
-        <image name="btn_fb.png" width="361" height="361"/>
+        <image name="btn_back.png" width="432" height="432"/>
+        <image name="btn_clear.png" width="256" height="256"/>
+        <image name="btn_fb.png" width="300" height="300"/>
         <image name="btn_suggestion.png" width="300" height="300"/>
-        <image name="btn_unmute.png" width="300" height="300"/>
+        <image name="btn_unmute.png" width="200" height="200"/>
         <image name="emotion_thinking.png" width="500" height="500"/>
         <image name="emotion_wrong.png" width="300" height="300"/>
-        <image name="lbl_level.png" width="900" height="300"/>
-        <image name="lbl_score.png" width="675" height="225"/>
+        <image name="lbl_level.png" width="171" height="172"/>
+        <image name="lbl_score.png" width="500" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

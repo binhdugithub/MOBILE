@@ -484,26 +484,28 @@
     frm.origin.y = 0;
     _VHeader.frame = frm;
     
-    //Back
-    frm = _BtnBack.frame;
-    frm.size.height = 1.0/2 * _VHeader.frame.size.height;
-    frm.size.width = 3 * frm.size.height;
-    frm.origin.x = _VHeader.frame.origin.x;
-    frm.origin.y = 1.0/2 * (_VHeader.frame.size.height - frm.size.height);
-    _BtnBack.frame = frm;
-    
-    //Score
-    frm = _BtnBack.frame;
-    frm.origin.x = _VHeader.frame.size.width - frm.size.width;
-    _BtnCoint.frame = frm;
-    
     //Level
     frm = _BtnLevel.frame;
-    frm.size.height = _VHeader.frame.size.height - 1.0/8 * _VHeader.frame.size.height;
-    frm.size.width = 3 * frm.size.height;
+    frm.size.height = _VHeader.frame.size.height + 1.0/20 * _VHeader.frame.size.height;
+    frm.size.width = 3 * _VHeader.frame.size.height;
     frm.origin.x = 1.0/2 *( _VHeader.frame.size.width - frm.size.width);
     frm.origin.y = 1.0/2 * ( _VHeader.frame.size.height - frm.size.height);
     _BtnLevel.frame = frm;
+
+    
+    //Back
+    frm = _BtnBack.frame;
+    frm.size.height = 1.0/2 * _VHeader.frame.size.height;
+    frm.size.width = 2.5 * frm.size.height;
+    frm.origin.x = _BtnLevel.frame.origin.x - frm.size.width + 1.0/20 * frm.size.width;
+    frm.origin.y = 1.0/2 * (_VHeader.frame.size.height - frm.size.height);
+    _BtnBack.frame = frm;
+    
+    //Scorez
+    frm = _BtnBack.frame;
+    frm.origin.x = _BtnLevel.frame.origin.x + _BtnLevel.frame.size.width - 1.0/20 * frm.size.width;
+    _BtnCoint.frame = frm;
+    
     
     //6. Question
     frm = _VQuestion.frame;
@@ -521,8 +523,8 @@
     
     //Text Question
     frm = _VQuestion.frame;
-    frm.size.width = frm.size.width - 1.0/10 * frm.size.width;
-    frm.size.height = frm.size.height  - 1.0/10 * frm.size.height;
+    frm.size.width = frm.size.width - 1.0/5 * frm.size.width;
+    frm.size.height = frm.size.height  - 1.0/50 * frm.size.height;
     frm.origin.x = 1.0/2 * (_VQuestion.frame.size.width - frm.size.width);
     frm.origin.y = 1.0/2 * (_VQuestion.frame.size.height - frm.size.height);
     
@@ -536,8 +538,8 @@
 
     //Emotion
     frm = _BtnSpeaker.frame;
-    frm.size.width *= 2;
-    frm.size.height *=2;
+    frm.size.width *= 1.5;
+    frm.size.height *=1.5;
     frm.origin.x = _VQuestion.frame.size.width - 2.0/8 * frm.size.width - frm.size.width;
     frm.origin.y = _VQuestion.frame.size.height - 2.0/8 * frm.size.height - frm.size.height;
     
