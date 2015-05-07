@@ -84,13 +84,13 @@
     frm.size.width = W_ICON * W;
     frm.size.height = frm.size.width;
     frm.origin.x = 1.0/4 * frm.size.width;
-    frm.origin.y = 1.0/4 * frm.size.height;
+    frm.origin.y = 1.0/2 * frm.size.height;
     m_UIButtonHome.frame =frm;
     
     //2.4 header
     frm = m_UIViewHeader.frame;
     frm.size.width = W;
-    frm.size.height = 3.0/2 * m_UIButtonHome.frame.size.height;
+    frm.size.height = 2 * m_UIButtonHome.frame.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UIViewHeader.frame = frm;
@@ -168,15 +168,16 @@
     {
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:l_number.frame];
         MyNumber.tag = l_number.tag;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
-        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
-        
+        MyNumber.titleLabel.font = l_number.titleLabel.font;
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:l_number.backgroundColor];
+        MyNumber.layer.cornerRadius = l_number.layer.cornerRadius;
         MyNumber.alpha = l_number.alpha;
         
-        [MyNumber setBackgroundImage:[l_number backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
+        //[MyNumber setBackgroundImage:[l_number backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
+        
+         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [m_UIView100Number addSubview:MyNumber];
         [m_Array100Number addObject:MyNumber];
@@ -197,7 +198,7 @@
 - (void)InitFirstView
 {
     m_Array100Number = [[NSMutableArray alloc] init];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/8 + 10);
+    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
     CGFloat h = w;
     
     CGRect frm = m_UIView100Number.frame;
@@ -208,20 +209,24 @@
     
     for (NSUInteger i=0; i < 100; i++)
     {
-        CGFloat x = (i % 10) * (1.0/ 8 + 1) * w;
-        CGFloat y = (i / 10) * (1.0/8 + 1) * h;
+        CGFloat x = (i % 10) * (1.0/ 20 + 1) * w;
+        CGFloat y = (i / 10) * (1.0/20 + 1) * h;
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:5];
-        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
         
         //[MyNumber setTitleColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1] forState:UIControlStateNormal];
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         //MyNumber.alpha = 0.8;
-        [MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
+        //[MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
+        
+        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.layer.cornerRadius = 5;
+        
+        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [m_UIView100Number addSubview:MyNumber];
         [m_Array100Number addObject:MyNumber];
@@ -241,15 +246,15 @@
     for (UIButton *MyNumber in m_Array100Number)
     {
         CGRect frm = MyNumber.frame;
-        CGFloat x = (i % 10) * (1.0/ 8 + 1) * frm.size.width;
-        CGFloat y = (i / 10) * (1.0/8 + 1) * frm.size.height;
+        CGFloat x = (i % 10) * (1.0/ 20 + 1) * frm.size.width;
+        CGFloat y = (i / 10) * (1.0/20 + 1) * frm.size.height;
         
         frm.origin.x = x;
         frm.origin.y = y;
         MyNumber.frame = frm;
         
-        [MyNumber setBackgroundColor:[UIColor clearColor]];
-        [MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
+        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        //[MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
         MyNumber.alpha = 1;
         
         i++;
@@ -326,7 +331,8 @@
         [[SoundController GetSingleton] PlaySoundCorrect];
         m_CurrentNumber += 1;
         sender.alpha = 0.8;
-        [sender setBackgroundImage:[UIImage imageNamed:@"bg_circle.png"] forState:UIControlStateNormal];
+        //[sender setBackgroundImage:[UIImage imageNamed:@"bg_circle.png"] forState:UIControlStateNormal];
+        [sender setBackgroundColor:[UIColor yellowColor]];
         
         if (m_CurrentNumber == 100)
         {

@@ -109,8 +109,8 @@ enum
     
     //speaker1
     frm = m_UIButtonSpeaker1.frame;
-    frm.size.height = 1.0/2 * m_UIViewGroup1.frame.size.height;
-    frm.size.width = frm.size.height;
+    frm.size.width = W_ICON * W;
+    frm.size.height = frm.size.width;
     frm.origin.x = 1.0/4 * frm.size.width;
     frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
     m_UIButtonSpeaker1.frame = frm;
@@ -179,28 +179,28 @@ enum
     m_UILabelWin2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UILabelScore2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     
-    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/16 + 10);
+    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
     CGFloat h = w;
     
     
     m_Array1to50Number = [[NSMutableArray alloc] init];
     for (NSUInteger i=0; i < 50; i++)
     {
-        CGFloat x = (i % 10) * (1.0/ 16 + 1) * w;
-        CGFloat y = (i / 10) * (1.0/16 + 1) * h;
+        CGFloat x = (i % 10) * (1.0/ 20 + 1) * w;
+        CGFloat y = (i / 10) * (1.0/20 + 1) * h;
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
-        [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
-        
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
-        MyNumber.alpha = 1;
+        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.layer.cornerRadius = 5;
+        MyNumber.alpha = 0.8;
+        [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
-        [m_UIView1to50 setBackgroundColor:[UIColor whiteColor]];
-        
+        [m_UIView1to50 setBackgroundColor:[UIColor lightGrayColor]];
         [m_UIView1to50 addSubview:MyNumber];
         [m_Array1to50Number addObject:MyNumber];
     }
@@ -217,14 +217,14 @@ enum
         MyNumber.tag = i + 1;
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
         [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
-        
         [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag ) ] forState:UIControlStateNormal];
-        MyNumber.alpha = 1;
-        
-        [m_UIView51to100 setBackgroundColor:[UIColor whiteColor]];
+        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        MyNumber.layer.cornerRadius = 5;
+        MyNumber.alpha = 0.8;
         MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
         
+        [m_UIView51to100 setBackgroundColor:[UIColor lightGrayColor]];
         [m_UIView51to100 addSubview:MyNumber];
         [m_Array51to100Number addObject:MyNumber];
     }
@@ -254,20 +254,16 @@ enum
     
    
     m_ScorePlayer1 += 1;
-    [m_TempNumber1 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
-    [m_TempNumber2 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
+    [m_TempNumber1 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
+    [m_TempNumber2 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
     
-    //sender.alpha = 0.8;
-    //[sender setBackgroundColor:[UIColor greenColor]];
-    [sender setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+    [sender setBackgroundColor:[UIColor yellowColor]];
+    
     for (UIButton *l_number in m_Array51to100Number)
     {
         if (l_number.tag == sender.tag)
         {
-            //[l_number setBackgroundColor:[UIColor greenColor]];
-            [l_number setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
-            //l_number.alpha = 0.8;
-            
+            [l_number setBackgroundColor:[UIColor yellowColor]];
             m_TempNumber2 = l_number;
         }
     }
@@ -298,19 +294,16 @@ enum
     
     
     m_ScorePlayer2 += 1;
-    [m_TempNumber1 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
-    [m_TempNumber2 setBackgroundImage:[UIImage imageNamed:@"bg_number_found.png"] forState:UIControlStateNormal];
     
-    //sender.alpha = 0.8;
-    //[sender setBackgroundColor:[UIColor greenColor]];
-    [sender setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
+    [m_TempNumber1 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
+    [m_TempNumber2 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
+    
+    [sender setBackgroundColor:[UIColor yellowColor]];
     for (UIButton *l_number in m_Array1to50Number)
     {
         if (l_number.tag == sender.tag)
         {
-            //[l_number setBackgroundColor:[UIColor greenColor]];
-            [l_number setBackgroundImage:[UIImage imageNamed:@"bg_number_lastfound.png"] forState:UIControlStateNormal];
-            //l_number.alpha = 0.8;
+             [l_number setBackgroundColor:[UIColor yellowColor]];
             m_TempNumber2 = l_number;
         }
     }
@@ -445,28 +438,28 @@ enum
         NSInteger i = 0;
         for (UIButton *l_Number in m_Array1to50Number)
         {
-            [l_Number setBackgroundImage:nil forState:UIControlStateNormal];
+            [l_Number setBackgroundColor:[UIColor whiteColor]];
             CGRect frm = l_Number.frame;
-            frm.origin.x = (i % 10) * (1.0/ 16 + 1) * frm.size.width;
-            frm.origin.y = (i / 10) * (1.0/16 + 1) * frm.size.height;
+            frm.origin.x = (i % 10) * (1.0/ 20 + 1) * frm.size.width;
+            frm.origin.y = (i / 10) * (1.0/20 + 1) * frm.size.height;
             
             [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:1];
+            [UIView setAnimationDuration:0.6];
             l_Number.frame = frm;
             [UIView commitAnimations];
             
             i++;
         }
-        
-        
+    
         i = 0;
         CGRect frmV = m_UIView51to100.frame;
         for (UIButton *l_Number in m_Array51to100Number)
         {
-            [l_Number setBackgroundImage:nil forState:UIControlStateNormal];
+            //[l_Number setBackgroundImage:nil forState:UIControlStateNormal];
+            [l_Number setBackgroundColor:[UIColor whiteColor]];
             CGRect frm = l_Number.frame;
-            frm.origin.x = frmV.size.width-(i % 10) * (1.0/ 16 + 1) * frm.size.width - frm.size.width;
-            frm.origin.y = frmV.size.height -(i / 10) * (1.0/16 + 1) * frm.size.height - frm.size.height;
+            frm.origin.x = frmV.size.width-(i % 10) * (1.0/ 20 + 1) * frm.size.width - frm.size.width;
+            frm.origin.y = frmV.size.height -(i / 10) * (1.0/20 + 1) * frm.size.height - frm.size.height;
             
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:0.6];
