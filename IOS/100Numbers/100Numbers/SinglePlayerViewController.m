@@ -12,6 +12,7 @@
 #import  "StatisticsViewController.h"
 #import "SoundController.h"
 #import "GADMasterViewController.h"
+#import "Configuration.h"
 
 
 @interface SinglePlayerViewController ()
@@ -75,8 +76,8 @@
   
     //1 bacground
     
-    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     //2. Header
     
     //2.2 About
@@ -138,7 +139,7 @@
     
     //5 Play
     frm = m_UIButtonPlay.frame;
-    frm.size.width = 1.0/2 * W;
+    frm.size.width = 4.0/5 * W;
     frm.size.height = 2.0/3 * (m_UIViewFooter.frame.origin.y - m_UIView100Number.frame.origin.y - m_UIView100Number.frame.size.height);
     frm.origin.x = (W - frm.size.width ) * 1.0/2;
     frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
@@ -432,17 +433,17 @@
 - (void)GameOver
 {
     NSLog(@"Keu game over !!)");
-    [[SoundController GetSingleton] PlaySoundGameOver];
-    
     [m_Timer invalidate];
+    [[SoundController GetSingleton] PlaySoundGameOver];
+    [[Configuration GetSingleton] UpdateStatistics:m_CurrentNumber];
     [self performSegueWithIdentifier:@"SegueSingleResult" sender:self];
 }
 
 - (void)GameWin
 {
-    [[SoundController GetSingleton] PlaySoundCongratulation];
-    
     [m_Timer invalidate];
+    [[SoundController GetSingleton] PlaySoundCongratulation];
+    [[Configuration GetSingleton] UpdateStatistics:m_CurrentNumber];
     [self performSegueWithIdentifier:@"SegueSingleResult" sender:self];
 }
 

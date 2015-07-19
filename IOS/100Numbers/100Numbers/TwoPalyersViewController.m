@@ -8,6 +8,7 @@
 
 #import "TwoPalyersViewController.h"
 #import "SoundController.h"
+#import <Social/Social.h>
 #import "GADMasterViewController.h"
 
 enum
@@ -42,6 +43,7 @@ enum
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelWin1;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelScore1;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome1;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonShare;
 
 
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewGroup2;
@@ -66,7 +68,7 @@ enum
 @synthesize m_UIViewResult1, m_UIViewResult2;
 @synthesize m_UIButtonReady1, m_UIButtonReady2;
 @synthesize m_UIButtonHome2;
-@synthesize m_UILabelScore1, m_UILabelScore2;
+@synthesize m_UILabelScore1, m_UILabelScore2,m_UIButtonShare;
 @synthesize m_UILabelWin1, m_UILabelWin2;
 @synthesize m_UIButtonHome1, m_UIViewFooter, m_UILabelCopyright;
 @synthesize m_UIViewGroup1, m_UIViewGroup2;
@@ -97,8 +99,8 @@ enum
     
     //1 bacground
     
-    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     //2. group 1
     CGRect frm = m_UIViewGroup1.frame;
     frm.size.width = W;
@@ -229,22 +231,155 @@ enum
         [m_Array51to100Number addObject:MyNumber];
     }
     
-    
+    // view result 1
     CGRect frm1 = m_UIView1to50.frame;
-    frm1.origin.y = frm1.size.height;
+    frm1.origin.y = frm1.size.height + m_UIViewGroup1.frame.size.height;
     m_UIViewResult1.frame = frm1;
     
+    CGRect frm_youwin1;
+    frm_youwin1.size.width = m_UIViewResult1.frame.size.width;
+    frm_youwin1.size.height = 1.0/5 * m_UIViewResult1.frame.size.height;
+    frm_youwin1.origin.x = 0;
+    frm_youwin1.origin.y = 1.0/5 * m_UIViewResult1.frame.size.height;
+    m_UILabelWin1.frame = frm_youwin1;
+    
+    CGRect frm_score1 = frm_youwin1;
+    frm_score1.origin.y = 2.0/5 * m_UIViewResult1.frame.size.height;
+    m_UILabelScore1.frame = frm_score1;
+    
+    
+    CGRect frm_share;
+    frm_share.size.width = 1.0/2 * m_UIViewResult1.frame.size.width;
+    frm_share.size.height = 3.0/10 * m_UIViewResult1.frame.size.height;
+    frm_share.origin.x = 1.0/2 * (m_UIViewResult1.frame.size.width - frm_share.size.width);
+    frm_share.origin.y = 3.0/5 * m_UIViewResult1.frame.size.height;
+    m_UIButtonShare.frame = frm_share;
+    m_UIButtonShare.layer.cornerRadius = 10;
+    [m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //view result 2;
     CGRect frm2 = m_UIView51to100.frame;
-    frm2.origin.y = - frm2.size.height;
+    frm2.origin.y = 0 - frm2.size.height - m_UIViewGroup2.frame.size.height;
     m_UIViewResult2.frame = frm2;
+    
+    CGRect frm_youwin2;
+    frm_youwin2.size.width = m_UIViewResult2.frame.size.width;
+    frm_youwin2.size.height = 1.0/5 * m_UIViewResult2.frame.size.height;
+    frm_youwin2.origin.x = 0;
+    frm_youwin2.origin.y = m_UIViewResult2.frame.size.height - 1.0/5 * m_UIViewResult2.frame.size.height - frm_youwin2.size.height;
+    m_UILabelWin2.frame = frm_youwin2;
+    
+    CGRect frm_score2 = frm_youwin2;
+    frm_score2.origin.y = m_UIViewResult2.frame.size.height - 2.0/5 * m_UIViewResult2.frame.size.height - frm_score2.size.height;
+    m_UILabelScore2.frame = frm_score2;
+    
     
     [m_UIView1to50 addSubview:m_UIViewResult1];
     [m_UIView51to100 addSubview:m_UIViewResult2];
     
 }
 
+- (IBAction)ShareScoreClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *fbSheet = [SLComposeViewController
+                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbSheet setInitialText:@"Help me! in #20Icon"];
+        [fbSheet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id123456789"]];
+        [fbSheet addImage:[self takeScreenshot]];
+        
+        
+        [self presentViewController:fbSheet animated:YES completion:nil];
+    }
+    else
+    {
+        NSString *title = @"No Facebook Account" ;
+        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
+        NSString *titleCancel = @"Cancel";
+        NSString *titleSetting   = @"Setting";
+        
+        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+        //if (canOpenSettings) {
+        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+            //alert.tag = 1000;
+            [alert show];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+            alert.tag = 1000;
+            [alert show];
+        }
+        
+    }
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView.tag == 1000 && buttonIndex == 1)
+    {
+        //code for opening settings app in iOS 8
+        [[UIApplication sharedApplication] openURL:[NSURL  URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
+
+
+- (UIImage*) takeScreenshot
+{
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != UIGraphicsBeginImageContextWithOptions)
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    else
+        UIGraphicsBeginImageContext(imageSize);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Iterate over every window from back to front
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
+        {
+            // -renderInContext: renders in the coordinate space of the layer,
+            // so we must first apply the layer's geometry to the graphics context
+            CGContextSaveGState(context);
+            // Center the context around the window's anchor point
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            // Apply the window's transform about the anchor point
+            CGContextConcatCTM(context, [window transform]);
+            // Offset by the portion of the bounds left of and above the anchor point
+            CGContextTranslateCTM(context,
+                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
+                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
+            
+            // Render the layer hierarchy to the current context
+            [[window layer] renderInContext:context];
+            
+            // Restore the context
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    // Retrieve the screenshot image
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
+    
+    return screenImage;
+    
+}
+
 - (void)NumberClick1: (UIButton*)sender
 {
+    
     if (m_Sate == READY0 || m_Sate == READY1)
         return;
     
@@ -252,7 +387,8 @@ enum
     if (sender.tag != m_CurrentNumber)
         return;
     
-   
+   [[SoundController GetSingleton] PlaySoundCorrect];
+    
     m_ScorePlayer1 += 1;
     [m_TempNumber1 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
     [m_TempNumber2 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
@@ -292,7 +428,7 @@ enum
     if (sender.tag != m_CurrentNumber)
         return;
     
-    
+    [[SoundController GetSingleton] PlaySoundCorrect];
     m_ScorePlayer2 += 1;
     
     [m_TempNumber1 setBackgroundColor:[UIColor colorWithRed:201.0/255.0 green:220.0/255.0 blue:104.0/255.0 alpha:1]];
@@ -324,7 +460,7 @@ enum
 
 - (void) GameOver
 {
-    
+    [[SoundController GetSingleton] PlaySoundGameOver];
     if (m_ScorePlayer1 < m_ScorePlayer2)
     {
         m_UILabelWin2.text = @"YOU WIN";
@@ -361,10 +497,10 @@ enum
 - (void) HideResult
 {
     CGRect frm1 = m_UIView1to50.frame;
-    frm1.origin.y = frm1.size.height;
+    frm1.origin.y = frm1.size.height + m_UIViewGroup1.frame.size.height;
     
     CGRect frm2 = m_UIView51to100.frame;
-    frm2.origin.y = -frm2.size.height;
+    frm2.origin.y = -frm2.size.height - m_UIViewGroup2.frame.size.height;
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
@@ -376,6 +512,8 @@ enum
 
 - (IBAction)ReadyClick:(UIButton*)sender
 {
+    [[SoundController GetSingleton] PlayClickButton];
+    
     if (m_Sate == READY0 || m_Sate == READY1)
     {
         m_Sate++;

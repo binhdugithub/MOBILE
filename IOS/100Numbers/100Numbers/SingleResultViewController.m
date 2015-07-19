@@ -107,8 +107,8 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     
     //1 bacground
     
-    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     //2. Header
     
     // back
@@ -212,31 +212,6 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
-    NSMutableDictionary *dicData = [NSMutableDictionary dictionaryWithContentsOfFile:pathData];
-    
-    if (dicData != nil)
-    {
-        int l_timesPlayed = [dicData[@"TimesPlayed"] intValue];
-        int l_NewAverage = ([dicData[@"AverageScore"] intValue] * l_timesPlayed + (int)m_CurrentNumber ) / (l_timesPlayed + 1);
-        
-        [dicData setObject:[NSNumber numberWithInt:l_NewAverage] forKey:@"AverageScore"];
-        [dicData setObject:[NSNumber numberWithInt:(l_timesPlayed + 1)] forKey:@"TimesPlayed"];
-        if (m_CurrentNumber > [dicData[@"BestScore"] intValue])
-        {
-            [dicData setObject:[NSNumber numberWithInt: (int)m_CurrentNumber] forKey:@"BestScore"];
-        }
-        
-        [dicData writeToFile:pathData atomically:YES];
-
-    }
-    else
-    {
-        NSLog(@"Load User info fail !!");
-    }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning

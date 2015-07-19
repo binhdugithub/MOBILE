@@ -11,6 +11,7 @@
 #import "SinglePlayerViewController.h"
 #import <Social/Social.h>
 #import "GADMasterViewController.h"
+#import "Configuration.h"
 
 @interface StatisticsViewController ()
 {
@@ -79,8 +80,8 @@ m_UIViewHeader, m_UIViewOverall;
     
     //1 bacground
     
-    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     //2. Header
     
     // back
@@ -212,35 +213,22 @@ m_UIViewHeader, m_UIViewOverall;
 
 - (void)LoadData
 {
-    NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
-    NSDictionary *dicData = [NSDictionary dictionaryWithContentsOfFile:pathData];
-    if (dicData != nil)
+   
+    if ([[Configuration GetSingleton] GetTimesPlayed] < 0)
     {
-        NSInteger l_timesPlayed = [dicData[@"TimesPlayed"] intValue];
-        if (l_timesPlayed <= 0)
-        {
-            m_UILabelBestScore.text = @"--";
-            m_UILabelAverageScore.text = @"--";
-            m_UILabelGamesPlayed.text = @"--";
-        }
-        else
-        {
-           
-            m_UILabelBestScore.text = [NSString stringWithFormat:@"%i / 100",
-                                       [dicData[@"BestScore"] intValue]];
-            m_UILabelAverageScore.text = [NSString stringWithFormat:@"%i",
-                                       [dicData[@"AverageScore"] intValue]];
-             m_UILabelGamesPlayed.text = [NSString stringWithFormat:@"%li", (long)l_timesPlayed];
-        }
-        
+        m_UILabelBestScore.text = @"--";
+        m_UILabelAverageScore.text = @"--";
+        m_UILabelGamesPlayed.text = @"--";
     }
     else
     {
-        NSLog(@"Load User info fail !!");
+       
+        m_UILabelBestScore.text = [NSString stringWithFormat:@"%li / 100", [[Configuration GetSingleton] GetBestScore]];
+        m_UILabelAverageScore.text = [NSString stringWithFormat:@"%li",[[Configuration GetSingleton]GetAverageScore ]];
+        m_UILabelGamesPlayed.text = [NSString stringWithFormat:@"%li", [[Configuration GetSingleton] GetTimesPlayed]];
     }
-    
+   
 }
-
 
 - (IBAction)BackClick:(id)sender
 {
@@ -314,27 +302,8 @@ m_UIViewHeader, m_UIViewOverall;
     
     if (alertView.tag == 1001 && buttonIndex == 1)
     {
-        NSString *pathData = [[NSBundle mainBundle]
-                              pathForResource: @"Data"
-                              ofType:@"plist"] ;
-        
-        NSMutableDictionary *dicData = [NSMutableDictionary dictionaryWithContentsOfFile:pathData] ;
-        
-        if (dicData != nil)
-        {
-            [dicData setObject:[NSNumber numberWithInt:0] forKey:@"BestScore"];
-            [dicData setObject:[NSNumber numberWithInt:0] forKey:@"AverageScore"];
-            [dicData setObject:[NSNumber numberWithInt:0] forKey:@"TimesPlayed"];
-            [dicData writeToFile:pathData atomically:YES];
-        }
-        else
-        {
-            NSLog(@"Save ismute fail!!");
-        }
-        
-        m_UILabelBestScore.text = @"--";
-        m_UILabelAverageScore.text = @"--";
-        m_UILabelGamesPlayed.text = @"--";
+        [[Configuration GetSingleton] ClearConfig];
+        [self LoadData];
     }
 }
 

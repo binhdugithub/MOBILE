@@ -139,7 +139,8 @@
     NSString *MyApp =[NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", YOUR_APP_ID];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
-        MyApp = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", MyApp];
+        NSLog(@"VAo day");
+        MyApp = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", YOUR_APP_ID];
     }
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:MyApp]];

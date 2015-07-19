@@ -9,6 +9,7 @@
 #import "SoundController.h"
 #import "SinglePlayerViewController.h"
 #import "GADMasterViewController.h"
+#import <GameKit/GameKit.h>
 ///#import "Define.h"
 
 
@@ -23,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
 @property (weak, nonatomic) IBOutlet UILabel *m_UIlabelCopyright;
+@property (weak, nonatomic) IBOutlet UIButton *m_UIButtonGameCenter;
 
 @end
 
@@ -31,6 +33,7 @@
 @synthesize m_UIButton1Player,m_UIButton2Players;
 @synthesize m_UIlabelCopyright, m_UIViewFooter;
 @synthesize m_UILabel100;
+@synthesize m_UIButtonGameCenter;
 
 - (void)viewDidLoad
 {
@@ -56,8 +59,8 @@
     
    // printf("\nW: %f H: %f", W, H);
     //1 bacground
-    //[self.view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:169.0/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
 
     
     //2 Player
@@ -86,6 +89,7 @@
     frm = m_UIButton1Player.frame;
     frm.origin.y = frm.origin.y - frm.size.height;
     m_UILabel100.frame = frm;
+    m_UILabel100.hidden = TRUE;
     //Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
@@ -108,12 +112,15 @@
     frm.origin.x = m_UIButton2Players.frame.origin.x;
     frm.origin.y = m_UIViewFooter.frame.origin.y  - 2 * frm.size.height;
     m_UIButtonAbout.frame =frm;
+    //m_UIButtonAbout.hidden = TRUE;
     
     //Speaker
     frm.origin.x = m_UIButton2Players.frame.origin.x + m_UIButton2Players.frame.size.width - frm.size.width;
     m_UIButtonSpeaker.frame = frm;
+    m_UIButtonSpeaker.hidden = TRUE;
     
-    
+    //game center
+    m_UIButtonGameCenter.hidden = TRUE;
     
 }
 
@@ -153,6 +160,24 @@
    [[SoundController GetSingleton] PlayClickButton];
     [[SoundController GetSingleton] ChangeMute];
     [self ShowSpeaker];
+}
+
+
+- (IBAction)GameCenter:(id)sender
+{
+    
+    [[SoundController GetSingleton] PlayClickButton];
+    
+     GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+     if (gameCenterController != nil)
+     {
+     gameCenterController.gameCenterDelegate = self;
+     //The next three lines are the lines of interest...
+     gameCenterController.viewState = GKGameCenterViewControllerStateDefault;
+     gameCenterController.leaderboardTimeScope = GKLeaderboardTimeScopeToday;
+     //gameCenterController.leaderboardCategory = leaderboardID;
+     [self presentViewController:gameCenterController animated:YES completion:nil];
+     }
 }
 
 
