@@ -14,9 +14,11 @@
     NSInteger m_TimesPlayed;
     NSInteger m_BestScore;
     NSInteger m_AverageScore;
+    NSString *m_LeaderboardIdentifier;
 }
 
 +(instancetype) GetSingleton;
+- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard;
 - (void) WriteMute : (BOOL) p_ismute;
 - (void) UpdateStatistics : (NSInteger) p_currentscore;
 - (void) ClearConfig;

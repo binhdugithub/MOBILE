@@ -291,9 +291,6 @@
     m_UILabelTime.text = [NSString stringWithFormat:@"%02li:%02li", (long)l_m, (long)l_s];
     if (m_currentTime == 0)
     {
-        //[p_timer invalidate];
-        //p_timer = nil;
-        //NSLog(@"Time out");
         [self GameOver];
     }
 }

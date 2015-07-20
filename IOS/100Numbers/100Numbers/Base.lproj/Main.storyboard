@@ -72,9 +72,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4wa-c0-V9c">
-                                <rect key="frame" x="137" y="304" width="46" height="30"/>
+                                <rect key="frame" x="53" y="321" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="GAME CENTER">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -82,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tjy-xA-kI5" userLabel="speaker">
-                                <rect key="frame" x="197" y="368" width="30" height="30"/>
+                                <rect key="frame" x="263" y="368" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btn_mute.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,6 +93,23 @@
                                     <action selector="SpeakerClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3gP-Gv-8in"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FQI-qA-KjC">
+                                <rect key="frame" x="175" y="321" width="85" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="RATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="m_MoreApp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nhp-r4-bfV"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="v5w-Pc-vXb">
+                                <rect key="frame" x="0.0" y="-158" width="304" height="201"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -100,9 +119,11 @@
                         <outlet property="m_UIButton2Players" destination="2KY-q8-wU5" id="cwK-Iq-BGQ"/>
                         <outlet property="m_UIButtonAbout" destination="uvP-2C-hNb" id="1b9-pb-Jfd"/>
                         <outlet property="m_UIButtonGameCenter" destination="4wa-c0-V9c" id="X6x-jI-L6n"/>
+                        <outlet property="m_UIButtonRate" destination="FQI-qA-KjC" id="utA-TK-MS8"/>
                         <outlet property="m_UIButtonSpeaker" destination="Tjy-xA-kI5" id="xIf-yH-XVK"/>
                         <outlet property="m_UILabel100" destination="QMW-bP-M5L" id="o9m-yt-0qM"/>
                         <outlet property="m_UIViewFooter" destination="aLt-2l-4fF" id="HgY-vN-jUS"/>
+                        <outlet property="m_UIViewHeader" destination="v5w-Pc-vXb" id="JBc-hX-pW5"/>
                         <outlet property="m_UIlabelCopyright" destination="P3o-iE-yeU" id="Ds3-hx-7ca"/>
                         <segue destination="Ai9-gY-0KQ" kind="modal" identifier="SegueSinglePlayer" id="417-B6-pBx"/>
                     </connections>
@@ -892,7 +913,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jq6-5N-QS0"/>
+        <segue reference="yQO-az-1IK"/>
         <segue reference="417-B6-pBx"/>
         <segue reference="Xq0-Ez-enU"/>
     </inferredMetricsTieBreakers>

@@ -9,10 +9,13 @@
 #ifndef _00Numbers_Define_h
 #define _00Numbers_Define_h
 
-#define YOUR_APP_ID @"com.appalgo.F100"
+#define YOUR_APP_ID @"1021190647"
+#define YOUR_LEADERBOARD_ID @"leaderboardf100"
 
 #define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/1666550849"
 #define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/8572538847"
+
+#define FILECONFIG @"/data.plist"
 
 #define TIME_MAX 300
 

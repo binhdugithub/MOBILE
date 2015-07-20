@@ -7,11 +7,24 @@
 //
 
 #import "Configuration.h"
-
-#define FILECONFIG @"/data.plist"
+#import "Define.h"
+#import <GameKit/GameKit.h>
 
 @implementation Configuration
 
+-(void)reportScore
+{
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:m_LeaderboardIdentifier];
+    score.value = m_BestScore;
+    
+    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error)
+     {
+         if (error != nil)
+         {
+             NSLog(@"%@", [error localizedDescription]);
+         }
+     }];
+}
 
 +(instancetype) GetSingleton
 {
@@ -30,6 +43,7 @@
     if(self)
     {
         [self LoadConfig];
+        m_LeaderboardIdentifier = nil;
     }
     
     return self;
@@ -188,10 +202,11 @@
         if (p_currentscore > m_BestScore)
         {
             [dicData setObject:[NSNumber numberWithInteger: p_currentscore] forKey:@"BestScore"];
-            
             m_BestScore = p_currentscore;
+            
+            NSLog(@"Report score");
+            [self reportScore];
         }
-        
         
         [dicData writeToFile:pathData atomically:YES];
     }
@@ -233,6 +248,12 @@
     }
     
 };
+
+
+- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard
+{
+    m_LeaderboardIdentifier = p_leaderboard;
+}
 
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<GKGameCenterControllerDelegate>
 {
-    
+    bool m_GameCenterEnabled;
+    NSString *m_LeaderboardIdentifier;
 }
 
 
