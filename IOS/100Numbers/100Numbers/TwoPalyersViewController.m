@@ -96,60 +96,22 @@ enum
 {
     CGFloat W = [UIScreen mainScreen].bounds.size.width;
     CGFloat H = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
+    CGFloat h = w;
     
     //1 bacground
     
     [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
-    //2. group 1
-    CGRect frm = m_UIViewGroup1.frame;
+    
+    //Advertisement
+    CGRect frm;
     frm.size.width = W;
-    frm.size.height = 1.0/3 * (H - W);
+    frm.size.height = 50;
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
-    m_UIViewGroup1.frame = frm;
-    
-    //speaker1
-    frm = m_UIButtonSpeaker1.frame;
-    frm.size.width = W_ICON * W;
-    frm.size.height = frm.size.width;
-    frm.origin.x = 1.0/4 * frm.size.width;
-    frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
-    m_UIButtonSpeaker1.frame = frm;
-    //home 1
-    frm = m_UIButtonSpeaker1.frame;
-    frm.origin.x = m_UIViewGroup1.frame.size.width - 1.0/4 * frm.size.width - frm.size.width;
-    m_UIButtonHome1.frame = frm;
-    //ready 1
-    frm = m_UIViewGroup1.frame;
-    frm.size.width = 1.0/2 * frm.size.width;
-    frm.size.height = frm.size.height - 1.0/4 * frm.size.height;
-    frm.origin.x = 1.0/4 * m_UIViewGroup1.frame.size.width;
-    frm.origin.y = 1.0/8 * m_UIViewGroup1.frame.size.height;
-    m_UIButtonReady1.frame = frm;
-    m_UIButtonReady1.layer.cornerRadius = 10;
-    [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    
-    //3 group 2
-    frm = m_UIViewGroup1.frame;
-    frm.origin.y = 0;
-    m_UIViewGroup2.frame = frm;
-    //speaker 2
-    frm = m_UIButtonHome1.frame;
-    m_UIButtonSpeaker2.frame = frm;
-    //home 2
-    frm = m_UIButtonSpeaker1.frame;
-    m_UIButtonHome2.frame = frm;
-    //ready 2
-    frm = m_UIButtonReady1.frame;
-    m_UIButtonReady2.frame = frm;
-    m_UIButtonReady2.layer.cornerRadius = 10;
-    [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    
-    //4 group advertisement
-    frm = m_UIViewGroup1.frame;
-    frm.origin.y = m_UIViewGroup2.frame.size.height + 1.0/2 * W;
+    frm.origin.y = 1.0/2*(H - frm.size.height);
     m_UIViewFooter.frame = frm;
+    
     //coptyright
     frm = m_UIViewFooter.frame;
     frm.size.height = 1.0/2 * frm.size.height;
@@ -162,17 +124,70 @@ enum
     m_UILabelCopyright2.frame = frm;
     m_UILabelCopyright2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     
-    //5 1->50
+    //view 1->50
     frm = m_UIView1to50.frame;
     frm.size.width = W;
     frm.size.height = 1.0/2 * W;
     frm.origin.x = 0;
-    frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height;
+    frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/2 * w;
     m_UIView1to50.frame = frm;
-    //51 -> 100
+    
+    //view 51 -> 100
     frm = m_UIView1to50.frame;
-    frm.origin.y = m_UIViewGroup2.frame.origin.y + m_UIViewGroup2.frame.size.height;
+    frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/2 * w;
     m_UIView51to100.frame = frm;
+    
+    //
+    //Group 1
+    //
+    frm.size.width = W;
+    frm.size.height = H - (m_UIView1to50.frame.origin.y + m_UIView1to50.frame.size.height);
+    frm.origin.x = 0;
+    frm.origin.y = H - frm.size.height;
+    m_UIViewGroup1.frame = frm;
+    
+    //speaker1
+    frm.size.width = W_ICON * W;
+    frm.size.height = frm.size.width;
+    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
+    m_UIButtonSpeaker1.frame = frm;
+    
+    //home 1
+    frm = m_UIButtonSpeaker1.frame;
+    frm.origin.x = m_UIViewGroup1.frame.size.width - 1.0/4 * frm.size.width - frm.size.width;
+    m_UIButtonHome1.frame = frm;
+    
+    //ready 1
+    frm = m_UIViewGroup1.frame;
+    frm.size.width = 1.0/2 * frm.size.width;
+    frm.size.height = frm.size.height - 1.0/4 * frm.size.height;
+    frm.origin.x = 1.0/4 * m_UIViewGroup1.frame.size.width;
+    frm.origin.y = 1.0/8 * m_UIViewGroup1.frame.size.height;
+    m_UIButtonReady1.frame = frm;
+    m_UIButtonReady1.layer.cornerRadius = 10;
+    [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //
+    //Group 2
+    //
+    frm = m_UIViewGroup1.frame;
+    frm.origin.y = 0;
+    m_UIViewGroup2.frame = frm;
+    
+    //speaker 2
+    frm = m_UIButtonHome1.frame;
+    m_UIButtonSpeaker2.frame = frm;
+    
+    //home 2
+    frm = m_UIButtonSpeaker1.frame;
+    m_UIButtonHome2.frame = frm;
+    
+    //ready 2
+    frm = m_UIButtonReady1.frame;
+    m_UIButtonReady2.frame = frm;
+    m_UIButtonReady2.layer.cornerRadius = 10;
+    [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     
     m_UIButtonReady2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UIButtonSpeaker2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
@@ -181,10 +196,10 @@ enum
     m_UILabelWin2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UILabelScore2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     
-    CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
-    CGFloat h = w;
     
     
+    //[m_UIView1to50 setBackgroundColor:[UIColor lightGrayColor]];
+    //[m_UIView51to100 setBackgroundColor:[UIColor lightGrayColor]];
     m_Array1to50Number = [[NSMutableArray alloc] init];
     for (NSUInteger i=0; i < 50; i++)
     {
@@ -202,7 +217,6 @@ enum
         MyNumber.alpha = 0.8;
         [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
-        [m_UIView1to50 setBackgroundColor:[UIColor lightGrayColor]];
         [m_UIView1to50 addSubview:MyNumber];
         [m_Array1to50Number addObject:MyNumber];
     }
@@ -225,8 +239,7 @@ enum
         MyNumber.layer.cornerRadius = 5;
         MyNumber.alpha = 0.8;
         MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
-        
-        [m_UIView51to100 setBackgroundColor:[UIColor lightGrayColor]];
+    
         [m_UIView51to100 addSubview:MyNumber];
         [m_Array51to100Number addObject:MyNumber];
     }
@@ -257,7 +270,7 @@ enum
     m_UIButtonShare.layer.cornerRadius = 10;
     [m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     
-    //view result 2;
+    //view result 2
     CGRect frm2 = m_UIView51to100.frame;
     frm2.origin.y = 0 - frm2.size.height - m_UIViewGroup2.frame.size.height;
     m_UIViewResult2.frame = frm2;
@@ -475,6 +488,7 @@ enum
     m_UILabelScore1.text = [NSString stringWithFormat:@"%li / 50", (long)m_ScorePlayer1];
     m_UILabelScore2.text = [NSString stringWithFormat:@"%li / 50", (long)m_ScorePlayer2];
     
+    m_Sate = STOPGAME;
     [self ShowResult];
 }
 
@@ -551,12 +565,14 @@ enum
             m_ScorePlayer2 = 0;
         }
         
-        m_Sate = REJECTGAME;
+        //m_Sate = REJECTGAME;
         [self GameOver];
     }
     else if(m_Sate == REJECTGAME || m_Sate == STOPGAME)
     {
-        m_Sate = READY0;
+        m_Sate = READY1;
+        sender.alpha = 0.5;
+        sender.enabled = FALSE;
         [self HideResult];
     }
     

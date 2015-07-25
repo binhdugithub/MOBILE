@@ -723,7 +723,7 @@
                                         <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Kd8-rh-Fdz" userLabel="View 1-50Numbers">
                                 <rect key="frame" x="0.0" y="309" width="320" height="160"/>
@@ -764,7 +764,7 @@
                                         <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Zyl-Aq-COX" userLabel="Footer View">
                                 <rect key="frame" x="0.0" y="250" width="320" height="50"/>
@@ -785,9 +785,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="aAn-I6-WCP" userLabel="View Ready 1">
+                            <view contentMode="scaleToFill" id="aAn-I6-WCP" userLabel="Group 1">
                                 <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -827,7 +827,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="isO-Wn-bQd" userLabel="View Ready 2">
+                            <view contentMode="scaleToFill" id="isO-Wn-bQd" userLabel="Group 2">
                                 <rect key="frame" x="0.0" y="-1" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>

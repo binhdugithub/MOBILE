@@ -86,9 +86,11 @@
     frm.origin.y = 1.0/2 * H ;
     m_UIButton2Players.frame = frm;
     m_UIButton2Players.layer.cornerRadius = 10;
-    [m_UIButton2Players setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //[m_UIButton2Players setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     //m_UIButton2Players.layer.borderColor = [UIColor whiteColor].CGColor;
     //m_UIButton2Players.layer.borderWidth = 2.0f;
+    
+    [m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
     
     
     //1 Player
@@ -96,9 +98,10 @@
     frm2.origin.y = frm2.origin.y - 1.0/4 * frm2.size.height - frm2.size.height;
     m_UIButton1Player.frame = frm2;
     m_UIButton1Player.layer.cornerRadius = 10;
-    [m_UIButton1Player setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //[m_UIButton1Player setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     //m_UIButton1Player.layer.borderColor = [UIColor whiteColor].CGColor;
     //m_UIButton1Player.layer.borderWidth = 2.0f;
+    [m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
     
     //100
     frm = m_UIButton1Player.frame;

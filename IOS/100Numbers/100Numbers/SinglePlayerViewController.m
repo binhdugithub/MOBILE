@@ -126,7 +126,7 @@
     //4 Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.height = 50;
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     m_UIViewFooter.frame = frm;
