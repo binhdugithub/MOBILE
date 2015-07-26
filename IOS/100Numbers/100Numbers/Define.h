@@ -21,8 +21,8 @@
 
 #define H_FOOTER 1.0/8
 
-#define W_ICON   1.0/12
-#define H_ICON   1.0/12
+#define W_ICON   1.0/15
+#define H_ICON   1.0/15
 
 #define H_BTNPLAY 1.0/7
 #define W_BTNPLAY 3.0/4

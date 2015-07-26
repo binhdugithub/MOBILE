@@ -23,6 +23,7 @@
     NSTimer *m_Timer;
     NSInteger  m_currentTime;
 }
+
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
 @property (weak, nonatomic) IBOutlet UIView *m_UIView100Number;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonPlay;
@@ -33,9 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonStatistics;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelTime;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
-
-
-
 
 @end
 
@@ -76,55 +74,54 @@
   
     //1 bacground
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
-    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
-    //2. Header
+    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
+    //
+    //Header
+    //
     
-    //2.2 About
-    CGRect frm = m_UIButtonHome.frame;
+    //About
+    CGRect frm;
     frm.size.width = W_ICON * W;
     frm.size.height = frm.size.width;
     frm.origin.x = 1.0/4 * frm.size.width;
     frm.origin.y = 1.0/2 * frm.size.height;
     m_UIButtonHome.frame =frm;
     
-    //2.4 header
-    frm = m_UIViewHeader.frame;
+    //header
     frm.size.width = W;
     frm.size.height = 2 * m_UIButtonHome.frame.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UIViewHeader.frame = frm;
     
-    //2.3Speaker
+    //Speaker
     frm = m_UIButtonHome.frame;
     frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
     m_UIButtonSpeaker.frame = frm;
     
-    //2.4statistics
+    //statistics
     frm.origin.x = 1.0/2 * (m_UIViewHeader.frame.size.width - frm.size.width);
     m_UIButtonStatistics.frame = frm;
     
     
-    
-    
-    //2.5 time
+    //Time
     frm = m_UIViewHeader.frame;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTime.frame = frm;
    
     
-    //3 100Numbers
+    //100Numbers
     frm = m_UIView100Number.frame;
     frm.size.width = W;
     frm.size.height = frm.size.width;
     frm.origin.x = 0;
     frm.origin.y = m_UIViewHeader.frame.size.height;
     m_UIView100Number.frame = frm;
+    [m_UIView100Number setBackgroundColor:[UIColor clearColor]];
     
-    //4 Footer
-    frm = m_UIViewFooter.frame;
+    //Footer
     frm.size.width = W;
     frm.size.height = 50;
     frm.origin.x = 0;
@@ -132,12 +129,12 @@
     m_UIViewFooter.frame = frm;
     
     //Copyrith
-    frm.size.height =  H_FOOTER * H * 1.0/2;
+    frm.size.height =  1.0/2 * m_UIViewFooter.frame.size.height;
     frm.origin.x = 0;
-    frm.origin.y =  H_FOOTER * H * 1.0/2;
+    frm.origin.y =  1.0/2*(m_UIViewFooter.frame.size.height - frm.size.height);
     m_UIlabelCopyright.frame = frm;
     
-    //5 Play
+    //Play
     frm = m_UIButtonPlay.frame;
     frm.size.width = 4.0/5 * W;
     frm.size.height = 2.0/3 * (m_UIViewFooter.frame.origin.y - m_UIView100Number.frame.origin.y - m_UIView100Number.frame.size.height);
@@ -145,7 +142,15 @@
     frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
     m_UIButtonPlay.frame = frm;
     m_UIButtonPlay.layer.cornerRadius = 10;
-    [m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //[m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]];
+    //[m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    //m_UIButtonPlay.titleLabel.font = m_UIButtonPlay.titleLabel.font;
+    //[m_UIButtonPlay setTitleColor:[UIColor colorWithRed:0/255.0 green:62/255.0 blue:62/255.0 alpha:1] forState:UIControlStateNormal];
+    m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    [m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    [m_UIButtonPlay setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonPlay setTitle:[NSString stringWithFormat:@"REPLAY"] forState:UIControlStateNormal];
 
     
 }

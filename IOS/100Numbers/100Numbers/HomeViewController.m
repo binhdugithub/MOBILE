@@ -66,8 +66,9 @@
     
    // printf("\nW: %f H: %f", W, H);
     //1 bacground
-    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
 
     // header
     CGRect frm_header;
@@ -80,8 +81,9 @@
     
     //2 Player
     CGRect frm = m_UIButton2Players.frame;
-    frm.size.width = W_BTNPLAY * W;
     frm.size.height = H_BTNPLAY * H;
+    frm.size.width = 2 * frm.size.height;
+    
     frm.origin.x = (W - frm.size.width ) /2.0;
     frm.origin.y = 1.0/2 * H ;
     m_UIButton2Players.frame = frm;
@@ -89,8 +91,12 @@
     //[m_UIButton2Players setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     //m_UIButton2Players.layer.borderColor = [UIColor whiteColor].CGColor;
     //m_UIButton2Players.layer.borderWidth = 2.0f;
-    
-    [m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
+    //[m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
+    //m_UIButton2Players.titleLabel.font = [UIFont systemFontOfSize:20 weight:1];
+    //[m_UIButton2Players setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [m_UIButton2Players setBackgroundColor:[UIColor clearColor]];
+    [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2.png"] forState:UIControlStateNormal];
+    [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2_pressed.png"] forState:UIControlStateHighlighted];
     
     
     //1 Player
@@ -101,7 +107,9 @@
     //[m_UIButton1Player setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     //m_UIButton1Player.layer.borderColor = [UIColor whiteColor].CGColor;
     //m_UIButton1Player.layer.borderWidth = 2.0f;
-    [m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
+    [m_UIButton1Player setBackgroundColor:[UIColor clearColor]];
+    [m_UIButton1Player setBackgroundImage:[UIImage imageNamed:@"btn_play1.png"] forState:UIControlStateNormal];
+    [m_UIButton1Player setBackgroundImage:[UIImage imageNamed:@"btn_play1_pressed.png"] forState:UIControlStateHighlighted];
     
     //100
     frm = m_UIButton1Player.frame;
@@ -145,15 +153,20 @@
     frm_gamecenter.origin.y = m_UIButton2Players.frame.origin.y + m_UIButton2Players.frame.size.height + 1.0/4 * m_UIButton2Players.frame.size.height ;
     m_UIButtonGameCenter.frame = frm_gamecenter;
     m_UIButtonGameCenter.layer.cornerRadius = 5;
-    [m_UIButtonGameCenter setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //[m_UIButtonGameCenter setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    
+    [m_UIButtonGameCenter setBackgroundColor:[UIColor clearColor]];
+    [m_UIButtonGameCenter setBackgroundImage:[UIImage imageNamed:@"btn_gamecenter.png"] forState:UIControlStateNormal];
+    [m_UIButtonGameCenter setBackgroundImage:[UIImage imageNamed:@"btn_gamecenter_pressed.png"] forState:UIControlStateHighlighted];
     
     //rate
     CGRect frm_rate = m_UIButtonGameCenter.frame;
     frm_rate.origin.x = m_UIButtonGameCenter.frame.origin.x + m_UIButtonGameCenter.frame.size.width + 2.0/20 * m_UIButton2Players.frame.size.width;
     m_UIButtonRate.frame = frm_rate;
     m_UIButtonRate.layer.cornerRadius = 5;
-    [m_UIButtonRate setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    
+    [m_UIButtonRate setBackgroundColor:[UIColor clearColor]];
+    [m_UIButtonRate setBackgroundImage:[UIImage imageNamed:@"btn_rate.png"] forState:UIControlStateNormal];
+    [m_UIButtonRate setBackgroundImage:[UIImage imageNamed:@"btn_rate_pressed.png"] forState:UIControlStateHighlighted];
     
 }
 

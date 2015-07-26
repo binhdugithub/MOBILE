@@ -72,7 +72,7 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     [interstitial loadRequest:[GADRequest request]];
     //End Advertisement
     
-    m_Timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    m_Timer = [NSTimer scheduledTimerWithTimeInterval:10.0
                                      target:self
                                    selector:@selector(ShowAdvertisement:)
                                    userInfo:nil
@@ -107,8 +107,9 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     
     //1 bacground
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
     //2. Header
     
     // back
@@ -138,6 +139,8 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.y = 0;
     m_UILabelTitle.frame = frm;
     
+    //TITLE
+    
     
     //3 Your Score
     frm = m_UIViewSocre.frame;
@@ -146,6 +149,9 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.x = m_UIButtonBack.frame.origin.x + 1.0/4 * m_UIButtonBack.frame.size.width;
     frm.origin.y =m_UIViewHeader.frame.origin.y + m_UIViewHeader.frame.size.height +  1.0/2 * m_UIButtonBack.frame.size.height;
     m_UIViewSocre.frame = frm;
+    m_UIViewSocre.layer.cornerRadius = 10;
+    //m_UIViewSocre = [UIFont systemFontOfSize:17 weight:0];
+    [m_UIViewSocre setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
     //title
     frm = m_UIViewSocre.frame;
@@ -153,6 +159,7 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelYourScore.frame = frm;
+    m_UILabelYourScore.font = [UIFont systemFontOfSize:17 weight:1];
     //score
     frm = m_UILabelScore.frame;
     frm.size.width = m_UIViewSocre.frame.size.width;
@@ -163,37 +170,47 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     
     //4 View 3Buttons
     frm = m_UIView3Buttons.frame;
-    frm.size.width = m_UILabelScore.frame.size.width - 2 * m_UIButtonBack.frame.size.width;
+    frm.size.width = m_UILabelScore.frame.size.width - 4 * m_UIButtonBack.frame.size.width;
     frm.size.height = H_3BUTTONS * H;
     frm.origin.x = (W - frm.size.width) * 1.0/2;
     frm.origin.y = m_UIViewSocre.frame.origin.y + m_UIViewSocre.frame.size.height+ m_UIButtonBack.frame.size.height;
     m_UIView3Buttons.frame = frm;
+    
     //play agian
-    frm = m_UIButtonPlayAgain.frame;
     frm.size.width = m_UIView3Buttons.frame.size.width;
     frm.size.height = 1/3.5 * m_UIView3Buttons.frame.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UIButtonPlayAgain.frame = frm;
     m_UIButtonPlayAgain.layer.cornerRadius = 10;
-    [m_UIButtonPlayAgain setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    [m_UIButtonPlayAgain setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    [m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonPlayAgain setTitle:[NSString stringWithFormat:@"PLAY AGAIN"] forState:UIControlStateNormal];
+   
     //statistics
     frm.origin.y = m_UIButtonPlayAgain.frame.origin.y + m_UIButtonPlayAgain.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
     m_UIButtonStatistics.frame = frm;
     m_UIButtonStatistics.layer.cornerRadius = 10;
-    [m_UIButtonStatistics setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    [m_UIButtonStatistics setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    [m_UIButtonStatistics setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonStatistics setTitle:[NSString stringWithFormat:@"STATISTICS"] forState:UIControlStateNormal];
+    
     //share score
-    frm.origin.y = m_UIButtonStatistics.frame.origin.y + m_UIButtonStatistics.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
+    frm.origin.y = m_UIButtonStatistics.frame.origin.y + m_UIButtonStatistics.frame.size.height + 1.0/4 *m_UIButtonPlayAgain.frame.size.height;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
-    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    
+    m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonShareScore setTitle:[NSString stringWithFormat:@"SHARE"] forState:UIControlStateNormal];
     
     
     //5 Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.height = 50;
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     m_UIViewFooter.frame = frm;
@@ -203,9 +220,6 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.x = 0;
     frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
     m_UILabelCopyright.frame = frm;
-    
-    
-    
     
 }
 

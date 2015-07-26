@@ -100,9 +100,7 @@ enum
     CGFloat h = w;
     
     //1 bacground
-    
-    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
-    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
     
     //Advertisement
     CGRect frm;
@@ -166,7 +164,11 @@ enum
     frm.origin.y = 1.0/8 * m_UIViewGroup1.frame.size.height;
     m_UIButtonReady1.frame = frm;
     m_UIButtonReady1.layer.cornerRadius = 10;
-    [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    
+    m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    [m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonReady1 setTitle:[NSString stringWithFormat:@"READY"] forState:UIControlStateNormal];
     
     //
     //Group 2
@@ -187,7 +189,11 @@ enum
     frm = m_UIButtonReady1.frame;
     m_UIButtonReady2.frame = frm;
     m_UIButtonReady2.layer.cornerRadius = 10;
-    [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    
+    m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    [m_UIButtonReady2 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonReady2 setTitle:[NSString stringWithFormat:@"READY"] forState:UIControlStateNormal];
     
     m_UIButtonReady2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     m_UIButtonSpeaker2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
@@ -262,13 +268,14 @@ enum
     
     
     CGRect frm_share;
-    frm_share.size.width = 1.0/2 * m_UIViewResult1.frame.size.width;
+    frm_share.size.width = 1.0/3 * m_UIViewResult1.frame.size.width;
     frm_share.size.height = 3.0/10 * m_UIViewResult1.frame.size.height;
     frm_share.origin.x = 1.0/2 * (m_UIViewResult1.frame.size.width - frm_share.size.width);
     frm_share.origin.y = 3.0/5 * m_UIViewResult1.frame.size.height;
     m_UIButtonShare.frame = frm_share;
     m_UIButtonShare.layer.cornerRadius = 10;
-    [m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    //[m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    [m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
     //view result 2
     CGRect frm2 = m_UIView51to100.frame;

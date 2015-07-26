@@ -16,7 +16,10 @@
 @interface StatisticsViewController ()
 {
    NSMutableArray *m_Array100Number;
+    GADInterstitial *interstitial;
+    NSTimer *m_Timer;
 }
+
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelTitle;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonHome;
@@ -64,6 +67,8 @@ m_UIViewHeader, m_UIViewOverall;
     [self LoadData];
     [self CalculateView];
     [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    
+    [self SetupAdvertisementInterstitial];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,6 +78,41 @@ m_UIViewHeader, m_UIViewOverall;
 }
 
 
+- (void) SetupAdvertisementInterstitial
+{
+    //Advertisement
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+    [interstitial loadRequest:[GADRequest request]];
+    //End Advertisement
+    
+    m_Timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                                               target:self
+                                             selector:@selector(ShowAdvertisement:)
+                                             userInfo:nil
+                                              repeats:NO];
+    
+}
+
+- (void) ShowAdvertisement: (NSTimer*)p_timer
+{
+    if ([interstitial isReady])
+    {
+        
+        [interstitial presentFromRootViewController:self];
+        
+    }else
+    {
+        NSLog(@"GADInterstitial not ready");
+    }
+    
+    
+    [p_timer invalidate];
+    p_timer = nil;
+    
+}
+
 -(void)CalculateView
 {
     CGFloat W = [UIScreen mainScreen].bounds.size.width;
@@ -80,8 +120,9 @@ m_UIViewHeader, m_UIViewOverall;
     
     //1 bacground
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
     //2. Header
     
     // back
@@ -119,6 +160,8 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = m_UIButtonBack.frame.origin.x + 1.0/4 * m_UIButtonBack.frame.size.width;
     frm.origin.y =m_UIViewHeader.frame.origin.y + m_UIViewHeader.frame.size.height +  1.0/2 * m_UIButtonBack.frame.size.height;
     m_UIViewBestSocre.frame = frm;
+     m_UIViewBestSocre.layer.cornerRadius = 10;
+    [m_UIViewBestSocre setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
     //Bestscore title
     frm = m_UIViewBestSocre.frame;
@@ -139,6 +182,8 @@ m_UIViewHeader, m_UIViewOverall;
     frm = m_UIViewBestSocre.frame;
     frm.origin.y = frm.origin.y + frm.size.height + 1.0/2 * m_UIButtonBack.frame.size.height;
     m_UIViewOverall.frame = frm;
+    m_UIViewOverall.layer.cornerRadius = 10;
+    [m_UIViewOverall setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
     //title
     frm = m_UIViewOverall.frame;
@@ -146,6 +191,7 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTitleOverall.frame = frm;
+    
     //average score title
     frm = m_UILabelTitleAverageScore.frame;
     frm.size.width = m_UIViewOverall.frame.size.width;
@@ -185,19 +231,25 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.y = 0;
     m_UIButtonClearScore.frame = frm;
     m_UIButtonClearScore.layer.cornerRadius = 10;
-    [m_UIButtonClearScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    [m_UIButtonClearScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    [m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonClearScore setTitle:[NSString stringWithFormat:@"CLEAR"] forState:UIControlStateNormal];
     
     //share score
     frm = m_UIButtonClearScore.frame;
     frm.origin.x = frm.origin.x + frm.size.width + 1.0/8 * frm.size.width;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
-    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
+    [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
+    m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonShareScore setTitle:[NSString stringWithFormat:@"SHARE"] forState:UIControlStateNormal];
     
     //5 Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.height = 50;
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     m_UIViewFooter.frame = frm;
