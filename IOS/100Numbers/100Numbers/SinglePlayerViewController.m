@@ -302,7 +302,7 @@
 
 - (void)NumberClick: (UIButton*)sender
 {
-    if (sender.tag <= m_CurrentNumber)
+    if (sender.tag != (m_CurrentNumber +1))
         return;
     
     switch (m_Sate)

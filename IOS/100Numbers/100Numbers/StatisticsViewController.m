@@ -45,6 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewFooter;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright;
 
+
+
 @end
 
 @implementation StatisticsViewController
@@ -87,7 +89,7 @@ m_UIViewHeader, m_UIViewOverall;
     [interstitial loadRequest:[GADRequest request]];
     //End Advertisement
     
-    m_Timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+    m_Timer = [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
                                                target:self
                                              selector:@selector(ShowAdvertisement:)
                                              userInfo:nil
@@ -275,9 +277,9 @@ m_UIViewHeader, m_UIViewOverall;
     else
     {
        
-        m_UILabelBestScore.text = [NSString stringWithFormat:@"%li / 100", [[Configuration GetSingleton] GetBestScore]];
-        m_UILabelAverageScore.text = [NSString stringWithFormat:@"%li",[[Configuration GetSingleton]GetAverageScore ]];
-        m_UILabelGamesPlayed.text = [NSString stringWithFormat:@"%li", [[Configuration GetSingleton] GetTimesPlayed]];
+        m_UILabelBestScore.text = [NSString stringWithFormat:@"%li / 100", (long)[[Configuration GetSingleton] GetBestScore]];
+        m_UILabelAverageScore.text = [NSString stringWithFormat:@"%li",(long)[[Configuration GetSingleton]GetAverageScore ]];
+        m_UILabelGamesPlayed.text = [NSString stringWithFormat:@"%li", (long)[[Configuration GetSingleton] GetTimesPlayed]];
     }
    
 }

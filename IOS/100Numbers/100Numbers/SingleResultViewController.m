@@ -72,7 +72,7 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     [interstitial loadRequest:[GADRequest request]];
     //End Advertisement
     
-    m_Timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+    m_Timer = [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
                                      target:self
                                    selector:@selector(ShowAdvertisement:)
                                    userInfo:nil

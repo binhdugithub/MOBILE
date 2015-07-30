@@ -60,6 +60,8 @@ enum
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright;
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabelCopyright2;
 
+@property (strong, nonatomic) NSRecursiveLock *m_PlayLock;
+
 @end
 
 @implementation TwoPalyersViewController
@@ -73,6 +75,7 @@ enum
 @synthesize m_UIButtonHome1, m_UIViewFooter, m_UILabelCopyright;
 @synthesize m_UIViewGroup1, m_UIViewGroup2;
 @synthesize m_UILabelCopyright2;
+@synthesize m_PlayLock;
 
 
 - (void)viewDidLoad
@@ -399,13 +402,20 @@ enum
 
 - (void)NumberClick1: (UIButton*)sender
 {
+    [m_PlayLock lock];
     
-    if (m_Sate == READY0 || m_Sate == READY1)
+    if (m_Sate == READY0 || m_Sate == READY1 || m_Sate == STOPGAME)
+    {
+        [m_PlayLock unlock];
         return;
+    }
     
    
     if (sender.tag != m_CurrentNumber)
+    {
+        [m_PlayLock unlock];
         return;
+    }
     
    [[SoundController GetSingleton] PlaySoundCorrect];
     
@@ -435,18 +445,28 @@ enum
         m_TempNumber1 = sender;
         m_CurrentNumber += 1;
     }
+    
+    [m_PlayLock unlock];
 
 }
 
 
 - (void)NumberClick2: (UIButton*)sender
 {
-    if (m_Sate == READY0 || m_Sate == READY1)
+    [m_PlayLock lock];
+    
+    if (m_Sate == READY0 || m_Sate == READY1 || m_Sate == STOPGAME)
+    {
+        [m_PlayLock unlock];
         return;
+    }
     
     
     if (sender.tag != m_CurrentNumber)
+    {
+        [m_PlayLock unlock];
         return;
+    }
     
     [[SoundController GetSingleton] PlaySoundCorrect];
     m_ScorePlayer2 += 1;
@@ -473,7 +493,10 @@ enum
     {
         
         m_TempNumber1 = sender;
-        m_CurrentNumber += 1;    }
+        m_CurrentNumber += 1;
+    }
+    
+    [m_PlayLock unlock];
     
 }
 
@@ -481,15 +504,20 @@ enum
 - (void) GameOver
 {
     [[SoundController GetSingleton] PlaySoundGameOver];
-    if (m_ScorePlayer1 < m_ScorePlayer2)
+    if (m_ScorePlayer1 > m_ScorePlayer2)
+    {
+        m_UILabelWin2.text = @"YOU LOSE";
+        m_UILabelWin1.text = @"YOU WIN";
+    }
+    else if (m_ScorePlayer1 < m_ScorePlayer2)
     {
         m_UILabelWin2.text = @"YOU WIN";
         m_UILabelWin1.text = @"YOU LOSE";
     }
     else
     {
-        m_UILabelWin2.text = @"YOU LOSE";
-        m_UILabelWin1.text = @"YOU WIN";
+        m_UILabelWin2.text = @"SAME POINT";
+        m_UILabelWin1.text = @"SAME POINT";
     }
     
     m_UILabelScore1.text = [NSString stringWithFormat:@"%li / 50", (long)m_ScorePlayer1];
