@@ -142,15 +142,15 @@
     //3 Footer
     frm = ViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.height = 50;
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     ViewFooter.frame = frm;
     
     //Copyrith
-    frm.size.height =  H_FOOTER * H * 1.0/2;
+    frm.size.height =  ViewFooter.frame.size.height * 1.0/2;
     frm.origin.x = 0;
-    frm.origin.y =  H_FOOTER * H * 1.0/2;
+    frm.origin.y =  ViewFooter.frame.size.height * 1.0/4;
     LblCopyright.frame = frm;
     
     //4 buttons
@@ -189,16 +189,18 @@
     frm = _BtnRate.frame;
     frm.origin.y = frm.origin.y + frm.size.height + 1.0/4 * frm.size.height;
     _BtnMore.frame = frm;
+    _BtnMore.hidden = true;
     
     // About
-    frm = _BtnRate.frame;
+    frm = _BtnShare.frame;
     frm.origin.x = 1.0/8 * frm.size.width;
-    frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height - frm.size.height - 1.0/ 8 * frm.size.height;
+    //frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height - frm.size.height - 1.0/ 8 * frm.size.height;
     BtnAbout.frame =frm;
     
     //Speaker
-    frm = BtnAbout.frame;
-    frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height + 1.0/ 8 * frm.size.height;
+    frm = _BtnRate.frame;
+    frm.origin.x = 1.0/8 * frm.size.width;
+    //frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height + 1.0/ 8 * frm.size.height;
     BtnSpeaker.frame = frm;
     
 }
@@ -477,6 +479,19 @@
 - (IBAction)RateClick:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
+#if TARGET_IPHONE_SIMULATOR
+    NSLog(@"APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
+#else
+    
+    NSString *MyApp =[NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", YOUR_APP_ID];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    {
+        NSLog(@"VAo day");
+        MyApp = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", YOUR_APP_ID];
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:MyApp]];
+#endif
 }
 
 

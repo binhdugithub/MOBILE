@@ -1,30 +1,28 @@
 //
 //  SoundController.m
-//  100Perfect
+//  100Numbers
 //
-//  Created by Nguyễn Thế Bình on 4/18/15.
-//  Copyright (c) 2015 Nguyễn Thế Bình. All rights reserved.
+//  Created by Nguyễn Thế Bình on 4/2/15.
+//  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
-
+#import "Configuration.h"
 #import "SoundController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface SoundController()
-{
-    AVAudioPlayer* m_AudioPlayerClickButton;
-    AVAudioPlayer* m_AudioPlayerCorrect;
-    AVAudioPlayer* m_AudioPlayerGameOver;
-    AVAudioPlayer* m_AudioPlayerGameWin;
-    BOOL m_IsMute;
-}
-
+@property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerClickButton;
+@property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerCorrect;
+@property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerGameOver;
+@property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerGameWin;
+@property (nonatomic, assign) BOOL m_IsMute;
 
 @end
 
 
 @implementation SoundController
-
+@synthesize m_AudioPlayerClickButton, m_AudioPlayerCorrect, m_AudioPlayerGameOver, m_AudioPlayerGameWin;
+@synthesize m_IsMute;
 
 +(instancetype) GetSingleton
 {
@@ -46,24 +44,24 @@
     self = [super init];
     if(self)
     {
-        [self LoadData];
-        
         NSString *path = [[NSBundle mainBundle] pathForResource:@"click" ofType:@"mp3"];
         NSURL *mp3URL = [NSURL fileURLWithPath:path];
-        m_AudioPlayerClickButton = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:NULL];
+        m_AudioPlayerClickButton = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
         
         
         path = [[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"mp3"];
         mp3URL = [NSURL fileURLWithPath:path];
-        m_AudioPlayerGameOver = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:NULL];
+        m_AudioPlayerGameOver = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
         
         path = [[NSBundle mainBundle] pathForResource:@"congratulation" ofType:@"mp3"];
         mp3URL = [NSURL fileURLWithPath:path];
-        m_AudioPlayerGameWin = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:NULL];
+        m_AudioPlayerGameWin = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
         
         path = [[NSBundle mainBundle] pathForResource:@"correct" ofType:@"mp3"];
         mp3URL = [NSURL fileURLWithPath:path];
-        m_AudioPlayerCorrect = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:NULL];
+        m_AudioPlayerCorrect = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
+        
+        NSLog(@"%@", path);
     }
     
     
@@ -71,69 +69,75 @@
 }
 
 
-- (void)LoadData
-{
-    NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
-    NSDictionary *dicData = [NSDictionary dictionaryWithContentsOfFile:pathData];
-    if (dicData != nil)
-        m_IsMute = [dicData[@"IsMute"] boolValue];
-    else
-        NSLog(@"Load User info fail !!");
-    
-}
 
 - (void) ChangeMute
 {
-    m_IsMute = (m_IsMute) ? FALSE : TRUE;
-    NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
-    NSMutableDictionary *dicData = [NSMutableDictionary dictionaryWithContentsOfFile:pathData];
-    if (dicData != nil)
+    BOOL l_IsMute = [[Configuration GetSingleton] GetIsMute];
+    l_IsMute = (l_IsMute) ? FALSE : TRUE;
+    
+    [[Configuration GetSingleton] WriteMute:l_IsMute];
+    
+}
+
+- (void) PlayClickButton
+{
+    if ([[Configuration GetSingleton] GetIsMute])
+        return;
+    
+    NSLog(@"Play click button");
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [m_AudioPlayerClickButton prepareToPlay];
+    
+    if([m_AudioPlayerClickButton play])
     {
-        
-        [dicData setObject:[NSNumber numberWithInt:m_IsMute] forKey:@"IsMute"];
-        [dicData writeToFile:pathData atomically:YES];
-        
+        NSLog(@"Play success");
     }
     else
     {
-        NSLog(@"Load User info fail !!");
+        NSLog(@"Play fail!");
     }
     
 }
 
 - (BOOL) GetMute
 {
-    return m_IsMute;
-}
-
-- (void) PlayClickButton
-{
-    if (m_IsMute)
-        return;
-    
-    [m_AudioPlayerClickButton play];
+    return [[Configuration GetSingleton] GetIsMute];
 }
 
 - (void) PlaySoundGameOver
 {
-    if(m_IsMute)
+    if ([[Configuration GetSingleton] GetIsMute])
         return;
     
+    NSLog(@"PlaySoundGameOver");
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [m_AudioPlayerGameOver prepareToPlay];
     [m_AudioPlayerGameOver play];
 }
 
 - (void) PlaySoundCongratulation
 {
-    if(m_IsMute)
+    if ([[Configuration GetSingleton] GetIsMute])
         return;
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [m_AudioPlayerGameWin prepareToPlay];
     [m_AudioPlayerGameWin play];
 }
 
 - (void) PlaySoundCorrect
 {
-    if(m_IsMute)
+    if ([[Configuration GetSingleton] GetIsMute])
         return;
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [m_AudioPlayerCorrect stop];
+    [m_AudioPlayerCorrect prepareToPlay];
     [m_AudioPlayerCorrect play];
 }
 

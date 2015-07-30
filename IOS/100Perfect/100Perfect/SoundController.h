@@ -1,9 +1,9 @@
 //
 //  SoundController.h
-//  100Perfect
+//  100Numbers
 //
-//  Created by Nguyễn Thế Bình on 4/18/15.
-//  Copyright (c) 2015 Nguyễn Thế Bình. All rights reserved.
+//  Created by Nguyễn Thế Bình on 4/2/15.
+//  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
