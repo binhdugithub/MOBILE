@@ -85,6 +85,39 @@
     }
 }
 
+
+-(void)resetAdInterstitialView:(UIViewController *)rootViewController
+{
+    
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    
+    [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
+                                     target:self
+                                   selector:@selector(ShowAdvertisement:)
+                                   userInfo:rootViewController
+                                    repeats:NO];
+}
+
+
+- (void) ShowAdvertisement: (NSTimer*)p_timer
+{
+    if ([interstitial isReady])
+    {
+        
+        [interstitial presentFromRootViewController:(UIViewController*)[p_timer userInfo]];
+        
+    }
+    else
+    {
+        NSLog(@"GADInterstitial not ready 2");
+    }
+    
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

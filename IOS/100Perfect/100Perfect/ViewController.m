@@ -18,7 +18,12 @@
     NSMutableArray *m_Array100Number;
     NSInteger m_State;
     NSInteger m_CurrentCount;
+    NSInteger m_CountPlay;
+    
+    GADInterstitial* interstitial;
+    NSTimer *m_Timer;
 }
+
 @property (weak, nonatomic) IBOutlet UIView *View100Number;
 @property (weak, nonatomic) IBOutlet UIView *ViewButtons;
 @property (weak, nonatomic) IBOutlet UIView *ViewFooter;
@@ -55,6 +60,8 @@
     
     [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:ViewFooter.frame];
     
+    m_CountPlay = 0;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +69,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+//    interstitial = [[GADInterstitial alloc] init];
+//    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+//    [interstitial loadRequest:[GADRequest request]];
+//    //End Advertisement
+//    
+//    m_Timer = [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
+//                                               target:self
+//                                             selector:@selector(ShowAdvertisement:)
+//                                             userInfo:nil
+//                                              repeats:NO];
+}
+
 
 - (void)SetStateGame: (NSInteger) p_state
 {
@@ -372,17 +394,19 @@
     
     [sender setBackgroundColor:[UIColor yellowColor]];
      sender.tag = -1;
+    
     m_CurrentCount++;
     
     if (gameOver)
     {
+        //m_CountPlay ++;
+        m_State = GAMEOVER;
         [sender setBackgroundColor:[UIColor redColor]];
         NSString *msg = [NSString stringWithFormat:@"Your result is: %li/100", (long)m_CurrentCount];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GAME OVER" message:msg delegate:self  cancelButtonTitle:@"OK"  otherButtonTitles:@"Facebook" ,nil];
          alert.tag = 101;
          [alert show];
     }
-   
 }
 
 
@@ -400,19 +424,19 @@
         [BtnSpeaker setImage:[UIImage imageNamed:@"btn_unmute.png"] forState: UIControlStateNormal];
     }
 }
+
+
 - (IBAction)PlayClick:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
-    if (m_State == PLAYING)
+    m_CountPlay ++;
+    
+    if (m_State == PLAYING || m_State == GAMEOVER)
     {
-       
-        /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"END GAME" message:@"You are about to QUIT the game!\n\nAre you sure?" delegate:self  cancelButtonTitle:@"NO"  otherButtonTitles:@"YES" ,nil];
-        alert.tag = 1000;
-        [alert show];*/
-        
-        
         NSInteger i = 0;
         m_CurrentCount = 0;
+        m_State = PREPAREPLAY;
+        
         for (UIButton *MyNumber in m_Array100Number)
         {
             MyNumber.enabled = TRUE;
@@ -421,9 +445,8 @@
         }
         
     }
-   
-    CGRect frm1 = _BtnPlay.frame;
     
+    /*CGRect frm1 = _BtnPlay.frame;
     CGRect frm2 = _BtnPlay.frame;
     frm2.size.width = frm2.size.width + 10;
     frm2.size.height = frm2.size.height + 10;
@@ -439,10 +462,17 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
     //_BtnPlay.frame = frm1;
-    [UIView commitAnimations];
+    [UIView commitAnimations];*/
     
+    if(m_CountPlay >= 10)
+    {
+        NSLog(@"Count Play 1:  %li", m_CountPlay);
+        m_CountPlay = 0;
+        [[GADMasterViewController singleton] resetAdInterstitialView:self];
+    }
     
 }
+
 
 - (IBAction)SpeakerClick:(id)sender
 {
@@ -450,11 +480,14 @@
     [[SoundController GetSingleton] ChangeMute];
     [self ShowSpeaker];
 }
+
+
 - (IBAction)AboutClick:(id)sender
 {
      [[SoundController GetSingleton] PlayClickButton];
     
 }
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -475,6 +508,7 @@
 {
   [[SoundController GetSingleton] PlayClickButton];
 }
+
 
 - (IBAction)RateClick:(id)sender
 {
@@ -502,8 +536,9 @@
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #20Icon"];
-        [fbSheet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id123456789"]];
+        [fbSheet setInitialText:@"Help me! in #P100 game"];
+        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        [fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self TakeScreenshot]];
         
         
@@ -532,7 +567,6 @@
         }
         
     }
-    
 }
 
 - (UIImage*) TakeScreenshot

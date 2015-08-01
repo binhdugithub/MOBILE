@@ -19,8 +19,6 @@
 {
     NSMutableArray *m_Array100Number;
     NSInteger m_CurrentNumber;
-    GADInterstitial *interstitial;
-    NSTimer *m_Timer;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *m_UIViewHeader;
@@ -55,49 +53,12 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     [super viewDidLoad];
     [self CalculateView];
     [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
-    [self SetupAdvertisementInterstitial];
+    [[GADMasterViewController singleton] resetAdInterstitialView:self];
     
     [m_UILabelScore setText:[NSString stringWithFormat:@"%li / 100", (long)m_CurrentNumber]];
     
     
 }
-
-
-- (void) SetupAdvertisementInterstitial
-{
-    //Advertisement
-    interstitial = [[GADInterstitial alloc] init];
-    interstitial = [[GADInterstitial alloc] init];
-    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
-    [interstitial loadRequest:[GADRequest request]];
-    //End Advertisement
-    
-    m_Timer = [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
-                                     target:self
-                                   selector:@selector(ShowAdvertisement:)
-                                   userInfo:nil
-                                    repeats:NO];
-
-}
-
-- (void) ShowAdvertisement: (NSTimer*)p_timer
-{
-    if ([interstitial isReady])
-    {
-        
-        [interstitial presentFromRootViewController:self];
-        
-    }else
-    {
-        NSLog(@"GADInterstitial not ready");
-    }
-    
-    
-    [p_timer invalidate];
-    p_timer = nil;
-    
-}
-
 
 
 -(void)CalculateView
@@ -264,8 +225,9 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #20Icon"];
-        [fbSheet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id123456789"]];
+        [fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
+        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        [fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self takeScreenshot]];
         
         
@@ -377,13 +339,6 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 
     if ([[segue identifier] isEqualToString:@"Segue2SinglePlayer"])
     {
-        if (m_Timer != nil)
-        {
-            [m_Timer invalidate];
-            m_Timer = nil;
-        }
-        
-       
         SinglePlayerViewController *MyView = (SinglePlayerViewController*)[segue destinationViewController];
         [MyView SetArrayNumber:m_Array100Number];
         [MyView SetStateGame:BACKVIEW];

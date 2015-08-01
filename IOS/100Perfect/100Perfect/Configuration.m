@@ -38,7 +38,7 @@
 - (void) LoadConfig
 {
     NSString *pathData = [self GetPathData];
-    NSLog(@"data.plist: %@", pathData);
+    //NSLog(@"data.plist: %@", pathData);
     NSDictionary *dicData = [NSDictionary dictionaryWithContentsOfFile:pathData];
     if (dicData != nil)
     {
@@ -95,7 +95,7 @@
 
 - (void) WriteMute : (BOOL) p_ismute
 {
-    NSLog(@"Writemute");
+    //NSLog(@"Writemute");
     
     NSString *pathData = [self GetPathData];
     NSMutableDictionary *dicData = [NSMutableDictionary dictionaryWithContentsOfFile:pathData];

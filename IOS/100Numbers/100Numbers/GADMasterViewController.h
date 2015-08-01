@@ -15,6 +15,8 @@
     BOOL didCloseWebsiteView_;
     BOOL isLoaded_;
     id currentDelegate_;
+    
+    GADInterstitial *interstitial;
 }
 
 +(GADMasterViewController *)singleton;
@@ -22,6 +24,7 @@
 
 -(void)resetAdBannerView:(UIViewController *)rootViewController;
 -(void)resetAdBannerView:(UIViewController *)rootViewController AtFrame:(CGRect) frm;
+-(void)resetAdInterstitialView:(UIViewController *)rootViewController;
 
 
 @end

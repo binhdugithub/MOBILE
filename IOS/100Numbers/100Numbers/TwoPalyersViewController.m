@@ -309,8 +309,9 @@ enum
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #20Icon"];
-        [fbSheet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id123456789"]];
+        [fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
+        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        [fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self takeScreenshot]];
         
         

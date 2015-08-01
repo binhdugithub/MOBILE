@@ -34,6 +34,8 @@
         // Has an ad request already been made
         isLoaded_ = NO;
     }
+    
+    
     return self;
 }
 
@@ -73,7 +75,6 @@
     }
     else
     {
-        
         adBanner_.delegate = self;
         adBanner_.rootViewController = rootViewController;
         adBanner_.adUnitID = AMOD_BANNER_FOOTER_UNIT;
@@ -83,6 +84,38 @@
         [rootViewController.view addSubview:adBanner_];
         isLoaded_ = YES;
     }
+}
+
+
+-(void)resetAdInterstitialView:(UIViewController *)rootViewController
+{
+    
+    interstitial = [[GADInterstitial alloc] init];
+    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+ 
+    [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
+                                               target:self
+                                             selector:@selector(ShowAdvertisement:)
+                                             userInfo:rootViewController
+                                              repeats:NO];
+}
+
+
+- (void) ShowAdvertisement: (NSTimer*)p_timer
+{
+    if ([interstitial isReady])
+    {
+        
+        [interstitial presentFromRootViewController:(UIViewController*)[p_timer userInfo]];
+        
+    }
+    else
+    {
+        NSLog(@"GADInterstitial not ready 2");
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

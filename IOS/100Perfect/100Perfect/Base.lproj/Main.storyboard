@@ -87,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WONDAPP @2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yrg-uT-AHg" userLabel="copyright">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yrg-uT-AHg" userLabel="copyright">
                                         <rect key="frame" x="0.0" y="25" width="320" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -138,7 +138,7 @@
                                         <rect key="frame" x="0.0" y="5" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <color key="textColor" red="0.1032312955" green="0.55441080669999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AnH-Nf-9PO">
@@ -158,8 +158,8 @@
                                 <rect key="frame" x="10" y="58" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.78759785910000002" green="0.86184106689999995" blue="0.40736581989999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">HOW TO PLAY: Your must fill all cells and reach 100 starting from whenerver you want in the grid and following these simple rules:  1. You can go right, left, up, down leaving a space of two cells from the previous move. 2. You can even move diagonally, leaving one cell from the previous move. 3. When there aren't any more allowed moves, the game stops.  GAME CREATED BY APPALGO GROUP  http://laptrinhalgo.com </string>
-                                <color key="textColor" red="0.1032312955" green="0.55441080669999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">HOW TO PLAY: Your must fill all cells and reach 100 starting from whenerver you want in the grid and following these simple rules:  1. You can go right, left, up, down leaving a space of two cells from the previous move. 2. You can even move diagonally, leaving one cell from the previous move. 3. When there aren't any more allowed moves, the game stops.  GAME CREATED BY BinhThe  http://progamalgo.com </mutableString>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WONDAPP @2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vP5-Zl-bBY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vP5-Zl-bBY">
                                         <rect key="frame" x="0.0" y="25" width="320" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
