@@ -10,6 +10,7 @@
 #import "SoundController.h"
 #import "AboutViewController.h"
 #import "GADMasterViewController.h"
+#import "Configuration.h"
 #import "Define.h"
 #import <Social/Social.h>
 
@@ -32,14 +33,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *BtnPlay;
 @property (weak, nonatomic) IBOutlet UIButton *BtnShare;
 @property (weak, nonatomic) IBOutlet UIButton *BtnRate;
-@property (weak, nonatomic) IBOutlet UIButton *BtnMore;
+@property (weak, nonatomic) IBOutlet UIButton *BtnGameCenter;
 
 @property (weak, nonatomic) IBOutlet UILabel *LblCopyright;
 
 @end
 
 @implementation ViewController
-@synthesize View100Number, ViewButtons, ViewFooter,BtnAbout, BtnSpeaker, LblCopyright;
+@synthesize View100Number, ViewButtons, ViewFooter,BtnAbout, BtnSpeaker, LblCopyright, BtnGameCenter;
 
 - (void)viewDidLoad
 {
@@ -59,6 +60,7 @@
     }
     
     [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:ViewFooter.frame];
+    [self AuthenticateLocalPlayer];
     
     m_CountPlay = 0;
     
@@ -82,8 +84,53 @@
 //                                             selector:@selector(ShowAdvertisement:)
 //                                             userInfo:nil
 //                                              repeats:NO];
+    
+    
 }
 
+
+-(void)AuthenticateLocalPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error)
+    {
+        if (viewController != nil)
+        {
+            [self presentViewController:viewController animated:YES completion:nil];
+            NSLog(@"Present view controller to authenticate leaderboar");
+        }
+        else
+        {
+            if ([GKLocalPlayer localPlayer].authenticated)
+            {
+                m_GameCenterEnabled = YES;
+                
+                // Get the default leaderboard identifier.
+                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error)
+                 {
+                     
+                     if (error != nil)
+                     {
+                         NSLog(@"%@", [error localizedDescription]);
+                     }
+                     else
+                     {
+                         m_LeaderboardIdentifier = leaderboardIdentifier;
+                         [[Configuration GetSingleton] SetLeaderboardIdentifier:leaderboardIdentifier];
+                         NSLog(@"Authen with: %@", leaderboardIdentifier);
+                     }
+                 }];
+            }
+            else
+            {
+                m_GameCenterEnabled = NO;
+                //[[Configuration GetSingleton] SetLeaderboardIdentifier:nil];
+                NSLog(@"Not yet authenticatelocalplayer");
+            }
+        }
+    };
+}
 
 - (void)SetStateGame: (NSInteger) p_state
 {
@@ -207,11 +254,10 @@
     frm.origin.y = frm.origin.y - 1.0/4 * frm.size.height - frm.size.height;
     _BtnShare.frame = frm;
     
-    //More
+    //GameCenter
     frm = _BtnRate.frame;
     frm.origin.y = frm.origin.y + frm.size.height + 1.0/4 * frm.size.height;
-    _BtnMore.frame = frm;
-    _BtnMore.hidden = true;
+    BtnGameCenter.frame = frm;
     
     // About
     frm = _BtnShare.frame;
@@ -401,6 +447,13 @@
     {
         //m_CountPlay ++;
         m_State = GAMEOVER;
+        if (m_CurrentCount > [[Configuration GetSingleton] GetBestScore])
+        {
+            [[Configuration GetSingleton] WriteBestScore:m_CurrentCount];
+        }
+        
+        [[Configuration GetSingleton] ReportScore];
+        
         [sender setBackgroundColor:[UIColor redColor]];
         NSString *msg = [NSString stringWithFormat:@"Your result is: %li/100", (long)m_CurrentCount];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GAME OVER" message:msg delegate:self  cancelButtonTitle:@"OK"  otherButtonTitles:@"Facebook" ,nil];
@@ -504,11 +557,6 @@
     }
 }
 
-- (IBAction)MoreClick:(id)sender
-{
-  [[SoundController GetSingleton] PlayClickButton];
-}
-
 
 - (IBAction)RateClick:(id)sender
 {
@@ -528,6 +576,30 @@
 #endif
 }
 
+- (IBAction)GameCenter:(id)sender
+{
+    NSLog(@"Game Center");
+    [[SoundController GetSingleton] PlayClickButton];
+    
+    GKGameCenterViewController *GameCenterController = [[GKGameCenterViewController alloc] init];
+    if (GameCenterController != nil)
+    {
+        NSLog(@"Vao");
+        GameCenterController.gameCenterDelegate = self;
+        //The next three lines are the lines of interest...
+        GameCenterController.viewState = GKGameCenterViewControllerStateDefault;
+        GameCenterController.leaderboardTimeScope = GKLeaderboardTimeScopeToday;
+        GameCenterController.leaderboardCategory = m_LeaderboardIdentifier;
+        [self presentViewController:GameCenterController animated:YES completion:nil];
+    }
+    
+    NSLog(@"Ra");
+}
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (IBAction)ShareFBClick:(id)sender
 {
@@ -536,9 +608,11 @@
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #P100 game"];
-        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        [fbSheet addURL:[NSURL URLWithString:l_url]];
+        NSString *l_score = [NSString stringWithFormat:@"I got %li boxes in #Complete 100 Boxes", (long)m_CurrentCount];
+        
+        [fbSheet setInitialText:l_score];
+        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        //[fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self TakeScreenshot]];
         
         

@@ -219,11 +219,14 @@ enum
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        if(IS_IPAD)
+            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        //[MyNumber setBackgroundColor:[UIColor whiteColor]];
+        [MyNumber setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1]];
         MyNumber.layer.cornerRadius = 5;
-        MyNumber.alpha = 0.8;
+        MyNumber.alpha = 1;
         [MyNumber addTarget:self action:@selector(NumberClick1:) forControlEvents:UIControlEventTouchUpInside];
         
         [m_UIView1to50 addSubview:MyNumber];
@@ -240,13 +243,16 @@ enum
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake( frm.size.width- x - w, frm.size.height - y - h, w, h)];
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
+        if(IS_IPAD)
+            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
         [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag ) ] forState:UIControlStateNormal];
-        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        //[MyNumber setBackgroundColor:[UIColor whiteColor]];
+        [MyNumber setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1]];
         MyNumber.layer.cornerRadius = 5;
-        MyNumber.alpha = 0.8;
+        MyNumber.alpha = 1;
         MyNumber.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     
         [m_UIView51to100 addSubview:MyNumber];
@@ -309,9 +315,9 @@ enum
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
-        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        [fbSheet addURL:[NSURL URLWithString:l_url]];
+        //[fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
+        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        //[fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self takeScreenshot]];
         
         

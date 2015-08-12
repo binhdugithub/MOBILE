@@ -71,14 +71,14 @@
                                             <action selector="RateClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tvn-rr-OV6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7B-eu-VuK" userLabel="about">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7B-eu-VuK" userLabel="game center">
                                         <rect key="frame" x="287" y="75" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_more.png">
+                                        <state key="normal" image="btn_gamecenter.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="MoreClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6K-FE-Gmm"/>
+                                            <action selector="GameCenter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUw-lf-LeM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -107,7 +107,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="BtnAbout" destination="FPe-o0-Ius" id="9xW-33-e6h"/>
-                        <outlet property="BtnMore" destination="L7B-eu-VuK" id="KjI-rx-HCA"/>
+                        <outlet property="BtnGameCenter" destination="L7B-eu-VuK" id="K9U-sD-FCT"/>
                         <outlet property="BtnPlay" destination="3P1-al-pZd" id="Rqq-Ox-flu"/>
                         <outlet property="BtnRate" destination="Fti-P9-jJA" id="xU0-ty-gAX"/>
                         <outlet property="BtnShare" destination="mgh-PK-d61" id="iYG-td-1x4"/>
@@ -158,7 +158,7 @@
                                 <rect key="frame" x="10" y="58" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.78759785910000002" green="0.86184106689999995" blue="0.40736581989999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">HOW TO PLAY: Your must fill all cells and reach 100 starting from whenerver you want in the grid and following these simple rules:  1. You can go right, left, up, down leaving a space of two cells from the previous move. 2. You can even move diagonally, leaving one cell from the previous move. 3. When there aren't any more allowed moves, the game stops.  GAME CREATED BY BinhThe  http://progamalgo.com </mutableString>
+                                <string key="text">HOW TO PLAY: Your must fill all cells and reach 100 starting from whenerver you want in the grid and following these simple rules:  1. You can go right, left, up, down leaving a space of two cells from the previous move. 2. You can even move diagonally, leaving one cell from the previous move. 3. When there aren't any more allowed moves, the game stops.  GAME CREATED BY BinhThe  http://progamalgo.com </string>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -199,7 +199,7 @@
         <image name="btn_about.png" width="300" height="300"/>
         <image name="btn_back.png" width="300" height="300"/>
         <image name="btn_fb.png" width="300" height="300"/>
-        <image name="btn_more.png" width="361" height="363"/>
+        <image name="btn_gamecenter.png" width="300" height="300"/>
         <image name="btn_play.png" width="270" height="270"/>
         <image name="btn_rate.png" width="300" height="300"/>
         <image name="btn_unmute.png" width="300" height="300"/>

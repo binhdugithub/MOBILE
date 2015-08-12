@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GADMasterViewController.h"
+#import <GameKit/GameKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<GKGameCenterControllerDelegate>
 {
-    
+    bool m_GameCenterEnabled;
+    NSString *m_LeaderboardIdentifier;
 }
 
 

@@ -14,16 +14,23 @@
 
 -(void)reportScore
 {
-    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:m_LeaderboardIdentifier];
-    score.value = m_BestScore;
-    
-    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error)
-     {
-         if (error != nil)
+    if(m_LeaderboardIdentifier != nil)
+    {
+        GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:m_LeaderboardIdentifier];
+        score.value = m_BestScore;
+
+        [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error)
          {
-             NSLog(@"%@", [error localizedDescription]);
-         }
-     }];
+             if (error != nil)
+             {
+                 NSLog(@"%@", [error localizedDescription]);
+             }
+         }];
+    }
+    else
+    {
+        NSLog(@"LeaderBoard failed");
+    }
 }
 
 +(instancetype) GetSingleton
@@ -203,10 +210,11 @@
         {
             [dicData setObject:[NSNumber numberWithInteger: p_currentscore] forKey:@"BestScore"];
             m_BestScore = p_currentscore;
-            
-            NSLog(@"Report score");
-            [self reportScore];
         }
+        
+        NSLog(@"Report score");
+        [self reportScore];
+        
         
         [dicData writeToFile:pathData atomically:YES];
     }

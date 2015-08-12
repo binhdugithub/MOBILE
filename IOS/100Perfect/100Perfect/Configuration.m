@@ -8,9 +8,35 @@
 
 #import "Configuration.h"
 #import "Define.h"
+#import <GameKit/GameKit.h>
 
 @implementation Configuration
 
+-(void)ReportScore
+{
+    if(m_LeaderboardIdentifier != nil)
+    {
+        GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:m_LeaderboardIdentifier];
+        score.value = m_BestScore;
+        
+        [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"%@", [error localizedDescription]);
+             }
+         }];
+    }
+    else
+    {
+        NSLog(@"LeaderBoard failed");
+    }
+}
+
+- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard
+{
+    m_LeaderboardIdentifier = p_leaderboard;
+}
 
 +(instancetype) GetSingleton
 {
@@ -29,6 +55,7 @@
     if(self)
     {
         [self LoadConfig];
+        m_LeaderboardIdentifier = nil;
     }
     
     return self;
@@ -44,11 +71,14 @@
     {
        
         m_IsMute = [dicData[@"IsMute"] boolValue];
+        m_BestScore = [dicData[@"BestScore"] integerValue];
         
     }
     else
     {
         NSLog(@"Load data.plist fail !!");
+        m_IsMute = FALSE;
+        m_BestScore = 0;
     }
 }
 
@@ -56,6 +86,31 @@
 - (BOOL) GetIsMute
 {
     return m_IsMute;
+}
+
+- (NSInteger) GetBestScore
+{
+    return m_BestScore;
+}
+
+- (void) WriteBestScore : (NSInteger) p_socre
+{
+    NSString *pathData = [self GetPathData];
+    NSMutableDictionary *dicData = [NSMutableDictionary dictionaryWithContentsOfFile:pathData];
+    if (dicData != nil)
+    {
+        
+        [dicData setObject:[NSNumber numberWithInteger:p_socre] forKey:@"BestScore"];
+        [dicData writeToFile:pathData atomically:YES];
+        m_BestScore = p_socre;
+        
+        NSLog(@"Best new score: %li", (long)m_BestScore);
+        
+    }
+    else
+    {
+        NSLog(@"Load data plist info fail !!");
+    }
 }
 
 - (NSString*) GetPathData

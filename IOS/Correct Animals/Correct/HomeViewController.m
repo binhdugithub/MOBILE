@@ -37,6 +37,8 @@
     
     [self LoadData];
     [self ShowSpeakerBackground];
+    
+    m_BtnAbout.hidden = TRUE;
 }
 
 - (void)LoadData

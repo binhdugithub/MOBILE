@@ -225,9 +225,9 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
-        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        [fbSheet addURL:[NSURL URLWithString:l_url]];
+        //[fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
+        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        //[fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self takeScreenshot]];
         
         

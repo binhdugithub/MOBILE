@@ -276,9 +276,9 @@ m_UIViewHeader, m_UIViewOverall;
     {
         SLComposeViewController *fbSheet = [SLComposeViewController
                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"It's my score in #Find 100 Numbers"];
-        NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        [fbSheet addURL:[NSURL URLWithString:l_url]];
+        //[fbSheet setInitialText:@"It's my score in #Find 100 Numbers"];
+        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+        //[fbSheet addURL:[NSURL URLWithString:l_url]];
         [fbSheet addImage:[self takeScreenshot]];
         [self presentViewController:fbSheet animated:YES completion:nil];
     }

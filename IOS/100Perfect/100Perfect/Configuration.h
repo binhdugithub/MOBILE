@@ -11,9 +11,17 @@
 @interface Configuration : NSObject
 {
     BOOL m_IsMute;
+    NSInteger m_BestScore;
+    
+    NSString *m_LeaderboardIdentifier;
 }
 
 +(instancetype) GetSingleton;
+-(void)ReportScore;
+- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard;
+- (NSInteger) GetBestScore;
+- (void) WriteBestScore : (NSInteger) p_socre;
+
 - (void) WriteMute : (BOOL) p_ismute;
 - (BOOL) GetIsMute;
 @end

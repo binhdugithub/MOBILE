@@ -251,6 +251,11 @@
     };
 }
 
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)GameCenter:(id)sender
 {
     
@@ -294,10 +299,7 @@
 #endif
 }
 
--(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
-{
-    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 
 #pragma mark - Navigation

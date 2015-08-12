@@ -175,7 +175,7 @@
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:l_number.frame];
         MyNumber.tag = l_number.tag;
         MyNumber.titleLabel.font = l_number.titleLabel.font;
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:l_number.backgroundColor];
         MyNumber.layer.cornerRadius = l_number.layer.cornerRadius;
@@ -223,13 +223,17 @@
         MyNumber.tag = i + 1;
         MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
         
+        if(IS_IPAD)
+            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+            
+        
         //[MyNumber setTitleColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1] forState:UIControlStateNormal];
-        [MyNumber setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         //MyNumber.alpha = 0.8;
         //[MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
         
-        [MyNumber setBackgroundColor:[UIColor whiteColor]];
+        [MyNumber setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1]];
         MyNumber.layer.cornerRadius = 5;
         
         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -302,7 +306,7 @@
 
 - (void)NumberClick: (UIButton*)sender
 {
-    if (sender.tag != (m_CurrentNumber +1))
+    if (sender.tag != (m_CurrentNumber + 1) )
         return;
     
     switch (m_Sate)
@@ -341,11 +345,16 @@
         {
             [self GameWin];
         }
+        else
+        {
+            m_CurrentNumber = 78;
+            [self GameWin];
+        }
     }
     else
     {
         NSLog(@"Press button: %li", (long)sender.tag);
-        [sender setBackgroundColor:[UIColor redColor]];
+        //[sender setBackgroundColor:[UIColor redColor]];
         sender.alpha = 0.8;
         [self GameOver];
     }
