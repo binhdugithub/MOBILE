@@ -15,6 +15,21 @@
 		AF2DF3691B798FB20072200F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2DF3671B798FB20072200F /* LaunchScreen.xib */; };
 		AF2DF3751B798FB20072200F /* DifferentColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2DF3741B798FB20072200F /* DifferentColorTests.m */; };
 		AF2DF3801B79D3200072200F /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2DF37F1B79D3200072200F /* PlayViewController.m */; };
+		AFC9367C1B7B32F2004BD7D3 /* btn_about.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936741B7B32F2004BD7D3 /* btn_about.png */; };
+		AFC9367D1B7B32F2004BD7D3 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936751B7B32F2004BD7D3 /* btn_back.png */; };
+		AFC9367E1B7B32F2004BD7D3 /* btn_fb.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936761B7B32F2004BD7D3 /* btn_fb.png */; };
+		AFC9367F1B7B32F2004BD7D3 /* btn_gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936771B7B32F2004BD7D3 /* btn_gamecenter.png */; };
+		AFC936801B7B32F2004BD7D3 /* btn_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936781B7B32F2004BD7D3 /* btn_mute.png */; };
+		AFC936811B7B32F2004BD7D3 /* btn_play.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC936791B7B32F2004BD7D3 /* btn_play.png */; };
+		AFC936821B7B32F2004BD7D3 /* btn_rate.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC9367A1B7B32F2004BD7D3 /* btn_rate.png */; };
+		AFC936831B7B32F2004BD7D3 /* btn_unmute.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC9367B1B7B32F2004BD7D3 /* btn_unmute.png */; };
+		AFC936861B7B33ED004BD7D3 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC936851B7B33ED004BD7D3 /* Configuration.m */; };
+		AFC936891B7B3435004BD7D3 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC936881B7B3435004BD7D3 /* SoundController.m */; };
+		AFC9368F1B7B3459004BD7D3 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFC9368B1B7B3459004BD7D3 /* click.mp3 */; };
+		AFC936901B7B3459004BD7D3 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFC9368C1B7B3459004BD7D3 /* congratulation.mp3 */; };
+		AFC936911B7B3459004BD7D3 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFC9368D1B7B3459004BD7D3 /* correct.mp3 */; };
+		AFC936921B7B3459004BD7D3 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFC9368E1B7B3459004BD7D3 /* gameover.mp3 */; };
+		AFC936941B7B347F004BD7D3 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFC936931B7B347F004BD7D3 /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AF2DF3551B798FB20072200F /* DifferentColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DifferentColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF2DF3551B798FB20072200F /* Super Eyes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Super Eyes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2DF3591B798FB20072200F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2DF35A1B798FB20072200F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF2DF35C1B798FB20072200F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -38,11 +53,28 @@
 		AF2DF3631B798FB20072200F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF2DF3651B798FB20072200F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AF2DF3681B798FB20072200F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		AF2DF36E1B798FB20072200F /* DifferentColorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DifferentColorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF2DF36E1B798FB20072200F /* Super EyesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Super EyesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2DF3731B798FB20072200F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2DF3741B798FB20072200F /* DifferentColorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentColorTests.m; sourceTree = "<group>"; };
 		AF2DF37E1B79D3200072200F /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		AF2DF37F1B79D3200072200F /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		AFC936741B7B32F2004BD7D3 /* btn_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_about.png; path = ../../100Perfect/100Perfect/btn_about.png; sourceTree = "<group>"; };
+		AFC936751B7B32F2004BD7D3 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_back.png; path = ../../100Perfect/100Perfect/btn_back.png; sourceTree = "<group>"; };
+		AFC936761B7B32F2004BD7D3 /* btn_fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb.png; path = ../../100Perfect/100Perfect/btn_fb.png; sourceTree = "<group>"; };
+		AFC936771B7B32F2004BD7D3 /* btn_gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_gamecenter.png; path = ../../100Perfect/100Perfect/btn_gamecenter.png; sourceTree = "<group>"; };
+		AFC936781B7B32F2004BD7D3 /* btn_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_mute.png; path = ../../100Perfect/100Perfect/btn_mute.png; sourceTree = "<group>"; };
+		AFC936791B7B32F2004BD7D3 /* btn_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_play.png; path = ../../100Perfect/100Perfect/btn_play.png; sourceTree = "<group>"; };
+		AFC9367A1B7B32F2004BD7D3 /* btn_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_rate.png; path = ../../100Perfect/100Perfect/btn_rate.png; sourceTree = "<group>"; };
+		AFC9367B1B7B32F2004BD7D3 /* btn_unmute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_unmute.png; path = ../../100Perfect/100Perfect/btn_unmute.png; sourceTree = "<group>"; };
+		AFC936841B7B33ED004BD7D3 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		AFC936851B7B33ED004BD7D3 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		AFC936871B7B3435004BD7D3 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
+		AFC936881B7B3435004BD7D3 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
+		AFC9368B1B7B3459004BD7D3 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		AFC9368C1B7B3459004BD7D3 /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulation.mp3; sourceTree = "<group>"; };
+		AFC9368D1B7B3459004BD7D3 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
+		AFC9368E1B7B3459004BD7D3 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameover.mp3; sourceTree = "<group>"; };
+		AFC936931B7B347F004BD7D3 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +98,7 @@
 		AF2DF34C1B798FB10072200F = {
 			isa = PBXGroup;
 			children = (
-				AF2DF3571B798FB20072200F /* DifferentColor */,
+				AF2DF3571B798FB20072200F /* Super Eyes */,
 				AF2DF3711B798FB20072200F /* DifferentColorTests */,
 				AF2DF3561B798FB20072200F /* Products */,
 			);
@@ -75,34 +107,42 @@
 		AF2DF3561B798FB20072200F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AF2DF3551B798FB20072200F /* DifferentColor.app */,
-				AF2DF36E1B798FB20072200F /* DifferentColorTests.xctest */,
+				AF2DF3551B798FB20072200F /* Super Eyes.app */,
+				AF2DF36E1B798FB20072200F /* Super EyesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AF2DF3571B798FB20072200F /* DifferentColor */ = {
+		AF2DF3571B798FB20072200F /* Super Eyes */ = {
 			isa = PBXGroup;
 			children = (
+				AFC936871B7B3435004BD7D3 /* SoundController.h */,
+				AFC936881B7B3435004BD7D3 /* SoundController.m */,
+				AFC936841B7B33ED004BD7D3 /* Configuration.h */,
+				AFC936851B7B33ED004BD7D3 /* Configuration.m */,
 				AF2DF35C1B798FB20072200F /* AppDelegate.h */,
 				AF2DF35D1B798FB20072200F /* AppDelegate.m */,
 				AF2DF35F1B798FB20072200F /* HomeViewController.h */,
 				AF2DF3601B798FB20072200F /* HomeViewController.m */,
+				AF2DF37E1B79D3200072200F /* PlayViewController.h */,
+				AF2DF37F1B79D3200072200F /* PlayViewController.m */,
 				AF2DF3621B798FB20072200F /* Main.storyboard */,
 				AF2DF3651B798FB20072200F /* Images.xcassets */,
 				AF2DF3671B798FB20072200F /* LaunchScreen.xib */,
 				AF2DF3581B798FB20072200F /* Supporting Files */,
-				AF2DF37E1B79D3200072200F /* PlayViewController.h */,
-				AF2DF37F1B79D3200072200F /* PlayViewController.m */,
 			);
+			name = "Super Eyes";
 			path = DifferentColor;
 			sourceTree = "<group>";
 		};
 		AF2DF3581B798FB20072200F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFC9368A1B7B343A004BD7D3 /* audios */,
+				AFC936731B7B32D9004BD7D3 /* iamges */,
 				AF2DF3591B798FB20072200F /* Info.plist */,
 				AF2DF35A1B798FB20072200F /* main.m */,
+				AFC936931B7B347F004BD7D3 /* data.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -124,12 +164,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AFC936731B7B32D9004BD7D3 /* iamges */ = {
+			isa = PBXGroup;
+			children = (
+				AFC936741B7B32F2004BD7D3 /* btn_about.png */,
+				AFC936751B7B32F2004BD7D3 /* btn_back.png */,
+				AFC936761B7B32F2004BD7D3 /* btn_fb.png */,
+				AFC936771B7B32F2004BD7D3 /* btn_gamecenter.png */,
+				AFC936781B7B32F2004BD7D3 /* btn_mute.png */,
+				AFC936791B7B32F2004BD7D3 /* btn_play.png */,
+				AFC9367A1B7B32F2004BD7D3 /* btn_rate.png */,
+				AFC9367B1B7B32F2004BD7D3 /* btn_unmute.png */,
+			);
+			name = iamges;
+			sourceTree = "<group>";
+		};
+		AFC9368A1B7B343A004BD7D3 /* audios */ = {
+			isa = PBXGroup;
+			children = (
+				AFC9368B1B7B3459004BD7D3 /* click.mp3 */,
+				AFC9368C1B7B3459004BD7D3 /* congratulation.mp3 */,
+				AFC9368D1B7B3459004BD7D3 /* correct.mp3 */,
+				AFC9368E1B7B3459004BD7D3 /* gameover.mp3 */,
+			);
+			name = audios;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AF2DF3541B798FB20072200F /* DifferentColor */ = {
+		AF2DF3541B798FB20072200F /* Super Eyes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "DifferentColor" */;
+			buildConfigurationList = AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "Super Eyes" */;
 			buildPhases = (
 				AF2DF3511B798FB20072200F /* Sources */,
 				AF2DF3521B798FB20072200F /* Frameworks */,
@@ -139,14 +205,14 @@
 			);
 			dependencies = (
 			);
-			name = DifferentColor;
+			name = "Super Eyes";
 			productName = DifferentColor;
-			productReference = AF2DF3551B798FB20072200F /* DifferentColor.app */;
+			productReference = AF2DF3551B798FB20072200F /* Super Eyes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AF2DF36D1B798FB20072200F /* DifferentColorTests */ = {
+		AF2DF36D1B798FB20072200F /* Super EyesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "DifferentColorTests" */;
+			buildConfigurationList = AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "Super EyesTests" */;
 			buildPhases = (
 				AF2DF36A1B798FB20072200F /* Sources */,
 				AF2DF36B1B798FB20072200F /* Frameworks */,
@@ -157,9 +223,9 @@
 			dependencies = (
 				AF2DF3701B798FB20072200F /* PBXTargetDependency */,
 			);
-			name = DifferentColorTests;
+			name = "Super EyesTests";
 			productName = DifferentColorTests;
-			productReference = AF2DF36E1B798FB20072200F /* DifferentColorTests.xctest */;
+			productReference = AF2DF36E1B798FB20072200F /* Super EyesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -180,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "DifferentColor" */;
+			buildConfigurationList = AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "Super Eyes" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -193,8 +259,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AF2DF3541B798FB20072200F /* DifferentColor */,
-				AF2DF36D1B798FB20072200F /* DifferentColorTests */,
+				AF2DF3541B798FB20072200F /* Super Eyes */,
+				AF2DF36D1B798FB20072200F /* Super EyesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,9 +270,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC936821B7B32F2004BD7D3 /* btn_rate.png in Resources */,
+				AFC936901B7B3459004BD7D3 /* congratulation.mp3 in Resources */,
+				AFC9367E1B7B32F2004BD7D3 /* btn_fb.png in Resources */,
 				AF2DF3641B798FB20072200F /* Main.storyboard in Resources */,
 				AF2DF3691B798FB20072200F /* LaunchScreen.xib in Resources */,
+				AFC936911B7B3459004BD7D3 /* correct.mp3 in Resources */,
+				AFC936831B7B32F2004BD7D3 /* btn_unmute.png in Resources */,
+				AFC9367C1B7B32F2004BD7D3 /* btn_about.png in Resources */,
+				AFC9367F1B7B32F2004BD7D3 /* btn_gamecenter.png in Resources */,
+				AFC936801B7B32F2004BD7D3 /* btn_mute.png in Resources */,
 				AF2DF3661B798FB20072200F /* Images.xcassets in Resources */,
+				AFC936921B7B3459004BD7D3 /* gameover.mp3 in Resources */,
+				AFC936941B7B347F004BD7D3 /* data.plist in Resources */,
+				AFC9368F1B7B3459004BD7D3 /* click.mp3 in Resources */,
+				AFC936811B7B32F2004BD7D3 /* btn_play.png in Resources */,
+				AFC9367D1B7B32F2004BD7D3 /* btn_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +303,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC936861B7B33ED004BD7D3 /* Configuration.m in Sources */,
 				AF2DF3611B798FB20072200F /* HomeViewController.m in Sources */,
 				AF2DF35E1B798FB20072200F /* AppDelegate.m in Sources */,
 				AF2DF3801B79D3200072200F /* PlayViewController.m in Sources */,
 				AF2DF35B1B798FB20072200F /* main.m in Sources */,
+				AFC936891B7B3435004BD7D3 /* SoundController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +325,7 @@
 /* Begin PBXTargetDependency section */
 		AF2DF3701B798FB20072200F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AF2DF3541B798FB20072200F /* DifferentColor */;
+			target = AF2DF3541B798FB20072200F /* Super Eyes */;
 			targetProxy = AF2DF36F1B798FB20072200F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -357,7 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DifferentColor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Super Eyes";
 			};
 			name = Debug;
 		};
@@ -367,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DifferentColor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Super Eyes";
 			};
 			name = Release;
 		};
@@ -385,7 +466,7 @@
 				);
 				INFOPLIST_FILE = DifferentColorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Super EyesTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DifferentColor.app/DifferentColor";
 			};
 			name = Debug;
@@ -400,7 +481,7 @@
 				);
 				INFOPLIST_FILE = DifferentColorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Super EyesTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DifferentColor.app/DifferentColor";
 			};
 			name = Release;
@@ -408,7 +489,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "DifferentColor" */ = {
+		AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "Super Eyes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF2DF3761B798FB20072200F /* Debug */,
@@ -417,7 +498,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "DifferentColor" */ = {
+		AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "Super Eyes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF2DF3791B798FB20072200F /* Debug */,
@@ -426,7 +507,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "DifferentColorTests" */ = {
+		AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "Super EyesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF2DF37C1B798FB20072200F /* Debug */,

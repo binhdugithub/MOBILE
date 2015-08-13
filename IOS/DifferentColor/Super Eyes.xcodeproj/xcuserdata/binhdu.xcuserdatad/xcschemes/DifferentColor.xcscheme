@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF2DF3541B798FB20072200F"
-               BuildableName = "DifferentColor.app"
-               BlueprintName = "DifferentColor"
-               ReferencedContainer = "container:DifferentColor.xcodeproj">
+               BuildableName = "Test Eyes.app"
+               BlueprintName = "Super Eyes"
+               ReferencedContainer = "container:Super Eyes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF2DF36D1B798FB20072200F"
-               BuildableName = "DifferentColorTests.xctest"
-               BlueprintName = "DifferentColorTests"
-               ReferencedContainer = "container:DifferentColor.xcodeproj">
+               BuildableName = "Test EyesTests.xctest"
+               BlueprintName = "Super EyesTests"
+               ReferencedContainer = "container:Super Eyes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF2DF36D1B798FB20072200F"
-               BuildableName = "DifferentColorTests.xctest"
-               BlueprintName = "DifferentColorTests"
-               ReferencedContainer = "container:DifferentColor.xcodeproj">
+               BuildableName = "Test EyesTests.xctest"
+               BlueprintName = "Super EyesTests"
+               ReferencedContainer = "container:Super Eyes.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF2DF3541B798FB20072200F"
-            BuildableName = "DifferentColor.app"
-            BlueprintName = "DifferentColor"
-            ReferencedContainer = "container:DifferentColor.xcodeproj">
+            BuildableName = "Test Eyes.app"
+            BlueprintName = "Super Eyes"
+            ReferencedContainer = "container:Super Eyes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF2DF3541B798FB20072200F"
-            BuildableName = "DifferentColor.app"
-            BlueprintName = "DifferentColor"
-            ReferencedContainer = "container:DifferentColor.xcodeproj">
+            BuildableName = "Test Eyes.app"
+            BlueprintName = "Super Eyes"
+            ReferencedContainer = "container:Super Eyes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF2DF3541B798FB20072200F"
-            BuildableName = "DifferentColor.app"
-            BlueprintName = "DifferentColor"
-            ReferencedContainer = "container:DifferentColor.xcodeproj">
+            BuildableName = "Test Eyes.app"
+            BlueprintName = "Super Eyes"
+            ReferencedContainer = "container:Super Eyes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
