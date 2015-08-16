@@ -18,7 +18,7 @@
 
 -(void)authenticateLocalPlayer;
 -(void)reportScore;
--(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
+//-(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
 
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabel100;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker;
@@ -49,7 +49,7 @@
 
     [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
     
-    [self authenticateLocalPlayer];
+    [self AuthenticateLocalPlayer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -208,7 +208,7 @@
     [self ShowSpeaker];
 }
 
--(void)authenticateLocalPlayer
+-(void)AuthenticateLocalPlayer
 {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     

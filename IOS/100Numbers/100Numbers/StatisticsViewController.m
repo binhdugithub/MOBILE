@@ -9,9 +9,7 @@
 #import "StatisticsViewController.h"
 #import "SoundController.h"
 #import "SinglePlayerViewController.h"
-#import <Social/Social.h>
-#import "GADMasterViewController.h"
-#import "Configuration.h"
+#import "Define.h"
 
 @interface StatisticsViewController ()
 {

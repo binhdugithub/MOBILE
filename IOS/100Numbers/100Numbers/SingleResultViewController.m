@@ -5,14 +5,10 @@
 //  Created by Binh Du  on 4/2/15.
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
-@import GoogleMobileAds;
-
 #import "SingleResultViewController.h"
 #import "SinglePlayerViewController.h"
 #import "StatisticsViewController.h"
-#import "SoundController.h"
-#import <Social/Social.h>
-#import "GADMasterViewController.h"
+#include "Define.h"
 
 
 @interface SingleResultViewController ()

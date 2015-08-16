@@ -10,9 +10,7 @@
 #import "SinglePlayerViewController.h"
 #import "SingleResultViewController.h"
 #import  "StatisticsViewController.h"
-#import "SoundController.h"
-#import "GADMasterViewController.h"
-#import "Configuration.h"
+#import "Define.h"
 
 
 @interface SinglePlayerViewController ()

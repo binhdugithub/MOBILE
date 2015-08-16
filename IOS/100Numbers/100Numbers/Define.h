@@ -9,6 +9,11 @@
 #ifndef _00Numbers_Define_h
 #define _00Numbers_Define_h
 
+#import "Configuration.h"
+#import "SoundController.h"
+#import <Social/Social.h>
+#import "GADMasterViewController.h"
+
 #define YOUR_APP_ID @"1024069435" //Find_100_Number.mobileprovision
 #define YOUR_LEADERBOARD_ID @"leaderboardf100"
 

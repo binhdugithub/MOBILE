@@ -13,6 +13,7 @@
 {
     bool m_GameCenterEnabled;
     NSString *m_LeaderboardIdentifier;
+    
 }
 
 
