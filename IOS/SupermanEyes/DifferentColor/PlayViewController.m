@@ -175,6 +175,9 @@
     frm.origin.y = 0;
     LblTitle.frame = frm;
     [LblTitle setFont:[UIFont systemFontOfSize:22 weight:1]];
+    if (IS_IPAD) {
+        [LblTitle setFont:[UIFont systemFontOfSize:25 weight:1]];
+    }
     [LblTitle setTextColor:[UIColor blueColor]];
     
     //subtitile
@@ -184,6 +187,9 @@
     frm.origin.y = LblTitle.frame.origin.y + LblTitle.frame.size.height;
     LblSubTitle.frame = frm;
     [LblSubTitle setFont:[UIFont systemFontOfSize:10 weight:1]];
+    if (IS_IPAD) {
+        [LblSubTitle setFont:[UIFont systemFontOfSize:13 weight:1]];
+    }
     [LblSubTitle setTextColor:[UIColor darkGrayColor]];
     
     //BtnSpeaker
@@ -200,20 +206,17 @@
     else
         frm.size.width = 1.0/3 * (ViewHeader.frame.size.width);
     
-    CGFloat l_radius = 7;
     CGFloat l_fontsize = 15;
     CGFloat l_fontbutton = 20;
     if (IS_IPHONE_4_OR_LESS)
     {
         l_fontsize = 13;
-        l_radius = 5;
         l_fontbutton = 18;
     }
     if (IS_IPAD)
     {
         l_fontsize = 18;
-        l_radius = 10;
-        l_fontbutton = 25;
+        l_fontbutton = 23;
     }
     
     CGFloat l_fontweight = 0.2;
@@ -224,6 +227,10 @@
     [BtnTime setBackgroundColor:[UIColor clearColor]];
     [BtnTime setTextColor:[UIColor blueColor]];
     [BtnTime setFont:[UIFont systemFontOfSize:35 weight:l_fontweight]];
+    if (IS_IPAD) {
+        [BtnTime setFont:[UIFont systemFontOfSize:40 weight:l_fontweight]];
+
+    }
     
     
     //LblTime
@@ -250,7 +257,6 @@
     [BtnError setTextColor:[UIColor redColor]];
     [BtnError setTextAlignment:NSTextAlignmentCenter];
     [BtnError setFont:[UIFont systemFontOfSize:l_fontbutton weight:l_fontweight]];
-    
     
     //LblScore
     frm = LblError.frame;
@@ -329,7 +335,7 @@
     [BtnHelp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [BtnHelp.titleLabel setFont:[UIFont systemFontOfSize:l_fontbutton weight:l_fontweight]];
     [BtnHelp setTitle:@"HELP" forState:UIControlStateNormal];
-    l_radius = 0.1 * frm.size.height;
+    CGFloat l_radius = 0.1 * frm.size.height;
     BtnHelp.layer.cornerRadius = l_radius;
     [BtnHelp setBackgroundColor:[UIColor colorWithRed:76/255.0 green:157/255.0 blue:231/255.0 alpha:1]];
     

@@ -108,6 +108,9 @@
     frm.origin.y = 0;
     LblNameGame.frame = frm;
     [LblNameGame setFont:[UIFont systemFontOfSize:22 weight:1]];
+    if (IS_IPAD) {
+        [LblNameGame setFont:[UIFont systemFontOfSize:27 weight:1]];
+    }
     [LblNameGame setTextColor:[UIColor blueColor]];
     
     //LblTextBestResult
@@ -119,6 +122,8 @@
     [LblTextBestResult setTextColor:[UIColor blackColor]];
     [LblTextBestResult setTextAlignment:NSTextAlignmentCenter];
     [LblTextBestResult setFont:[UIFont systemFontOfSize:13 weight:0.2]];
+    if(IS_IPAD)
+        [LblTextBestResult setFont:[UIFont systemFontOfSize:18 weight:0.2]];
     [LblTextBestResult setText:@"BEST RESULT"];
     
     //LblNumberBestScore
@@ -128,6 +133,9 @@
     [LblNumberBestResult setTextColor:[UIColor redColor]];
     [LblNumberBestResult setTextAlignment:NSTextAlignmentCenter];
     [LblNumberBestResult setFont:[UIFont systemFontOfSize:30 weight:0.2]];
+    if (IS_IPAD)
+        [LblNumberBestResult setFont:[UIFont systemFontOfSize:35 weight:0.2]];
+
     [LblNumberBestResult setText:[NSString stringWithFormat:@"%li", (long)[[Configuration GetSingleton] GetBestScore]]];
     
     
@@ -138,6 +146,8 @@
     [LblTextScore setTextColor:[UIColor blackColor]];
     [LblTextScore setTextAlignment:NSTextAlignmentCenter];
     [LblTextScore setFont:[UIFont systemFontOfSize:13 weight:0.2]];
+    if(IS_IPAD)
+        [LblTextScore setFont:[UIFont systemFontOfSize:18 weight:0.2]];
     [LblTextScore setText:@"SCORE"];
     
     //LblNumberBestScore
@@ -147,6 +157,8 @@
     [LblNumberScore setTextColor:[UIColor redColor]];
     [LblNumberScore setTextAlignment:NSTextAlignmentCenter];
     [LblNumberScore setFont:[UIFont systemFontOfSize:30 weight:0.2]];
+    if (IS_IPAD)
+        [LblNumberScore setFont:[UIFont systemFontOfSize:35 weight:0.2]];
     [LblNumberScore setText:[NSString stringWithFormat:@"%li", (long)[[Configuration GetSingleton] GetScore]]];
     
     //
@@ -165,6 +177,9 @@
     LblAnimal.frame = frm;
     [LblAnimal setTextColor:[UIColor blackColor]];
     [LblAnimal setFont:[UIFont systemFontOfSize:30 weight:0.2]];
+    if (IS_IPAD) {
+        [LblAnimal setFont:[UIFont systemFontOfSize:35 weight:0.2]];
+    }
     [LblAnimal setTextAlignment:NSTextAlignmentCenter];
     NSString *l_nameofnanimal = [self GetNameOfAnimal:[[Configuration GetSingleton]GetScore ]];
     NSString *l_NAMEOFANIMAL = [l_nameofnanimal uppercaseString];
@@ -178,6 +193,9 @@
     LblDiscription.frame = frm;
     [LblDiscription setTextColor:[UIColor darkGrayColor]];
     [LblDiscription setFont:[UIFont systemFontOfSize:13 weight:0.2]];
+    if (IS_IPAD) {
+        [LblDiscription setFont:[UIFont systemFontOfSize:18 weight:0.2]];
+    }
     [LblDiscription setTextAlignment:NSTextAlignmentCenter];
     NSString *l_descriptionofanimal = [self GetDescriptionOfAnimal:[[Configuration GetSingleton]GetScore ]];
     [LblDiscription setText:l_descriptionofanimal];
@@ -211,6 +229,9 @@
     [BtnShare setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1]];
     [BtnShare setTintColor:[UIColor whiteColor]];
     [BtnShare.titleLabel setFont:[UIFont systemFontOfSize:20 weight:0.3]];
+    if (IS_IPAD) {
+        [BtnShare.titleLabel setFont:[UIFont systemFontOfSize:25 weight:0.3]];
+    }
     [BtnShare setTitle:@"SHARE" forState:UIControlStateNormal];
     [BtnShare addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -222,6 +243,9 @@
     [BtnPlayAgain setBackgroundColor:[UIColor colorWithRed:76/255.0 green:157/255.0 blue:231/255.0 alpha:1]];
     [BtnPlayAgain setTintColor:[UIColor whiteColor]];
     [BtnPlayAgain.titleLabel setFont:[UIFont systemFontOfSize:20 weight:0.3]];
+    if (IS_IPAD) {
+        [BtnPlayAgain.titleLabel setFont:[UIFont systemFontOfSize:25 weight:0.3]];
+    }
     [BtnPlayAgain setTitle:@"PLAY AGAIN" forState:UIControlStateNormal];
 }
 
