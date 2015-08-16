@@ -19,12 +19,13 @@
     GADInterstitial *interstitial;
 }
 
-+(GADMasterViewController *)singleton;
++(GADMasterViewController *)GetSingleton;
 -(id)init;
 
 -(void)resetAdBannerView:(UIViewController *)rootViewController;
 -(void)resetAdBannerView:(UIViewController *)rootViewController AtFrame:(CGRect) frm;
--(void)resetAdInterstitialView:(UIViewController *)rootViewController;
+- (void)GetInterstitialAds;
+-(void)ResetAdInterstitialView:(UIViewController *)rootViewController;
 
 
 @end

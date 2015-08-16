@@ -10,7 +10,7 @@
 
 @implementation GADMasterViewController
 
-+(GADMasterViewController *)singleton
++(GADMasterViewController *)GetSingleton
 {
     static dispatch_once_t pred;
     static GADMasterViewController *shared;
@@ -85,34 +85,40 @@
     }
 }
 
-
--(void)resetAdInterstitialView:(UIViewController *)rootViewController
+- (void)GetInterstitialAds
 {
-    
     interstitial = [[GADInterstitial alloc] init];
     interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
     interstitial.delegate = self;
     [interstitial loadRequest:[GADRequest request]];
+}
+
+-(void)ResetAdInterstitialView:(UIViewController *)rootViewController
+{
+    if([interstitial isReady])
+    {
+        [interstitial presentFromRootViewController:rootViewController];
+    }
+    else
+    {
+        NSLog(@"GADInterstitial not ready");
+    }
     
-    [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
-                                     target:self
-                                   selector:@selector(ShowAdvertisement:)
-                                   userInfo:rootViewController
-                                    repeats:NO];
 }
 
 
 - (void) ShowAdvertisement: (NSTimer*)p_timer
 {
-    if ([interstitial isReady])
+    while(![interstitial isReady])
     {
         
         [interstitial presentFromRootViewController:(UIViewController*)[p_timer userInfo]];
         
     }
-    else
+    
+    
     {
-        NSLog(@"GADInterstitial not ready 2");
+        
     }
     
 }

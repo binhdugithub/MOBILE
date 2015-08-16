@@ -9,12 +9,25 @@
 #ifndef _00Numbers_Define_h
 #define _00Numbers_Define_h
 
-#define YOUR_APP_ID @"1024069435" //Find_100_Number.mobileprovision
+#import "SoundController.h"
+#import "GADMasterViewController.h"
+#import "Configuration.h"
+#import <Social/Social.h>
+
+enum STATEGAME
+{
+    PREPAREPLAY,
+    PLAYING,
+    PAUSE,
+    GAMEOVER
+};
+
+#define YOUR_APP_ID @"1031081322" //Find_100_Number.mobileprovision
 #define YOUR_LEADERBOARD_ID @"leaderboardf100"
 
-#define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/1666550849"
-#define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/8572538847"
-#define AMOD_INTERSTITIAL_TIMEOUT 5
+#define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/2885585249"
+#define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/4362318443"
+#define AMOD_INTERSTITIAL_TIMEOUT 3
 
 #define FILECONFIG @"/data.plist"
 
