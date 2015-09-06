@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btn_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3B-gi-ySw">
+                                <rect key="frame" x="64" y="71" width="193" height="184"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqO-2x-wSn">
+                                <rect key="frame" x="115" y="284" width="91" height="91"/>
+                                <state key="normal" image="btn_play.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1r-Y4-La1">
+                                <rect key="frame" x="209" y="401" width="60" height="60"/>
+                                <state key="normal" image="btn_rate.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5w-dN-2Yp">
+                                <rect key="frame" x="52" y="401" width="60" height="60"/>
+                                <state key="normal" image="btn_gamecenter.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="m_BtnGameCenter" destination="c5w-dN-2Yp" id="E95-O2-YGU"/>
+                        <outlet property="m_BtnPlay" destination="wqO-2x-wSn" id="rPV-4A-HXz"/>
+                        <outlet property="m_BtnRate" destination="d1r-Y4-La1" id="EaH-fL-5oq"/>
+                        <outlet property="m_UIImageLogo" destination="h3B-gi-ySw" id="Gla-YU-FsK"/>
+                        <segue destination="Lc2-bI-hD2" kind="modal" identifier="segue2playview" id="Umm-0H-PTk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="343" y="349"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vho-RG-9dF">
+            <objects>
+                <viewController id="Lc2-bI-hD2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sp2-R8-yK2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Myq-5Y-EUl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R2b-NJ-fWh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pat-jx-OmL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="349"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btn_gamecenter.png" width="182" height="182"/>
+        <image name="btn_logo.png" width="450" height="450"/>
+        <image name="btn_play.png" width="600" height="600"/>
+        <image name="btn_rate.png" width="180" height="180"/>
+    </resources>
+</document>

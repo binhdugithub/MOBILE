@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8fs-ak-PJQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="PYR-gL-Dia">
+            <objects>
+                <viewController id="8fs-ak-PJQ" customClass="HomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hcv-li-jNL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rOf-B9-kim" userLabel="Button Play">
+                                <rect key="frame" x="71" y="217" width="178" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_play.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="PlayClick:" destination="8fs-ak-PJQ" eventType="touchUpInside" id="zU3-Cc-Fal"/>
+                                    <segue destination="L7x-zJ-OQX" kind="modal" id="iyh-Ks-5ZX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JAB-vL-GNZ" userLabel="Button Gamecenter">
+                                <rect key="frame" x="71" y="456" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_gamecenter.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="GameCenter:" destination="8fs-ak-PJQ" eventType="touchUpInside" id="tEj-kf-RbP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dPZ-Kj-Nhi" userLabel="Button Rate">
+                                <rect key="frame" x="189" y="456" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_rate.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="RateApp:" destination="8fs-ak-PJQ" eventType="touchUpInside" id="Zic-9E-SWL"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="9Mj-5k-8Mj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picture: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3LM-3F-mxX">
+                                        <rect key="frame" x="131" y="14" width="83" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kXh-Dv-FYM" userLabel="Button Speaker">
+                                        <rect key="frame" x="266" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_unmute.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SpeakerClick:" destination="8fs-ak-PJQ" eventType="touchUpInside" id="XQ5-qj-tWP"/>
+                                            <action selector="SpeakerClick:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="nlC-EB-h01"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picture: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5yh-ld-5yg">
+                                <rect key="frame" x="119" y="108" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D1T-Ic-P7b" userLabel="Button Reset">
+                                <rect key="frame" x="71" y="320" width="178" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_reset.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ResetClick:" destination="8fs-ak-PJQ" eventType="touchUpInside" id="qtU-GL-VIJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="m_BtnGameCenter" destination="JAB-vL-GNZ" id="3TS-ch-YWS"/>
+                        <outlet property="m_BtnPlay" destination="rOf-B9-kim" id="tfe-cQ-T4P"/>
+                        <outlet property="m_BtnRate" destination="dPZ-Kj-Nhi" id="wkw-Z6-QGc"/>
+                        <outlet property="m_BtnReset" destination="D1T-Ic-P7b" id="XrO-5p-yiC"/>
+                        <outlet property="m_BtnSpeaker" destination="kXh-Dv-FYM" id="WEs-Di-ttZ"/>
+                        <outlet property="m_LblLevel" destination="3LM-3F-mxX" id="QXh-5E-dsa"/>
+                        <outlet property="m_LblTitle" destination="5yh-ld-5yg" id="OJE-gu-8lC"/>
+                        <outlet property="m_ViewHeader" destination="9Mj-5k-8Mj" id="pT0-I5-biW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bc-Ze-WwT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="259"/>
+        </scene>
+        <!--Play View Controller-->
+        <scene sceneID="wnt-0B-OIs">
+            <objects>
+                <viewController id="L7x-zJ-OQX" customClass="PlayViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="whh-CL-3CJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="CHD-lc-px7" userLabel="View Picture">
+                                <rect key="frame" x="9" y="129" width="300" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="7Kp-mw-SBs" userLabel="View Header">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O3G-6Q-NjN" userLabel="Button Back">
+                                        <rect key="frame" x="8" y="3" width="45" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_back.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="8fs-ak-PJQ" kind="modal" id="5yG-5A-FXM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picture: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4C5-fu-kGg">
+                                        <rect key="frame" x="131" y="14" width="83" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JBR-co-IqR" userLabel="Button Speaker">
+                                        <rect key="frame" x="266" y="0.0" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_unmute.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SpeakerClick:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="axJ-Y6-b2I"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C8H-al-ONC" userLabel="Label TIME">
+                                <rect key="frame" x="139" y="81" width="40" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="Y7i-zk-EYm" userLabel="View Button">
+                                <rect key="frame" x="9" y="396" width="300" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Djy-Xe-p0H" userLabel="Button Share">
+                                        <rect key="frame" x="78" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_share.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ShareClick:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="Hdb-cb-jkZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g48-iy-Dl2" userLabel="Button Replay">
+                                        <rect key="frame" x="159" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_replay.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ReplayPicture:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="Nct-9c-cQI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QdM-hF-N31" userLabel="Button Next">
+                                        <rect key="frame" x="249" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_next.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="NextPicture:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="rrK-Lf-i30"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vCH-H1-y45" userLabel="Button Camera">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_camera.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="BonusClick:" destination="L7x-zJ-OQX" eventType="touchUpInside" id="buD-bO-pP8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NTE-cJ-l7k">
+                                <rect key="frame" x="236" y="58" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uFb-Uv-H8X">
+                                <rect key="frame" x="262" y="81" width="20" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2408060605" green="0.74056976009999997" blue="0.52812726939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="m_BtnBack" destination="O3G-6Q-NjN" id="pes-84-kK2"/>
+                        <outlet property="m_BtnCamera" destination="vCH-H1-y45" id="AqW-Ae-qZy"/>
+                        <outlet property="m_BtnNext" destination="QdM-hF-N31" id="VLf-0N-aLm"/>
+                        <outlet property="m_BtnReplay" destination="g48-iy-Dl2" id="mGW-bo-OwN"/>
+                        <outlet property="m_BtnShare" destination="Djy-Xe-p0H" id="b9E-tQ-kvz"/>
+                        <outlet property="m_BtnSpeaker" destination="JBR-co-IqR" id="OMz-eA-uxz"/>
+                        <outlet property="m_LblBestTime" destination="uFb-Uv-H8X" id="irZ-fK-RMM"/>
+                        <outlet property="m_LblBestTimeTitle" destination="NTE-cJ-l7k" id="MsR-v4-aNR"/>
+                        <outlet property="m_LblLevel" destination="4C5-fu-kGg" id="AI1-0J-CVF"/>
+                        <outlet property="m_LblTime" destination="C8H-al-ONC" id="aed-xL-EFc"/>
+                        <outlet property="m_ViewButton" destination="Y7i-zk-EYm" id="8EA-6M-BH0"/>
+                        <outlet property="m_ViewHeader" destination="7Kp-mw-SBs" id="8Kg-Vj-emU"/>
+                        <outlet property="m_ViewPicture" destination="CHD-lc-px7" id="KJd-MT-LoO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7kL-OE-dRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="394" y="210"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btn_back.png" width="300" height="300"/>
+        <image name="btn_camera.png" width="300" height="300"/>
+        <image name="btn_gamecenter.png" width="300" height="300"/>
+        <image name="btn_next.png" width="300" height="300"/>
+        <image name="btn_play.png" width="300" height="150"/>
+        <image name="btn_rate.png" width="300" height="300"/>
+        <image name="btn_replay.png" width="300" height="300"/>
+        <image name="btn_reset.png" width="300" height="150"/>
+        <image name="btn_share.png" width="300" height="300"/>
+        <image name="btn_unmute.png" width="300" height="300"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
