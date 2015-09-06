@@ -15,13 +15,14 @@
 @property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerCorrect;
 @property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerGameOver;
 @property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerGameWin;
+@property (nonatomic, strong) AVAudioPlayer* m_AudioPlayerFail;
 @property (nonatomic, assign) BOOL m_IsMute;
 
 @end
 
 
 @implementation SoundController
-@synthesize m_AudioPlayerClickButton, m_AudioPlayerCorrect, m_AudioPlayerGameOver, m_AudioPlayerGameWin;
+@synthesize m_AudioPlayerClickButton, m_AudioPlayerCorrect, m_AudioPlayerGameOver, m_AudioPlayerGameWin, m_AudioPlayerFail;
 @synthesize m_IsMute;
 
 +(instancetype) GetSingleton
@@ -60,6 +61,10 @@
         path = [[NSBundle mainBundle] pathForResource:@"correct" ofType:@"mp3"];
         mp3URL = [NSURL fileURLWithPath:path];
         m_AudioPlayerCorrect = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
+        
+        path = [[NSBundle mainBundle] pathForResource:@"fail" ofType:@"mp3"];
+        mp3URL = [NSURL fileURLWithPath:path];
+        m_AudioPlayerFail = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
         
         //NSLog(@"%@", path);
     }
@@ -141,5 +146,16 @@
     [m_AudioPlayerCorrect play];
 }
 
+- (void) PlaySoundFail
+{
+    if ([[Configuration GetSingleton] GetIsMute])
+        return;
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [m_AudioPlayerFail stop];
+    [m_AudioPlayerFail prepareToPlay];
+    [m_AudioPlayerFail play];
+}
 
 @end

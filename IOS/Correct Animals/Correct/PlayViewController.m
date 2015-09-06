@@ -39,7 +39,6 @@
 @property (nonatomic, strong) UISwipeGestureRecognizer *m_SwipeLeft;
 @property (nonatomic, strong) UISwipeGestureRecognizer *m_SwipeRight;
 
-@property (nonatomic, strong) IBOutlet UIView *dropTarget;
 @property (nonatomic, strong) UIView *dragObject;
 @property (nonatomic, assign) CGPoint touchOffset;
 @property (nonatomic, assign) CGPoint homePosition;
@@ -66,7 +65,6 @@
 @synthesize m_UIImageScore, m_UIImageTime;
 @synthesize m_lblTime, m_btnHome;
 
-@synthesize dropTarget;
 @synthesize dragObject;
 @synthesize touchOffset;
 @synthesize homePosition;
@@ -171,6 +169,7 @@ float m_HIcon;
     [m_AudioPlayer play];
 }
 
+
 - (void)LoadData
 {
     NSString *pathData = [[NSBundle mainBundle] pathForResource: @"Data" ofType:@"plist"];
@@ -188,6 +187,7 @@ float m_HIcon;
 
 
 }
+
 
 - (void)SetMuteState: (BOOL)p_state
 {

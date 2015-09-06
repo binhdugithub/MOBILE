@@ -93,7 +93,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if(([[Configuration GetSingleton] GetTimePlay] % 4) == 0)
+    if(([[Configuration GetSingleton] GetTimePlay] % 3) == 0)
     {
         NSLog(@"View ads");
         [[GADMasterViewController GetSingleton] ResetAdInterstitialView:self];
@@ -225,7 +225,7 @@
     frm.origin.y = ViewHeader.frame.size.height - frm.size.height;// + 1.0/2 * (frm.size.height - 1.0/4 * ViewHeader.frame.size.height);
     BtnTime.frame = frm;
     [BtnTime setBackgroundColor:[UIColor clearColor]];
-    [BtnTime setTextColor:[UIColor blueColor]];
+    [BtnTime setTextColor:[UIColor greenColor]];
     [BtnTime setFont:[UIFont systemFontOfSize:35 weight:l_fontweight]];
     if (IS_IPAD) {
         [BtnTime setFont:[UIFont systemFontOfSize:40 weight:l_fontweight]];
@@ -531,7 +531,7 @@
             //NSLog(@"Vao day");
             [m_TimerEnd invalidate];
             m_TimerEnd = nil;
-            [BtnTime setTextColor:[UIColor blueColor]];
+            [BtnTime setTextColor:[UIColor greenColor]];
             m_TimerStart = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                             target:self
                                                           selector:@selector(TimeOutStart:)
@@ -569,6 +569,7 @@
 {
     if (m_State == PLAYING)
     {
+        [[SoundController GetSingleton] PlaySoundFail];
         [m_TimeLock lock];
         m_Time -= 3;
         m_Time = m_Time >=0 ? m_Time : 0;
@@ -613,7 +614,36 @@
     m_Time = m_Time >=0 ? m_Time : 0;
     [m_TimeLock unlock];
     
-    [BtnTime setText:[NSString stringWithFormat:@"%1.1f", m_Time]];
+    //////////
+    NSInteger l_1 = (long)m_Time;
+    NSInteger l_2 = (m_Time - l_1) * 10;
+    
+    UIFont *l_bigfont = nil;
+    l_bigfont = [UIFont systemFontOfSize:35 weight:0.2];
+    if(IS_IPAD)
+        l_bigfont = [UIFont systemFontOfSize:40 weight:0.2];
+    
+    UIFont *l_smallfont = nil;
+    l_smallfont = [UIFont systemFontOfSize:25 weight:0.2];
+    if(IS_IPAD)
+        l_smallfont = [UIFont systemFontOfSize:30 weight:0.2];
+
+    
+    NSDictionary *BigAttributes = @{NSFontAttributeName:l_bigfont};
+    NSDictionary *SmallAttributes = @{NSFontAttributeName:l_smallfont};
+    //NSDictionary *highlightAttributes = @{NSFontAttributeName:font2, NSForegroundColorAttributeName:TextColor};
+    
+    NSAttributedString *BigText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%li.",(long)l_1] attributes:BigAttributes];
+    NSAttributedString *SmallText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%li",(long)l_2] attributes:SmallAttributes];
+    
+    NSMutableAttributedString *FinalAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:BigText];
+    [FinalAttributedString appendAttributedString:SmallText];
+    
+    BtnTime.attributedText = FinalAttributedString;
+    
+    
+    ////////
+    //[BtnTime setText:[NSString stringWithFormat:@"%1.1f", m_Time]];
     if(m_Time == 0)
     {
         [m_TimerEnd invalidate];
@@ -631,7 +661,7 @@
     m_Error = 0;
     [BtnScore setText:[NSString stringWithFormat:@"%li", (long)m_Level]];
     [BtnError setText:[NSString stringWithFormat:@"%li", (long)m_Error]];
-    [BtnTime setTextColor:[UIColor blueColor]];
+    [BtnTime setTextColor:[UIColor greenColor]];
     [BtnTime setText:[NSString stringWithFormat:@"%li", (long)m_Time]];
     
 }
@@ -654,7 +684,7 @@
     [[Configuration GetSingleton] WriteScore:m_Level];
     [[Configuration GetSingleton] WriteBestScore:m_Level];
     [[Configuration GetSingleton] WriteNextTimePlay];
-    if(([[Configuration GetSingleton] GetTimePlay] % 3) == 0)
+    if(([[Configuration GetSingleton] GetTimePlay] % 2) == 0)
     {
         [[GADMasterViewController GetSingleton] GetInterstitialAds];
     }
@@ -751,7 +781,9 @@
 }
 
 - (IBAction)HelpClick:(id)sender {
-    if (m_TimerStart != nil) {
+    [[SoundController GetSingleton] PlayClickButton];
+    if (m_TimerStart != nil)
+    {
         [m_TimerStart invalidate];
         m_TimerStart = nil;
     }

@@ -14,7 +14,7 @@
 		<string>https://github.com/binhdugithub/MOBILE.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>IOS/DoDanGian/BomDoVui.xcodeproj</string>
+	<string>IOS/BomDoVui/BomDoVui.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>008A8D0E8F946594A8388EAB5D3EA75868969983</key>

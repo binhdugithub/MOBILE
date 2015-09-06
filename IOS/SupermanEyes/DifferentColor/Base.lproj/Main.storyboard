@@ -265,6 +265,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="PlayAgainClick:" destination="Yzl-yT-6he" eventType="touchUpInside" id="uui-9C-712"/>
                                             <segue destination="Wyp-JH-BRd" kind="modal" modalTransitionStyle="flipHorizontal" id="kzm-TR-YJr"/>
                                         </connections>
                                     </button>
@@ -327,6 +328,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cm3-ZQ-wAy"/>
+        <segue reference="kzm-TR-YJr"/>
     </inferredMetricsTieBreakers>
 </document>

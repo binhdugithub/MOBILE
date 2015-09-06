@@ -343,11 +343,7 @@
         {
             [self GameWin];
         }
-        else
-        {
-            m_CurrentNumber = 78;
-            [self GameWin];
-        }
+       
     }
     else
     {

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A97FC451-D132-4E2B-936D-BEF0A0EEAF8E</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Correct</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>008A8D0E8F946594A8388EAB5D3EA75868969983</key>
 		<string>https://github.com/binhdugithub/MOBILE.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>IOS/Correct Animals/Correct.xcodeproj/project.xcworkspace</string>
+	<string>IOS/Correct Animals/Correct.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>008A8D0E8F946594A8388EAB5D3EA75868969983</key>

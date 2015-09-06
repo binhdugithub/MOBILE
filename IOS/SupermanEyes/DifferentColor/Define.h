@@ -22,29 +22,11 @@ enum STATEGAME
     GAMEOVER
 };
 
-#define YOUR_APP_ID @"1031081322" //Find_100_Number.mobileprovision
-#define YOUR_LEADERBOARD_ID @"leaderboardf100"
-
+#define YOUR_APP_ID @"1031081322"
 #define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/2885585249"
 #define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/4362318443"
-#define AMOD_INTERSTITIAL_TIMEOUT 3
 
 #define FILECONFIG @"/data.plist"
-
-#define TIME_MAX 300
-
-#define H_FOOTER 1.0/8
-
-#define W_ICON   1.0/15
-#define H_ICON   1.0/15
-
-#define H_BTNPLAY 1.0/7
-#define W_BTNPLAY 3.0/4
-
-#define H_YOURSCORE 1.0/4
-#define H_3BUTTONS  1.0/3
-
-
 
 #define IS_IPAD             (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE           (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)

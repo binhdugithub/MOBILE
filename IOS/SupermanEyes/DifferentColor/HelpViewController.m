@@ -48,6 +48,9 @@
     
     [LblHeader setTextColor:[UIColor blueColor]];
     [LblHeader setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    if (IS_IPAD) {
+        [LblHeader setFont:[UIFont systemFontOfSize:25 weight:0.5]];
+    }
     [LblHeader setTextAlignment:NSTextAlignmentLeft];
     //LblHeader.lineBreakMode = UILineBreakModeWordWrap;
     LblHeader.numberOfLines = 2;
@@ -84,6 +87,10 @@
     UILabel *LblBat = [[UILabel alloc] initWithFrame:frm];
     [LblBat setTextColor:[UIColor redColor]];
     [LblBat setFont:[UIFont systemFontOfSize:8 weight:0.1]];
+    if (IS_IPAD) {
+        [LblBat setFont:[UIFont systemFontOfSize:13 weight:0.2]];
+    }
+    
     [LblBat setTextAlignment:NSTextAlignmentCenter];
     [LblBat setText:@"Bat: 0-4"];
     [ViewLine1 addSubview:LblBat];
@@ -162,6 +169,9 @@
     UILabel *LblTiger = [[UILabel alloc] initWithFrame:frm];
     [LblTiger setTextColor:[UIColor redColor]];
     [LblTiger setFont:[UIFont systemFontOfSize:8 weight:0.1]];
+    if (IS_IPAD) {
+        [LblTiger setFont:[UIFont systemFontOfSize:13 weight:0.2]];
+    }
     [LblTiger setTextAlignment:NSTextAlignmentCenter];
     [LblTiger setText:@"Tiger: 20-24"];
     [ViewLine2 addSubview:LblTiger];
@@ -234,6 +244,9 @@
     UILabel *LblTitle = [[UILabel alloc] initWithFrame:frm];
     [LblTitle setTextColor:[UIColor blackColor]];
     [LblTitle setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    if (IS_IPAD) {
+        [LblTitle setFont:[UIFont systemFontOfSize:25 weight:0.5]];
+    }
     [LblTitle setTextAlignment:NSTextAlignmentCenter];
     LblTitle.numberOfLines = 1;
     [LblTitle setText:@"TEST YOUR COLOR VISION"];
@@ -243,6 +256,10 @@
     CGFloat l_fontguide = 0;
     if (IS_IPHONE_4_OR_LESS) {
         l_fontguide = 13;
+    }
+    else if(IS_IPAD)
+    {
+        l_fontguide = 20;
     }
     else
         l_fontguide = 15;
@@ -317,6 +334,20 @@
     [BtnBack setBackgroundColor:[UIColor colorWithRed:76/255.0 green:157/255.0 blue:231/255.0 alpha:1]];
     [ViewGuide addSubview:BtnBack];
     [BtnBack addTarget:self action:@selector(BackClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //uiview footer
+    if (!IS_IPHONE_4_OR_LESS)
+    {
+        frm.size.width = SCREEN_WIDTH;
+        frm.size.height = 50;
+        frm.origin.x = 0;
+        frm.origin.y = SCREEN_HEIGHT - frm.size.height;
+        UIView *MyFooter = [[UIView alloc] initWithFrame:frm];
+        [self.view addSubview:MyFooter];
+        
+        [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:MyFooter.frame];
+    }
+    
 }
 
 - (void)BackClick: (UIButton*)sender

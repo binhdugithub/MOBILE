@@ -18,6 +18,7 @@
 - (void) PlaySoundGameOver;
 - (void) PlaySoundCongratulation;
 - (void) PlaySoundCorrect;
+- (void) PlaySoundFail;
 - (void) ChangeMute;
 - (BOOL) GetMute;
 

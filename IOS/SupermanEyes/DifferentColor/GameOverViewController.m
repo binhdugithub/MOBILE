@@ -124,6 +124,9 @@
     [LblTextBestResult setFont:[UIFont systemFontOfSize:13 weight:0.2]];
     if(IS_IPAD)
         [LblTextBestResult setFont:[UIFont systemFontOfSize:18 weight:0.2]];
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblTextBestResult setFont:[UIFont systemFontOfSize:11 weight:0.2]];
+    
     [LblTextBestResult setText:@"BEST RESULT"];
     
     //LblNumberBestScore
@@ -135,6 +138,8 @@
     [LblNumberBestResult setFont:[UIFont systemFontOfSize:30 weight:0.2]];
     if (IS_IPAD)
         [LblNumberBestResult setFont:[UIFont systemFontOfSize:35 weight:0.2]];
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblNumberBestResult setFont:[UIFont systemFontOfSize:28 weight:0.2]];
 
     [LblNumberBestResult setText:[NSString stringWithFormat:@"%li", (long)[[Configuration GetSingleton] GetBestScore]]];
     
@@ -148,6 +153,9 @@
     [LblTextScore setFont:[UIFont systemFontOfSize:13 weight:0.2]];
     if(IS_IPAD)
         [LblTextScore setFont:[UIFont systemFontOfSize:18 weight:0.2]];
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblTextScore setFont:[UIFont systemFontOfSize:11 weight:0.2]];
+    
     [LblTextScore setText:@"SCORE"];
     
     //LblNumberBestScore
@@ -159,6 +167,9 @@
     [LblNumberScore setFont:[UIFont systemFontOfSize:30 weight:0.2]];
     if (IS_IPAD)
         [LblNumberScore setFont:[UIFont systemFontOfSize:35 weight:0.2]];
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblNumberScore setFont:[UIFont systemFontOfSize:28 weight:0.2]];
+    
     [LblNumberScore setText:[NSString stringWithFormat:@"%li", (long)[[Configuration GetSingleton] GetScore]]];
     
     //
@@ -177,9 +188,13 @@
     LblAnimal.frame = frm;
     [LblAnimal setTextColor:[UIColor blackColor]];
     [LblAnimal setFont:[UIFont systemFontOfSize:30 weight:0.2]];
-    if (IS_IPAD) {
+    if (IS_IPAD)
+    {
         [LblAnimal setFont:[UIFont systemFontOfSize:35 weight:0.2]];
     }
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblAnimal setFont:[UIFont systemFontOfSize:28 weight:0.2]];
+    
     [LblAnimal setTextAlignment:NSTextAlignmentCenter];
     NSString *l_nameofnanimal = [self GetNameOfAnimal:[[Configuration GetSingleton]GetScore ]];
     NSString *l_NAMEOFANIMAL = [l_nameofnanimal uppercaseString];
@@ -195,7 +210,9 @@
     [LblDiscription setFont:[UIFont systemFontOfSize:13 weight:0.2]];
     if (IS_IPAD) {
         [LblDiscription setFont:[UIFont systemFontOfSize:18 weight:0.2]];
-    }
+    }else if(IS_IPHONE_4_OR_LESS)
+        [LblDiscription setFont:[UIFont systemFontOfSize:11 weight:0.2]];
+    
     [LblDiscription setTextAlignment:NSTextAlignmentCenter];
     NSString *l_descriptionofanimal = [self GetDescriptionOfAnimal:[[Configuration GetSingleton]GetScore ]];
     [LblDiscription setText:l_descriptionofanimal];
@@ -231,7 +248,9 @@
     [BtnShare.titleLabel setFont:[UIFont systemFontOfSize:20 weight:0.3]];
     if (IS_IPAD) {
         [BtnShare.titleLabel setFont:[UIFont systemFontOfSize:25 weight:0.3]];
-    }
+    }else if(IS_IPHONE_4_OR_LESS)
+        [LblNumberScore setFont:[UIFont systemFontOfSize:18 weight:0.2]];
+    
     [BtnShare setTitle:@"SHARE" forState:UIControlStateNormal];
     [BtnShare addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -243,15 +262,17 @@
     [BtnPlayAgain setBackgroundColor:[UIColor colorWithRed:76/255.0 green:157/255.0 blue:231/255.0 alpha:1]];
     [BtnPlayAgain setTintColor:[UIColor whiteColor]];
     [BtnPlayAgain.titleLabel setFont:[UIFont systemFontOfSize:20 weight:0.3]];
-    if (IS_IPAD) {
+    if (IS_IPAD)
         [BtnPlayAgain.titleLabel setFont:[UIFont systemFontOfSize:25 weight:0.3]];
-    }
+    else if(IS_IPHONE_4_OR_LESS)
+        [LblNumberScore setFont:[UIFont systemFontOfSize:18 weight:0.2]];
+    
     [BtnPlayAgain setTitle:@"PLAY AGAIN" forState:UIControlStateNormal];
 }
 
 - (IBAction) ShareClick: (id)sender
 {
-    NSLog(@"ShareClick handle");
+    [[SoundController GetSingleton] PlayClickButton];
     NSString * message = @"This is my color vision :)";
     UIImage * image = [[Configuration GetSingleton] TakeScreenshot];
     
@@ -271,6 +292,9 @@
     
     [self presentViewController:ActivityVC animated:YES completion:nil];
     
+}
+- (IBAction)PlayAgainClick:(id)sender {
+    [[SoundController GetSingleton] PlayClickButton];
 }
 
 - (NSString*)GetNameOfAnimal : (NSInteger) p_score

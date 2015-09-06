@@ -11,9 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_lauchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="bGI-d0-Upy" userLabel="background">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="SRd-K3-KrW">
                     <rect key="frame" x="67" y="214" width="240" height="240"/>
                     <constraints>
@@ -25,12 +22,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="SRd-K3-KrW" secondAttribute="bottom" constant="213" id="A73-89-Urz"/>
-                <constraint firstAttribute="trailing" secondItem="bGI-d0-Upy" secondAttribute="trailing" id="K3f-e1-zpT"/>
                 <constraint firstItem="SRd-K3-KrW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="214" id="fRa-56-aLj"/>
                 <constraint firstAttribute="trailing" secondItem="SRd-K3-KrW" secondAttribute="trailing" constant="68" id="iGB-Ad-3Yw"/>
-                <constraint firstAttribute="bottom" secondItem="bGI-d0-Upy" secondAttribute="bottom" id="lke-gH-sJ8"/>
-                <constraint firstItem="bGI-d0-Upy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sWP-Lv-ocm"/>
-                <constraint firstItem="bGI-d0-Upy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w6y-8K-KEX"/>
                 <constraint firstItem="SRd-K3-KrW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="67" id="ygp-f8-65G"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -39,7 +32,6 @@
         </view>
     </objects>
     <resources>
-        <image name="background_lauchscreen" width="426" height="1024"/>
-        <image name="logo.png" width="1024" height="1024"/>
+        <image name="logo.png" width="300" height="300"/>
     </resources>
 </document>

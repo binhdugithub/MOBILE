@@ -28,7 +28,8 @@
 @synthesize BtnCaptureCard;
 @synthesize LblCardNumber, TVCardNumber;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -165,6 +166,9 @@
     }
 }
 
+
+
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -194,21 +198,21 @@
     //NSTimer* cameraTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(snapshot) userInfo:nil repeats:YES];
 }
 
-- (void)snapshot
-{
-    if(m_index % 2 == 0)
-    {
-        NSLog(@"SNAPSHOT");
-        self.cameraImageView.image = self.cameraImage;  // Comment-out to hide snapshot
-        
-    }
-    else
-    {
-        NSLog(@"Vao");
-        self.cameraImageView.image = [UIImage imageNamed:@"bg_main.png"];
-    }
-
-    m_index++;
-}
+//- (void)snapshot
+//{
+//    if(m_index % 2 == 0)
+//    {
+//        NSLog(@"SNAPSHOT");
+//        self.cameraImageView.image = self.cameraImage;  // Comment-out to hide snapshot
+//        
+//    }
+//    else
+//    {
+//        NSLog(@"Vao");
+//        self.cameraImageView.image = [UIImage imageNamed:@"bg_main.png"];
+//    }
+//
+//    m_index++;
+//}
 
 @end
