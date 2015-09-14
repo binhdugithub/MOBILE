@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #include "Define.h"
 
-@interface GADMasterViewController : UIViewController
+@interface GADMasterViewController : UIViewController<GADBannerViewDelegate, GADInterstitialDelegate>
 {
     GADBannerView *adBanner_;
     BOOL didCloseWebsiteView_;
