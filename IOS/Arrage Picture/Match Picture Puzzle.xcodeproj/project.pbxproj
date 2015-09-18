@@ -40,6 +40,10 @@
 		AFD7EEA51B9AD459006A5116 /* 70.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD7EE8F1B9AD459006A5116 /* 70.jpg */; };
 		AFD7EEA61B9AD459006A5116 /* 71.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD7EE901B9AD459006A5116 /* 71.jpg */; };
 		AFD7EEA71B9AD459006A5116 /* 72.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD7EE911B9AD459006A5116 /* 72.jpg */; };
+		AFE2CDFC1BAB1FD400225462 /* 73.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE2CDFB1BAB1FD400225462 /* 73.jpg */; };
+		AFE2CDFE1BAB240E00225462 /* 80.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE2CDFD1BAB240E00225462 /* 80.jpg */; };
+		AFE2CE001BAB2AA400225462 /* 74.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE2CDFF1BAB2AA400225462 /* 74.jpg */; };
+		AFE2CE021BAB2EEE00225462 /* 90.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE2CE011BAB2EEE00225462 /* 90.jpg */; };
 		AFE421AD1B9A0CAC0077DF51 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE4217D1B9A0CAC0077DF51 /* 1.jpg */; };
 		AFE421AE1B9A0CAC0077DF51 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE4217E1B9A0CAC0077DF51 /* 2.jpg */; };
 		AFE421AF1B9A0CAC0077DF51 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE4217F1B9A0CAC0077DF51 /* 3.jpg */; };
@@ -164,6 +168,10 @@
 		AFD7EE8F1B9AD459006A5116 /* 70.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 70.jpg; path = data/70.jpg; sourceTree = "<group>"; };
 		AFD7EE901B9AD459006A5116 /* 71.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 71.jpg; path = data/71.jpg; sourceTree = "<group>"; };
 		AFD7EE911B9AD459006A5116 /* 72.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 72.jpg; path = data/72.jpg; sourceTree = "<group>"; };
+		AFE2CDFB1BAB1FD400225462 /* 73.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 73.jpg; path = data/73.jpg; sourceTree = "<group>"; };
+		AFE2CDFD1BAB240E00225462 /* 80.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 80.jpg; path = data/80.jpg; sourceTree = "<group>"; };
+		AFE2CDFF1BAB2AA400225462 /* 74.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 74.jpg; path = data/74.jpg; sourceTree = "<group>"; };
+		AFE2CE011BAB2EEE00225462 /* 90.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 90.jpg; path = data/90.jpg; sourceTree = "<group>"; };
 		AFE4217D1B9A0CAC0077DF51 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = data/1.jpg; sourceTree = "<group>"; };
 		AFE4217E1B9A0CAC0077DF51 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpg; path = data/2.jpg; sourceTree = "<group>"; };
 		AFE4217F1B9A0CAC0077DF51 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpg; path = data/3.jpg; sourceTree = "<group>"; };
@@ -418,6 +426,10 @@
 		AFE6C3FF1B8B24C100F49237 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				AFE2CE011BAB2EEE00225462 /* 90.jpg */,
+				AFE2CDFF1BAB2AA400225462 /* 74.jpg */,
+				AFE2CDFD1BAB240E00225462 /* 80.jpg */,
+				AFE2CDFB1BAB1FD400225462 /* 73.jpg */,
 				AFD7EE7C1B9AD459006A5116 /* 51.jpg */,
 				AFD7EE7D1B9AD459006A5116 /* 52.jpg */,
 				AFD7EE7E1B9AD459006A5116 /* 53.jpg */,
@@ -579,6 +591,7 @@
 				AFD7EE931B9AD459006A5116 /* 52.jpg in Resources */,
 				AFE421DC1B9A0CAC0077DF51 /* 50.jpg in Resources */,
 				AFD7EEA61B9AD459006A5116 /* 71.jpg in Resources */,
+				AFE2CDFE1BAB240E00225462 /* 80.jpg in Resources */,
 				AFE421D31B9A0CAC0077DF51 /* 41.jpg in Resources */,
 				AFD7EEA51B9AD459006A5116 /* 70.jpg in Resources */,
 				AFD7EE991B9AD459006A5116 /* 58.jpg in Resources */,
@@ -606,6 +619,8 @@
 				AFD7EE9E1B9AD459006A5116 /* 63.jpg in Resources */,
 				AFD7EE9F1B9AD459006A5116 /* 64.jpg in Resources */,
 				AFE421C81B9A0CAC0077DF51 /* 30.jpg in Resources */,
+				AFE2CE001BAB2AA400225462 /* 74.jpg in Resources */,
+				AFE2CDFC1BAB1FD400225462 /* 73.jpg in Resources */,
 				AFE421DA1B9A0CAC0077DF51 /* 48.jpg in Resources */,
 				AFD7EE951B9AD459006A5116 /* 54.jpg in Resources */,
 				AFE6C3EF1B8B05F200F49237 /* btn_gamecenter.png in Resources */,
@@ -644,6 +659,7 @@
 				AFD7EE9C1B9AD459006A5116 /* 61.jpg in Resources */,
 				AFE421BB1B9A0CAC0077DF51 /* 17.jpg in Resources */,
 				AFE421BC1B9A0CAC0077DF51 /* 18.jpg in Resources */,
+				AFE2CE021BAB2EEE00225462 /* 90.jpg in Resources */,
 				AFE6C3F61B8B05F200F49237 /* btn_suggestion.png in Resources */,
 				AF90FF2A1B8DB51F00C5F43F /* btn_bonus.png in Resources */,
 				AFE421CC1B9A0CAC0077DF51 /* 34.jpg in Resources */,
@@ -773,7 +789,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -782,7 +798,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Match Picture Puzzle";
-				PROVISIONING_PROFILE = "5471cf7c-5425-42d4-86d1-7f7719143248";
+				PROVISIONING_PROFILE = "3c69e61e-866d-412b-8a82-95b9fbb97870";
 			};
 			name = Distribution;
 		};
@@ -891,7 +907,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -900,7 +916,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Match Picture Puzzle";
-				PROVISIONING_PROFILE = "5471cf7c-5425-42d4-86d1-7f7719143248";
+				PROVISIONING_PROFILE = "3c69e61e-866d-412b-8a82-95b9fbb97870";
 			};
 			name = Debug;
 		};
@@ -909,7 +925,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -918,7 +934,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Match Picture Puzzle";
-				PROVISIONING_PROFILE = "5471cf7c-5425-42d4-86d1-7f7719143248";
+				PROVISIONING_PROFILE = "3c69e61e-866d-412b-8a82-95b9fbb97870";
 			};
 			name = Release;
 		};

@@ -87,7 +87,9 @@
     m_ImageTake = nil;
     [self ShowAdBannerView];
     m_State = PREPAREPLAY;
+    [[Configuration GetSingleton] WriteLevel:90];
     [self ShowRandomPicture:[self GetPicutre:[[Configuration GetSingleton] GetLevel]]];
+    //[self ShowRandomPicture:[self GetPicutre:90]];
 
 }
 
