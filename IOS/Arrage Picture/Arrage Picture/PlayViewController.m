@@ -87,7 +87,7 @@
     m_ImageTake = nil;
     [self ShowAdBannerView];
     m_State = PREPAREPLAY;
-    [[Configuration GetSingleton] WriteLevel:90];
+    //[[Configuration GetSingleton] WriteLevel:90];
     [self ShowRandomPicture:[self GetPicutre:[[Configuration GetSingleton] GetLevel]]];
     //[self ShowRandomPicture:[self GetPicutre:90]];
 
@@ -101,6 +101,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    NSLog(@"viewDidDisappear");
 }
 /*
 #pragma mark - Navigation
@@ -729,6 +734,12 @@
         NSLog(@"UnMute");
         [m_BtnSpeaker setImage:[UIImage imageNamed:@"btn_unmute.png"] forState: UIControlStateNormal];
     }
+}
+
+
+- (IBAction)BackClick:(id)sender
+{
+    [[SoundController GetSingleton] PlayClickButton];
 }
 
 - (IBAction)SpeakerClick:(id)sender

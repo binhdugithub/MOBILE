@@ -289,8 +289,6 @@
 		AF247D1C1B9059BE0009C232 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				AFE6C3A71B8AD15A00F49237 /* LaunchScreen.xib */,
-				AFE6C3D21B8AF89400F49237 /* Storyboard.storyboard */,
 				AFE6C3C11B8AD3B600F49237 /* Define.h */,
 				AFE6C3C21B8AD3B600F49237 /* GADMasterViewController.h */,
 				AFE6C3C31B8AD3B600F49237 /* GADMasterViewController.m */,
@@ -320,6 +318,8 @@
 		AF78BB4A1B999E2C00D9F3EF /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				AFE6C3A71B8AD15A00F49237 /* LaunchScreen.xib */,
+				AFE6C3D21B8AF89400F49237 /* Storyboard.storyboard */,
 				AFE6C39C1B8AD15A00F49237 /* AppDelegate.h */,
 				AFE6C39D1B8AD15A00F49237 /* AppDelegate.m */,
 				AFE6C39F1B8AD15A00F49237 /* HomeViewController.h */,
@@ -790,6 +790,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -908,6 +909,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -926,6 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
