@@ -137,6 +137,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF76D4331BB14DFD0034F06B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AFD0B1841AE7904100253933 /* Social.framework */,
+				AF7CFB531B77BFD600F17384 /* GameKit.framework */,
+				AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */,
+				AFD0B1861AE7905100253933 /* libsqlite3.dylib */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		AF8588861B6E1E410016AF92 /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,13 +184,10 @@
 		AFED2BAE1AE550390093D4CE = {
 			isa = PBXGroup;
 			children = (
-				AF7CFB531B77BFD600F17384 /* GameKit.framework */,
-				AFD0B18D1AE7915200253933 /* GoogleMobileAds.framework */,
-				AFD0B1861AE7905100253933 /* libsqlite3.dylib */,
-				AFD0B1841AE7904100253933 /* Social.framework */,
 				AFED2BB91AE550390093D4CE /* DoDanGian */,
 				AFED2BD31AE550390093D4CE /* DoDanGianTests */,
 				AFED2BB81AE550390093D4CE /* Products */,
+				AF76D4331BB14DFD0034F06B /* Framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,7 +205,6 @@
 			children = (
 				AF2726B61B806B1600969FF7 /* Configuration.h */,
 				AF2726B71B806B1600969FF7 /* Configuration.m */,
-				AF7AEDFC1B730C5F00B96E2A /* DoDanGian.sqlite */,
 				AFED2BBE1AE550390093D4CE /* AppDelegate.h */,
 				AFED2BBF1AE550390093D4CE /* AppDelegate.m */,
 				AFD0B1821AE78FD100253933 /* Define.h */,
@@ -227,6 +234,7 @@
 				AFED2BBB1AE550390093D4CE /* Info.plist */,
 				AFED2BBC1AE550390093D4CE /* main.m */,
 				AFD0B1811AE78FD100253933 /* data.plist */,
+				AF7AEDFC1B730C5F00B96E2A /* DoDanGian.sqlite */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
