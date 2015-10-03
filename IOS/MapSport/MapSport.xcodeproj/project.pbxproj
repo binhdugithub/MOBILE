@@ -492,7 +492,7 @@
 				INFOPLIST_FILE = MapSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.binhdu.MapSport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhdu.mapsport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -505,7 +505,7 @@
 				INFOPLIST_FILE = MapSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.binhdu.MapSport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhdu.mapsport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

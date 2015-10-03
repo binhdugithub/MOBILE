@@ -10,7 +10,7 @@
 
 @implementation GADMasterViewController
 
-+(GADMasterViewController *)singleton
++(GADMasterViewController *)GetSingleton
 {
     static dispatch_once_t pred;
     static GADMasterViewController *shared;
@@ -33,6 +33,9 @@
                                               GAD_SIZE_320x50.height)];
         // Has an ad request already been made
         isLoaded_ = NO;
+        
+        
+        [self GetInterstitialAds];
     }
     return self;
 }
@@ -73,7 +76,6 @@
     }
     else
     {
-        
         adBanner_.delegate = self;
         adBanner_.rootViewController = rootViewController;
         adBanner_.adUnitID = AMOD_BANNER_FOOTER_UNIT;
@@ -85,36 +87,31 @@
     }
 }
 
-
--(void)resetAdInterstitialView:(UIViewController *)rootViewController
+- (void)GetInterstitialAds
 {
-    
-    interstitial = [[GADInterstitial alloc] init];
-    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
+    interstitial = [[GADInterstitial alloc] initWithAdUnitID:AMOD_INTERSTITIAL_UNIT];
     interstitial.delegate = self;
     [interstitial loadRequest:[GADRequest request]];
-    
-    [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
-                                     target:self
-                                   selector:@selector(ShowAdvertisement:)
-                                   userInfo:rootViewController
-                                    repeats:NO];
 }
 
-
-- (void) ShowAdvertisement: (NSTimer*)p_timer
+-(void)ResetAdInterstitialView:(UIViewController *)rootViewController
 {
-    if ([interstitial isReady])
+    if([interstitial isReady])
     {
-        
-        [interstitial presentFromRootViewController:(UIViewController*)[p_timer userInfo]];
-        
+        [interstitial presentFromRootViewController:rootViewController];
     }
     else
     {
-        NSLog(@"GADInterstitial not ready 2");
+        [self GetInterstitialAds];
+        NSLog(@"GADInterstitial not ready");
     }
     
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    NSLog(@"DidDismissinterstitial");
+    [self GetInterstitialAds];
 }
 
 
@@ -132,13 +129,13 @@
     {
         //[currentDelegate_ adViewDidReceiveAd:adView];
         
-       
+        
     }
     
     adView.alpha = 0;
     [UIView animateWithDuration:1.0 animations:^{
         adView.alpha = 1;
     }];
-
+    
 }
 @end

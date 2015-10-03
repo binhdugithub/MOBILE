@@ -47,7 +47,7 @@
     [super viewDidLoad];
     [self CalculateView];
     [self ShowSpeaker];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     [self HideTimeDurration];
     
     switch (m_Sate)
@@ -140,11 +140,7 @@
     frm.origin.y = m_UIView100Number.frame.origin.y + m_UIView100Number.frame.size.height + frm.size.height * 1.0/4;
     m_UIButtonPlay.frame = frm;
     m_UIButtonPlay.layer.cornerRadius = 10;
-    //[m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]];
-    //[m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     
-    //m_UIButtonPlay.titleLabel.font = m_UIButtonPlay.titleLabel.font;
-    //[m_UIButtonPlay setTitleColor:[UIColor colorWithRed:0/255.0 green:62/255.0 blue:62/255.0 alpha:1] forState:UIControlStateNormal];
     m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
     [m_UIButtonPlay setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     [m_UIButtonPlay setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
@@ -179,9 +175,7 @@
         MyNumber.layer.cornerRadius = l_number.layer.cornerRadius;
         MyNumber.alpha = l_number.alpha;
         
-        //[MyNumber setBackgroundImage:[l_number backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
-        
-         [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
+        [MyNumber addTarget:self action:@selector(NumberClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [m_UIView100Number addSubview:MyNumber];
         [m_Array100Number addObject:MyNumber];
@@ -223,13 +217,10 @@
         
         if(IS_IPAD)
             MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
-            
         
-        //[MyNumber setTitleColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1] forState:UIControlStateNormal];
         [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
-        //MyNumber.alpha = 0.8;
-        //[MyNumber setBackgroundImage:nil forState:UIControlStateNormal];
+       
         
         [MyNumber setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1]];
         MyNumber.layer.cornerRadius = 5;

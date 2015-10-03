@@ -27,5 +27,4 @@
 - (void)GetInterstitialAds;
 -(void)ResetAdInterstitialView:(UIViewController *)rootViewController;
 
-
 @end
