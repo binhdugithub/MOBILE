@@ -8,7 +8,7 @@
 
 #import "TwoPalyersViewController.h"
 #import "SoundController.h"
-#import <Social/Social.h>
+#import "Configuration.h"
 #import "GADMasterViewController.h"
 
 enum
@@ -98,7 +98,6 @@ enum
 -(void)CalculateView
 {
     //CGFloat W = [UIScreen mainScreen].bounds.size.width;
-    CGFloat H = [UIScreen mainScreen].bounds.size.height;
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
     CGFloat h = w;
     
@@ -108,7 +107,7 @@ enum
     //Advertisement
     CGRect frm;
     frm.size.width = SCREEN_WIDTH;
-    if(SCREEN_HEIGHT <= 4000)
+    if(SCREEN_HEIGHT <= 400)
     {
         frm.size.height = 32;
     }
@@ -176,9 +175,13 @@ enum
     
     //speaker1
     frm.size.width = W_ICON * SCREEN_WIDTH;
-    if (IS_IPHONE_4_OR_LESS  || IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
         frm.size.width -= 5;
+    }
+    else if(IS_IPAD)
+    {
+        frm.size.width -= 10;
     }
     
     frm.size.height = frm.size.width;
@@ -207,7 +210,7 @@ enum
     }
     else if(IS_IPAD)
     {
-        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
     }
     else
     {
@@ -243,7 +246,7 @@ enum
         m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
     }else if(IS_IPAD)
     {
-        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
     }else
     {
         m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
@@ -366,41 +369,33 @@ enum
 - (IBAction)ShareScoreClick:(id)sender
 {
     [[SoundController GetSingleton] PlayClickButton];
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    NSString * message = @"#1 to 100 Numbers";
+    UIImage * image = [[Configuration GetSingleton] TakeScreenshot];
+    
+    NSArray * shareItems = @[message, image];
+    UIActivityViewController * ActivityVC = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+    ActivityVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    ActivityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+    [self presentViewController:ActivityVC animated:YES completion:nil];
+    
+    ActivityVC.completionHandler = ^(NSString *activityType, BOOL completed)
     {
-        SLComposeViewController *fbSheet = [SLComposeViewController
-                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
-        //[fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
-        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        //[fbSheet addURL:[NSURL URLWithString:l_url]];
-        [fbSheet addImage:[self takeScreenshot]];
-        
-        
-        [self presentViewController:fbSheet animated:YES completion:nil];
-    }
-    else
-    {
-        NSString *title = @"No Facebook Account" ;
-        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
-        NSString *titleCancel = @"Cancel";
-        NSString *titleSetting   = @"Setting";
-        
-        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
-        //if (canOpenSettings) {
-        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+        if (completed)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            //alert.tag = 1000;
-            [alert show];
+            NSLog(@"Selected activity was performed.");
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            alert.tag = 1000;
-            [alert show];
+            if (activityType == NULL)
+            {
+                NSLog(@"User dismissed the view controller without making a selection.");
+            } else
+            {
+                NSLog(@"Activity was not performed.");
+            }
         }
-        
-    }
+    };
+
     
 }
 
@@ -415,52 +410,6 @@ enum
     }
 }
 
-
-- (UIImage*) takeScreenshot
-{
-    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    if (NULL != UIGraphicsBeginImageContextWithOptions)
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    else
-        UIGraphicsBeginImageContext(imageSize);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Iterate over every window from back to front
-    for (UIWindow *window in [[UIApplication sharedApplication] windows])
-    {
-        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
-        {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
-            CGContextSaveGState(context);
-            // Center the context around the window's anchor point
-            CGContextTranslateCTM(context, [window center].x, [window center].y);
-            // Apply the window's transform about the anchor point
-            CGContextConcatCTM(context, [window transform]);
-            // Offset by the portion of the bounds left of and above the anchor point
-            CGContextTranslateCTM(context,
-                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
-                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
-            
-            // Render the layer hierarchy to the current context
-            [[window layer] renderInContext:context];
-            
-            // Restore the context
-            CGContextRestoreGState(context);
-        }
-    }
-    
-    // Retrieve the screenshot image
-    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
-    
-    return screenImage;
-    
-}
 
 - (void)NumberClick1: (UIButton*)sender
 {

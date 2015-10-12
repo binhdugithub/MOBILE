@@ -116,6 +116,18 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTitle.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:20 weight:1.0]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:30 weight:1.0]];
+    }
+    else
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:25 weight:1.0]];
+    }
     
     
     //3 Best Score
@@ -134,6 +146,18 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTitleBestScore.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelTitleBestScore.font = [UIFont systemFontOfSize:17 weight:0.5];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelTitleBestScore.font = [UIFont systemFontOfSize:25 weight:0.5];
+    }
+    else
+    {
+        m_UILabelTitleBestScore.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
     
     //best score
     frm = m_UILabelBestScore.frame;
@@ -142,7 +166,18 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 0;
     frm.origin.y = (m_UIViewBestSocre.frame.size.height - frm.size.height) * 1.0/2;
     m_UILabelBestScore.frame = frm;
-    
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:25 weight:1];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:35 weight:1];
+    }
+    else
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:30 weight:1];
+    }
     //4. Overall
     frm = m_UIViewBestSocre.frame;
     frm.origin.y = frm.origin.y + frm.size.height + 1.0/2 * m_UIButtonBack.frame.size.height;
@@ -156,6 +191,18 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTitleOverall.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelTitleOverall.font = [UIFont systemFontOfSize:17 weight:0.5];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelTitleOverall.font = [UIFont systemFontOfSize:25 weight:0.5];
+    }
+    else
+    {
+        m_UILabelTitleOverall.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
     
     //average score title
     frm = m_UILabelTitleAverageScore.frame;
@@ -164,21 +211,69 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.x = 1.0/20 * m_UIViewOverall.frame.size.width;
     frm.origin.y = (m_UIViewOverall.frame.size.height - frm.size.height) * 1.0/2;
     m_UILabelTitleAverageScore.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:14 weight:0.2];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:20 weight:0.2];
+    }
+    else
+    {
+        m_UILabelTitleAverageScore.font = [UIFont systemFontOfSize:17 weight:0.2];
+    }
     
     //averagesocore
     frm = m_UILabelTitleAverageScore.frame;
     frm.origin.x = -1.0/20 * m_UIViewOverall.frame.size.width;
     m_UILabelAverageScore.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelAverageScore.font = [UIFont systemFontOfSize:14 weight:1];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelAverageScore.font = [UIFont systemFontOfSize:20 weight:1];
+    }
+    else
+    {
+        m_UILabelAverageScore.font = [UIFont systemFontOfSize:17 weight:1];
+    }
     
     //Games palyed title
     frm = m_UILabelTitleAverageScore.frame;
     frm.origin.y = frm.origin.y + frm.size.height;
     m_UILabelTileGamesPlayed.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelTileGamesPlayed.font = [UIFont systemFontOfSize:14 weight:0.2];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelTileGamesPlayed.font = [UIFont systemFontOfSize:20 weight:0.2];
+    }
+    else
+    {
+        m_UILabelTileGamesPlayed.font = [UIFont systemFontOfSize:17 weight:0.2];
+    }
     
     //game played
     frm = m_UILabelTileGamesPlayed.frame;
     frm.origin.x = m_UILabelAverageScore.frame.origin.x;
     m_UILabelGamesPlayed.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelGamesPlayed.font = [UIFont systemFontOfSize:14 weight:1];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelGamesPlayed.font = [UIFont systemFontOfSize:20 weight:1];
+    }
+    else
+    {
+        m_UILabelGamesPlayed.font = [UIFont systemFontOfSize:17 weight:1];
+    }
     
     
     //4 View 2Buttons
@@ -198,12 +293,16 @@ m_UIViewHeader, m_UIViewOverall;
     m_UIButtonClearScore.layer.cornerRadius = 10;
     [m_UIButtonClearScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
-    if (IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:0.3];
+    } else if(IS_IPAD)
+    {
+        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:25 weight:0.3];
     }
-    else{
-        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    else
+    {
+        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.3];
     }
     //[m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
@@ -215,12 +314,16 @@ m_UIViewHeader, m_UIViewOverall;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
     [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    if (IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:0.3];
+    } else if(IS_IPAD)
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:25 weight:0.3];
     }
-    else{
-        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    else
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.3];
     }
     //m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
     //[m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
@@ -242,7 +345,19 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.y =  0;
     m_UILabelCopyright.frame = frm;
     [m_UILabelCopyright setTextColor:[UIColor darkGrayColor]];
-    
+    [m_UILabelCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
     
 }
 

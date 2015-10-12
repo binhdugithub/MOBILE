@@ -10,15 +10,14 @@
 #define _00Numbers_Define_h
 
 
-#define YOUR_APP_ID @"1048219569" //Find_100_Number.mobileprovision
-#define YOUR_LEADERBOARD_ID @"leaderboardf100"
+#define YOUR_APP_ID @"1048219569" //1 to 100 Numbers
 
 #define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/1666550849"
 #define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/8572538847"
 #define AMOD_INTERSTITIAL_TIMEOUT 5
 
 #define FILECONFIG @"/data.plist"
-
+#define TEXT_COPYRIGHT @"CUSIKI @2015"
 #define TIME_MAX 300
 
 //#define H_FOOTER (if(SCREEN_HEIGHT <= 400){32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){50;}else if(SCREEN_HEIGHT > 72){90;})

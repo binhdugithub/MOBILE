@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <GameKit/GameKit.h>
 
-@interface Configuration : NSObject<GKGameCenterControllerDelegate>
+@interface Configuration : NSObject
 {
     BOOL m_IsMute;
     NSInteger m_TimesPlayed;
     NSInteger m_BestScore;
     NSInteger m_AverageScore;
-    NSString *m_LeaderboardIdentifier;
 }
 
 +(instancetype) GetSingleton;
-- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard;
 - (void) WriteMute : (BOOL) p_ismute;
 - (void) UpdateStatistics : (NSInteger) p_currentscore;
 - (void) ClearConfig;

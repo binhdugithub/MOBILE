@@ -113,14 +113,23 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
     m_UIButtonHome.frame = frm;
     
-    //time
+    //title
     frm = m_UIViewHeader.frame;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTitle.frame = frm;
-    
-    //TITLE
-    
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:20 weight:1.0]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:30 weight:1.0]];
+    }
+    else
+    {
+        [m_UILabelTitle setFont:[UIFont systemFontOfSize:25 weight:1.0]];
+    }
     
     //3 Your Score
     frm = m_UIViewSocre.frame;
@@ -133,13 +142,26 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     //m_UIViewSocre = [UIFont systemFontOfSize:17 weight:0];
     [m_UIViewSocre setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
-    //title
+    //yourscore
     frm = m_UIViewSocre.frame;
     frm.size.height = 1.0/4 * frm.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelYourScore.frame = frm;
-    m_UILabelYourScore.font = [UIFont systemFontOfSize:17 weight:1];
+    //m_UILabelYourScore.font = [UIFont systemFontOfSize:17 weight:1];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelYourScore.font = [UIFont systemFontOfSize:17 weight:0.5];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelYourScore.font = [UIFont systemFontOfSize:25 weight:0.5];
+    }
+    else
+    {
+        m_UILabelYourScore.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
+    
     //score
     frm = m_UILabelScore.frame;
     frm.size.width = m_UIViewSocre.frame.size.width;
@@ -147,6 +169,18 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.x = 0;
     frm.origin.y = (m_UIViewSocre.frame.size.height - frm.size.height) * 1.0/2;
     m_UILabelScore.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UILabelScore.font = [UIFont systemFontOfSize:25 weight:1];
+    }
+    else if(IS_IPAD)
+    {
+        m_UILabelScore.font = [UIFont systemFontOfSize:35 weight:1];
+    }
+    else
+    {
+        m_UILabelScore.font = [UIFont systemFontOfSize:30 weight:1];
+    }
     
     //4 View 3Buttons
     frm = m_UIView3Buttons.frame;
@@ -164,14 +198,18 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     m_UIButtonPlayAgain.frame = frm;
     m_UIButtonPlayAgain.layer.cornerRadius = 10;
     //m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
-    if (IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:17 weight:0.3];
+    } else if(IS_IPAD)
+    {
+        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:25 weight:0.3];
     }
     else
     {
-        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.3];
     }
+    
     [m_UIButtonPlayAgain setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     //[m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
@@ -181,13 +219,16 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.y = m_UIButtonPlayAgain.frame.origin.y + m_UIButtonPlayAgain.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
     m_UIButtonStatistics.frame = frm;
     m_UIButtonStatistics.layer.cornerRadius = 10;
-    if (IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:17 weight:0.3];
+    } else if(IS_IPAD)
+    {
+        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:25 weight:0.3];
     }
     else
     {
-        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.3];
     }
     //m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
     [m_UIButtonStatistics setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
@@ -200,13 +241,16 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
     //m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
-    if (IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:0.3];
+    } else if(IS_IPAD)
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:25 weight:0.3];
     }
     else
     {
-        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.3];
     }
     [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     //[m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
@@ -229,6 +273,19 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.y =  0;
     m_UILabelCopyright.frame = frm;
     [m_UILabelCopyright setTextColor:[UIColor darkGrayColor]];
+    [m_UILabelCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
 
     
 }
@@ -295,7 +352,7 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     
     
     [[SoundController GetSingleton] PlayClickButton];
-    NSString * message = @"#Find 100 Numbers";
+    NSString * message = @"#1 to 100 Numbers";
     UIImage * image = [[Configuration GetSingleton] TakeScreenshot];
     
     NSArray * shareItems = @[message, image];
@@ -334,52 +391,6 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     }
 }
 
-
-- (UIImage*) takeScreenshot
-{
-    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    if (NULL != UIGraphicsBeginImageContextWithOptions)
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    else
-        UIGraphicsBeginImageContext(imageSize);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Iterate over every window from back to front
-    for (UIWindow *window in [[UIApplication sharedApplication] windows])
-    {
-        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
-        {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
-            CGContextSaveGState(context);
-            // Center the context around the window's anchor point
-            CGContextTranslateCTM(context, [window center].x, [window center].y);
-            // Apply the window's transform about the anchor point
-            CGContextConcatCTM(context, [window transform]);
-            // Offset by the portion of the bounds left of and above the anchor point
-            CGContextTranslateCTM(context,
-                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
-                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
-            
-            // Render the layer hierarchy to the current context
-            [[window layer] renderInContext:context];
-            
-            // Restore the context
-            CGContextRestoreGState(context);
-        }
-    }
-    
-    // Retrieve the screenshot image
-    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
-    
-    return screenImage;
-    
-}
 
 - (void)SetArrayNumber: (NSMutableArray*) p_array
 {

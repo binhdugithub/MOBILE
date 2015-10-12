@@ -129,6 +129,19 @@
     frm.origin.y =  0;
     m_UIlabelCopyright.frame = frm;
     [m_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
+    [m_UIlabelCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
 
     
     // About

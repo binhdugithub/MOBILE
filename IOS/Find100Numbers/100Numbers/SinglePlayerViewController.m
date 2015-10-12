@@ -84,9 +84,12 @@
     CGRect frm;
     frm.size.width = W_ICON * SCREEN_WIDTH;
     
-    if (IS_IPHONE_4_OR_LESS || IS_IPAD)
+    if (IS_IPHONE_4_OR_LESS)
     {
         frm.size.width -= 5;
+    }else if(IS_IPAD)
+    {
+        frm.size.width -= 10;
     }
     
     frm.size.height = frm.size.width;
@@ -116,6 +119,18 @@
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UILabelTime.frame = frm;
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelTime setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelTime setFont:[UIFont systemFontOfSize:30 weight:0.5]];
+    }
+    else
+    {
+        [m_UILabelTime setFont:[UIFont systemFontOfSize:25 weight:0.5]];
+    }
    
     
     //100Numbers
@@ -142,6 +157,19 @@
     frm.origin.y =  0;
     m_UIlabelCopyright.frame = frm;
     [m_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
+    [m_UIlabelCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
 
     
     //Play
@@ -159,7 +187,7 @@
     }
     else if(IS_IPAD)
     {
-        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
     }
     else
     {

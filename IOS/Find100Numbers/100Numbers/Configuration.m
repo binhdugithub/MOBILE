@@ -8,6 +8,7 @@
 
 #import "Configuration.h"
 #import "Define.h"
+#import "GCViewController.h"
 
 @implementation Configuration
 
@@ -30,7 +31,6 @@
     if(self)
     {
         [self LoadConfig];
-        m_LeaderboardIdentifier = nil;
     }
     
     return self;
@@ -192,8 +192,9 @@
             m_BestScore = p_currentscore;
         }
         
-        NSLog(@"Report score");
+        //NSLog(@"Report score");
         //[self reportScore];
+        [[GCViewController GetSingleton] ReportScore:m_BestScore];
         [dicData writeToFile:pathData atomically:YES];
     }
     else
