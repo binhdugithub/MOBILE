@@ -11,18 +11,14 @@
 
 @interface GADMasterViewController : UIViewController<GADBannerViewDelegate, GADInterstitialDelegate>
 {
-    GADBannerView *adBanner_;
-    BOOL didCloseWebsiteView_;
-    BOOL isLoaded_;
-    id currentDelegate_;
-    
-    GADInterstitial *interstitial;
+    GADBannerView   *m_Banner;    
+    GADInterstitial *m_Interstitial;
+    BOOL            m_IsLoaded;
 }
 
 +(GADMasterViewController *)GetSingleton;
 -(id)init;
 
--(void)resetAdBannerView:(UIViewController *)rootViewController;
 -(void)resetAdBannerView:(UIViewController *)rootViewController AtFrame:(CGRect) frm;
 - (void)GetInterstitialAds;
 -(void)ResetAdInterstitialView:(UIViewController *)rootViewController;

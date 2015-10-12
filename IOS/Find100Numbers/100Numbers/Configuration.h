@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface Configuration : NSObject
+@interface Configuration : NSObject<GKGameCenterControllerDelegate>
 {
     BOOL m_IsMute;
     NSInteger m_TimesPlayed;
@@ -26,4 +28,5 @@
 - (NSInteger) GetTimesPlayed;
 - (NSInteger) GetAverageScore;
 - (BOOL) GetIsMute;
+- (UIImage*) TakeScreenshot;
 @end

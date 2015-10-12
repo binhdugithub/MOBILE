@@ -813,6 +813,24 @@
     
     [self presentViewController:ActivityVC animated:YES completion:nil];
     
+    ActivityVC.completionHandler = ^(NSString *activityType, BOOL completed)
+    {
+        if (completed)
+        {
+            NSLog(@"Selected activity was performed.");
+        }
+        else
+        {
+            if (activityType == NULL)
+            {
+                NSLog(@"User dismissed the view controller without making a selection.");
+            } else
+            {
+                NSLog(@"Activity was not performed.");
+            }
+        }
+    };
+    
 }
 
 

@@ -61,7 +61,7 @@
         mp3URL = [NSURL fileURLWithPath:path];
         m_AudioPlayerCorrect = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3URL error:nil];
         
-        NSLog(@"%@", path);
+        //NSLog(@"%@", path);
     }
     
     
@@ -84,7 +84,7 @@
     if ([[Configuration GetSingleton] GetIsMute])
         return;
     
-    NSLog(@"Play click button");
+    //NSLog(@"Play click button");
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
@@ -92,11 +92,11 @@
     
     if([m_AudioPlayerClickButton play])
     {
-        NSLog(@"Play success");
+       // NSLog(@"Play success");
     }
     else
     {
-        NSLog(@"Play fail!");
+        //NSLog(@"Play fail!");
     }
     
 }
@@ -111,7 +111,7 @@
     if ([[Configuration GetSingleton] GetIsMute])
         return;
     
-    NSLog(@"PlaySoundGameOver");
+    //NSLog(@"PlaySoundGameOver");
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [m_AudioPlayerGameOver prepareToPlay];

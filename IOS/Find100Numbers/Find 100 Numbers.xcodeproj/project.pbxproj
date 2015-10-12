@@ -15,10 +15,10 @@
 		AF4C672A1ACE3991007FF5BF /* btn_home.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C671D1ACE3991007FF5BF /* btn_home.png */; };
 		AF4C672B1ACE3991007FF5BF /* btn_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C671E1ACE3991007FF5BF /* btn_mute.png */; };
 		AF4C672F1ACE3991007FF5BF /* btn_unmute.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67221ACE3991007FF5BF /* btn_unmute.png */; };
-		AF4C67311ACE3DA6007FF5BF /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67301ACE3DA6007FF5BF /* btn_back.png */; };
 		AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */; };
 		AF4C67351ACE95F8007FF5BF /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67341ACE95F8007FF5BF /* data.plist */; };
 		AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */; };
+		AF682F9C1BC8204100B0FF21 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = AF682F9B1BC8204100B0FF21 /* btn_back.png */; settings = {ASSET_TAGS = (); }; };
 		AF91D1E11ACC4785009A1B12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E01ACC4785009A1B12 /* main.m */; };
 		AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E31ACC4785009A1B12 /* AppDelegate.m */; };
 		AF91D1E71ACC4785009A1B12 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E61ACC4785009A1B12 /* HomeViewController.m */; };
@@ -28,9 +28,10 @@
 		AF91D1FB1ACC4785009A1B12 /* _00NumbersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1FA1ACC4785009A1B12 /* _00NumbersTests.m */; };
 		AF91D2061ACC5B77009A1B12 /* SinglePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D2051ACC5B77009A1B12 /* SinglePlayerViewController.m */; };
 		AF91D2091ACC5BB2009A1B12 /* TwoPalyersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */; };
-		AF91D20C1ACC5BD0009A1B12 /* SingleResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */; };
+		AF91D20C1ACC5BD0009A1B12 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20B1ACC5BD0009A1B12 /* GameOverViewController.m */; };
 		AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */; };
-		AFA982B61AD4E9570089FA53 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */; };
+		AFC4E1181BC6D87600CE197A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */; settings = {ASSET_TAGS = (); }; };
+		AFC4E11C1BC6DFAE00CE197A /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4E11B1BC6DFAE00CE197A /* GCViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDFB4411ACCF3130007C5A9 /* SoundController.m */; };
 		AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4441ACCF8570007C5A9 /* click.mp3 */; };
 		AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4451ACCF8570007C5A9 /* congratulation.mp3 */; };
@@ -69,11 +70,11 @@
 		AF4C671D1ACE3991007FF5BF /* btn_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_home.png; sourceTree = "<group>"; };
 		AF4C671E1ACE3991007FF5BF /* btn_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_mute.png; sourceTree = "<group>"; };
 		AF4C67221ACE3991007FF5BF /* btn_unmute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_unmute.png; sourceTree = "<group>"; };
-		AF4C67301ACE3DA6007FF5BF /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
 		AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_statistics.png; sourceTree = "<group>"; };
 		AF4C67341ACE95F8007FF5BF /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AF682F9B1BC8204100B0FF21 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
 		AF8495781ADA53600034B061 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		AF91D1DB1ACC4785009A1B12 /* Find 100 Numbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find 100 Numbers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF91D1DF1ACC4785009A1B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,11 +93,13 @@
 		AF91D2051ACC5B77009A1B12 /* SinglePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerViewController.m; sourceTree = "<group>"; };
 		AF91D2071ACC5BB2009A1B12 /* TwoPalyersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPalyersViewController.h; sourceTree = "<group>"; };
 		AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoPalyersViewController.m; sourceTree = "<group>"; };
-		AF91D20A1ACC5BD0009A1B12 /* SingleResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleResultViewController.h; sourceTree = "<group>"; };
-		AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleResultViewController.m; sourceTree = "<group>"; };
+		AF91D20A1ACC5BD0009A1B12 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
+		AF91D20B1ACC5BD0009A1B12 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		AF91D20D1ACC5BEF009A1B12 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		AFC4E11A1BC6DFAE00CE197A /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
+		AFC4E11B1BC6DFAE00CE197A /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		AFDFB4401ACCF3130007C5A9 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
 		AFDFB4411ACCF3130007C5A9 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
 		AFDFB4441ACCF8570007C5A9 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
@@ -120,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA982B61AD4E9570089FA53 /* GoogleMobileAds.framework in Frameworks */,
+				AFC4E1181BC6D87600CE197A /* GoogleMobileAds.framework in Frameworks */,
 				AF3A8D4A1B5ACA9A00127415 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +141,9 @@
 		AF91D1D21ACC4785009A1B12 = {
 			isa = PBXGroup;
 			children = (
+				AFC4E1191BC6D87D00CE197A /* Framework */,
 				AF15B3BF1B69511A003EE354 /* Default-568h@2x.png */,
 				AF3A8D491B5ACA9A00127415 /* GameKit.framework */,
-				AFA982B51AD4E9570089FA53 /* GoogleMobileAds.framework */,
 				AF91D1DD1ACC4785009A1B12 /* 100Numbers */,
 				AF91D1F71ACC4785009A1B12 /* 100NumbersTests */,
 				AF91D1DC1ACC4785009A1B12 /* Products */,
@@ -169,8 +172,8 @@
 				AF91D1E61ACC4785009A1B12 /* HomeViewController.m */,
 				AF91D2041ACC5B77009A1B12 /* SinglePlayerViewController.h */,
 				AF91D2051ACC5B77009A1B12 /* SinglePlayerViewController.m */,
-				AF91D20A1ACC5BD0009A1B12 /* SingleResultViewController.h */,
-				AF91D20B1ACC5BD0009A1B12 /* SingleResultViewController.m */,
+				AF91D20A1ACC5BD0009A1B12 /* GameOverViewController.h */,
+				AF91D20B1ACC5BD0009A1B12 /* GameOverViewController.m */,
 				AF91D2071ACC5BB2009A1B12 /* TwoPalyersViewController.h */,
 				AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */,
 				AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */,
@@ -185,6 +188,8 @@
 				AF8495781ADA53600034B061 /* Define.h */,
 				AF02685D1ADAD02A00D5ACAB /* GADMasterViewController.h */,
 				AF02685E1ADAD02A00D5ACAB /* GADMasterViewController.m */,
+				AFC4E11A1BC6DFAE00CE197A /* GCViewController.h */,
+				AFC4E11B1BC6DFAE00CE197A /* GCViewController.m */,
 			);
 			path = 100Numbers;
 			sourceTree = "<group>";
@@ -218,6 +223,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AFC4E1191BC6D87D00CE197A /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		AFDFB4431ACCF8570007C5A9 /* audios */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +254,7 @@
 		AFDFB44D1ACCF8570007C5A9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AF682F9B1BC8204100B0FF21 /* btn_back.png */,
 				AFE2717D1B64D54B0050C6C3 /* btn_gamecenter_pressed.png */,
 				AFE2717E1B64D54B0050C6C3 /* btn_rate_pressed.png */,
 				AFE2717B1B64D35B0050C6C3 /* btn_play2_pressed.png */,
@@ -250,7 +264,6 @@
 				AFE271731B64C2420050C6C3 /* btn_play2.png */,
 				AFE271711B64BF430050C6C3 /* btn_play1.png */,
 				AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */,
-				AF4C67301ACE3DA6007FF5BF /* btn_back.png */,
 				AF4C67161ACE3991007FF5BF /* btn_about.png */,
 				AF4C671D1ACE3991007FF5BF /* btn_home.png */,
 				AF4C671E1ACE3991007FF5BF /* btn_mute.png */,
@@ -354,6 +367,7 @@
 				AF91D1EA1ACC4785009A1B12 /* Main.storyboard in Resources */,
 				AF4C67351ACE95F8007FF5BF /* data.plist in Resources */,
 				AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */,
+				AF682F9C1BC8204100B0FF21 /* btn_back.png in Resources */,
 				AF4C672B1ACE3991007FF5BF /* btn_mute.png in Resources */,
 				AFDFB4521ACCF8570007C5A9 /* LaunchScreen.xib in Resources */,
 				AFE271801B64D54B0050C6C3 /* btn_rate_pressed.png in Resources */,
@@ -361,7 +375,6 @@
 				AF4C67231ACE3991007FF5BF /* btn_about.png in Resources */,
 				AF91D1EF1ACC4785009A1B12 /* LaunchScreen.xib in Resources */,
 				AFE271781B64C4A40050C6C3 /* btn_gamecenter.png in Resources */,
-				AF4C67311ACE3DA6007FF5BF /* btn_back.png in Resources */,
 				AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */,
 				AFE271761B64C4960050C6C3 /* btn_rate.png in Resources */,
 				AFDFB4531ACCF8570007C5A9 /* Main.storyboard in Resources */,
@@ -390,13 +403,14 @@
 				AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */,
 				AF91D1E71ACC4785009A1B12 /* HomeViewController.m in Sources */,
 				AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */,
-				AF91D20C1ACC5BD0009A1B12 /* SingleResultViewController.m in Sources */,
+				AF91D20C1ACC5BD0009A1B12 /* GameOverViewController.m in Sources */,
 				AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */,
 				AF02685F1ADAD02A00D5ACAB /* GADMasterViewController.m in Sources */,
 				AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */,
 				AF91D1E11ACC4785009A1B12 /* main.m in Sources */,
 				AF91D2061ACC5B77009A1B12 /* SinglePlayerViewController.m in Sources */,
 				AF91D2091ACC5BB2009A1B12 /* TwoPalyersViewController.m in Sources */,
+				AFC4E11C1BC6DFAE00CE197A /* GCViewController.m in Sources */,
 				AF3A8D481B5A230400127415 /* Configuration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,14 +514,16 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "Find 100 Numbers";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -617,14 +633,16 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "Find 100 Numbers";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -638,13 +656,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "Find 100 Numbers";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

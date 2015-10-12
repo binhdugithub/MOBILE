@@ -6,19 +6,9 @@
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 #import "HomeViewController.h"
-#import "SoundController.h"
-#import "Configuration.h"
-#import "SinglePlayerViewController.h"
-#import "GADMasterViewController.h"
-///#import "Define.h"
-
-
 
 @interface HomeViewController ()
 
--(void)authenticateLocalPlayer;
--(void)reportScore;
-//-(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
 
 @property (weak, nonatomic) IBOutlet UILabel *m_UILabel100;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonSpeaker;
@@ -35,6 +25,7 @@
 @end
 
 @implementation HomeViewController
+
 @synthesize m_UIButtonSpeaker, m_UIButtonAbout;
 @synthesize m_UIButton1Player,m_UIButton2Players;
 @synthesize m_UIlabelCopyright, m_UIViewFooter, m_UIViewHeader;
@@ -44,12 +35,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"*******************HomeViewController*******************");
+    
     [self CalculateView];
     [self ShowSpeaker];
 
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
+    [[GCViewController GetSingleton] AuthenticateLocalPlayer];
     
-    [self AuthenticateLocalPlayer];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,19 +55,27 @@
 
 -(void)CalculateView
 {
-    CGFloat W = [UIScreen mainScreen].bounds.size.width;
-    CGFloat H = [UIScreen mainScreen].bounds.size.height;
-    
-   // printf("\nW: %f H: %f", W, H);
-    //1 bacground
-    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
+    //CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat H = [UIScreen mainScreen].bounds.size.height;
+   
     //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
 
     // header
     CGRect frm_header;
-    frm_header.size.width = W;
-    frm_header.size.height = 50;
+    frm_header.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 400)
+    {
+       frm_header.size.height = 32;
+    }
+    else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
+    {
+        frm_header.size.height = 50;
+    }else if(SCREEN_HEIGHT > 720)
+    {
+        frm_header.size.height = 90;
+    }
+    
     frm_header.origin.x = 0;
     frm_header.origin.y = 0;
     m_UIViewHeader.frame = frm_header;
@@ -81,19 +83,14 @@
     
     //2 Player
     CGRect frm = m_UIButton2Players.frame;
-    frm.size.height = H_BTNPLAY * H;
+    frm.size.height = H_BTNPLAY * SCREEN_HEIGHT;
     frm.size.width = 2 * frm.size.height;
     
-    frm.origin.x = (W - frm.size.width ) /2.0;
-    frm.origin.y = 1.0/2 * H ;
+    frm.origin.x = (SCREEN_WIDTH - frm.size.width ) /2.0;
+    frm.origin.y = 1.0/2 * SCREEN_HEIGHT ;
     m_UIButton2Players.frame = frm;
     m_UIButton2Players.layer.cornerRadius = 10;
-    //[m_UIButton2Players setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    //m_UIButton2Players.layer.borderColor = [UIColor whiteColor].CGColor;
-    //m_UIButton2Players.layer.borderWidth = 2.0f;
-    //[m_UIButton2Players setBackgroundColor:[UIColor whiteColor]];
-    //m_UIButton2Players.titleLabel.font = [UIFont systemFontOfSize:20 weight:1];
-    //[m_UIButton2Players setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+   
     [m_UIButton2Players setBackgroundColor:[UIColor clearColor]];
     [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2.png"] forState:UIControlStateNormal];
     [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2_pressed.png"] forState:UIControlStateHighlighted];
@@ -104,9 +101,7 @@
     frm2.origin.y = frm2.origin.y - 1.0/4 * frm2.size.height - frm2.size.height;
     m_UIButton1Player.frame = frm2;
     m_UIButton1Player.layer.cornerRadius = 10;
-    //[m_UIButton1Player setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
-    //m_UIButton1Player.layer.borderColor = [UIColor whiteColor].CGColor;
-    //m_UIButton1Player.layer.borderWidth = 2.0f;
+   
     [m_UIButton1Player setBackgroundColor:[UIColor clearColor]];
     [m_UIButton1Player setBackgroundImage:[UIImage imageNamed:@"btn_play1.png"] forState:UIControlStateNormal];
     [m_UIButton1Player setBackgroundImage:[UIImage imageNamed:@"btn_play1_pressed.png"] forState:UIControlStateHighlighted];
@@ -116,24 +111,29 @@
     frm.origin.y = frm.origin.y - frm.size.height;
     m_UILabel100.frame = frm;
     m_UILabel100.hidden = TRUE;
+    
     //Footer
     frm = m_UIViewFooter.frame;
-    frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 400){frm.size.height = 32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){frm.size.height = 50;}else if(SCREEN_HEIGHT > 720){frm.size.height = 90;};
+    
+    NSLog(@"Size h: %f", frm.size.height);
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
+    frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewFooter.frame = frm;
+    m_UIViewFooter.backgroundColor = [UIColor clearColor];
     
     //Copyrith
-    frm.size.height =  H_FOOTER * H * 1.0/2;
+    frm = m_UIViewFooter.frame;
     frm.origin.x = 0;
-    frm.origin.y =  H_FOOTER * H * 1.0/2;
+    frm.origin.y =  0;
     m_UIlabelCopyright.frame = frm;
+    [m_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
 
     
     // About
     frm = m_UIButtonAbout.frame;
-    frm.size.width = W_ICON* W;
+    frm.size.width = W_ICON* SCREEN_WIDTH;
     frm.size.height = frm.size.width;
     frm.origin.x = m_UIButton2Players.frame.origin.x;
     frm.origin.y = m_UIViewFooter.frame.origin.y  - 2 * frm.size.height;
@@ -208,69 +208,10 @@
     [self ShowSpeaker];
 }
 
--(void)AuthenticateLocalPlayer
-{
-    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    
-    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error)
-    {
-        if (viewController != nil)
-        {
-            [self presentViewController:viewController animated:YES completion:nil];
-            NSLog(@"Present view controller to authenticate leaderboar");
-        }
-        else
-        {
-            if ([GKLocalPlayer localPlayer].authenticated)
-            {
-                m_GameCenterEnabled = YES;
-                
-                // Get the default leaderboard identifier.
-                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error)
-                {
-                    
-                    if (error != nil)
-                    {
-                        NSLog(@"%@", [error localizedDescription]);
-                    }
-                    else
-                    {
-                        m_LeaderboardIdentifier = leaderboardIdentifier;
-                        [[Configuration GetSingleton] SetLeaderboardIdentifier:leaderboardIdentifier];
-                        NSLog(@"Authen with: %@", leaderboardIdentifier);
-                    }
-                }];
-            }
-            else
-            {
-                m_GameCenterEnabled = NO;
-                
-                NSLog(@"Not yet authenticatelocalplayer");
-            }
-        }
-    };
-}
-
--(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
-{
-    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)GameCenter:(id)sender
 {
-    
     [[SoundController GetSingleton] PlayClickButton];
-    
-     GKGameCenterViewController *GameCenterController = [[GKGameCenterViewController alloc] init];
-     if (GameCenterController != nil)
-     {
-         GameCenterController.gameCenterDelegate = self;
-         //The next three lines are the lines of interest...
-         GameCenterController.viewState = GKGameCenterViewControllerStateDefault;
-         GameCenterController.leaderboardTimeScope = GKLeaderboardTimeScopeToday;
-         GameCenterController.leaderboardCategory = m_LeaderboardIdentifier;
-         [self presentViewController:GameCenterController animated:YES completion:nil];
-     }
+    [self presentViewController:[[GCViewController GetSingleton] GetGCView] animated:YES completion:nil];
 }
 
 
@@ -300,6 +241,10 @@
 }
 
 
+- (BOOL) prefersStatusBarHidden
+{
+    return YES;
+}
 
 
 #pragma mark - Navigation

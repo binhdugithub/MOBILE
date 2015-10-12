@@ -8,30 +8,10 @@
 
 #import "Configuration.h"
 #import "Define.h"
-#import <GameKit/GameKit.h>
 
 @implementation Configuration
 
--(void)reportScore
-{
-    if(m_LeaderboardIdentifier != nil)
-    {
-        GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:m_LeaderboardIdentifier];
-        score.value = m_BestScore;
 
-        [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error)
-         {
-             if (error != nil)
-             {
-                 NSLog(@"%@", [error localizedDescription]);
-             }
-         }];
-    }
-    else
-    {
-        NSLog(@"LeaderBoard failed");
-    }
-}
 
 +(instancetype) GetSingleton
 {
@@ -213,9 +193,7 @@
         }
         
         NSLog(@"Report score");
-        [self reportScore];
-        
-        
+        //[self reportScore];
         [dicData writeToFile:pathData atomically:YES];
     }
     else
@@ -258,9 +236,50 @@
 };
 
 
-- (void) SetLeaderboardIdentifier : (NSString*) p_leaderboard
+- (UIImage*) TakeScreenshot
 {
-    m_LeaderboardIdentifier = p_leaderboard;
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != UIGraphicsBeginImageContextWithOptions)
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    else
+        UIGraphicsBeginImageContext(imageSize);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Iterate over every window from back to front
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
+        {
+            // -renderInContext: renders in the coordinate space of the layer,
+            // so we must first apply the layer's geometry to the graphics context
+            CGContextSaveGState(context);
+            // Center the context around the window's anchor point
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            // Apply the window's transform about the anchor point
+            CGContextConcatCTM(context, [window transform]);
+            // Offset by the portion of the bounds left of and above the anchor point
+            CGContextTranslateCTM(context,
+                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
+                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
+            
+            // Render the layer hierarchy to the current context
+            [[window layer] renderInContext:context];
+            
+            // Restore the context
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    // Retrieve the screenshot image
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
+    
+    return screenImage;
+    
 }
 
 

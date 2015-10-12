@@ -34,14 +34,14 @@
 {
     [super viewDidLoad];
     [self CalculateView];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
 }
 
 
 -(void)CalculateView
 {
-    CGFloat W = [UIScreen mainScreen].bounds.size.width;
-    CGFloat H = [UIScreen mainScreen].bounds.size.height;
+    //CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat H = [UIScreen mainScreen].bounds.size.height;
     
     //1 bacground
     
@@ -51,15 +51,15 @@
     
     // home
     CGRect frm = m_UIButtonHome.frame;
-    frm.size.width = W_ICON * W;
+    frm.size.width = W_ICON * SCREEN_WIDTH;
     frm.size.height = frm.size.width;
-    frm.origin.x = W - frm.size.width - 1.0/4 * frm.size.width;
+    frm.origin.x = SCREEN_WIDTH - frm.size.width - 1.0/4 * frm.size.width;
     frm.origin.y = 1.0/4 * frm.size.height;
     m_UIButtonHome.frame =frm;
     
     // header
     frm = m_UIViewHeader.frame;
-    frm.size.width = W;
+    frm.size.width = SCREEN_WIDTH;
     frm.size.height = 3.0/2 * m_UIButtonHome.frame.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
@@ -74,8 +74,8 @@
     
     //3 mUITextView
     frm = mUITextView.frame;
-    frm.size.width = W - m_UIButtonHome.frame.size.width;
-    frm.size.height = H - 1.0/6 * H - m_UIViewHeader.frame.size.height - 1.0/2 * m_UIButtonHome.frame.size.height;
+    frm.size.width = SCREEN_WIDTH - m_UIButtonHome.frame.size.width;
+    frm.size.height = SCREEN_HEIGHT - 1.0/6 * SCREEN_HEIGHT - m_UIViewHeader.frame.size.height - 1.0/2 * m_UIButtonHome.frame.size.height;
     frm.origin.x = 1.0/2 * m_UIButtonHome.frame.size.width;
     frm.origin.y =m_UIViewHeader.frame.origin.y + m_UIViewHeader.frame.size.height +  1.0/2 * m_UIButtonHome.frame.size.height;
     mUITextView.frame = frm;
@@ -83,10 +83,10 @@
     
     //5 Footer
     frm = m_UIViewFooter.frame;
-    frm.size.width = W;
-    frm.size.height = H_FOOTER * H;
+    frm.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 400){frm.size.height = 32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){frm.size.height = 50;}else if(SCREEN_HEIGHT > 72){frm.size.height = 90;};
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
+    frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewFooter.frame = frm;
     
     //Copyrith

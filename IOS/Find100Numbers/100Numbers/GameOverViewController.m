@@ -5,13 +5,17 @@
 //  Created by Binh Du  on 4/2/15.
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
-#import "SingleResultViewController.h"
+#import <Social/Social.h>
+#import "GameOverViewController.h"
 #import "SinglePlayerViewController.h"
 #import "StatisticsViewController.h"
+#import "GADMasterViewController.h"
+#import "SoundController.h"
+#import "Configuration.h"
 #include "Define.h"
 
 
-@interface SingleResultViewController ()
+@interface GameOverViewController ()
 {
     NSMutableArray *m_Array100Number;
     NSInteger m_CurrentNumber;
@@ -37,7 +41,7 @@
 
 @end
 
-@implementation SingleResultViewController
+@implementation GameOverViewController
 @synthesize m_UIButtonBack, m_UIViewFooter,m_UIButtonHome,m_UIButtonPlayAgain,
 m_UIButtonShareScore, m_UIButtonStatistics, m_UILabelCopyright,
 m_UILabelScore, m_UILabelTitle, m_UILabelYourScore,
@@ -47,15 +51,34 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self CalculateView];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
-    [[GADMasterViewController singleton] resetAdInterstitialView:self];
+    NSLog(@"*******************SinglePlayerViewController*******************");
     
+    [self CalculateView];
     [m_UILabelScore setText:[NSString stringWithFormat:@"%li / 100", (long)m_CurrentNumber]];
     
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+     NSLog(@"1");
+    [super viewDidAppear:animated];
+    
+    [[GADMasterViewController GetSingleton] ResetAdInterstitialView:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"2");
+    [super viewWillAppear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 -(void)CalculateView
 {
@@ -140,55 +163,74 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
     frm.origin.y = 0;
     m_UIButtonPlayAgain.frame = frm;
     m_UIButtonPlayAgain.layer.cornerRadius = 10;
-    m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    //m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    if (IS_IPAD)
+    {
+        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    else
+    {
+        m_UIButtonPlayAgain.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
     [m_UIButtonPlayAgain setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    [m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    //[m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonPlayAgain setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonPlayAgain setTitle:[NSString stringWithFormat:@"PLAY AGAIN"] forState:UIControlStateNormal];
    
     //statistics
     frm.origin.y = m_UIButtonPlayAgain.frame.origin.y + m_UIButtonPlayAgain.frame.size.height + 1.0/4 * m_UIButtonPlayAgain.frame.size.height;
     m_UIButtonStatistics.frame = frm;
     m_UIButtonStatistics.layer.cornerRadius = 10;
-    m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    if (IS_IPAD)
+    {
+        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    else
+    {
+        m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
+    //m_UIButtonStatistics.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
     [m_UIButtonStatistics setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    [m_UIButtonStatistics setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    //[m_UIButtonStatistics setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonStatistics setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonStatistics setTitle:[NSString stringWithFormat:@"STATISTICS"] forState:UIControlStateNormal];
     
     //share score
     frm.origin.y = m_UIButtonStatistics.frame.origin.y + m_UIButtonStatistics.frame.size.height + 1.0/4 *m_UIButtonPlayAgain.frame.size.height;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
-    m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    //m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    if (IS_IPAD)
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    else
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
     [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    //[m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonShareScore setTitle:[NSString stringWithFormat:@"SHARE"] forState:UIControlStateNormal];
     
     
-    //5 Footer
+    //Footer
     frm = m_UIViewFooter.frame;
-    frm.size.width = W;
-    frm.size.height = 50;
+    frm.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 400){frm.size.height = 32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){frm.size.height = 50;}else if(SCREEN_HEIGHT > 720){frm.size.height = 90;};
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
+    frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewFooter.frame = frm;
+    m_UIViewFooter.backgroundColor = [UIColor clearColor];
     
     //Copyrith
-    frm.size.height =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm = m_UIViewFooter.frame;
     frm.origin.x = 0;
-    frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm.origin.y =  0;
     m_UILabelCopyright.frame = frm;
+    [m_UILabelCopyright setTextColor:[UIColor darkGrayColor]];
+
     
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -216,43 +258,69 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 
 - (IBAction)ShareScoreClick:(id)sender
 {
+//    [[SoundController GetSingleton] PlayClickButton];
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+//    {
+//        SLComposeViewController *fbSheet = [SLComposeViewController
+//                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
+//        [fbSheet setInitialText:@"#Find 100 Numbers"];
+//        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+//        //[fbSheet addURL:[NSURL URLWithString:l_url]];
+//        [fbSheet addImage:[self takeScreenshot]];
+//        [self presentViewController:fbSheet animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        NSString *title = @"No Facebook Account" ;
+//        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
+//        NSString *titleCancel = @"Cancel";
+//        NSString *titleSetting   = @"Setting";
+//        
+//        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+//        //if (canOpenSettings) {
+//        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+//            //alert.tag = 1000;
+//            [alert show];
+//        }
+//        else
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+//            alert.tag = 1000;
+//            [alert show];
+//        }
+//        
+//    }
+    
+    
     [[SoundController GetSingleton] PlayClickButton];
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    NSString * message = @"#Find 100 Numbers";
+    UIImage * image = [[Configuration GetSingleton] TakeScreenshot];
+    
+    NSArray * shareItems = @[message, image];
+    UIActivityViewController * ActivityVC = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+    ActivityVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    ActivityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+    [self presentViewController:ActivityVC animated:YES completion:nil];
+    
+    ActivityVC.completionHandler = ^(NSString *activityType, BOOL completed)
     {
-        SLComposeViewController *fbSheet = [SLComposeViewController
-                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
-        //[fbSheet setInitialText:@"Help me! in #Find 100 Numbers"];
-        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        //[fbSheet addURL:[NSURL URLWithString:l_url]];
-        [fbSheet addImage:[self takeScreenshot]];
-        
-        
-        [self presentViewController:fbSheet animated:YES completion:nil];
-    }
-    else
-    {
-        NSString *title = @"No Facebook Account" ;
-        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
-        NSString *titleCancel = @"Cancel";
-        NSString *titleSetting   = @"Setting";
-        
-        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
-        //if (canOpenSettings) {
-        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+        if (completed)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            //alert.tag = 1000;
-            [alert show];
+             NSLog(@"Selected activity was performed.");
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            alert.tag = 1000;
-            [alert show];
+            if (activityType == NULL)
+            {
+                   NSLog(@"User dismissed the view controller without making a selection.");
+            } else
+            {
+                    NSLog(@"Activity was not performed.");
+            }
         }
-        
-    }
-    
+    };
 }
 
 

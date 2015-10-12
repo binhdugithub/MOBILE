@@ -82,22 +82,22 @@ enum
 {
     [super viewDidLoad];
     [self CalculateView];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     [self ShowSpeaker];
     m_Sate = READY0;
     m_CurrentNumber = 1;
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 -(void)CalculateView
 {
-    CGFloat W = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat W = [UIScreen mainScreen].bounds.size.width;
     CGFloat H = [UIScreen mainScreen].bounds.size.height;
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
     CGFloat h = w;
@@ -107,10 +107,21 @@ enum
     
     //Advertisement
     CGRect frm;
-    frm.size.width = W;
-    frm.size.height = 50;
+    frm.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 4000)
+    {
+        frm.size.height = 32;
+    }
+    else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
+    {
+        frm.size.height = 50;
+    }else if(SCREEN_HEIGHT > 720)
+    {
+        frm.size.height = 90;
+    };
+    
     frm.origin.x = 0;
-    frm.origin.y = 1.0/2*(H - frm.size.height);
+    frm.origin.y = 1.0/2*(SCREEN_HEIGHT - frm.size.height);
     m_UIViewFooter.frame = frm;
     
     //coptyright
@@ -127,28 +138,49 @@ enum
     
     //view 1->50
     frm = m_UIView1to50.frame;
-    frm.size.width = W;
-    frm.size.height = 1.0/2 * W;
+    frm.size.width = SCREEN_WIDTH;
+    frm.size.height = 1.0/2 * SCREEN_WIDTH;
     frm.origin.x = 0;
-    frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/2 * w;
+    if(IS_IPHONE_4_OR_LESS || IS_IPAD)
+    {
+        frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/4 * w;
+    }
+    else
+    {
+        frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/2 * w;
+    }
+    
     m_UIView1to50.frame = frm;
     
     //view 51 -> 100
     frm = m_UIView1to50.frame;
-    frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/2 * w;
+    
+    if(IS_IPHONE_4_OR_LESS || IS_IPAD)
+    {
+        frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/4 * w;
+    }
+    else
+    {
+        frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/2 * w;
+    }
     m_UIView51to100.frame = frm;
     
     //
     //Group 1
     //
-    frm.size.width = W;
-    frm.size.height = H - (m_UIView1to50.frame.origin.y + m_UIView1to50.frame.size.height);
+    frm.size.width = SCREEN_WIDTH;
+    frm.size.height = SCREEN_HEIGHT - (m_UIView1to50.frame.origin.y + m_UIView1to50.frame.size.height);
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
+    frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewGroup1.frame = frm;
     
     //speaker1
-    frm.size.width = W_ICON * W;
+    frm.size.width = W_ICON * SCREEN_WIDTH;
+    if (IS_IPHONE_4_OR_LESS  || IS_IPAD)
+    {
+        frm.size.width -= 5;
+    }
+    
     frm.size.height = frm.size.width;
     frm.origin.x = 1.0/4 * frm.size.width;
     frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
@@ -169,8 +201,20 @@ enum
     m_UIButtonReady1.layer.cornerRadius = 10;
     [m_UIButtonReady1 setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
-    m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
-    [m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+    }
+    else if(IS_IPAD)
+    {
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
+    else
+    {
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    //[m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonReady1 setTitle:[NSString stringWithFormat:@"READY"] forState:UIControlStateNormal];
     
     //
@@ -194,8 +238,19 @@ enum
     m_UIButtonReady2.layer.cornerRadius = 10;
     [m_UIButtonReady2 setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
     
-    m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
-    [m_UIButtonReady2 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+    }else if(IS_IPAD)
+    {
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }else
+    {
+        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    //m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    //[m_UIButtonReady2 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonReady2 setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonReady2 setTitle:[NSString stringWithFormat:@"READY"] forState:UIControlStateNormal];
     
     m_UIButtonReady2.layer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);

@@ -6,9 +6,13 @@
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
+#import <Social/Social.h>
 #import "StatisticsViewController.h"
 #import "SoundController.h"
 #import "SinglePlayerViewController.h"
+#import "GADMasterViewController.h"
+#import "SoundController.h"
+#import "Configuration.h"
 #import "Define.h"
 
 @interface StatisticsViewController ()
@@ -56,9 +60,7 @@ m_UIViewHeader, m_UIViewOverall;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [[GADMasterViewController singleton] resetAdInterstitialView:self];
-    
+   
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -66,9 +68,7 @@ m_UIViewHeader, m_UIViewOverall;
     [super viewWillAppear:animated];
     [self LoadData];
     [self CalculateView];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
-    
-    
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
 }
 
 - (void)didReceiveMemoryWarning
@@ -189,7 +189,7 @@ m_UIViewHeader, m_UIViewOverall;
     frm.origin.y = m_UIViewOverall.frame.origin.y + m_UIViewOverall.frame.size.height + 1.0/2 * m_UIButtonBack.frame.size.height;
     m_UIView2Buttons.frame = frm;
     
-    //play clear score
+    //clear score
     frm = m_UIView2Buttons.frame;
     frm.size.width = 1.0/2 * (m_UIView2Buttons.frame.size.width - 1.0/16*m_UIView2Buttons.frame.size.width);
     frm.origin.x = 0;
@@ -197,8 +197,16 @@ m_UIViewHeader, m_UIViewOverall;
     m_UIButtonClearScore.frame = frm;
     m_UIButtonClearScore.layer.cornerRadius = 10;
     [m_UIButtonClearScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
-    [m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    
+    if (IS_IPAD)
+    {
+        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    else{
+        m_UIButtonClearScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
+    //[m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonClearScore setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonClearScore setTitle:[NSString stringWithFormat:@"CLEAR"] forState:UIControlStateNormal];
     
     //share score
@@ -207,23 +215,33 @@ m_UIViewHeader, m_UIViewOverall;
     m_UIButtonShareScore.frame = frm;
     m_UIButtonShareScore.layer.cornerRadius = 10;
     [m_UIButtonShareScore setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
-    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    if (IS_IPAD)
+    {
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+    }
+    else{
+        m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    }
+    //m_UIButtonShareScore.titleLabel.font = [UIFont systemFontOfSize:15 weight:1];
+    //[m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
+    [m_UIButtonShareScore setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonShareScore setTitle:[NSString stringWithFormat:@"SHARE"] forState:UIControlStateNormal];
     
-    //5 Footer
+    //Footer
     frm = m_UIViewFooter.frame;
-    frm.size.width = W;
-    frm.size.height = 50;
+    frm.size.width = SCREEN_WIDTH;
+    if(SCREEN_HEIGHT <= 400){frm.size.height = 32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){frm.size.height = 50;}else if(SCREEN_HEIGHT > 72){frm.size.height = 90;};
     frm.origin.x = 0;
-    frm.origin.y = H - frm.size.height;
+    frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewFooter.frame = frm;
+    m_UIViewFooter.backgroundColor = [UIColor clearColor];
     
     //Copyrith
-    frm.size.height =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm = m_UIViewFooter.frame;
     frm.origin.x = 0;
-    frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm.origin.y =  0;
     m_UILabelCopyright.frame = frm;
+    [m_UILabelCopyright setTextColor:[UIColor darkGrayColor]];
     
     
 }
@@ -269,41 +287,69 @@ m_UIViewHeader, m_UIViewOverall;
 
 - (IBAction)ShareFacebook:(id)sender
 {
+//    [[SoundController GetSingleton] PlayClickButton];
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+//    {
+//        SLComposeViewController *fbSheet = [SLComposeViewController
+//                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
+//        [fbSheet setInitialText:@"#Find 100 Numbers"];
+//        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
+//        //[fbSheet addURL:[NSURL URLWithString:l_url]];
+//        [fbSheet addImage:[self takeScreenshot]];
+//        [self presentViewController:fbSheet animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        NSString *title = @"No Facebook Account" ;
+//        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
+//        NSString *titleCancel = @"CANCEL";
+//        NSString *titleSetting   = @"SETTING";
+//        
+//        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+//        //if (canOpenSettings) {
+//        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+//            //alert.tag = 1000;
+//            [alert show];
+//        }
+//        else
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
+//            alert.tag = 1000;
+//            [alert show];
+//        }
+//        
+//    }
+    
     [[SoundController GetSingleton] PlayClickButton];
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    NSString * message = @"#Find 100 Numbers";
+    UIImage * image = [[Configuration GetSingleton] TakeScreenshot];
+    
+    NSArray * shareItems = @[message, image];
+    UIActivityViewController * ActivityVC = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+    ActivityVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    ActivityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+    
+    [self presentViewController:ActivityVC animated:YES completion:nil];
+    
+    ActivityVC.completionHandler = ^(NSString *activityType, BOOL completed)
     {
-        SLComposeViewController *fbSheet = [SLComposeViewController
-                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
-        //[fbSheet setInitialText:@"It's my score in #Find 100 Numbers"];
-        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-        //[fbSheet addURL:[NSURL URLWithString:l_url]];
-        [fbSheet addImage:[self takeScreenshot]];
-        [self presentViewController:fbSheet animated:YES completion:nil];
-    }
-    else
-    {
-        NSString *title = @"No Facebook Account" ;
-        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
-        NSString *titleCancel = @"CANCEL";
-        NSString *titleSetting   = @"SETTING";
-        
-        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
-        //if (canOpenSettings) {
-        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+        if (completed)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            //alert.tag = 1000;
-            [alert show];
+            NSLog(@"Selected activity was performed.");
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-            alert.tag = 1000;
-            [alert show];
+            if (activityType == NULL)
+            {
+                NSLog(@"User dismissed the view controller without making a selection.");
+            } else
+            {
+                NSLog(@"Activity was not performed.");
+            }
         }
-        
-    }
-    
+    };
 }
 
 
@@ -323,52 +369,6 @@ m_UIViewHeader, m_UIViewOverall;
     }
 }
 
-
-- (UIImage*) takeScreenshot
-{
-    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    if (NULL != UIGraphicsBeginImageContextWithOptions)
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    else
-        UIGraphicsBeginImageContext(imageSize);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Iterate over every window from back to front
-    for (UIWindow *window in [[UIApplication sharedApplication] windows])
-    {
-        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
-        {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
-            CGContextSaveGState(context);
-            // Center the context around the window's anchor point
-            CGContextTranslateCTM(context, [window center].x, [window center].y);
-            // Apply the window's transform about the anchor point
-            CGContextConcatCTM(context, [window transform]);
-            // Offset by the portion of the bounds left of and above the anchor point
-            CGContextTranslateCTM(context,
-                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
-                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
-            
-            // Render the layer hierarchy to the current context
-            [[window layer] renderInContext:context];
-            
-            // Restore the context
-            CGContextRestoreGState(context);
-        }
-    }
-    
-    // Retrieve the screenshot image
-    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    //NSData *imageDataForEmail = UIImageJPEGRepresentation(imageForEmail, 1.0);
-    
-    return screenImage;
-    
-}
 
 - (void)SetArrayNumber: (NSMutableArray*) p_array
 {

@@ -9,12 +9,8 @@
 #ifndef _00Numbers_Define_h
 #define _00Numbers_Define_h
 
-#import "Configuration.h"
-#import "SoundController.h"
-#import <Social/Social.h>
-#import "GADMasterViewController.h"
 
-#define YOUR_APP_ID @"1024069435" //Find_100_Number.mobileprovision
+#define YOUR_APP_ID @"1048219569" //Find_100_Number.mobileprovision
 #define YOUR_LEADERBOARD_ID @"leaderboardf100"
 
 #define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/1666550849"
@@ -25,7 +21,7 @@
 
 #define TIME_MAX 300
 
-#define H_FOOTER 1.0/8
+//#define H_FOOTER (if(SCREEN_HEIGHT <= 400){32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){50;}else if(SCREEN_HEIGHT > 72){90;})
 
 #define W_ICON   1.0/15
 #define H_ICON   1.0/15

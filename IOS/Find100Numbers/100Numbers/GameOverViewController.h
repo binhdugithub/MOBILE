@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SingleResultViewController : UIViewController
+@interface GameOverViewController : UIViewController
 {
     
 }

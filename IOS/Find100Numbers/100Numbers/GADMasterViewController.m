@@ -10,12 +10,34 @@
 
 @implementation GADMasterViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
 +(GADMasterViewController *)GetSingleton
 {
     static dispatch_once_t pred;
     static GADMasterViewController *shared;
+    
     // Will only be run once, the first time this is called
-    dispatch_once(&pred, ^{
+    dispatch_once(&pred, ^
+    {
+        NSLog(@"GADMaster:GetSingeton");
         shared = [[GADMasterViewController alloc] init];
     });
     return shared;
@@ -24,118 +46,141 @@
 
 -(id)init
 {
+    NSLog(@"GADMaster:Init");
     if (self = [super init])
     {
-        adBanner_ = [[GADBannerView alloc]
-                     initWithFrame:CGRectMake(0.0,
-                                              0.0,
-                                              GAD_SIZE_320x50.width,
-                                              GAD_SIZE_320x50.height)];
-        // Has an ad request already been made
-        isLoaded_ = NO;
         
+//        if(SCREEN_HEIGHT <= 400)
+//        {
+//            m_Banner = [[GADBannerView alloc]
+//                        initWithFrame:CGRectMake(0.0,
+//                                                 0.0,
+//                                                 SCREEN_WIDTH,
+//                                                 32)];
+//            
+//            NSLog(@"vao 1");
+//        }
+//        else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
+//        {
+//            m_Banner = [[GADBannerView alloc]
+//                        initWithFrame:CGRectMake(0.0,
+//                                                 0.0,
+//                                                 SCREEN_WIDTH,
+//                                                 50)];
+//             NSLog(@"vao 2");
+//        }else if(SCREEN_HEIGHT > 720)
+//        {
+//            m_Banner = [[GADBannerView alloc]
+//                        initWithFrame:CGRectMake(0.0,
+//                                                 0.0,
+//                                                 SCREEN_WIDTH,
+//                                                 90)];
+//            
+//             NSLog(@"vao 3");
+//        }
+        
+        // Has an ad request already been made
+        m_Banner = [[GADBannerView alloc] init];
+        m_IsLoaded = NO;
         
         [self GetInterstitialAds];
     }
+    
+    
     return self;
 }
 
--(void)resetAdBannerView:(UIViewController *)rootViewController
-{
-    // Always keep track of currentDelegate for notification forwarding
-    currentDelegate_ = rootViewController;
-    // Ad already requested, simply add it into the view
-    if (isLoaded_)
-    {
-        [rootViewController.view addSubview:adBanner_];
-    }
-    else
-    {
-        
-        adBanner_.delegate = self;
-        adBanner_.rootViewController = rootViewController;
-        adBanner_.adUnitID = AMOD_BANNER_FOOTER_UNIT;
-        
-        GADRequest *request = [GADRequest request];
-        [adBanner_ loadRequest:request];
-        [rootViewController.view addSubview:adBanner_];
-        isLoaded_ = YES;
-    }
-}
 
--(void)resetAdBannerView:(UIViewController *)rootViewController AtFrame:(CGRect) frm
+-(void)resetAdBannerView:(UIViewController *)p_RootViewController AtFrame:(CGRect) frm
 {
-    // Always keep track of currentDelegate for notification forwarding
-    currentDelegate_ = rootViewController;
-    adBanner_.frame = frm;
+    NSLog(@"GADMaster:resetAdBannerView with frame:%f-%f", frm.size.width, frm.size.height);
+
+    m_Banner.frame = frm;
     
     // Ad already requested, simply add it into the view
-    if (isLoaded_)
+    if (m_IsLoaded)
     {
-        [rootViewController.view addSubview:adBanner_];
+        [p_RootViewController.view addSubview:m_Banner];
     }
     else
     {
-        adBanner_.delegate = self;
-        adBanner_.rootViewController = rootViewController;
-        adBanner_.adUnitID = AMOD_BANNER_FOOTER_UNIT;
+        m_Banner.delegate = self;
+        m_Banner.rootViewController = p_RootViewController;
+        m_Banner.adUnitID = AMOD_BANNER_FOOTER_UNIT;
         
         GADRequest *request = [GADRequest request];
-        [adBanner_ loadRequest:request];
-        [rootViewController.view addSubview:adBanner_];
-        isLoaded_ = YES;
+        //request.testDevices = @[ @"15b5d334e2e980a8595f943d3fe28621" ];
+        [m_Banner loadRequest:request];
+        [p_RootViewController.view addSubview:m_Banner];
+        //m_IsLoaded = YES;
     }
 }
 
 - (void)GetInterstitialAds
 {
-    interstitial = [[GADInterstitial alloc] initWithAdUnitID:AMOD_INTERSTITIAL_UNIT];
-    interstitial.delegate = self;
-    [interstitial loadRequest:[GADRequest request]];
+     NSLog(@"GADMaster:GetInterstitialAds");
+    m_Interstitial = [[GADInterstitial alloc] initWithAdUnitID:AMOD_INTERSTITIAL_UNIT];
+    m_Interstitial.delegate = self;
+    GADRequest *request = [GADRequest request];
+    //request.testDevices = @[ @"15b5d334e2e980a8595f943d3fe28621" ];
+    [m_Interstitial loadRequest:request];
 }
 
 -(void)ResetAdInterstitialView:(UIViewController *)rootViewController
 {
-    if([interstitial isReady])
+    NSLog(@"GADMaster:ResetAdInterstitialView");
+    if([m_Interstitial hasBeenUsed])
     {
-        [interstitial presentFromRootViewController:rootViewController];
+        NSLog(@"GADMaster:Interstitial has been used");
+        //return;
+    }
+    else if([m_Interstitial isReady])
+    {
+        [m_Interstitial presentFromRootViewController:rootViewController];
     }
     else
     {
-        [self GetInterstitialAds];
         NSLog(@"GADInterstitial not ready");
+        [self GetInterstitialAds];
     }
     
 }
 
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+#pragma GADDelegate
+- (void)interstitialDidDismissScreen:(GADInterstitial *)p_interstitial
 {
-    NSLog(@"DidDismissinterstitial");
+    NSLog(@"GADMaster:DidDismissinterstitial");
     [self GetInterstitialAds];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    //[[GADMasterViewController singleton] resetAdBannerView:self];
-}
-
-
 - (void)adViewDidReceiveAd:(GADBannerView *)adView
 {
-    // Make sure that the delegate actually responds to this notification
-    if (currentDelegate_)
-    {
-        //[currentDelegate_ adViewDidReceiveAd:adView];
-        
-        
-    }
+    NSLog(@"GADMaster:adViewDidReceiveAd");
     
     adView.alpha = 0;
     [UIView animateWithDuration:1.0 animations:^{
         adView.alpha = 1;
     }];
     
+    m_IsLoaded = TRUE;
+    
 }
+
+- (void) adViewWillDismissScreen:(GADBannerView *)bannerView
+{
+    NSLog(@"GADMaster:adViewWillDismissScreen");
+    m_IsLoaded = FALSE;
+}
+
+- (void) adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
+    m_IsLoaded = FALSE;
+}
+
+- (void) adViewWillPresentScreen:(GADBannerView *)bannerView
+{
+    NSLog(@"adViewWillPresentScreen");
+}
+
 @end

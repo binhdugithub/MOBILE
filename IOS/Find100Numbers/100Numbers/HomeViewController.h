@@ -6,15 +6,16 @@
 //  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <GameKit/GameKit.h>
+//#import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController<GKGameCenterControllerDelegate>
-{
-    bool m_GameCenterEnabled;
-    NSString *m_LeaderboardIdentifier;
-    
-}
+#import "SoundController.h"
+#import "Configuration.h"
+#import "SinglePlayerViewController.h"
+#import "GADMasterViewController.h"
+#import "GCViewController.h"
+
+@interface HomeViewController : UIViewController
+
 
 
 @end
