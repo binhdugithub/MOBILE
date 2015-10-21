@@ -143,7 +143,6 @@
 			children = (
 				AFC4E1191BC6D87D00CE197A /* Framework */,
 				AF15B3BF1B69511A003EE354 /* Default-568h@2x.png */,
-				AF3A8D491B5ACA9A00127415 /* GameKit.framework */,
 				AF91D1DD1ACC4785009A1B12 /* 100Numbers */,
 				AF91D1F71ACC4785009A1B12 /* 100NumbersTests */,
 				AF91D1DC1ACC4785009A1B12 /* Products */,
@@ -226,6 +225,7 @@
 		AFC4E1191BC6D87D00CE197A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AF3A8D491B5ACA9A00127415 /* GameKit.framework */,
 				AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */,
 			);
 			name = Framework;

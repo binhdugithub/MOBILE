@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF1228921BD7F426006226C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF12287B1BD7F426006226C8 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228951BD7F426006226C8 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = AF12287F1BD7F426006226C8 /* Configuration.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228961BD7F426006226C8 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF1228801BD7F426006226C8 /* data.plist */; settings = {ASSET_TAGS = (); }; };
+		AF1228971BD7F426006226C8 /* GADMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1228831BD7F426006226C8 /* GADMasterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228981BD7F426006226C8 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1228851BD7F426006226C8 /* GameOverViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228991BD7F426006226C8 /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1228871BD7F426006226C8 /* GCViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AF12289A1BD7F426006226C8 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1228891BD7F426006226C8 /* HelpViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AF12289C1BD7F426006226C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF12288B1BD7F426006226C8 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		AF12289D1BD7F426006226C8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF12288C1BD7F426006226C8 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		AF12289E1BD7F426006226C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF12288D1BD7F426006226C8 /* main.m */; settings = {ASSET_TAGS = (); }; };
+		AF12289F1BD7F426006226C8 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF12288F1BD7F426006226C8 /* PlayViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228A01BD7F426006226C8 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1228911BD7F426006226C8 /* SoundController.m */; settings = {ASSET_TAGS = (); }; };
+		AF1228AE1BD7F478006226C8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A11BD7F478006226C8 /* background.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228AF1BD7F478006226C8 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A21BD7F478006226C8 /* bat.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B01BD7F478006226C8 /* bg_main.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A31BD7F478006226C8 /* bg_main.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B11BD7F478006226C8 /* btn_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A41BD7F478006226C8 /* btn_mute.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B21BD7F478006226C8 /* btn_unmute.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A51BD7F478006226C8 /* btn_unmute.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B31BD7F478006226C8 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A61BD7F478006226C8 /* cat.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B41BD7F478006226C8 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A71BD7F478006226C8 /* dog.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B51BD7F478006226C8 /* hawk.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A81BD7F478006226C8 /* hawk.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B61BD7F478006226C8 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228A91BD7F478006226C8 /* logo.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B71BD7F478006226C8 /* mole.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228AA1BD7F478006226C8 /* mole.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B81BD7F478006226C8 /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228AB1BD7F478006226C8 /* robot.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228B91BD7F478006226C8 /* superman.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228AC1BD7F478006226C8 /* superman.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228BA1BD7F478006226C8 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1228AD1BD7F478006226C8 /* tiger.png */; settings = {ASSET_TAGS = (); }; };
+		AF1228C01BD7F49C006226C8 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1228BB1BD7F49C006226C8 /* click.mp3 */; settings = {ASSET_TAGS = (); }; };
+		AF1228C11BD7F49C006226C8 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1228BC1BD7F49C006226C8 /* congratulation.mp3 */; settings = {ASSET_TAGS = (); }; };
+		AF1228C21BD7F49C006226C8 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1228BD1BD7F49C006226C8 /* correct.mp3 */; settings = {ASSET_TAGS = (); }; };
+		AF1228C31BD7F49C006226C8 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1228BE1BD7F49C006226C8 /* fail.mp3 */; settings = {ASSET_TAGS = (); }; };
+		AF1228C41BD7F49C006226C8 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1228BF1BD7F49C006226C8 /* gameover.mp3 */; settings = {ASSET_TAGS = (); }; };
+		AF1228C91BD7F537006226C8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF1228C51BD7F537006226C8 /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		AF1228CA1BD7F537006226C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF1228C71BD7F537006226C8 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		AF1228CC1BD7F59F006226C8 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = AF1228CB1BD7F59F006226C8 /* Base.lproj */; settings = {ASSET_TAGS = (); }; };
+		AF1228D01BD7F712006226C8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1228CD1BD7F712006226C8 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
+		AF1228D11BD7F712006226C8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1228CE1BD7F712006226C8 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		AF1228D21BD7F712006226C8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1228CF1BD7F712006226C8 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		AF1E46341B7D944700C267BD /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1E46331B7D944700C267BD /* GameKit.framework */; };
+		AF2726C11B80E32700969FF7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2726C01B80E32700969FF7 /* Social.framework */; };
+		AF2DF3751B798FB20072200F /* DifferentColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2DF3741B798FB20072200F /* DifferentColorTests.m */; };
+		AF88AEDE1BD7D0D000CA217A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF88AEDD1BD7D0D000CA217A /* GoogleMobileAds.framework */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AF2DF36F1B798FB20072200F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF2DF34D1B798FB10072200F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF2DF3541B798FB20072200F;
+			remoteInfo = DifferentColor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AF12287A1BD7F426006226C8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TestEyes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		AF12287B1BD7F426006226C8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TestEyes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		AF12287E1BD7F426006226C8 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = TestEyes/Configuration.h; sourceTree = SOURCE_ROOT; };
+		AF12287F1BD7F426006226C8 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = TestEyes/Configuration.m; sourceTree = SOURCE_ROOT; };
+		AF1228801BD7F426006226C8 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = data.plist; path = TestEyes/data.plist; sourceTree = SOURCE_ROOT; };
+		AF1228811BD7F426006226C8 /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Define.h; path = TestEyes/Define.h; sourceTree = SOURCE_ROOT; };
+		AF1228821BD7F426006226C8 /* GADMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADMasterViewController.h; path = TestEyes/GADMasterViewController.h; sourceTree = SOURCE_ROOT; };
+		AF1228831BD7F426006226C8 /* GADMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GADMasterViewController.m; path = TestEyes/GADMasterViewController.m; sourceTree = SOURCE_ROOT; };
+		AF1228841BD7F426006226C8 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverViewController.h; path = TestEyes/GameOverViewController.h; sourceTree = SOURCE_ROOT; };
+		AF1228851BD7F426006226C8 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverViewController.m; path = TestEyes/GameOverViewController.m; sourceTree = SOURCE_ROOT; };
+		AF1228861BD7F426006226C8 /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCViewController.h; path = TestEyes/GCViewController.h; sourceTree = SOURCE_ROOT; };
+		AF1228871BD7F426006226C8 /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCViewController.m; path = TestEyes/GCViewController.m; sourceTree = SOURCE_ROOT; };
+		AF1228881BD7F426006226C8 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpViewController.h; path = TestEyes/HelpViewController.h; sourceTree = SOURCE_ROOT; };
+		AF1228891BD7F426006226C8 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpViewController.m; path = TestEyes/HelpViewController.m; sourceTree = SOURCE_ROOT; };
+		AF12288B1BD7F426006226C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TestEyes/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		AF12288C1BD7F426006226C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TestEyes/Info.plist; sourceTree = SOURCE_ROOT; };
+		AF12288D1BD7F426006226C8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TestEyes/main.m; sourceTree = SOURCE_ROOT; };
+		AF12288E1BD7F426006226C8 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayViewController.h; path = TestEyes/PlayViewController.h; sourceTree = SOURCE_ROOT; };
+		AF12288F1BD7F426006226C8 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayViewController.m; path = TestEyes/PlayViewController.m; sourceTree = SOURCE_ROOT; };
+		AF1228901BD7F426006226C8 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundController.h; path = TestEyes/SoundController.h; sourceTree = SOURCE_ROOT; };
+		AF1228911BD7F426006226C8 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundController.m; path = TestEyes/SoundController.m; sourceTree = SOURCE_ROOT; };
+		AF1228A11BD7F478006226C8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = TestEyes/image/background.png; sourceTree = SOURCE_ROOT; };
+		AF1228A21BD7F478006226C8 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bat.png; path = TestEyes/image/bat.png; sourceTree = SOURCE_ROOT; };
+		AF1228A31BD7F478006226C8 /* bg_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_main.png; path = TestEyes/image/bg_main.png; sourceTree = SOURCE_ROOT; };
+		AF1228A41BD7F478006226C8 /* btn_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_mute.png; path = TestEyes/image/btn_mute.png; sourceTree = SOURCE_ROOT; };
+		AF1228A51BD7F478006226C8 /* btn_unmute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_unmute.png; path = TestEyes/image/btn_unmute.png; sourceTree = SOURCE_ROOT; };
+		AF1228A61BD7F478006226C8 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat.png; path = TestEyes/image/cat.png; sourceTree = SOURCE_ROOT; };
+		AF1228A71BD7F478006226C8 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dog.png; path = TestEyes/image/dog.png; sourceTree = SOURCE_ROOT; };
+		AF1228A81BD7F478006226C8 /* hawk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hawk.png; path = TestEyes/image/hawk.png; sourceTree = SOURCE_ROOT; };
+		AF1228A91BD7F478006226C8 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = TestEyes/image/logo.png; sourceTree = SOURCE_ROOT; };
+		AF1228AA1BD7F478006226C8 /* mole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mole.png; path = TestEyes/image/mole.png; sourceTree = SOURCE_ROOT; };
+		AF1228AB1BD7F478006226C8 /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = robot.png; path = TestEyes/image/robot.png; sourceTree = SOURCE_ROOT; };
+		AF1228AC1BD7F478006226C8 /* superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = superman.png; path = TestEyes/image/superman.png; sourceTree = SOURCE_ROOT; };
+		AF1228AD1BD7F478006226C8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiger.png; path = TestEyes/image/tiger.png; sourceTree = SOURCE_ROOT; };
+		AF1228BB1BD7F49C006226C8 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = TestEyes/audio/click.mp3; sourceTree = SOURCE_ROOT; };
+		AF1228BC1BD7F49C006226C8 /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = congratulation.mp3; path = TestEyes/audio/congratulation.mp3; sourceTree = SOURCE_ROOT; };
+		AF1228BD1BD7F49C006226C8 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = TestEyes/audio/correct.mp3; sourceTree = SOURCE_ROOT; };
+		AF1228BE1BD7F49C006226C8 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fail.mp3; path = TestEyes/audio/fail.mp3; sourceTree = SOURCE_ROOT; };
+		AF1228BF1BD7F49C006226C8 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gameover.mp3; path = TestEyes/audio/gameover.mp3; sourceTree = SOURCE_ROOT; };
+		AF1228C61BD7F537006226C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = TestEyes/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		AF1228C81BD7F537006226C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TestEyes/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		AF1228CB1BD7F59F006226C8 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = TestEyes/Base.lproj; sourceTree = SOURCE_ROOT; };
+		AF1228CD1BD7F712006226C8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AF1228CE1BD7F712006226C8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AF1228CF1BD7F712006226C8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AF1E46331B7D944700C267BD /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		AF2726C01B80E32700969FF7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AF2DF3551B798FB20072200F /* Test Eyes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test Eyes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF2DF36E1B798FB20072200F /* Test Eyes.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test Eyes.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF2DF3731B798FB20072200F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF2DF3741B798FB20072200F /* DifferentColorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentColorTests.m; sourceTree = "<group>"; };
+		AF88AEDD1BD7D0D000CA217A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF2DF3521B798FB20072200F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF88AEDE1BD7D0D000CA217A /* GoogleMobileAds.framework in Frameworks */,
+				AF1228D01BD7F712006226C8 /* FBSDKCoreKit.framework in Frameworks */,
+				AF1228D21BD7F712006226C8 /* FBSDKShareKit.framework in Frameworks */,
+				AF1228D11BD7F712006226C8 /* FBSDKLoginKit.framework in Frameworks */,
+				AF2726C11B80E32700969FF7 /* Social.framework in Frameworks */,
+				AF1E46341B7D944700C267BD /* GameKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF2DF36B1B798FB20072200F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF2DF34C1B798FB10072200F = {
+			isa = PBXGroup;
+			children = (
+				AF88AEDC1BD7CF5800CA217A /* Framework */,
+				AF2DF3571B798FB20072200F /* Test Eyes */,
+				AF2DF3711B798FB20072200F /* TestEyesTests */,
+				AF2DF3561B798FB20072200F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF2DF3561B798FB20072200F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF2DF3551B798FB20072200F /* Test Eyes.app */,
+				AF2DF36E1B798FB20072200F /* Test Eyes.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF2DF3571B798FB20072200F /* Test Eyes */ = {
+			isa = PBXGroup;
+			children = (
+				AF12287A1BD7F426006226C8 /* AppDelegate.h */,
+				AF12287B1BD7F426006226C8 /* AppDelegate.m */,
+				AF12287E1BD7F426006226C8 /* Configuration.h */,
+				AF12287F1BD7F426006226C8 /* Configuration.m */,
+				AF1228811BD7F426006226C8 /* Define.h */,
+				AF1228821BD7F426006226C8 /* GADMasterViewController.h */,
+				AF1228831BD7F426006226C8 /* GADMasterViewController.m */,
+				AF1228841BD7F426006226C8 /* GameOverViewController.h */,
+				AF1228851BD7F426006226C8 /* GameOverViewController.m */,
+				AF1228861BD7F426006226C8 /* GCViewController.h */,
+				AF1228871BD7F426006226C8 /* GCViewController.m */,
+				AF1228881BD7F426006226C8 /* HelpViewController.h */,
+				AF1228891BD7F426006226C8 /* HelpViewController.m */,
+				AF12288E1BD7F426006226C8 /* PlayViewController.h */,
+				AF12288F1BD7F426006226C8 /* PlayViewController.m */,
+				AF1228901BD7F426006226C8 /* SoundController.h */,
+				AF1228911BD7F426006226C8 /* SoundController.m */,
+				AF1228C71BD7F537006226C8 /* Main.storyboard */,
+				AF12288B1BD7F426006226C8 /* Images.xcassets */,
+				AF1228C51BD7F537006226C8 /* LaunchScreen.xib */,
+				AF1228801BD7F426006226C8 /* data.plist */,
+				AF2DF3581B798FB20072200F /* Supporting Files */,
+			);
+			name = "Test Eyes";
+			path = DifferentColor;
+			sourceTree = "<group>";
+		};
+		AF2DF3581B798FB20072200F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF12288D1BD7F426006226C8 /* main.m */,
+				AF12288C1BD7F426006226C8 /* Info.plist */,
+				AF1228CB1BD7F59F006226C8 /* Base.lproj */,
+				AFC9368A1B7B343A004BD7D3 /* audios */,
+				AFC936731B7B32D9004BD7D3 /* images */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF2DF3711B798FB20072200F /* TestEyesTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF2DF3741B798FB20072200F /* DifferentColorTests.m */,
+				AF2DF3721B798FB20072200F /* Supporting Files */,
+			);
+			name = TestEyesTests;
+			path = DifferentColorTests;
+			sourceTree = "<group>";
+		};
+		AF2DF3721B798FB20072200F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF2DF3731B798FB20072200F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF88AEDC1BD7CF5800CA217A /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AF1228CD1BD7F712006226C8 /* FBSDKCoreKit.framework */,
+				AF1228CE1BD7F712006226C8 /* FBSDKLoginKit.framework */,
+				AF1228CF1BD7F712006226C8 /* FBSDKShareKit.framework */,
+				AF88AEDD1BD7D0D000CA217A /* GoogleMobileAds.framework */,
+				AF2726C01B80E32700969FF7 /* Social.framework */,
+				AF1E46331B7D944700C267BD /* GameKit.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		AFC936731B7B32D9004BD7D3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AF1228A11BD7F478006226C8 /* background.png */,
+				AF1228A21BD7F478006226C8 /* bat.png */,
+				AF1228A31BD7F478006226C8 /* bg_main.png */,
+				AF1228A41BD7F478006226C8 /* btn_mute.png */,
+				AF1228A51BD7F478006226C8 /* btn_unmute.png */,
+				AF1228A61BD7F478006226C8 /* cat.png */,
+				AF1228A71BD7F478006226C8 /* dog.png */,
+				AF1228A81BD7F478006226C8 /* hawk.png */,
+				AF1228A91BD7F478006226C8 /* logo.png */,
+				AF1228AA1BD7F478006226C8 /* mole.png */,
+				AF1228AB1BD7F478006226C8 /* robot.png */,
+				AF1228AC1BD7F478006226C8 /* superman.png */,
+				AF1228AD1BD7F478006226C8 /* tiger.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		AFC9368A1B7B343A004BD7D3 /* audios */ = {
+			isa = PBXGroup;
+			children = (
+				AF1228BB1BD7F49C006226C8 /* click.mp3 */,
+				AF1228BC1BD7F49C006226C8 /* congratulation.mp3 */,
+				AF1228BD1BD7F49C006226C8 /* correct.mp3 */,
+				AF1228BE1BD7F49C006226C8 /* fail.mp3 */,
+				AF1228BF1BD7F49C006226C8 /* gameover.mp3 */,
+			);
+			name = audios;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF2DF3541B798FB20072200F /* Test Eyes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "Test Eyes" */;
+			buildPhases = (
+				AF2DF3511B798FB20072200F /* Sources */,
+				AF2DF3521B798FB20072200F /* Frameworks */,
+				AF2DF3531B798FB20072200F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Eyes";
+			productName = DifferentColor;
+			productReference = AF2DF3551B798FB20072200F /* Test Eyes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AF2DF36D1B798FB20072200F /* Test EyesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "Test EyesTests" */;
+			buildPhases = (
+				AF2DF36A1B798FB20072200F /* Sources */,
+				AF2DF36B1B798FB20072200F /* Frameworks */,
+				AF2DF36C1B798FB20072200F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF2DF3701B798FB20072200F /* PBXTargetDependency */,
+			);
+			name = "Test EyesTests";
+			productName = DifferentColorTests;
+			productReference = AF2DF36E1B798FB20072200F /* Test Eyes.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF2DF34D1B798FB10072200F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Nguyễn Thế Bình";
+				TargetAttributes = {
+					AF2DF3541B798FB20072200F = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 59R4ZJFHM6;
+					};
+					AF2DF36D1B798FB20072200F = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = AF2DF3541B798FB20072200F;
+					};
+				};
+			};
+			buildConfigurationList = AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "Test Eyes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF2DF34C1B798FB10072200F;
+			productRefGroup = AF2DF3561B798FB20072200F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF2DF3541B798FB20072200F /* Test Eyes */,
+				AF2DF36D1B798FB20072200F /* Test EyesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF2DF3531B798FB20072200F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF1228C31BD7F49C006226C8 /* fail.mp3 in Resources */,
+				AF1228B51BD7F478006226C8 /* hawk.png in Resources */,
+				AF1228B31BD7F478006226C8 /* cat.png in Resources */,
+				AF1228B91BD7F478006226C8 /* superman.png in Resources */,
+				AF1228B01BD7F478006226C8 /* bg_main.png in Resources */,
+				AF1228BA1BD7F478006226C8 /* tiger.png in Resources */,
+				AF1228C21BD7F49C006226C8 /* correct.mp3 in Resources */,
+				AF1228B21BD7F478006226C8 /* btn_unmute.png in Resources */,
+				AF12289C1BD7F426006226C8 /* Images.xcassets in Resources */,
+				AF1228B11BD7F478006226C8 /* btn_mute.png in Resources */,
+				AF1228CC1BD7F59F006226C8 /* Base.lproj in Resources */,
+				AF1228C11BD7F49C006226C8 /* congratulation.mp3 in Resources */,
+				AF1228C01BD7F49C006226C8 /* click.mp3 in Resources */,
+				AF1228CA1BD7F537006226C8 /* Main.storyboard in Resources */,
+				AF12289D1BD7F426006226C8 /* Info.plist in Resources */,
+				AF1228B81BD7F478006226C8 /* robot.png in Resources */,
+				AF1228B61BD7F478006226C8 /* logo.png in Resources */,
+				AF1228B41BD7F478006226C8 /* dog.png in Resources */,
+				AF1228C41BD7F49C006226C8 /* gameover.mp3 in Resources */,
+				AF1228961BD7F426006226C8 /* data.plist in Resources */,
+				AF1228B71BD7F478006226C8 /* mole.png in Resources */,
+				AF1228AF1BD7F478006226C8 /* bat.png in Resources */,
+				AF1228C91BD7F537006226C8 /* LaunchScreen.xib in Resources */,
+				AF1228AE1BD7F478006226C8 /* background.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF2DF36C1B798FB20072200F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF2DF3511B798FB20072200F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF12289F1BD7F426006226C8 /* PlayViewController.m in Sources */,
+				AF1228A01BD7F426006226C8 /* SoundController.m in Sources */,
+				AF1228921BD7F426006226C8 /* AppDelegate.m in Sources */,
+				AF1228981BD7F426006226C8 /* GameOverViewController.m in Sources */,
+				AF12289E1BD7F426006226C8 /* main.m in Sources */,
+				AF1228991BD7F426006226C8 /* GCViewController.m in Sources */,
+				AF1228971BD7F426006226C8 /* GADMasterViewController.m in Sources */,
+				AF12289A1BD7F426006226C8 /* HelpViewController.m in Sources */,
+				AF1228951BD7F426006226C8 /* Configuration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF2DF36A1B798FB20072200F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF2DF3751B798FB20072200F /* DifferentColorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF2DF3701B798FB20072200F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF2DF3541B798FB20072200F /* Test Eyes */;
+			targetProxy = AF2DF36F1B798FB20072200F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AF1228C51BD7F537006226C8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF1228C61BD7F537006226C8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		AF1228C71BD7F537006226C8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF1228C81BD7F537006226C8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF0E24E01B818565003E08D7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		AF0E24E11B818565003E08D7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Test Eyes";
+				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+			};
+			name = Distribution;
+		};
+		AF0E24E21B818565003E08D7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DifferentColorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "Test Eyes";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DifferentColor.app/DifferentColor";
+			};
+			name = Distribution;
+		};
+		AF2DF3761B798FB20072200F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF2DF3771B798FB20072200F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF2DF3791B798FB20072200F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "Test Eyes";
+				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+			};
+			name = Debug;
+		};
+		AF2DF37A1B798FB20072200F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Test Eyes";
+				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+			};
+			name = Release;
+		};
+		AF2DF37C1B798FB20072200F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DifferentColorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "Test Eyes";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DifferentColor.app/DifferentColor";
+			};
+			name = Debug;
+		};
+		AF2DF37D1B798FB20072200F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DifferentColorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "Test Eyes";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DifferentColor.app/DifferentColor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF2DF3501B798FB10072200F /* Build configuration list for PBXProject "Test Eyes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF2DF3761B798FB20072200F /* Debug */,
+				AF2DF3771B798FB20072200F /* Release */,
+				AF0E24E01B818565003E08D7 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF2DF3781B798FB20072200F /* Build configuration list for PBXNativeTarget "Test Eyes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF2DF3791B798FB20072200F /* Debug */,
+				AF2DF37A1B798FB20072200F /* Release */,
+				AF0E24E11B818565003E08D7 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF2DF37B1B798FB20072200F /* Build configuration list for PBXNativeTarget "Test EyesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF2DF37C1B798FB20072200F /* Debug */,
+				AF2DF37D1B798FB20072200F /* Release */,
+				AF0E24E21B818565003E08D7 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF2DF34D1B798FB10072200F /* Project object */;
+}

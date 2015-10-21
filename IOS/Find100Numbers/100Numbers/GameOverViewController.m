@@ -315,41 +315,6 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 
 - (IBAction)ShareScoreClick:(id)sender
 {
-//    [[SoundController GetSingleton] PlayClickButton];
-//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-//    {
-//        SLComposeViewController *fbSheet = [SLComposeViewController
-//                                            composeViewControllerForServiceType:SLServiceTypeFacebook];
-//        [fbSheet setInitialText:@"#Find 100 Numbers"];
-//        //NSString *l_url = [NSString stringWithFormat:@"%@%@",@"https://itunes.apple.com/app/id", YOUR_APP_ID];
-//        //[fbSheet addURL:[NSURL URLWithString:l_url]];
-//        [fbSheet addImage:[self takeScreenshot]];
-//        [self presentViewController:fbSheet animated:YES completion:nil];
-//    }
-//    else
-//    {
-//        NSString *title = @"No Facebook Account" ;
-//        NSString *msg = @"You can add or create a Facebook acount in Settings->Facebook" ;
-//        NSString *titleCancel = @"Cancel";
-//        NSString *titleSetting   = @"Setting";
-//        
-//        //BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
-//        //if (canOpenSettings) {
-//        if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
-//        {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-//            //alert.tag = 1000;
-//            [alert show];
-//        }
-//        else
-//        {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self  cancelButtonTitle:titleCancel  otherButtonTitles:titleSetting ,nil];
-//            alert.tag = 1000;
-//            [alert show];
-//        }
-//        
-//    }
-    
     
     [[SoundController GetSingleton] PlayClickButton];
     NSString * message = @"#1 to 100 Numbers";
