@@ -47,6 +47,7 @@
 		AF2726C11B80E32700969FF7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2726C01B80E32700969FF7 /* Social.framework */; };
 		AF2DF3751B798FB20072200F /* DifferentColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2DF3741B798FB20072200F /* DifferentColorTests.m */; };
 		AF88AEDE1BD7D0D000CA217A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF88AEDD1BD7D0D000CA217A /* GoogleMobileAds.framework */; settings = {ASSET_TAGS = (); }; };
+		AFFBE6CA1BDABC60006CB65E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE6C91BDABC60006CB65E /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		AF2DF3731B798FB20072200F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2DF3741B798FB20072200F /* DifferentColorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentColorTests.m; sourceTree = "<group>"; };
 		AF88AEDD1BD7D0D000CA217A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		AFFBE6C91BDABC60006CB65E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		AF2DF34C1B798FB10072200F = {
 			isa = PBXGroup;
 			children = (
+				AFFBE6C91BDABC60006CB65E /* Default-568h@2x.png */,
 				AF88AEDC1BD7CF5800CA217A /* Framework */,
 				AF2DF3571B798FB20072200F /* Test Eyes */,
 				AF2DF3711B798FB20072200F /* TestEyesTests */,
@@ -366,6 +369,7 @@
 				AF1228B71BD7F478006226C8 /* mole.png in Resources */,
 				AF1228AF1BD7F478006226C8 /* bat.png in Resources */,
 				AF1228C91BD7F537006226C8 /* LaunchScreen.xib in Resources */,
+				AFFBE6CA1BDABC60006CB65E /* Default-568h@2x.png in Resources */,
 				AF1228AE1BD7F478006226C8 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,8 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -487,11 +490,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Test Eyes";
-				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+				PROVISIONING_PROFILE = "872ee246-ccfc-435c-a564-cf4d725d6adf";
 			};
 			name = Distribution;
 		};
@@ -599,8 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -608,10 +610,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Test Eyes";
-				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+				PROVISIONING_PROFILE = "872ee246-ccfc-435c-a564-cf4d725d6adf";
 			};
 			name = Debug;
 		};
@@ -619,8 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -628,11 +629,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestEyes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Test Eyes";
-				PROVISIONING_PROFILE = "820353f3-c1e9-4566-a400-1693244d10cc";
+				PROVISIONING_PROFILE = "872ee246-ccfc-435c-a564-cf4d725d6adf";
 			};
 			name = Release;
 		};

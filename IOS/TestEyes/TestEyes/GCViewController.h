@@ -22,4 +22,5 @@
 -(void)ReportScore : (NSInteger) m_BestScore;
 - (GKGameCenterViewController*)GetGCView;
 - (NSString*) GetLeaderboardIdentifier;
+- (BOOL) IsReady;
 @end

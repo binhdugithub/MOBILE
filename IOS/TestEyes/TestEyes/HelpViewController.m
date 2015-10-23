@@ -354,10 +354,32 @@
 
         frm.origin.x = 0;
         frm.origin.y = SCREEN_HEIGHT - frm.size.height;
-        UIView *MyFooter = [[UIView alloc] initWithFrame:frm];
-        [self.view addSubview:MyFooter];
+        UIView *ViewFooter = [[UIView alloc] initWithFrame:frm];
+        [self.view addSubview:ViewFooter];
         
-        [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:MyFooter.frame];
+        frm = ViewFooter.frame;
+        frm.origin.x = 0;
+        frm.origin.y =  0;
+        UILabel *m_UIlabelCopyright = [[UILabel alloc] initWithFrame:frm];
+        [m_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
+        [m_UIlabelCopyright setText:TEXT_COPYRIGHT];
+        [m_UIlabelCopyright setTextAlignment:NSTextAlignmentCenter];
+        if (IS_IPHONE_4_OR_LESS)
+        {
+            [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+        }
+        else if (IS_IPAD)
+        {
+            [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+        }
+        else
+        {
+            [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+        }
+        
+        [ViewFooter addSubview:m_UIlabelCopyright];
+        
+        [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:ViewFooter.frame];
     }
     
 }

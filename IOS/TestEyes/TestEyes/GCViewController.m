@@ -25,6 +25,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
     [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
@@ -125,6 +126,9 @@
 
 - (GKGameCenterViewController*)GetGCView
 {
+    if(m_LeaderboardIdentifier == nil)
+        return nil;
+    
     GKGameCenterViewController *GameCenterController = [[GKGameCenterViewController alloc] init];
     if (GameCenterController != nil)
     {
@@ -142,10 +146,19 @@
     {
         return  nil;
     }
+        
     
     return nil;
 }
 
+- (BOOL) IsReady
+{
+    if (m_LeaderboardIdentifier != nil) {
+        return TRUE;
+    }
+    
+    return FALSE;
+}
 
 /*
 #pragma mark - Navigation
