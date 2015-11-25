@@ -1,31 +1,26 @@
 //
 //  GADMasterViewController.h
-//  100Perfect
+//  100Numbers
 //
-//  Created by Nguyễn Thế Bình on 4/18/15.
-//  Copyright (c) 2015 Nguyễn Thế Bình. All rights reserved.
+//  Created by Binh Du  on 4/12/15.
+//  Copyright (c) 2015 LapTrinhAlgo.Com. All rights reserved.
 //
-
 @import GoogleMobileAds;
 #import <UIKit/UIKit.h>
 #include "Define.h"
 
-@interface GADMasterViewController : UIViewController
+@interface GADMasterViewController : UIViewController<GADBannerViewDelegate, GADInterstitialDelegate>
 {
-    GADBannerView *adBanner_;
-    GADInterstitial *interstitial;
-    
-    BOOL didCloseWebsiteView_;
-    BOOL isLoaded_;
-    id currentDelegate_;
+    GADBannerView   *m_Banner;
+    GADInterstitial *m_Interstitial;
+    BOOL            m_IsLoaded;
 }
 
-
-+(GADMasterViewController *)singleton;
++(GADMasterViewController *)GetSingleton;
 -(id)init;
 
--(void)resetAdInterstitialView:(UIViewController *)rootViewController;
 -(void)resetAdBannerView:(UIViewController *)rootViewController AtFrame:(CGRect) frm;
-
+- (void)GetInterstitialAds;
+-(void)ResetAdInterstitialView:(UIViewController *)rootViewController;
 
 @end

@@ -49,36 +49,6 @@
     NSLog(@"GADMaster:Init");
     if (self = [super init])
     {
-        
-//        if(SCREEN_HEIGHT <= 400)
-//        {
-//            m_Banner = [[GADBannerView alloc]
-//                        initWithFrame:CGRectMake(0.0,
-//                                                 0.0,
-//                                                 SCREEN_WIDTH,
-//                                                 32)];
-//            
-//            NSLog(@"vao 1");
-//        }
-//        else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
-//        {
-//            m_Banner = [[GADBannerView alloc]
-//                        initWithFrame:CGRectMake(0.0,
-//                                                 0.0,
-//                                                 SCREEN_WIDTH,
-//                                                 50)];
-//             NSLog(@"vao 2");
-//        }else if(SCREEN_HEIGHT > 720)
-//        {
-//            m_Banner = [[GADBannerView alloc]
-//                        initWithFrame:CGRectMake(0.0,
-//                                                 0.0,
-//                                                 SCREEN_WIDTH,
-//                                                 90)];
-//            
-//             NSLog(@"vao 3");
-//        }
-        
         // Has an ad request already been made
         m_Banner = [[GADBannerView alloc] init];
         m_IsLoaded = NO;

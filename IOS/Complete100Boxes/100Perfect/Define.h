@@ -11,11 +11,12 @@
 
 #define YOUR_APP_ID @"1024701839"
 
-#define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/5379673647"
-#define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/6856406840"
-#define AMOD_INTERSTITIAL_TIMEOUT 2
+#define AMOD_BANNER_FOOTER_UNIT @"ca-app-pub-2735696870763171/53796736477"
+#define AMOD_INTERSTITIAL_UNIT @"ca-app-pub-2735696870763171/68564068400"
+#define AMOD_INTERSTITIAL_TIMEOUT 5
 
 #define FILECONFIG @"/data.plist"
+#define TEXT_COPYRIGHT @"CUSIKI @2015"
 
 #define TIME_MAX 300
 
@@ -30,6 +31,20 @@
 #define H_YOURSCORE 1.0/4
 #define H_3BUTTONS  1.0/3
 
+
+#define IS_IPAD             (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE           (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA           ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH        ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT       ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH   (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH   (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS    (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5         (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6         (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P        (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 #endif
 

@@ -10,6 +10,7 @@
 #import "SoundController.h"
 #import "AboutViewController.h"
 #import "GADMasterViewController.h"
+#import "GCViewController.h"
 #import "Configuration.h"
 #import "Define.h"
 #import <Social/Social.h>
@@ -31,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *BtnSpeaker;
 @property (weak, nonatomic) IBOutlet UIButton *BtnAbout;
 @property (weak, nonatomic) IBOutlet UIButton *BtnPlay;
-@property (weak, nonatomic) IBOutlet UIButton *BtnShare;
 @property (weak, nonatomic) IBOutlet UIButton *BtnRate;
 @property (weak, nonatomic) IBOutlet UIButton *BtnGameCenter;
 
@@ -59,8 +59,8 @@
         [self Init100Number];
     }
     
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:ViewFooter.frame];
-    [self AuthenticateLocalPlayer];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:ViewFooter.frame];
+    [[GCViewController GetSingleton] AuthenticateLocalPlayer];
     
     m_CountPlay = 0;
     
@@ -74,62 +74,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    interstitial = [[GADInterstitial alloc] init];
-//    interstitial.adUnitID = AMOD_INTERSTITIAL_UNIT;
-//    [interstitial loadRequest:[GADRequest request]];
-//    //End Advertisement
-//    
-//    m_Timer = [NSTimer scheduledTimerWithTimeInterval:AMOD_INTERSTITIAL_TIMEOUT
-//                                               target:self
-//                                             selector:@selector(ShowAdvertisement:)
-//                                             userInfo:nil
-//                                              repeats:NO];
-    
-    
-}
 
-
--(void)AuthenticateLocalPlayer
-{
-    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     
-    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error)
-    {
-        if (viewController != nil)
-        {
-            [self presentViewController:viewController animated:YES completion:nil];
-            NSLog(@"Present view controller to authenticate leaderboar");
-        }
-        else
-        {
-            if ([GKLocalPlayer localPlayer].authenticated)
-            {
-                m_GameCenterEnabled = YES;
-                
-                // Get the default leaderboard identifier.
-                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error)
-                 {
-                     
-                     if (error != nil)
-                     {
-                         NSLog(@"%@", [error localizedDescription]);
-                     }
-                     else
-                     {
-                         m_LeaderboardIdentifier = leaderboardIdentifier;
-                         [[Configuration GetSingleton] SetLeaderboardIdentifier:leaderboardIdentifier];
-                         NSLog(@"Authen with: %@", leaderboardIdentifier);
-                     }
-                 }];
-            }
-            else
-            {
-                m_GameCenterEnabled = NO;
-                //[[Configuration GetSingleton] SetLeaderboardIdentifier:nil];
-                NSLog(@"Not yet authenticatelocalplayer");
-            }
-        }
-    };
 }
 
 - (void)SetStateGame: (NSInteger) p_state
@@ -211,16 +157,43 @@
     //3 Footer
     frm = ViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = 50;
+    if(SCREEN_HEIGHT <= 400)
+    {
+        frm.size.height = 32;
+    }
+    else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
+    {
+        frm.size.height = 50;
+    }else if(SCREEN_HEIGHT > 720)
+    {
+        frm.size.height = 90;
+    }
+    
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     ViewFooter.frame = frm;
+    //[m_UIViewHeader setBackgroundColor:[UIColor clearColor]];
     
     //Copyrith
-    frm.size.height =  ViewFooter.frame.size.height * 1.0/2;
+    
+    frm = ViewFooter.frame;
     frm.origin.x = 0;
-    frm.origin.y =  ViewFooter.frame.size.height * 1.0/4;
+    frm.origin.y =  0;
     LblCopyright.frame = frm;
+    [LblCopyright setTextColor:[UIColor darkGrayColor]];
+    [LblCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [LblCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [LblCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [LblCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
     
     //4 buttons
     frm = ViewButtons.frame;
@@ -241,31 +214,39 @@
 
     CGFloat w = 1.0/4 * ViewButtons.frame.size.height;
     //CGFloat h = w;
-    //Rate
+    //1. Rate
     frm = _BtnRate.frame;
-    frm.size.width = w;
+    
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        frm.size.width = 1.2 * w;
+    }
+    else if (IS_IPAD)
+    {
+        frm.size.width = 1.2 * w;
+    }
+    else
+    {
+        frm.size.width = w;
+    }
+    
     frm.size.height = frm.size.width;
     frm.origin.x = ViewButtons.frame.size.width - 1.0/8 * frm.size.width - frm.size.width;
-    frm.origin.y = 1.0/2 * (ViewButtons.frame.size.height - frm.size.height);
+    frm.origin.y = _BtnPlay.frame.size.height + _BtnPlay.frame.origin.y - frm.size.height;
     _BtnRate.frame = frm;
     
-    //Facebook
+    //2. GameCenter
     frm = _BtnRate.frame;
-    frm.origin.y = frm.origin.y - 1.0/4 * frm.size.height - frm.size.height;
-    _BtnShare.frame = frm;
-    
-    //GameCenter
-    frm = _BtnRate.frame;
-    frm.origin.y = frm.origin.y + frm.size.height + 1.0/4 * frm.size.height;
+    frm.origin.y = _BtnPlay.frame.origin.y;
     BtnGameCenter.frame = frm;
     
-    // About
-    frm = _BtnShare.frame;
+    //3.  About
+    frm = BtnGameCenter.frame;
     frm.origin.x = 1.0/8 * frm.size.width;
     //frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height - frm.size.height - 1.0/ 8 * frm.size.height;
     BtnAbout.frame =frm;
     
-    //Speaker
+    //4. Speaker
     frm = _BtnRate.frame;
     frm.origin.x = 1.0/8 * frm.size.width;
     //frm.origin.y = 1.0/ 2 * ViewButtons.frame.size.height + 1.0/ 8 * frm.size.height;
@@ -498,30 +479,13 @@
         }
         
     }
+
     
-    /*CGRect frm1 = _BtnPlay.frame;
-    CGRect frm2 = _BtnPlay.frame;
-    frm2.size.width = frm2.size.width + 10;
-    frm2.size.height = frm2.size.height + 10;
-    frm2.origin.x = (ViewButtons.frame.size.width - frm2.size.width) * 1.0/2;
-    frm2.origin.y = (ViewButtons.frame.size.height - frm2.size.height) * 1.0/2;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    _BtnPlay.frame = frm2;
-     _BtnPlay.frame = frm1;
-    [UIView commitAnimations];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    //_BtnPlay.frame = frm1;
-    [UIView commitAnimations];*/
-    
-    if(m_CountPlay >= 10)
+    if(m_CountPlay >= 5)
     {
         NSLog(@"Count Play 1:  %li", m_CountPlay);
         m_CountPlay = 0;
-        [[GADMasterViewController singleton] resetAdInterstitialView:self];
+        [[GADMasterViewController GetSingleton] ResetAdInterstitialView:self];
     }
     
 }
@@ -555,6 +519,10 @@
     {
         [self ShareFBClick:nil];
     }
+    else
+    {
+        [[GADMasterViewController GetSingleton] ResetAdInterstitialView:self];
+    }
 }
 
 
@@ -580,20 +548,7 @@
 {
     NSLog(@"Game Center");
     [[SoundController GetSingleton] PlayClickButton];
-    
-    GKGameCenterViewController *GameCenterController = [[GKGameCenterViewController alloc] init];
-    if (GameCenterController != nil)
-    {
-        NSLog(@"Vao");
-        GameCenterController.gameCenterDelegate = self;
-        //The next three lines are the lines of interest...
-        GameCenterController.viewState = GKGameCenterViewControllerStateDefault;
-        GameCenterController.leaderboardTimeScope = GKLeaderboardTimeScopeToday;
-        GameCenterController.leaderboardCategory = m_LeaderboardIdentifier;
-        [self presentViewController:GameCenterController animated:YES completion:nil];
-    }
-    
-    NSLog(@"Ra");
+    [self presentViewController:[[GCViewController GetSingleton] GetGCView] animated:YES completion:nil];
 }
 -(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {

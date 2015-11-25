@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     [self CalculateView];
-    [[GADMasterViewController singleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
+    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
 }
 
 
@@ -82,19 +82,57 @@
     mUITextView.frame = frm;
     [mUITextView setEditable:FALSE];
     
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [mUITextView setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [mUITextView setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [mUITextView setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
+    
     //5 Footer
     frm = m_UIViewFooter.frame;
     frm.size.width = W;
-    frm.size.height = 50;
+    if(SCREEN_HEIGHT <= 400)
+    {
+        frm.size.height = 32;
+    }
+    else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720)
+    {
+        frm.size.height = 50;
+    }else if(SCREEN_HEIGHT > 720)
+    {
+        frm.size.height = 90;
+    }
+    
     frm.origin.x = 0;
     frm.origin.y = H - frm.size.height;
     m_UIViewFooter.frame = frm;
     
     //Copyrith
-    frm.size.height =  m_UIViewFooter.frame.size.height * 1.0/2;
+    frm = m_UIViewFooter.frame;
     frm.origin.x = 0;
-    frm.origin.y =  m_UIViewFooter.frame.size.height * 1.0/4;
+    frm.origin.y =  0;
     m_UILabelCopyright.frame = frm;
+    [m_UILabelCopyright setTextColor:[UIColor darkGrayColor]];
+    [m_UILabelCopyright setText:TEXT_COPYRIGHT];
+    if (IS_IPHONE_4_OR_LESS)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+    }
+    else if (IS_IPAD)
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+    }
+    else
+    {
+        [m_UILabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+    }
     
 }
 
