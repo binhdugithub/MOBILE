@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF12FBB11C299FDB00FA2339 /* FSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12FBB01C299FDB00FA2339 /* FSCore.swift */; };
+		AF12FBB51C29B1DE00FA2339 /* FSDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12FBB41C29B1DE00FA2339 /* FSDesign.swift */; };
 		AF36CA461C228F3800906B5C /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF36CA451C228F3800906B5C /* RootTabBarController.swift */; };
-		AF36CA4B1C2308DA00906B5C /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF36CA4A1C2308DA00906B5C /* MyStoryTableViewCell.swift */; };
+		AF5132E51C27055F00008FFA /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5132E31C27055F00008FFA /* StoryTableViewCell.swift */; };
+		AF5132E61C27055F00008FFA /* StoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5132E41C27055F00008FFA /* StoryTableViewCell.xib */; };
+		AF5132E81C27116D00008FFA /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5132E71C27116D00008FFA /* StoryViewController.swift */; };
 		AF81A2AC1C1F2C8900E0AA71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2AB1C1F2C8900E0AA71 /* AppDelegate.swift */; };
 		AF81A2AE1C1F2C8900E0AA71 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2AD1C1F2C8900E0AA71 /* HomeViewController.swift */; };
 		AF81A2B01C1F2C8900E0AA71 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2AF1C1F2C8900E0AA71 /* FavoriteViewController.swift */; };
@@ -16,7 +20,18 @@
 		AF81A2B51C1F2C8900E0AA71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF81A2B41C1F2C8900E0AA71 /* Assets.xcassets */; };
 		AF81A2B81C1F2C8900E0AA71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF81A2B61C1F2C8900E0AA71 /* LaunchScreen.storyboard */; };
 		AF81A2C31C1F2C8900E0AA71 /* Funny_StoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2C21C1F2C8900E0AA71 /* Funny_StoriesTests.swift */; };
-		AF81A2D11C1F43A100E0AA71 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2D01C1F43A100E0AA71 /* Define.swift */; };
+		AF81A2D11C1F43A100E0AA71 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81A2D01C1F43A100E0AA71 /* Common.swift */; };
+		AF8E62501C2E717E00DDEFC4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E624B1C2E717E00DDEFC4 /* Photo.swift */; };
+		AF8E62511C2E717E00DDEFC4 /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E624C1C2E717E00DDEFC4 /* PhotoStreamViewController.swift */; };
+		AF8E62521C2E717E00DDEFC4 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E624D1C2E717E00DDEFC4 /* PinterestLayout.swift */; };
+		AF8E62531C2E717E00DDEFC4 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E624E1C2E717E00DDEFC4 /* RoundedCornersView.swift */; };
+		AF8E62541C2E717E00DDEFC4 /* UIImage+Decompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E624F1C2E717E00DDEFC4 /* UIImage+Decompression.swift */; };
+		AF8E62571C2E71B100DDEFC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8E62551C2E71B100DDEFC4 /* Images.xcassets */; };
+		AF8E62581C2E71B100DDEFC4 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8E62561C2E71B100DDEFC4 /* Photos.plist */; };
+		AF8E625B1C2E722300DDEFC4 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8E62591C2E722300DDEFC4 /* AnnotatedPhotoCell.swift */; };
+		AF8E625C1C2E722300DDEFC4 /* Photos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8E625A1C2E722300DDEFC4 /* Photos.xcassets */; };
+		AFAF99E81C2A587F00159682 /* GADMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF99E71C2A587F00159682 /* GADMasterViewController.swift */; };
+		AFAF99EB1C2A596900159682 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFAF99EA1C2A596900159682 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF12FBB01C299FDB00FA2339 /* FSCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCore.swift; sourceTree = "<group>"; };
+		AF12FBB41C29B1DE00FA2339 /* FSDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSDesign.swift; sourceTree = "<group>"; };
 		AF36CA451C228F3800906B5C /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
-		AF36CA4A1C2308DA00906B5C /* MyStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoryTableViewCell.swift; sourceTree = "<group>"; };
+		AF5132E31C27055F00008FFA /* StoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
+		AF5132E41C27055F00008FFA /* StoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryTableViewCell.xib; sourceTree = "<group>"; };
+		AF5132E71C27116D00008FFA /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		AF81A2A81C1F2C8900E0AA71 /* Funny Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Funny Stories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF81A2AB1C1F2C8900E0AA71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF81A2AD1C1F2C8900E0AA71 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +62,19 @@
 		AF81A2BE1C1F2C8900E0AA71 /* Funny StoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Funny StoriesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF81A2C21C1F2C8900E0AA71 /* Funny_StoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funny_StoriesTests.swift; sourceTree = "<group>"; };
 		AF81A2C41C1F2C8900E0AA71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF81A2D01C1F43A100E0AA71 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		AF81A2D01C1F43A100E0AA71 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		AF8E624B1C2E717E00DDEFC4 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		AF8E624C1C2E717E00DDEFC4 /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewController.swift; sourceTree = "<group>"; };
+		AF8E624D1C2E717E00DDEFC4 /* PinterestLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		AF8E624E1C2E717E00DDEFC4 /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
+		AF8E624F1C2E717E00DDEFC4 /* UIImage+Decompression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Decompression.swift"; sourceTree = "<group>"; };
+		AF8E62551C2E71B100DDEFC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AF8E62561C2E71B100DDEFC4 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
+		AF8E62591C2E722300DDEFC4 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
+		AF8E625A1C2E722300DDEFC4 /* Photos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Photos.xcassets; sourceTree = "<group>"; };
+		AFAF99E71C2A587F00159682 /* GADMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADMasterViewController.swift; sourceTree = "<group>"; };
+		AFAF99E91C2A593500159682 /* Funny Stories-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Funny Stories-Bridging-Header.h"; sourceTree = "<group>"; };
+		AFAF99EA1C2A596900159682 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFAF99EB1C2A596900159682 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,9 +96,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF12FBB91C2A4F0700FA2339 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AFAF99EA1C2A596900159682 /* GoogleMobileAds.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		AF81A29F1C1F2C8900E0AA71 = {
 			isa = PBXGroup;
 			children = (
+				AF12FBB91C2A4F0700FA2339 /* Framework */,
 				AF81A2AA1C1F2C8900E0AA71 /* Funny Stories */,
 				AF81A2C11C1F2C8900E0AA71 /* Funny StoriesTests */,
 				AF81A2A91C1F2C8900E0AA71 /* Products */,
@@ -85,16 +126,23 @@
 		AF81A2AA1C1F2C8900E0AA71 /* Funny Stories */ = {
 			isa = PBXGroup;
 			children = (
+				AF8E624A1C2E705200DDEFC4 /* CollectionView */,
+				AF81A2D01C1F43A100E0AA71 /* Common.swift */,
+				AF12FBB01C299FDB00FA2339 /* FSCore.swift */,
+				AF12FBB41C29B1DE00FA2339 /* FSDesign.swift */,
 				AF81A2AB1C1F2C8900E0AA71 /* AppDelegate.swift */,
 				AF36CA451C228F3800906B5C /* RootTabBarController.swift */,
 				AF81A2AD1C1F2C8900E0AA71 /* HomeViewController.swift */,
 				AF81A2AF1C1F2C8900E0AA71 /* FavoriteViewController.swift */,
+				AF5132E71C27116D00008FFA /* StoryViewController.swift */,
 				AF81A2B11C1F2C8900E0AA71 /* Main.storyboard */,
 				AF81A2B41C1F2C8900E0AA71 /* Assets.xcassets */,
 				AF81A2B61C1F2C8900E0AA71 /* LaunchScreen.storyboard */,
 				AF81A2B91C1F2C8900E0AA71 /* Info.plist */,
-				AF81A2D01C1F43A100E0AA71 /* Define.swift */,
-				AF36CA4A1C2308DA00906B5C /* MyStoryTableViewCell.swift */,
+				AF5132E31C27055F00008FFA /* StoryTableViewCell.swift */,
+				AF5132E41C27055F00008FFA /* StoryTableViewCell.xib */,
+				AFAF99E71C2A587F00159682 /* GADMasterViewController.swift */,
+				AFAF99E91C2A593500159682 /* Funny Stories-Bridging-Header.h */,
 			);
 			path = "Funny Stories";
 			sourceTree = "<group>";
@@ -106,6 +154,22 @@
 				AF81A2C41C1F2C8900E0AA71 /* Info.plist */,
 			);
 			path = "Funny StoriesTests";
+			sourceTree = "<group>";
+		};
+		AF8E624A1C2E705200DDEFC4 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AF8E62591C2E722300DDEFC4 /* AnnotatedPhotoCell.swift */,
+				AF8E625A1C2E722300DDEFC4 /* Photos.xcassets */,
+				AF8E62551C2E71B100DDEFC4 /* Images.xcassets */,
+				AF8E62561C2E71B100DDEFC4 /* Photos.plist */,
+				AF8E624B1C2E717E00DDEFC4 /* Photo.swift */,
+				AF8E624C1C2E717E00DDEFC4 /* PhotoStreamViewController.swift */,
+				AF8E624D1C2E717E00DDEFC4 /* PinterestLayout.swift */,
+				AF8E624E1C2E717E00DDEFC4 /* RoundedCornersView.swift */,
+				AF8E624F1C2E717E00DDEFC4 /* UIImage+Decompression.swift */,
+			);
+			name = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +255,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF81A2B81C1F2C8900E0AA71 /* LaunchScreen.storyboard in Resources */,
+				AF8E62571C2E71B100DDEFC4 /* Images.xcassets in Resources */,
 				AF81A2B51C1F2C8900E0AA71 /* Assets.xcassets in Resources */,
 				AF81A2B31C1F2C8900E0AA71 /* Main.storyboard in Resources */,
+				AF8E625C1C2E722300DDEFC4 /* Photos.xcassets in Resources */,
+				AF5132E61C27055F00008FFA /* StoryTableViewCell.xib in Resources */,
+				AF8E62581C2E71B100DDEFC4 /* Photos.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,11 +279,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF81A2B01C1F2C8900E0AA71 /* FavoriteViewController.swift in Sources */,
+				AF12FBB11C299FDB00FA2339 /* FSCore.swift in Sources */,
+				AF12FBB51C29B1DE00FA2339 /* FSDesign.swift in Sources */,
+				AF8E62511C2E717E00DDEFC4 /* PhotoStreamViewController.swift in Sources */,
+				AF8E62541C2E717E00DDEFC4 /* UIImage+Decompression.swift in Sources */,
 				AF36CA461C228F3800906B5C /* RootTabBarController.swift in Sources */,
 				AF81A2AC1C1F2C8900E0AA71 /* AppDelegate.swift in Sources */,
-				AF81A2D11C1F43A100E0AA71 /* Define.swift in Sources */,
+				AFAF99E81C2A587F00159682 /* GADMasterViewController.swift in Sources */,
+				AF81A2D11C1F43A100E0AA71 /* Common.swift in Sources */,
+				AF8E62521C2E717E00DDEFC4 /* PinterestLayout.swift in Sources */,
+				AF8E62501C2E717E00DDEFC4 /* Photo.swift in Sources */,
+				AF8E625B1C2E722300DDEFC4 /* AnnotatedPhotoCell.swift in Sources */,
 				AF81A2AE1C1F2C8900E0AA71 /* HomeViewController.swift in Sources */,
-				AF36CA4B1C2308DA00906B5C /* MyStoryTableViewCell.swift in Sources */,
+				AF8E62531C2E717E00DDEFC4 /* RoundedCornersView.swift in Sources */,
+				AF5132E81C27116D00008FFA /* StoryViewController.swift in Sources */,
+				AF5132E51C27055F00008FFA /* StoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,13 +421,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Funny Stories/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "57d5b393-5a73-4653-8472-ffee4a25c15e";
+				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories/Funny Stories-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -358,13 +444,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Funny Stories/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "57d5b393-5a73-4653-8472-ffee4a25c15e";
+				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories/Funny Stories-Bridging-Header.h";
 			};
 			name = Release;
 		};

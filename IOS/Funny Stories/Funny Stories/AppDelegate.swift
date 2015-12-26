@@ -17,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        //print("Vao application")
+        print("Vao application")
+        
+        while FSCore.ShareInstance.m_LoadedListTitle == false
+        {
+            FSCore.ShareInstance.GETListTitle()
+            sleep(2)
+        }
+        
         
         return true
     }

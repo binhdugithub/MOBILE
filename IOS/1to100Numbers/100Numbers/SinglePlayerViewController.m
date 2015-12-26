@@ -70,10 +70,10 @@
     
 }
 
+
 -(void)CalculateView
 {
     //1 bacground
-    
     //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
     [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
     //
@@ -198,9 +198,9 @@
     //[m_UIButtonPlay setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonPlay setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonPlay setTitle:[NSString stringWithFormat:@"REPLAY"] forState:UIControlStateNormal];
-
     
 }
+
 
 - (void)SetStateGame: (NSInteger) p_state
 {
