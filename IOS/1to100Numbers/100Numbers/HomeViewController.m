@@ -40,7 +40,7 @@
     [self CalculateView];
     [self ShowSpeaker];
 
-    [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
+    //[[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
     [[GCViewController GetSingleton] AuthenticateLocalPlayer];
     
     

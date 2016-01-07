@@ -70,6 +70,7 @@
     // Ad already requested, simply add it into the view
     if (m_IsLoaded)
     {
+        m_Banner.rootViewController = p_RootViewController;
         [p_RootViewController.view addSubview:m_Banner];
     }
     else
