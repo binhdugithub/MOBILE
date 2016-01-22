@@ -314,24 +314,24 @@
     frm = ViewFooter.frame;
     frm.origin.x = 0;
     frm.origin.y =  0;
-    UILabel *m_UIlabelCopyright = [[UILabel alloc] initWithFrame:frm];
-    [m_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
-    [m_UIlabelCopyright setText:TEXT_COPYRIGHT];
-    [m_UIlabelCopyright setTextAlignment:NSTextAlignmentCenter];
+    UILabel *l_UIlabelCopyright = [[UILabel alloc] initWithFrame:frm];
+    [l_UIlabelCopyright setTextColor:[UIColor darkGrayColor]];
+    [l_UIlabelCopyright setText:TEXT_COPYRIGHT];
+    [l_UIlabelCopyright setTextAlignment:NSTextAlignmentCenter];
     if (IS_IPHONE_4_OR_LESS)
     {
-        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
+        [l_UIlabelCopyright setFont:[UIFont systemFontOfSize:10 weight:0.5]];
     }
     else if (IS_IPAD)
     {
-        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
+        [l_UIlabelCopyright setFont:[UIFont systemFontOfSize:20 weight:0.5]];
     }
     else
     {
-        [m_UIlabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
+        [l_UIlabelCopyright setFont:[UIFont systemFontOfSize:15 weight:0.5]];
     }
     
-    [ViewFooter addSubview:m_UIlabelCopyright];
+    [ViewFooter addSubview:l_UIlabelCopyright];
     //
     //Controller Button
     //

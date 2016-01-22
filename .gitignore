@@ -1,2 +1,6 @@
 
 IOS/Bat2chu 2/
+
+*.xccheckout
+
+*.xcworkspacedata
