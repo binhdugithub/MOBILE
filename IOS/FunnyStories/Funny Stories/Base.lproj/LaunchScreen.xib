@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lauchimage" translatesAutoresizingMaskIntoConstraints="NO" id="4tw-cM-aJP">
+                    <rect key="frame" x="37" y="161" width="246" height="246"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="4tw-cM-aJP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37" id="0FD-u1-4l3"/>
+                <constraint firstItem="4tw-cM-aJP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="161" id="7ac-lp-jdz"/>
+                <constraint firstItem="4tw-cM-aJP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EM3-Yd-eOr"/>
+                <constraint firstAttribute="bottom" secondItem="4tw-cM-aJP" secondAttribute="bottom" constant="161" id="PSF-Xg-TAV"/>
+                <constraint firstItem="4tw-cM-aJP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eVQ-u1-LBV"/>
+                <constraint firstAttribute="trailing" secondItem="4tw-cM-aJP" secondAttribute="trailing" constant="37" id="wWE-eR-5xB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="460" y="402"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="lauchimage" width="246" height="246"/>
+    </resources>
+</document>
