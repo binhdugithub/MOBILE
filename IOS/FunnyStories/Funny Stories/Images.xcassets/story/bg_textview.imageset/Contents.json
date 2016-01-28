@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bg_collectionview1x.png",
+      "filename" : "bg_collectionview3x-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bg_collectionview1x-1.png",
+      "filename" : "bg_collectionview3x-2.png",
       "scale" : "2x"
     },
     {

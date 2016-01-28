@@ -48,6 +48,7 @@ class StoryViewController: UIViewController
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
         GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
+        //self.m_AdView.hidden = true
     }
   
   
@@ -147,7 +148,7 @@ class StoryViewController: UIViewController
     m_LblTitle.textAlignment = NSTextAlignment.Center
     m_LblTitle.numberOfLines = 2
     m_LblTitle.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_SIZE_TITLE)
-    m_LblTitle.textColor = UIColor.blackColor()
+    m_LblTitle.textColor = FSDesign.ShareInstance.COLOR_STORY_TITLE
     self.navigationItem.titleView  = m_LblTitle
     
     //Right button: Share

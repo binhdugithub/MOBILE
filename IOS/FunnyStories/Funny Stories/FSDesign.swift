@@ -40,6 +40,7 @@ class FSDesign
   
   
     //var COLOR_COLLECTION_BG = UIColor()
+    let COLOR_STORY_TITLE = UIColor(red: 87.0/255, green: 116.0/255, blue: 189.0/255, alpha: 0.9)
     var COLOR_COLLECTION_TEXT = UIColor.blackColor()
     var COLOR_TABBAR_BG = UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
     var COLOR_TABBAR_TINT = UIColor(red: 103.0/255, green: 152.0/255, blue: 5.0/255, alpha: 1)

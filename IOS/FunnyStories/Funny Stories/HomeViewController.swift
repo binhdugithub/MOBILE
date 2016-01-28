@@ -199,33 +199,35 @@ extension HomeViewController : LayoutDelegate
   // 1
   func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
+    
+      return ((SCREEN_WIDTH / 3) - 8)
+    
+      let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
+      let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+      if let l_image = l_Story.m_image
+      {
+        let image = UIImage(data: l_image)?.decompressedImage
+        let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
+        return rect.size.height
+        
+      }
+    
       return (SCREEN_WIDTH / 3)
-//      let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
-//      let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-//      if let l_image = l_Story.m_image
-//      {
-//        let image = UIImage(data: l_image)?.decompressedImage
-//        let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
-//        return rect.size.height
-//        
-//      }
-//    
-//      return 150
   }
   
   // 2
   func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-      let annotationPadding = CGFloat(4)
+      let annotationPadding = CGFloat(15)
       let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
       let font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
     
       //height title
       let annotationHeaderHeight = l_Story.heightForTitle(font, width: width)
       //height comment
-      let commentHeight = l_Story.heightForComment(font, width: width)
+      //let commentHeight = l_Story.heightForComment(font, width: width)
       //height annotation
-      let height = annotationPadding + annotationHeaderHeight + commentHeight + annotationPadding
+      let height = annotationPadding + annotationHeaderHeight /*+ commentHeight*/ + annotationPadding
     
       return height
   }

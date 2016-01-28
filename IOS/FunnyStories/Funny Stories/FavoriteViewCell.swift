@@ -14,7 +14,7 @@ class FavoriteViewCell: UICollectionViewCell
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var imageViewHeightLayoutConstraint: NSLayoutConstraint!
   @IBOutlet private weak var captionLabel: UILabel!
-  @IBOutlet private weak var commentLabel: UILabel!
+  //@IBOutlet private weak var commentLabel: UILabel!
   
   @IBOutlet weak var m_ActivityIndicator: UIActivityIndicatorView!
   
@@ -25,9 +25,9 @@ class FavoriteViewCell: UICollectionViewCell
     m_ActivityIndicator.hidesWhenStopped = true
     
     captionLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
-    commentLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
+    //commentLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
     captionLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-    commentLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
+    //commentLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
     
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
     
@@ -39,8 +39,9 @@ class FavoriteViewCell: UICollectionViewCell
       if let l_Story = m_Story
       {
         captionLabel.text = l_Story.m_title
-        commentLabel.text = l_Story.m_content
-        commentLabel.numberOfLines = 2
+        captionLabel.numberOfLines = 2
+        //commentLabel.text = l_Story.m_content
+        //commentLabel.numberOfLines = 2
         if let l_image = l_Story.m_image
         {
           imageView.image = UIImage(data: l_image)?.decompressedImage

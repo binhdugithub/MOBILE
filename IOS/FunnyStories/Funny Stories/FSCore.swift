@@ -258,11 +258,11 @@ class FSCore
   
   func GETListImage(p_object: AnyObject?)
   {
-    if m_EndOfData == true
-    {
-      //print("End of database")
-      return
-    }
+//    if m_EndOfData == true
+//    {
+//      //print("End of database")
+//      return
+//    }
 
     let l_size = m_ArrayStory.count
   
