@@ -84,7 +84,7 @@ class HomeLayout: CommonLayout
     {
       // 2
       let columnWidth = contentWidth / CGFloat(numberOfColumns)
-      print("content width:\(contentWidth)")
+      //print("content width:\(contentWidth)")
       var xOffset = [CGFloat]()
       for column in 0 ..< numberOfColumns
       {

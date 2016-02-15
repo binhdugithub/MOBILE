@@ -109,7 +109,7 @@ class StoryViewController: UIViewController
     
     
     FSCore.ShareInstance.m_ReadingCount += 1
-    if (FSCore.ShareInstance.m_ReadingCount == 3)
+    if (FSCore.ShareInstance.m_ReadingCount == 4)
     {
       FSCore.ShareInstance.m_ReadingCount = 0
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)

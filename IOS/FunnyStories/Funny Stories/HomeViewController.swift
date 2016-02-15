@@ -152,22 +152,30 @@ extension HomeViewController
     if (scrollView.contentOffset.y < 0)
     {
       //reach top
-      print("Here is top")
+      //print("Here is top")
     }
     else if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
     {
       //reach bottom
       print("Here is button")
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
+      //self.view.bringSubviewToFront(m_Indicator!)
+      //m_Indicator!.startAnimating()
       
-      FSCore.ShareInstance.GETListStory((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!)
-      self.ReloadData()
+      if FSCore.ShareInstance.m_Loaded == true
+      {
+        FSCore.ShareInstance.GETListStory((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!)
+        self.ReloadData()
+        
+        //m_Indicator!.stopAnimating()
+        
+        FSCore.ShareInstance.GETListImage(self)
+        FSCore.ShareInstance.GETListAudio(self)
+      }
+      else
+      {
+        print("Don't loaded story")
+      }
       
-      m_Indicator!.stopAnimating()
-      
-      FSCore.ShareInstance.GETListImage(self)
-      FSCore.ShareInstance.GETListAudio(self)
     }
     
   }

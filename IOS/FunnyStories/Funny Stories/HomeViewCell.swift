@@ -33,7 +33,7 @@ class HomeViewCell: UICollectionViewCell
     
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
     
-    print("width: \(m_View.frame.size)")
+    //print("width: \(m_View.frame.size)")
     //commentLabel.hidden = true
   }
   
@@ -41,6 +41,7 @@ class HomeViewCell: UICollectionViewCell
   {
     didSet
     {
+      m_ActivityIndicator.stopAnimating()
       if let l_Story = m_Story
       {
         captionLabel.text = l_Story.m_title

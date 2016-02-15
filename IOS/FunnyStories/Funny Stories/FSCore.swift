@@ -16,6 +16,8 @@ class FSCore
     var m_ArrayFavorite = [Story]()
     var m_EndOfData: Bool = false
     var m_sem: dispatch_semaphore_t?
+    var m_synchronize: Bool = true
+    var m_Loaded: Bool = true
     var m_ReadingCount:Int = 0
   
     static let ShareInstance = FSCore()
@@ -74,29 +76,54 @@ class FSCore
         return
       }
       
+      m_Loaded = false
+      
+      if p_id == 0
+      {
+        m_synchronize = true;
+      }
+      else
+      {
+        m_synchronize = false;
+      }
+      
         let l_url : String =  SERVER_URL + String("/stories?id_start=\(p_id)&limit=10")
         let l_request : NSMutableURLRequest = NSMutableURLRequest()
         l_request.URL = NSURL(string: l_url)
         l_request.HTTPMethod = "GET"
         l_request.timeoutInterval = 10
       
-        m_sem = dispatch_semaphore_create(0)
+        if m_synchronize == true
+        {
+          m_sem = dispatch_semaphore_create(0)
+        }
+      
         let l_task = NSURLSession.sharedSession().dataTaskWithRequest(l_request, completionHandler:LoadedListStory)
         l_task.resume()
       
-        dispatch_semaphore_wait(m_sem!, DISPATCH_TIME_FOREVER)
+      
+        if m_synchronize == true
+        {
+          dispatch_semaphore_wait(m_sem!, DISPATCH_TIME_FOREVER)
+        }
+      
     }
   
   
   
     func LoadedListStory(data:NSData?,response:NSURLResponse?,let err:NSError?)
     {
-        print("LoadedListTitle")
+        //print("LoadedListTitle")
       
         if err != nil
         {
           print("Have error: \(err)")
-          dispatch_semaphore_signal(m_sem!)
+          if m_synchronize == true
+          {
+            dispatch_semaphore_signal(m_sem!)
+          }
+          
+          m_Loaded = true
           return
         }
       
@@ -106,7 +133,12 @@ class FSCore
             if (res.statusCode != 200)
             {
               print("Result have problem")
-              dispatch_semaphore_signal(m_sem!)
+              if m_synchronize == true
+              {
+                dispatch_semaphore_signal(m_sem!)
+              }
+              
+              m_Loaded = true
               return
             }
             //print("Status code:\(res.statusCode)")
@@ -156,14 +188,21 @@ class FSCore
                       l_story.m_audiourl = p_audio
                     }
                     
-                    m_ArrayStory.append(l_story)
-                    let l_index = Configuration.ShareInstance.m_Favorite!.indexOfObject(l_story.m_id!)
-                    if l_index != NSNotFound
+                    let l_i = IndexOfStoryInArrayStory(l_story)
+                    if l_i == -1
                     {
-                      l_story.m_liked = true
-                      m_ArrayFavorite.append(l_story)
+                      m_ArrayStory.append(l_story)
+                      let l_index = Configuration.ShareInstance.m_Favorite!.indexOfObject(l_story.m_id!)
+                      if l_index != NSNotFound
+                      {
+                        l_story.m_liked = true
+                        m_ArrayFavorite.append(l_story)
+                      }
                     }
-                    
+                    else
+                    {
+                      print("Trung do do do !!")
+                    }
                   }
                   
                   m_ArrayStory.sortInPlace({$0.m_id < $1.m_id})
@@ -183,7 +222,13 @@ class FSCore
                 self.m_EndOfData = true
               }
               
-              dispatch_semaphore_signal(m_sem!)
+              if m_synchronize == true
+              {
+                dispatch_semaphore_signal(m_sem!)
+              }
+              
+              
+              m_Loaded = true
               return
             }
         }
@@ -208,10 +253,15 @@ class FSCore
         }
       
       
-        dispatch_semaphore_signal(m_sem!)
+        if m_synchronize == true
+        {
+          dispatch_semaphore_signal(m_sem!)
+        }
+      
+        m_Loaded = true
     }
-    
-    
+  
+  
     func GETStory(p_id: Int)
     {
         let l_url : String = SERVER_URL + String("/story/?id=") + String(p_id)
@@ -377,7 +427,7 @@ class FSCore
         continue
       }
       
-      print("Load audio:\(self.m_ArrayStory[i].m_id)")
+      //print("Load audio:\(self.m_ArrayStory[i].m_id)")
       let l_path: String = self.m_ArrayStory[i].m_audiourl!
       let l_url:NSURL? = NSURL(string: l_path)!
       //print("url:\(l_path)")
