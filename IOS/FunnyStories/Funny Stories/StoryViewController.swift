@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class StoryViewController: UIViewController
 {
@@ -16,7 +17,7 @@ class StoryViewController: UIViewController
   
     var m_AdView        = UIView()
     var m_ControlView   = UIView()
-    var m_ContentView   = UIView()
+    //var m_ContentView   = UIView()
 
     var m_BtnAudio      = UIButton()
     var m_BtnFavorite   = UIButton()
@@ -28,29 +29,40 @@ class StoryViewController: UIViewController
   
     var m_AudioPlayer: AVAudioPlayer?
   
+    var m_AudioLoadIndicator: UIActivityIndicatorView?
+  
   override func viewDidLoad()
-    {
+  {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
         self.tabBarController?.tabBar.hidden = true
+      
+      
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        var l_image = UIImage(named: "bg_textview")
+        l_image?.drawInRect(self.view.bounds)
+        l_image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: l_image!)
+      
         InitNavigationHeader()
+        InitContentView()
         InitControlView()
         InitAd()
-        InitContentView()
+    
         RefreshStory()
-        self.view.bringSubviewToFront(self.m_AdView)
       
+       GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
     }
 
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
-        GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
-        //self.m_AdView.hidden = true
+
     }
-  
   
   
   func RefreshStory()
@@ -109,11 +121,22 @@ class StoryViewController: UIViewController
     
     
     FSCore.ShareInstance.m_ReadingCount += 1
-    if (FSCore.ShareInstance.m_ReadingCount == 4)
+    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
     {
-      FSCore.ShareInstance.m_ReadingCount = 0
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     }
+    
+    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_RATE) == 0 &&
+         Configuration.ShareInstance.m_Rate == 1)
+    {
+      ShowRate()
+    }
+    
+    if m_AudioLoadIndicator?.isAnimating() == true
+    {
+      m_AudioLoadIndicator?.stopAnimating()
+    }
+    
   }
   
   
@@ -194,55 +217,39 @@ class StoryViewController: UIViewController
   func InitContentView()
   {
     var l_rect          = CGRectMake(0, 0, 0, 0)
-    l_rect.origin.x     = 0
-    l_rect.size.width   = SCREEN_WIDTH
-    l_rect.origin.y     = FSDesign.ShareInstance.NAVI_HEIGHT
-    l_rect.size.height  = m_AdView.frame.origin.y - l_rect.origin.y + m_ControlView.frame.size.height
-    
-    m_ContentView = UIView(frame: l_rect)
-    
-    UIGraphicsBeginImageContext(m_ContentView.frame.size);
-    var l_image = UIImage(named: "bg_textview")
-    l_image?.drawInRect(m_ContentView.bounds)
-    l_image = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    m_ContentView.backgroundColor = UIColor(patternImage: l_image!)
-    
+
     //text view
-    l_rect.size.width = m_ContentView.frame.size.width - FSDesign.ShareInstance.CELL_MARGIN
-    l_rect.origin.x = 0.5 * (m_ContentView.frame.size.width - l_rect.size.width)
+    l_rect.origin.x = FSDesign.ShareInstance.TEXTVIEW_MARGIN//0.5 * (m_ContentView.frame.size.width - l_rect.size.width)
     l_rect.origin.y = 0
-    l_rect.size.height = m_ContentView.frame.size.height - m_ControlView.frame.size.height
+    l_rect.size.width = SCREEN_WIDTH - 2 * FSDesign.ShareInstance.TEXTVIEW_MARGIN
+    l_rect.size.height = SCREEN_HEIGHT - FSDesign.ShareInstance.AD_HEIGHT - FSDesign.ShareInstance.ICON_HEIGTH - FSDesign.ShareInstance.ICON_VHSPACE * 2 - 1
+    print("Height: \(SCREEN_HEIGHT)")
     m_TextView = UITextView(frame: l_rect)
     m_TextView.textAlignment = NSTextAlignment.Left
-    
     m_TextView.backgroundColor = UIColor.clearColor()
     m_TextView.delegate = self
     
-    //Facebook button
-    m_BtnFB.backgroundColor = UIColor.clearColor()
-    m_BtnFB.setImage(UIImage(named: "fb"), forState: UIControlState.Normal)
-    m_BtnFB.setTitle("", forState: UIControlState.Normal)
-    m_BtnFB.addTarget(self, action: "FBClick:", forControlEvents: UIControlEvents.TouchUpInside)
-    
-    m_BtnFB.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    m_TextView.addSubview(m_BtnFB)
-    
-    //Twitter button
-    var l_frmtw = m_BtnFB.frame
-    l_frmtw.origin.x += l_frmtw.size.width + 10
-    m_BtnTW.frame = l_frmtw
-    m_BtnTW.backgroundColor = UIColor.clearColor()
-    m_BtnTW.setImage(UIImage(named: "tw"), forState: UIControlState.Normal)
-    m_BtnTW.setTitle("", forState: .Normal)
-    m_BtnTW.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    m_BtnTW.addTarget(self, action: "TWClick:", forControlEvents: UIControlEvents.TouchUpInside)
-  
-    m_TextView.addSubview(m_BtnFB)
-    m_TextView.addSubview(m_BtnTW)
-    
-    m_ContentView.addSubview(m_TextView)
-    self.view.addSubview(m_ContentView)
+//    //Facebook button
+//    m_BtnFB.backgroundColor = UIColor.clearColor()
+//    m_BtnFB.setImage(UIImage(named: "fb"), forState: UIControlState.Normal)
+//    m_BtnFB.setTitle("", forState: UIControlState.Normal)
+//    m_BtnFB.addTarget(self, action: "FBClick:", forControlEvents: UIControlEvents.TouchUpInside)
+//    
+//    //Twitter button
+//    var l_frmtw = m_BtnFB.frame
+//    l_frmtw.origin.x += l_frmtw.size.width + 10
+//    m_BtnTW.frame = l_frmtw
+//    m_BtnTW.backgroundColor = UIColor.clearColor()
+//    m_BtnTW.setImage(UIImage(named: "tw"), forState: UIControlState.Normal)
+//    m_BtnTW.setTitle("", forState: .Normal)
+//    m_BtnTW.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//    m_BtnTW.addTarget(self, action: "TWClick:", forControlEvents: UIControlEvents.TouchUpInside)
+//  
+//    m_TextView.addSubview(m_BtnFB)
+//    m_TextView.addSubview(m_BtnTW)
+
+    self.view.addSubview(m_TextView)
+
   }
   
     func InitControlView()
@@ -328,21 +335,29 @@ class StoryViewController: UIViewController
         l_UIButtonNext.setImage(UIImage(named: "next"), forState: UIControlState.Normal)
         l_UIButtonNext.setTitle("", forState: UIControlState.Normal)
         l_UIButtonNext.addTarget(self, action: "NextClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        
+      
+        // indicator
+        m_AudioLoadIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        m_AudioLoadIndicator!.frame = m_BtnAudio.frame
+        m_AudioLoadIndicator!.hidesWhenStopped = true
+        m_AudioLoadIndicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        m_AudioLoadIndicator?.stopAnimating()
         //view Control
         l_rect = CGRectMake(0, 0, SCREEN_WIDTH, FSDesign.ShareInstance.ICON_HEIGTH + 2 * FSDesign.ShareInstance.ICON_VHSPACE)
         l_rect.origin.y    = SCREEN_HEIGHT - l_rect.size.height
-        
+      
+      
         m_ControlView = UIView(frame: l_rect)
-        
+        m_ControlView.backgroundColor = FSDesign.ShareInstance.COLOR_CONTROL_BG
+      
         m_ControlView.addSubview(l_UIButtonPrevious)
         m_ControlView.addSubview(m_BtnAudio)
         m_ControlView.addSubview(l_UIButtonAPlus)
         m_ControlView.addSubview(l_UIButtonASub)
         m_ControlView.addSubview(m_BtnFavorite)
         m_ControlView.addSubview(l_UIButtonNext)
+        m_ControlView.addSubview(m_AudioLoadIndicator!)
       
-        m_ControlView.backgroundColor = FSDesign.ShareInstance.COLOR_CONTROL_BG
         self.view.addSubview(m_ControlView)
     }
 
@@ -401,7 +416,7 @@ class StoryViewController: UIViewController
         //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:MyApp]];
       #endif
       
-      let l_image = FSCore.ShareInstance.ScreenShot()
+      let l_image = ScreenShot()
       var shareItems: NSArray?
       
       if let l_MyAppWebsite = NSURL(string: l_link)
@@ -665,8 +680,51 @@ class StoryViewController: UIViewController
           else
           {
             print("You have to get audio data of here")
+            m_AudioLoadIndicator?.startAnimating()
             sender.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-            FSCore.ShareInstance.GETAudio(m_Story.m_id!, p_sender:self)
+            let l_audioURL = m_Story.m_audiourl
+            
+            Alamofire.request(.GET, l_audioURL!).validate().response(){
+                (_,_,audioData, p_error) in
+              if (self.m_AudioLoadIndicator?.isAnimating() == true)
+              {
+                self.m_AudioLoadIndicator?.stopAnimating()
+              }
+              
+              if p_error == nil
+              {
+                  if audioData?.length > 0
+                  {
+                    if (l_audioURL == self.m_Story.m_audiourl)
+                    {
+                      if self.m_Story.m_audio == nil
+                      {
+                        self.m_Story.m_audio = audioData
+                      }
+                      
+                      self.PlayAudio()
+                    }
+                    else
+                    {
+                      for l_story in FSCore.ShareInstance.m_ArrayStory
+                      {
+                        if l_story.m_audiourl == l_audioURL
+                        {
+                          if self.m_Story.m_audio == nil
+                          {
+                            self.m_Story.m_audio = audioData
+                          }
+                          
+                          break
+                        }
+                      }
+                    }
+                    
+                  }
+              }
+            }//end Alamofire
+            
+            print("Ngoai Alamofire")
           }
         }//end if m_AudioPlayerStory == nil
         else
@@ -691,8 +749,52 @@ class StoryViewController: UIViewController
         // Pass the selected object to the new view controller.
      
     }
+  
+  func ShowRate()
+  {
+    let refreshAlert = UIAlertView()
+    refreshAlert.title = "Rate Funny Short Stories"
+    refreshAlert.message = "If you enjoy using Funny Short Stories, please take a moment to rate it in the App Store. Thanks for your support!"
+    refreshAlert.addButtonWithTitle("Yes, Rate It!")
+    refreshAlert.addButtonWithTitle("Remind me later")
+    refreshAlert.addButtonWithTitle("No, Thanks")
+  
+    refreshAlert.show()
+    refreshAlert.delegate = self
+  }
+
 }
 
+extension StoryViewController : UIAlertViewDelegate
+{
+  func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+  {
+    switch buttonIndex
+    {
+    case 0://rate
+      #if TARGET_IPHONE_SIMULATOR
+        print("APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
+      #else
+      let l_linkapp = "itms-apps://itunes.apple.com/app/id\(YOUR_APP_ID)"
+       UIApplication.sharedApplication().openURL(NSURL(string : l_linkapp)!)
+      Configuration.ShareInstance.WriteRate(2)
+      #endif
+      break
+    case 1://not remind rate
+      print("Remind later")
+      Configuration.ShareInstance.m_Rate = 100 // don't want to rate again in a one using app
+      break
+    case 2:// no thanks
+      print("No thank")
+      Configuration.ShareInstance.WriteRate(0)
+      break
+    default:
+      print("Don't know what choose")
+      break
+    }
+    
+  }
+}
 
 extension StoryViewController
 {
@@ -755,9 +857,6 @@ extension StoryViewController: UITextViewDelegate
           l_frame = self.m_TextView.frame
           l_frame.size.height = l_frame.size.height - self.m_ControlView.frame.size.height
           self.m_TextView.frame = l_frame
-
-          //self.m_ControlView.hidden = false
-          //self.view.bringSubviewToFront(self.m_AdView)
         })
         
         

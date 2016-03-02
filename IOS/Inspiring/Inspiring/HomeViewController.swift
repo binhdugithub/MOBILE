@@ -8,11 +8,11 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class HomeViewController: UICollectionViewController
 {
   var m_Indicator: UIActivityIndicatorView?
-  //var m_CurrentIndex: NSIndexPath?
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle
   {
@@ -41,6 +41,28 @@ class HomeViewController: UICollectionViewController
     m_Indicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
     self.view.addSubview(m_Indicator!)
     
+    
+    if Configuration.ShareInstance.m_CurrentImage == -1
+    {
+        GETImages(-1, p_type: 1)
+    }
+    else
+    {
+        GETImages(Configuration.ShareInstance.m_CurrentImage! + 1, p_type: 0)
+    }
+    
+    
+    for l_url in Configuration.ShareInstance.m_ArrayLinkFavorite
+    {
+        let l_story = Story()
+        l_story.m_imageurl = l_url as? String
+        l_story.m_liked = true
+        
+        FSCore.ShareInstance.m_ArrayFavorite.append(l_story)
+    }
+    
+    print("Current image:\(Configuration.ShareInstance.m_CurrentImage)")
+    
   }
   
   override func viewWillAppear(animated: Bool)
@@ -49,28 +71,12 @@ class HomeViewController: UICollectionViewController
     
     self.tabBarController?.tabBar.hidden = false
     self.navigationController?.navigationBarHidden = true
-  
-    if FSCore.ShareInstance.m_ArrayStory.count == 0
-    {
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
-    }
     
   }
   
   override func viewDidAppear(animated: Bool)
   {
     super.viewDidAppear(animated)
-    
-    if FSCore.ShareInstance.m_ArrayStory.count == 0
-    {
-      FSCore.ShareInstance.GETListStory(0)
-      m_Indicator!.stopAnimating()
-      
-      FSCore.ShareInstance.GETListImage(self)
-    }
-    
-    //reload data
     self.ReloadData()
     
   }
@@ -83,6 +89,90 @@ class HomeViewController: UICollectionViewController
       self.collectionView!.reloadData()
     }
   }
+    
+    
+    func GETImages(p_id: Int, p_type: Int) -> Bool
+    {
+        if (FSCore.ShareInstance.m_IsLoading == true)
+        {
+            print("Is loading => return")
+            return false
+        }
+        
+        
+        FSCore.ShareInstance.m_IsLoading = true
+        
+        let l_url : String =  SERVER_URL + String("/images")
+        
+        Alamofire.request(.GET, l_url, parameters: ["id_start": "\(p_id)", "limit" : "\(NUMBER_IMAGES_ONCE_LOAD)", "type": "\(p_type)"]).responseJSON()
+        {
+            p_response in
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+            {
+                switch p_response.result
+                {
+                case .Success(let JSON):
+                    //print("Success with JSON: \(JSON)")
+                    let JSONResponse = JSON as! NSDictionary
+                    let JSONImages = JSONResponse.valueForKey("images")! as! [NSDictionary]
+                    var listImages = JSONImages.map{
+                        Story(p_id: $0.valueForKey("id") as! Int, p_imageurl: $0.valueForKey("imageurl") as! String)
+                    }
+                    
+
+                    if listImages.count > 0
+                    {
+                        for p_story in listImages
+                        {
+                            p_story.m_liked = false
+                            FSCore.ShareInstance.m_ArrayImage.append(p_story)
+                            
+                            for x_story in FSCore.ShareInstance.m_ArrayFavorite
+                            {
+                                if x_story.m_imageurl == p_story.m_imageurl
+                                {
+                                    x_story.m_id = p_story.m_id
+                                    p_story.m_liked = true
+                                    break
+                                }
+                                
+                            }
+                        }
+                        
+                        FSCore.ShareInstance.m_ArrayImage.sortInPlace({$0.m_id > $1.m_id})
+                                                
+//                        for var i in 0..<FSCore.ShareInstance.m_ArrayImage.count
+//                        {
+//                            print(FSCore.ShareInstance.m_ArrayImage[i].m_imageurl)
+//                        }
+//                        
+                        //Configuration.ShareInstance.WriteCurrentImage(FSCore.ShareInstance.m_ArrayImage[0].m_id!)
+                        
+                        // 10
+                        //                    let indexPaths = (lastItem..<FSCore.ShareInstance.m_ArrayStory.count).map{NSIndexPath(forItem: $0, inSection: 0)}
+                        //
+                        // 11
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            self.ReloadData()
+                        }
+                    }
+
+                    
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                }
+                
+                
+            }//end dispatch_async
+            
+            FSCore.ShareInstance.m_IsLoading = false
+                
+        }//end Alamofire.request
+        
+        return true
+    }
   
 }
 
@@ -91,14 +181,33 @@ extension HomeViewController
 {
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   {
-    return FSCore.ShareInstance.m_ArrayStory.count
+    return FSCore.ShareInstance.m_ArrayImage.count
   }
   
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
   {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeViewCell", forIndexPath: indexPath) as! HomeViewCell
-    FSCore.ShareInstance.m_ArrayStory[indexPath.row].m_row = indexPath
-    cell.m_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.row]
+    
+    let l_Story = FSCore.ShareInstance.m_ArrayImage[indexPath.row]
+    if let _ = l_Story.m_image
+    {
+        cell.m_Story = l_Story
+    }
+    else
+    {
+        let l_imageURL = l_Story.m_imageurl
+        
+        Alamofire.request(.GET, l_imageURL!).response()
+        {
+            (_,_,imageData,_) in
+            if imageData?.length > 0
+            {
+                l_Story.m_image = imageData
+                cell.m_Story = l_Story
+            }
+        }
+    }
+    
     return cell
   }
   
@@ -120,24 +229,7 @@ extension HomeViewController
     {
       let StoryView = segue.destinationViewController as! StoryViewController
       let l_item: NSIndexPath = sender as! NSIndexPath
-      StoryView.m_Story = FSCore.ShareInstance.m_ArrayStory[l_item.row]
-      StoryView.m_IsHomeView = true
-    }
-  }
-  
-  
-  func highlightCell(indexPath : NSIndexPath, flag: Bool)
-  {
-    
-    let cell = collectionView!.cellForItemAtIndexPath(indexPath)
-    
-    if flag
-    {
-      cell?.contentView.backgroundColor = UIColor.magentaColor()
-    }
-    else
-    {
-      cell?.contentView.backgroundColor = nil
+      StoryView.m_Story = FSCore.ShareInstance.m_ArrayImage[l_item.row]
     }
   }
   
@@ -149,27 +241,27 @@ extension HomeViewController
     {
       //reach top
       print("Here is top")
+        if FSCore.ShareInstance.m_ArrayImage.count > 0
+        {
+            GETImages(FSCore.ShareInstance.m_ArrayImage[0].m_id!, p_type: 1)
+        }
     }
     else if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
     {
       //reach bottom
-      print("Here is button")
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
-      
-      FSCore.ShareInstance.GETListStory((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!)
-      self.ReloadData()
-      
-      m_Indicator!.stopAnimating()
-      
-      FSCore.ShareInstance.GETListImage(self)
+        print("Here is button")
+        if FSCore.ShareInstance.m_ArrayImage.count > 0
+        {
+            GETImages(FSCore.ShareInstance.m_ArrayImage.last!.m_id!, p_type: 0)
+        }
+
     }
     
   }
   
   override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
   {
-    //print("scrollViewDidEndDragging")
+    print("scrollViewDidEndDragging")
   }
   
   override func scrollViewDidScrollToTop(scrollView: UIScrollView)
@@ -179,12 +271,19 @@ extension HomeViewController
   
   override func scrollViewDidScroll(scrollView: UIScrollView)
   {
-    //print("scrollViewDidScroll")
+    if scrollView.contentOffset.y + view.frame.size.height > scrollView.contentSize.height * 0.8
+    {
+//        print("Load more image")
+//        if FSCore.ShareInstance.m_ArrayStory.count > 0
+//        {
+//            GETImages((FSCore.ShareInstance.m_ArrayStory.lastObject as! Story).m_id!)
+//        }
+    }
   }
   
   override func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView)
   {
-    //print("scrollViewDidEndScrollingAnimation")
+    print("scrollViewDidEndScrollingAnimation")
   }
 }
 
@@ -194,17 +293,39 @@ extension HomeViewController : LayoutDelegate
   // 1
   func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-    
       //return ((SCREEN_WIDTH / 3) - 8)
-    
-      let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
+      let l_Story = FSCore.ShareInstance.m_ArrayImage[indexPath.row]
       let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
       if let l_image = l_Story.m_image
       {
         let image = UIImage(data: l_image)?.decompressedImage
         let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
         return rect.size.height
+      }
+      else
+      {
+        let l_imageURL = l_Story.m_imageurl
         
+        Alamofire.request(.GET, l_imageURL!).response()
+        {
+            (_,_,imageData,_) in
+            
+            if imageData?.length > 0
+            {
+                l_Story.m_image = imageData
+                
+                if (indexPath.row == (FSCore.ShareInstance.m_ArrayImage.count - 1)) || (indexPath.row == 0)
+                {
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        self.ReloadData()
+                    }
+                }
+                
+            }
+
+        }
+
       }
     
       return (SCREEN_WIDTH / 3)
@@ -213,18 +334,9 @@ extension HomeViewController : LayoutDelegate
   // 2
   func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-      let annotationPadding = CGFloat(15)
-      let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
-      let font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-    
-      //height title
-      let annotationHeaderHeight = l_Story.heightForTitle(font, width: width)
-      //height comment
-      //let commentHeight = l_Story.heightForComment(font, width: width)
-      //height annotation
-      let height = annotationPadding + annotationHeaderHeight /*+ commentHeight*/ + annotationPadding
-    
-      return height
+      //let annotationPadding = CGFloat(5)
+      return FSDesign.ShareInstance.HEIGTH_FAVORITE
+
   }
 }
 

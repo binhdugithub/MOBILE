@@ -18,7 +18,7 @@ class Story
   var m_audiourl: String?
   var m_image: NSData?
   var m_audio: NSData?
-  var m_liked: Bool?
+  var m_liked: Bool? = false
   
   init()
   {
@@ -41,13 +41,14 @@ class Story
     return l_Story
   }
   
-  init(p_id: Int?,p_title: String?, p_content: String?, p_image: NSData?, p_liked: Bool?)
+  init(p_id: Int?,p_title: String?, p_content: String?, p_imageurl: String?, p_audiourl: String?)
   {
     self.m_id = p_id
     self.m_title = p_title
     self.m_content = p_content
-    self.m_image = p_image
-    self.m_liked = p_liked
+    self.m_imageurl = p_imageurl
+    self.m_audiourl = p_audiourl
+    self.m_liked = false
   }
   
   func Discription() -> Void

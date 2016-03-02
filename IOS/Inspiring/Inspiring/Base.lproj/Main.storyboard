@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LHG-ps-1ME">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LHG-ps-1ME">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -37,20 +37,22 @@
                                                 </activityIndicatorView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gz-P5-NQ1">
                                                     <rect key="frame" x="68" y="128" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="OoS-FY-hRo"/>
+                                                        <constraint firstAttribute="height" constant="44" id="l7j-T1-gCy"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="dUK-8P-N4s" firstAttribute="top" secondItem="9I6-V9-qqy" secondAttribute="top" id="5gg-Y1-VZj"/>
-                                                <constraint firstItem="3gz-P5-NQ1" firstAttribute="top" secondItem="dUK-8P-N4s" secondAttribute="bottom" constant="8" id="8Lk-ZS-YET"/>
                                                 <constraint firstItem="WHm-TY-iRm" firstAttribute="centerY" secondItem="9I6-V9-qqy" secondAttribute="centerY" id="9qy-IJ-LQj"/>
                                                 <constraint firstAttribute="trailing" secondItem="dUK-8P-N4s" secondAttribute="trailing" id="CfU-KB-ZEG"/>
-                                                <constraint firstItem="3gz-P5-NQ1" firstAttribute="leading" secondItem="9I6-V9-qqy" secondAttribute="leading" constant="68" id="HYZ-m3-llS"/>
                                                 <constraint firstItem="dUK-8P-N4s" firstAttribute="leading" secondItem="9I6-V9-qqy" secondAttribute="leading" id="RWd-DT-GdB"/>
-                                                <constraint firstItem="3gz-P5-NQ1" firstAttribute="centerX" secondItem="WHm-TY-iRm" secondAttribute="centerX" id="h2j-Tc-9tQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="3gz-P5-NQ1" secondAttribute="bottom" constant="8" id="qtr-jT-UKn"/>
+                                                <constraint firstItem="3gz-P5-NQ1" firstAttribute="top" secondItem="dUK-8P-N4s" secondAttribute="bottom" constant="8" id="jPX-e2-a7L"/>
                                                 <constraint firstItem="WHm-TY-iRm" firstAttribute="centerX" secondItem="9I6-V9-qqy" secondAttribute="centerX" id="rie-SW-GN9"/>
+                                                <constraint firstItem="3gz-P5-NQ1" firstAttribute="centerX" secondItem="9I6-V9-qqy" secondAttribute="centerX" id="sMS-bi-ZkB"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -144,21 +146,23 @@
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="5Sz-ni-7MS">
                                                     <rect key="frame" x="72" y="72" width="37" height="37"/>
                                                 </activityIndicatorView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HBs-NP-mqY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HBs-NP-mqY">
                                                     <rect key="frame" x="68" y="128" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="QpF-Gh-oaa"/>
+                                                        <constraint firstAttribute="width" constant="44" id="c7i-T0-Edh"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="HBs-NP-mqY" firstAttribute="leading" secondItem="JMW-jF-lWs" secondAttribute="leading" constant="68" id="6UA-IC-dKw"/>
+                                                <constraint firstItem="HBs-NP-mqY" firstAttribute="top" secondItem="nFd-RW-oDT" secondAttribute="bottom" constant="6" id="5oS-WM-P0g"/>
                                                 <constraint firstItem="5Sz-ni-7MS" firstAttribute="centerY" secondItem="JMW-jF-lWs" secondAttribute="centerY" id="HQL-PY-CWz"/>
-                                                <constraint firstItem="HBs-NP-mqY" firstAttribute="centerX" secondItem="5Sz-ni-7MS" secondAttribute="centerX" id="Rjk-hY-l5w"/>
                                                 <constraint firstItem="5Sz-ni-7MS" firstAttribute="centerX" secondItem="JMW-jF-lWs" secondAttribute="centerX" id="WU0-Yr-eIH"/>
-                                                <constraint firstItem="HBs-NP-mqY" firstAttribute="top" secondItem="nFd-RW-oDT" secondAttribute="bottom" constant="8" id="cfd-8L-0jO"/>
                                                 <constraint firstAttribute="trailing" secondItem="nFd-RW-oDT" secondAttribute="trailing" id="euJ-8D-6Fg"/>
                                                 <constraint firstItem="nFd-RW-oDT" firstAttribute="top" secondItem="JMW-jF-lWs" secondAttribute="top" id="fvW-Vy-NdZ"/>
                                                 <constraint firstItem="nFd-RW-oDT" firstAttribute="leading" secondItem="JMW-jF-lWs" secondAttribute="leading" id="i6H-qS-wh6"/>
-                                                <constraint firstAttribute="bottom" secondItem="HBs-NP-mqY" secondAttribute="bottom" constant="8" id="vFH-Cu-tY4"/>
+                                                <constraint firstItem="HBs-NP-mqY" firstAttribute="centerX" secondItem="JMW-jF-lWs" secondAttribute="centerX" id="pwE-BG-Ihe"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

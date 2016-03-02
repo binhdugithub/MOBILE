@@ -21,11 +21,12 @@ class FSDesign
     var FONT_SIZE_TEXTVIEW: CGFloat = 16
     let FONT_SIZE_TEXTVIEW_DELTA: CGFloat    = 2
     var FONT_SIZE_COPYRIGHT = 15.0
-  var FONT_SIZE_TITLE: CGFloat = 15.0
+    var FONT_SIZE_TITLE: CGFloat = 15.0
   
     
     var CELL_HEIGHT: CGFloat = 50
     var CELL_MARGIN: CGFloat = 4
+    var TEXTVIEW_MARGIN: CGFloat = 2
   
     var COLLECTION_COLUMN_NUMBER = 2
 

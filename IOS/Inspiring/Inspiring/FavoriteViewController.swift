@@ -8,11 +8,9 @@
 
 import UIKit
 import AVFoundation
-
+import Alamofire
 class FavoriteViewController: UICollectionViewController
 {
-    var m_ArrayFavorite = [Story]()
-
     override func preferredStatusBarStyle() -> UIStatusBarStyle
     {
       return UIStatusBarStyle.LightContent
@@ -22,14 +20,6 @@ class FavoriteViewController: UICollectionViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        m_ArrayFavorite = [Story]()
-//        for l_story in FSCore.ShareInstance.m_ArrayStory
-//        {
-//            if l_story.m_liked == true
-//            {
-//                m_ArrayFavorite.append(l_story)
-//            }
-//        }
         
         if let layout = collectionView?.collectionViewLayout as? FavoriteLayout
         {
@@ -59,21 +49,11 @@ class FavoriteViewController: UICollectionViewController
   
     func ReloadData()
     {
-    
-        m_ArrayFavorite = [Story]()
-        for l_story in FSCore.ShareInstance.m_ArrayStory
-        {
-            if l_story.m_liked == true
-            {
-                m_ArrayFavorite.append(l_story)
-            }
-        }
-        
-          if let layout = collectionView?.collectionViewLayout as? FavoriteLayout
-          {
-            layout.clearCache()
-            self.collectionView?.reloadData()
-          }
+     if let layout = collectionView?.collectionViewLayout as? FavoriteLayout
+      {
+        layout.clearCache()
+        self.collectionView?.reloadData()
+      }
       
     }
 
@@ -86,14 +66,34 @@ extension FavoriteViewController
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   {
     //print("Item count: \(FSCore.ShareInstance.m_ArrayFavorite.count)")
-    return m_ArrayFavorite.count
+    return FSCore.ShareInstance.m_ArrayFavorite.count
   }
   
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
   {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FavoriteViewCell", forIndexPath: indexPath) as! FavoriteViewCell
-    m_ArrayFavorite[indexPath.row].m_row = indexPath
-    cell.m_Story = m_ArrayFavorite[indexPath.row]
+    
+    let l_Story = FSCore.ShareInstance.m_ArrayFavorite[indexPath.row]
+    if let _ = l_Story.m_image
+    {
+        cell.m_Story = l_Story
+    }
+    else
+    {
+        let l_imageURL = l_Story.m_imageurl
+        
+        Alamofire.request(.GET, l_imageURL!).response()
+        {
+            (_,_,imageData,_) in
+            
+            //let l_image = UIImage(data: imageData!)
+            l_Story.m_image = imageData
+            
+            cell.m_Story = l_Story
+        }
+    }
+
+    
     return cell
   }
   
@@ -109,8 +109,7 @@ extension FavoriteViewController
     {
       let StoryView = segue.destinationViewController as! StoryViewController
       let l_item: NSIndexPath = sender as! NSIndexPath
-      StoryView.m_Story = m_ArrayFavorite[l_item.item]
-      StoryView.m_IsHomeView = false
+      StoryView.m_Story = FSCore.ShareInstance.m_ArrayFavorite[l_item.item]
     }
   }
   
@@ -121,18 +120,30 @@ extension FavoriteViewController : LayoutDelegate
   // 1
   func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-    //print("heightForPhotoAtIndexPath")
-    
-    //return ((SCREEN_WIDTH / 3) - 8)
-    
-    let l_Story = m_ArrayFavorite[indexPath.item]
+    let l_Story = FSCore.ShareInstance.m_ArrayFavorite[indexPath.row]
     let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
     if let l_image = l_Story.m_image
     {
-      let image = UIImage(data: l_image)?.decompressedImage
-      let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
-      return rect.size.height
-      
+        let image = UIImage(data: l_image)?.decompressedImage
+        let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
+        return rect.size.height
+    }
+    else
+    {
+        let l_imageURL = l_Story.m_imageurl
+        print("Favorite request:\(l_imageURL)")
+        Alamofire.request(.GET, l_imageURL!).response()
+        {
+            (_,_,imageData,_) in
+            l_Story.m_image = imageData
+            
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.ReloadData()
+            }
+                
+        }
+        
     }
     
     return (SCREEN_WIDTH / 3)
@@ -141,19 +152,7 @@ extension FavoriteViewController : LayoutDelegate
   // 2
   func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-    let annotationPadding = CGFloat(15)
-    let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
-
-    let font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-    
-    //height title
-    let annotationHeaderHeight = l_Story.heightForTitle(font, width: width)
-    //height comment
-    //let commentHeight = l_Story.heightForComment(font, width: width)
-    //height annotation
-    let height = annotationPadding + annotationHeaderHeight /*+ commentHeight*/ + annotationPadding
-    
-    return height
+    return FSDesign.ShareInstance.HEIGTH_FAVORITE
   }
 }
 

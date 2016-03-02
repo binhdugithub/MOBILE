@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        window!.backgroundColor = FSDesign.ShareInstance.COLOR_BACKGROUND
+        window!.backgroundColor = UIColor(red: 211.0/255, green: 214.0/255, blue: 219.0/255, alpha: 1.0)
         return true
     }
 
@@ -38,9 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(application: UIApplication)
+    {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
+        let l_array = NSMutableArray()
+        for Story in FSCore.ShareInstance.m_ArrayFavorite
+        {
+            l_array.addObject(Story.m_imageurl!)
+        }
+        
+        Configuration.ShareInstance.WriteFavorite(l_array)
+        
+        Configuration.ShareInstance.WriteCurrentImage((FSCore.ShareInstance.m_ArrayImage.first?.m_id)!)
     }
 
 

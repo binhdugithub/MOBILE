@@ -2,11 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CurrentImage</key>
+	<integer>-1</integer>
 	<key>Favorite</key>
 	<array>
-		<integer>14</integer>
-		<integer>16</integer>
-		<integer>19</integer>
+		<string>http://cusiki.com/Inspiring/1.jpg</string>
+		<string>http://cusiki.com/Inspiring/3.jpg</string>
+		<string>http://cusiki.com/Inspiring/2.jpg</string>
 	</array>
 	<key>IsMute</key>
 	<false/>

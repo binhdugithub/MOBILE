@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AF07CE451C50D2DA00CDEBAC /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF07CE441C50D2DA00CDEBAC /* click.mp3 */; };
+		AF631BAC1C844EFC00340B03 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; };
+		AF631BAD1C844EFC00340B03 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF9DDCDC1C3CC6650047E441 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF9DDCDB1C3CC6650047E441 /* config.plist */; };
 		AF9DDCDF1C3CC6750047E441 /* ConfigControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */; };
 		AF9DDCE01C3CC6750047E441 /* SoundControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */; };
@@ -22,7 +24,7 @@
 		AFDEC8631C32B2C5002A4D72 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFDEC8601C32B2C5002A4D72 /* Images.xcassets */; };
 		AFDEC8681C32B2E3002A4D72 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8661C32B2E3002A4D72 /* Layout.swift */; };
 		AFDEC8691C32B2E3002A4D72 /* LayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8671C32B2E3002A4D72 /* LayoutAttributes.swift */; };
-		AFDEC86F1C32B355002A4D72 /* common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86A1C32B355002A4D72 /* common.swift */; };
+		AFDEC86F1C32B355002A4D72 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86A1C32B355002A4D72 /* Common.swift */; };
 		AFDEC8701C32B355002A4D72 /* FSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86B1C32B355002A4D72 /* FSCore.swift */; };
 		AFDEC8711C32B355002A4D72 /* FSDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86C1C32B355002A4D72 /* FSDesign.swift */; };
 		AFDEC8721C32B355002A4D72 /* GADControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86D1C32B355002A4D72 /* GADControl.swift */; };
@@ -35,9 +37,83 @@
 		AFDEC8811C32B522002A4D72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDEC87E1C32B522002A4D72 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AF631B961C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		AF631B981C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		AF631B9A1C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
+		AF631B9C1C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire OSX Tests";
+		};
+		AF631B9E1C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS";
+		};
+		AF631BA01C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS Tests";
+		};
+		AF631BA21C844D5200340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+		AF631BAE1C844EFC00340B03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AF631B6D1C843E9500340B03 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AF631BAD1C844EFC00340B03 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7B0AC7B61AAEF90000885D4A /* Funny Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Funny Stories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF07CE441C50D2DA00CDEBAC /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = "Funny Stories/audio/click.mp3"; sourceTree = SOURCE_ROOT; };
+		AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		AF9DDCDB1C3CC6650047E441 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Funny Stories/config.plist"; sourceTree = SOURCE_ROOT; };
 		AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigControl.swift; path = "Funny Stories/ConfigControl.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundControl.swift; path = "Funny Stories/SoundControl.swift"; sourceTree = SOURCE_ROOT; };
@@ -52,7 +128,7 @@
 		AFDEC8601C32B2C5002A4D72 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Funny Stories/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		AFDEC8661C32B2E3002A4D72 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Layout.swift; path = "Funny Stories/Layout.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8671C32B2E3002A4D72 /* LayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LayoutAttributes.swift; path = "Funny Stories/LayoutAttributes.swift"; sourceTree = SOURCE_ROOT; };
-		AFDEC86A1C32B355002A4D72 /* common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = common.swift; path = "Funny Stories/common.swift"; sourceTree = SOURCE_ROOT; };
+		AFDEC86A1C32B355002A4D72 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = "Funny Stories/Common.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86B1C32B355002A4D72 /* FSCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FSCore.swift; path = "Funny Stories/FSCore.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86C1C32B355002A4D72 /* FSDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FSDesign.swift; path = "Funny Stories/FSDesign.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86D1C32B355002A4D72 /* GADControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GADControl.swift; path = "Funny Stories/GADControl.swift"; sourceTree = SOURCE_ROOT; };
@@ -72,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFDEC87B1C32B459002A4D72 /* GoogleMobileAds.framework in Frameworks */,
+				AF631BAC1C844EFC00340B03 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +158,7 @@
 		7B0AC7AD1AAEF90000885D4A = {
 			isa = PBXGroup;
 			children = (
+				AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */,
 				7B0AC7B81AAEF90000885D4A /* Funny Stories */,
 				7B0AC7B71AAEF90000885D4A /* Products */,
 			);
@@ -168,7 +246,7 @@
 				AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */,
 				AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */,
 				AFDEC86D1C32B355002A4D72 /* GADControl.swift */,
-				AFDEC86A1C32B355002A4D72 /* common.swift */,
+				AFDEC86A1C32B355002A4D72 /* Common.swift */,
 				AFDEC86C1C32B355002A4D72 /* FSDesign.swift */,
 				AFDEC86B1C32B355002A4D72 /* FSCore.swift */,
 				AFDEC86E1C32B355002A4D72 /* Story.swift */,
@@ -211,6 +289,20 @@
 			name = audio;
 			sourceTree = "<group>";
 		};
+		AF631B8D1C844D5200340B03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF631B971C844D5200340B03 /* Alamofire.framework */,
+				AF631B991C844D5200340B03 /* Alamofire iOS Tests.xctest */,
+				AF631B9B1C844D5200340B03 /* Alamofire.framework */,
+				AF631B9D1C844D5200340B03 /* Alamofire OSX Tests.xctest */,
+				AF631B9F1C844D5200340B03 /* Alamofire.framework */,
+				AF631BA11C844D5200340B03 /* Alamofire tvOS Tests.xctest */,
+				AF631BA31C844D5200340B03 /* Alamofire.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AF9136C41C318E63007D14A0 /* FrameWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,10 +321,12 @@
 				7B0AC7B21AAEF90000885D4A /* Sources */,
 				7B0AC7B31AAEF90000885D4A /* Frameworks */,
 				7B0AC7B41AAEF90000885D4A /* Resources */,
+				AF631B6D1C843E9500340B03 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AF631BAF1C844EFC00340B03 /* PBXTargetDependency */,
 			);
 			name = "Funny Stories";
 			productName = Pinterest;
@@ -269,12 +363,70 @@
 			mainGroup = 7B0AC7AD1AAEF90000885D4A;
 			productRefGroup = 7B0AC7B71AAEF90000885D4A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AF631B8D1C844D5200340B03 /* Products */;
+					ProjectRef = AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7B0AC7B51AAEF90000885D4A /* Funny Stories */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AF631B971C844D5200340B03 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = AF631B961C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631B991C844D5200340B03 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = AF631B981C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631B9B1C844D5200340B03 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = AF631B9A1C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631B9D1C844D5200340B03 /* Alamofire OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire OSX Tests.xctest";
+			remoteRef = AF631B9C1C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631B9F1C844D5200340B03 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = AF631B9E1C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631BA11C844D5200340B03 /* Alamofire tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire tvOS Tests.xctest";
+			remoteRef = AF631BA01C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF631BA31C844D5200340B03 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = AF631BA21C844D5200340B03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7B0AC7B41AAEF90000885D4A /* Resources */ = {
@@ -296,7 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFDEC86F1C32B355002A4D72 /* common.swift in Sources */,
+				AFDEC86F1C32B355002A4D72 /* Common.swift in Sources */,
 				AFDEC85D1C32B295002A4D72 /* StoryViewController.swift in Sources */,
 				AF9DDCE01C3CC6750047E441 /* SoundControl.swift in Sources */,
 				AFDEC85C1C32B295002A4D72 /* RootTabBarController.swift in Sources */,
@@ -320,6 +472,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF631BAF1C844EFC00340B03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = AF631BAE1C844EFC00340B03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AFDEC87C1C32B522002A4D72 /* LaunchScreen.xib */ = {
@@ -430,7 +590,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -440,7 +601,7 @@
 				INFOPLIST_FILE = "Funny Stories/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ca7b250b-8f43-47cd-ad8a-47b5ef95eb02";
@@ -453,7 +614,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

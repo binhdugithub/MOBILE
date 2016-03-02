@@ -67,24 +67,34 @@ class HomeViewController: UICollectionViewController
     
     if FSCore.ShareInstance.m_ArrayStory.count == 0
     {
-      FSCore.ShareInstance.GETListStory(0)
-      m_Indicator!.stopAnimating()
-      
-      FSCore.ShareInstance.GETListImage(self)
-      FSCore.ShareInstance.GETListAudio(self)
+      FSCore.ShareInstance.GETStories(0, p_object: self)
     }
-    
-    //reload data
-    self.ReloadData()
-    
+
   }
   
   func ReloadData()
   {
     if let layout = collectionView?.collectionViewLayout as? HomeLayout
     {
-      layout.clearCache()
-      self.collectionView!.reloadData()
+      if NSThread.isMainThread()
+      {
+        layout.clearCache()
+        self.collectionView!.reloadData()
+      }
+      else
+      {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+          // do your task
+          
+          dispatch_async(dispatch_get_main_queue())
+            {
+              layout.clearCache()
+              self.collectionView!.reloadData()
+          }
+        }
+        
+      }
+      
     }
   }
   
@@ -102,7 +112,9 @@ extension HomeViewController
   {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeViewCell", forIndexPath: indexPath) as! HomeViewCell
     FSCore.ShareInstance.m_ArrayStory[indexPath.row].m_row = indexPath
+   
     cell.m_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.row]
+    
     return cell
   }
   
@@ -160,45 +172,12 @@ extension HomeViewController
       print("Here is button")
       //self.view.bringSubviewToFront(m_Indicator!)
       //m_Indicator!.startAnimating()
-      
-      if FSCore.ShareInstance.m_Loaded == true
-      {
-        FSCore.ShareInstance.GETListStory((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!)
-        self.ReloadData()
-        
-        //m_Indicator!.stopAnimating()
-        
-        FSCore.ShareInstance.GETListImage(self)
-        FSCore.ShareInstance.GETListAudio(self)
-      }
-      else
-      {
-        print("Don't loaded story")
-      }
-      
+      FSCore.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!, p_object:self)
     }
     
   }
   
-  override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
-  {
-    //print("scrollViewDidEndDragging")
-  }
-  
-  override func scrollViewDidScrollToTop(scrollView: UIScrollView)
-  {
-    print("scrollViewDidScrollToTop")
-  }
-  
-  override func scrollViewDidScroll(scrollView: UIScrollView)
-  {
-    //print("scrollViewDidScroll")
-  }
-  
-  override func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView)
-  {
-    //print("scrollViewDidEndScrollingAnimation")
-  }
+
 }
 
 

@@ -14,6 +14,7 @@ class RootTabBarController: UITabBarController
     {
         super.viewDidLoad()
       
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.tabBar.barTintColor = FSDesign.ShareInstance.COLOR_TABBAR_BG
         //self.tabBar.backgroundColor = UIColor.blackColor()
         self.tabBar.tintColor = FSDesign.ShareInstance.COLOR_TABBAR_TINT

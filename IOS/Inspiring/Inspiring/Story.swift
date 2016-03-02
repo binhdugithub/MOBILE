@@ -43,6 +43,13 @@ class Story
     self.m_image = p_image
     self.m_liked = p_liked
   }
+    
+    init(p_id:Int?, p_imageurl: String?)
+    {
+        self.m_id = p_id
+        self.m_imageurl = p_imageurl
+        
+    }
   
   func Discription() -> Void
   {
@@ -52,18 +59,5 @@ class Story
     print("******************")
   }
   
-  
-  func heightForComment(font: UIFont, width: CGFloat) -> CGFloat
-  {
-    return FSDesign.ShareInstance.FAVORITE_HEIGHT
-  }
-  
-  func heightForTitle(font: UIFont, width: CGFloat) -> CGFloat
-  {
-    let l_HintContent = self.m_content!.substringToIndex(self.m_content!.startIndex.advancedBy(5))
-    let rect = NSString(string: l_HintContent).boundingRectWithSize(CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-    return ceil(rect.height)
-  }
-
   
 }

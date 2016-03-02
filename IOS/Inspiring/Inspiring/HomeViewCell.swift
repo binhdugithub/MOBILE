@@ -32,7 +32,7 @@ class HomeViewCell: UICollectionViewCell
     
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
     
-    print("width: \(m_View.frame.size)")
+    //print("Cell home frame: \(m_View.frame.size)")
     //commentLabel.hidden = true
   }
   

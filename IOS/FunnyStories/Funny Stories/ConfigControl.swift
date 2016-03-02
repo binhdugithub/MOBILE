@@ -11,43 +11,14 @@ import GameKit
 class Configuration
 {
     var m_LeaderboardIdentifier: String?
-    var m_BestScore: Int64?
+    var m_Rate: Int?
     var m_IsMute: Bool?
     var m_Favorite: NSMutableArray?
   
     let FILECONFIG = "/config.plist"
     
     static let ShareInstance = Configuration()
-    
-    func ReportScore()
-    {
-        if m_LeaderboardIdentifier != nil
-        {
-            let score: GKScore = GKScore(leaderboardIdentifier:m_LeaderboardIdentifier!)
-            score.value = m_BestScore!
-            GKScore.reportScores([score], withCompletionHandler:{ error in
-                if error != nil
-                {
-                    NSLog("%@",error!.localizedDescription)
-                    
-                }
-                
-            })
-            
-        } else
-        {
-            NSLog("LeaderBoard failed")
-            
-        }
-        
-    }
-    
-    func SetLeaderboardIdentifier(p_leaderboard: String)
-    {
-        m_LeaderboardIdentifier = p_leaderboard
-        
-    }
-    
+  
     
     private init()
     {
@@ -86,7 +57,7 @@ class Configuration
         if dicData != nil
         {
             m_IsMute = (dicData?.objectForKey("IsMute") as? Bool)!
-            m_BestScore = dicData?.objectForKey("BestScore") as? Int64
+            m_Rate = dicData?.objectForKey("Rate") as? Int
             m_Favorite = dicData?.objectForKey("Favorite") as? NSMutableArray
           
         }
@@ -94,7 +65,7 @@ class Configuration
         {
             NSLog("Load data.plist fail !!")
             m_IsMute = false
-            m_BestScore=0
+            m_Rate = 0
         }
         
     }
@@ -105,22 +76,17 @@ class Configuration
         
     }
     
-    func GetBestScore() -> Int64 {
-        return m_BestScore!;
-        
-    }
-
   
-    func WriteBestScore(p_socre: Int64)
+    func WriteRate(p_rate: Int)
     {
         let pathData: String = self.GetPathData()
         let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
         if let l_dicData = dicData
         {
-            l_dicData.setObject(NSNumber(longLong: p_socre), forKey:"BestScore")
+            l_dicData.setObject(NSNumber(integer: p_rate), forKey:"Rate")
             l_dicData.writeToFile(pathData, atomically:true)
-            m_BestScore=p_socre
-            print("Best new score:\(m_BestScore)")
+            m_Rate = p_rate
+            print("write rate:\(m_Rate)")
             
         }
         else

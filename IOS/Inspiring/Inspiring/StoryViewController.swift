@@ -20,6 +20,10 @@ class StoryViewController: UIViewController
     var m_BtnFavorite   = UIButton()
     var m_BtnFB         = UIButton()
     var m_BtnTW         = UIButton()
+    
+    var m_IsLiked:Bool = false
+    
+    var m_UIImage         = UIImageView()
   
   override func viewDidLoad()
     {
@@ -43,7 +47,10 @@ class StoryViewController: UIViewController
         GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
         //self.m_AdView.hidden = true
         
-        m_LblTitle.text = "Inspiring"
+        m_LblTitle.text = "Inspiring & Positive Quotes"
+        m_IsLiked = m_Story.m_liked!
+        
+        self.view.backgroundColor = UIColor.whiteColor()
     }
   
   
@@ -51,7 +58,7 @@ class StoryViewController: UIViewController
   func RefreshStory()
   {
     FSCore.ShareInstance.m_ReadingCount += 1
-    if (FSCore.ShareInstance.m_ReadingCount == 3)
+    if (FSCore.ShareInstance.m_ReadingCount == 4)
     {
       FSCore.ShareInstance.m_ReadingCount = 0
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
@@ -64,8 +71,10 @@ class StoryViewController: UIViewController
   {
     //self.navigationItem.setHidesBackButton(true, animated: true)
     //self.navigationController!.navigationBar.barStyle = UIBarStyle.BlackTranslucent
-    self.navigationController!.navigationBar.barStyle = UIBarStyle.Default
-    self.navigationController!.navigationBar.backgroundColor = FSDesign.ShareInstance.COLOR_NAV_HEADER_BG
+    //self.navigationController!.navigationBar.barStyle = UIBarStyle.Default
+    //self.navigationController!.navigationBar.backgroundColor = FSDesign.ShareInstance.COLOR_NAV_HEADER_BG
+    self.navigationController!.navigationBar.barTintColor = UIColor.blackColor()
+    //self.navigationController!.navigationBar.translucent = false
     
     //Left button: back button
     //
@@ -90,7 +99,7 @@ class StoryViewController: UIViewController
     m_LblTitle.textAlignment = NSTextAlignment.Center
     m_LblTitle.numberOfLines = 2
     m_LblTitle.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_SIZE_TITLE)
-    m_LblTitle.textColor = FSDesign.ShareInstance.COLOR_STORY_TITLE
+    m_LblTitle.textColor = UIColor.whiteColor()
     self.navigationItem.titleView  = m_LblTitle
     
     //Right button: Share
@@ -116,14 +125,14 @@ class StoryViewController: UIViewController
     l_rect.size.height  = FSDesign.ShareInstance.AD_HEIGHT
     l_rect.origin.y     = m_ControlView.frame.origin.y - l_rect.size.height - 1
     m_AdView = UIView(frame: l_rect)
-    m_AdView.backgroundColor = FSDesign.ShareInstance.COLOR_CONTROL_BG
+    m_AdView.backgroundColor = UIColor.blackColor()//FSDesign.ShareInstance.COLOR_CONTROL_BG
     
     var frm = m_AdView.frame;
     frm.origin.x = 0;
     frm.origin.y =  0;
     let l_LblCopyright = UILabel.init(frame: frm)
-    l_LblCopyright.textColor = UIColor.blackColor()
-    l_LblCopyright.text = TEXT_COPYRIGHT
+    l_LblCopyright.textColor = UIColor.whiteColor()
+    //l_LblCopyright.text = TEXT_COPYRIGHT
     l_LblCopyright.textAlignment = .Center
     l_LblCopyright.font = UIFont.systemFontOfSize(CGFloat(FSDesign.ShareInstance.FONT_SIZE_COPYRIGHT))
     
@@ -142,13 +151,7 @@ class StoryViewController: UIViewController
     l_rect.size.height  = m_AdView.frame.origin.y - l_rect.origin.y + m_ControlView.frame.size.height
     
     m_ContentView = UIView(frame: l_rect)
-    
-    UIGraphicsBeginImageContext(m_ContentView.frame.size);
-    var l_image = UIImage(named: "bg_textview")
-    l_image?.drawInRect(m_ContentView.bounds)
-    l_image = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    m_ContentView.backgroundColor = UIColor(patternImage: l_image!)
+    m_ContentView.backgroundColor = FSDesign.ShareInstance.COLOR_CONTENT_BG
     
 
     
@@ -171,7 +174,24 @@ class StoryViewController: UIViewController
     m_BtnTW.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     m_BtnTW.addTarget(self, action: "TWClick:", forControlEvents: UIControlEvents.TouchUpInside)
   
-    
+    //UIImage
+    var l_frmimg = m_ContentView.frame
+    l_frmimg.origin.x = 0
+    l_frmimg.origin.y = 0
+    l_frmimg.size.width = SCREEN_WIDTH
+    let boundingRect =  CGRect(x: 0, y: 0, width: l_frmimg.size.width, height: CGFloat(MAXFLOAT))
+    if let l_image = m_Story.m_image
+    {
+        let image = UIImage(data: l_image)?.decompressedImage
+        let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
+        
+        l_frmimg.size.height = rect.size.height
+        
+        m_UIImage.frame = l_frmimg
+        m_UIImage.image = UIImage(data: l_image)
+    }
+ 
+    m_ContentView.addSubview(m_UIImage)
     self.view.addSubview(m_ContentView)
   }
   
@@ -215,6 +235,45 @@ class StoryViewController: UIViewController
     {
         SoundController.ShareInstance.PlayButton()
       
+        if m_IsLiked == true
+        {
+            if m_Story.m_liked == false
+            {
+                var i = 0
+                for x_story in FSCore.ShareInstance.m_ArrayFavorite
+                {
+                    if x_story.m_imageurl == m_Story.m_imageurl
+                    {
+                        FSCore.ShareInstance.m_ArrayFavorite.removeAtIndex(i)
+                        break
+                    }
+                    
+                    i++
+                }
+            }
+            
+        }
+        else
+        {
+            if m_Story.m_liked == true
+            {
+                FSCore.ShareInstance.m_ArrayFavorite.append(m_Story.Copy())
+            }
+        }
+        
+        for x_story in FSCore.ShareInstance.m_ArrayImage
+        {
+            if x_story.m_imageurl == m_Story.m_imageurl
+            {
+                x_story.m_liked = m_Story.m_liked
+                break
+            }
+        }
+        
+        
+        
+        
+        
         
         if let l_navController = self.navigationController
         {
@@ -259,7 +318,7 @@ class StoryViewController: UIViewController
         //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:MyApp]];
       #endif
       
-      let l_image = FSCore.ShareInstance.ScreenShot()
+      let l_image = ScreenShot()
       var shareItems: NSArray?
       
       if let l_MyAppWebsite = NSURL(string: l_link)
@@ -325,6 +384,7 @@ class StoryViewController: UIViewController
         m_Story.m_liked = true
         m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
       }
+        
       
     }
 
@@ -338,6 +398,8 @@ class StoryViewController: UIViewController
     {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        print("hhee")
      
     }
 }
