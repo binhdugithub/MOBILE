@@ -57,24 +57,55 @@ class HomeViewCell: UICollectionViewCell
         {
           imageView.image = UIImage(named: "story_default")
           let l_imageURL = m_Story?.m_imageurl
-          
+          let l_id = m_Story?.m_id
+
           Alamofire.request(.GET, l_imageURL!).validate().response(){
             (_,_,imgData, p_error) in
             
            if p_error == nil
            {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-              {
+            {
                 if imgData?.length > 0
                 {
-                  self.m_Story!.m_image = imgData
-                  dispatch_async(dispatch_get_main_queue())
+                  if self.m_Story!.m_id == l_id
                   {
-                      self.imageView.image = UIImage(data: imgData!)
+                    if self.m_Story!.m_image == nil
+                    {
+                      self.m_Story!.m_image = imgData
+
+                      dispatch_async(dispatch_get_main_queue())
+                      {
+                          self.imageView.image = UIImage(data: self.m_Story!.m_image!)
+                      }
+                      
+                    }
                   }
+                  else
+                  {
+                    for l_story in FSCore.ShareInstance.m_ArrayStory
+                    {
+                      if l_story.m_id == l_id
+                      {
+                        if l_story.m_image == nil
+                        {
+                          l_story.m_image = imgData
+                          
+                        }
+                        
+                        break
+                      }
+                    }
+                    
+                  }
+                  
                 }
             }
-            
+
+           }
+           else
+           {
+              print("Load image fail: \(self.m_Story?.m_imageurl)")
            }
             
             
@@ -96,5 +127,24 @@ class HomeViewCell: UICollectionViewCell
     }
   }
   
-  
 }
+
+class HomeViewLoadingCell: UICollectionReusableView
+{
+  let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+  
+  required init(coder aDecoder: NSCoder)
+  {
+    super.init(coder: aDecoder)!
+  }
+  
+  override init(frame: CGRect)
+  {
+    super.init(frame: frame)
+    
+    spinner.startAnimating()
+    spinner.center = self.center
+    addSubview(spinner)
+  }
+}
+

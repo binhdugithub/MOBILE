@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CurrentStory</key>
+	<integer>0</integer>
 	<key>Rate</key>
 	<integer>1</integer>
-	<key>Favorite</key>
-	<array>
-		<integer>14</integer>
-		<integer>16</integer>
-		<integer>19</integer>
-	</array>
 	<key>IsMute</key>
 	<false/>
 </dict>

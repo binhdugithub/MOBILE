@@ -10,30 +10,31 @@ import GameKit
 
 class Configuration
 {
-    var m_LeaderboardIdentifier: String?
+    var m_CurrentStory: Int?
     var m_Rate: Int?
     var m_IsMute: Bool?
-    var m_Favorite: NSMutableArray?
-  
-    let FILECONFIG = "/config.plist"
     
     static let ShareInstance = Configuration()
   
     
     private init()
     {
-        LoadConfig()
+      m_IsMute = false
+      m_Rate = 1
+      m_CurrentStory = 0
+      
+      LoadConfig()
     }
   
     func GetPathData() -> String
     {
       var destinationPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask , true)[0]
-      destinationPath.appendContentsOf(FILECONFIG)
+      destinationPath.appendContentsOf(FILE_CONFIG)
       
       if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath)
       {
         var sourcePath: String = NSBundle.mainBundle().resourcePath!
-        sourcePath.appendContentsOf(FILECONFIG)
+        sourcePath.appendContentsOf(FILE_CONFIG)
         do
         {
           try NSFileManager.defaultManager().copyItemAtPath(sourcePath, toPath:destinationPath)
@@ -52,20 +53,44 @@ class Configuration
     func LoadConfig()
     {
         let pathData: String = self.GetPathData()
-        print("Path:\(pathData)")
+        //print("Path:\(pathData)")
         let dicData: NSDictionary? = NSDictionary(contentsOfFile: pathData)!
         if dicData != nil
         {
-            m_IsMute = (dicData?.objectForKey("IsMute") as? Bool)!
-            m_Rate = dicData?.objectForKey("Rate") as? Int
-            m_Favorite = dicData?.objectForKey("Favorite") as? NSMutableArray
+          if let a = dicData?.objectForKey("IsMute") as? Bool
+          {
+            m_IsMute = a
+          }
+          else
+          {
+            m_IsMute = false
+          }
+          
+          if let a = dicData?.objectForKey("CurrentStory") as? Int
+          {
+            m_CurrentStory = a
+          }
+          else
+          {
+            m_CurrentStory = 0
+          }
+          
+          if let a = dicData?.objectForKey("Rate") as? Int
+          {
+            m_Rate = a
+          }
+          else
+          {
+            m_Rate = 1
+          }
           
         }
         else
         {
             NSLog("Load data.plist fail !!")
             m_IsMute = false
-            m_Rate = 0
+            m_CurrentStory = 0
+            m_Rate = 1
         }
         
     }
@@ -128,6 +153,18 @@ class Configuration
         
       }
     }
-    
+  
+  
+    func WriteCurrentStory(p_index: Int)
+    {
+      let pathData: String = self.GetPathData()
+      let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
+      if let l_dicData = dicData
+      {
+        l_dicData.setObject(p_index, forKey:"CurrentStory")
+        l_dicData.writeToFile(pathData, atomically:true)
+      }
+    }
+  
 }
 

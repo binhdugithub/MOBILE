@@ -11,7 +11,6 @@ import AVFoundation
 
 class FavoriteViewController: UICollectionViewController
 {
-
     override func preferredStatusBarStyle() -> UIStatusBarStyle
     {
       return UIStatusBarStyle.LightContent
@@ -36,9 +35,9 @@ class FavoriteViewController: UICollectionViewController
       
       self.tabBarController?.tabBar.hidden = false
       self.navigationController?.navigationBarHidden = true
-      
+
       self.ReloadData()
-      
+
     }
   
     override func viewDidAppear(animated: Bool)
@@ -51,11 +50,11 @@ class FavoriteViewController: UICollectionViewController
     {
       if let layout = collectionView?.collectionViewLayout as? FavoriteLayout
       {
-        layout.clearCache()
-        self.collectionView?.reloadData()
+          layout.clearCache()
+          self.collectionView!.reloadData()
       }
-      
     }
+  
 
 }
 
@@ -65,15 +64,23 @@ extension FavoriteViewController
 {
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   {
-    //print("Item count: \(FSCore.ShareInstance.m_ArrayFavorite.count)")
-    return FSCore.ShareInstance.m_ArrayFavorite.count
+    var l_count = 0
+    for p_story in FSCore.ShareInstance.m_ArrayStory
+    {
+      if p_story.m_liked == true
+      {
+        l_count++
+      }
+    }
+    
+    return l_count
   }
   
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
   {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FavoriteViewCell", forIndexPath: indexPath) as! FavoriteViewCell
-    FSCore.ShareInstance.m_ArrayFavorite[indexPath.row].m_row = indexPath
-    cell.m_Story = FSCore.ShareInstance.m_ArrayFavorite[indexPath.row]
+ 
+    cell.m_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)
     return cell
   }
   
@@ -88,8 +95,9 @@ extension FavoriteViewController
     if segue.identifier == "SegueFavorite2Story"
     {
       let StoryView = segue.destinationViewController as! StoryViewController
-      let l_item: NSIndexPath = sender as! NSIndexPath
-      StoryView.m_Story = FSCore.ShareInstance.m_ArrayFavorite[l_item.item]
+      let l_index = (sender as! NSIndexPath).row
+      
+      StoryView.m_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(l_index)!
       StoryView.m_IsHomeView = false
     }
   }
@@ -103,9 +111,9 @@ extension FavoriteViewController : LayoutDelegate
   {
     //print("heightForPhotoAtIndexPath")
     
-    return ((SCREEN_WIDTH / 3) - 8)
+    //return ((SCREEN_WIDTH / 3) - 8)
     
-    let l_Story = FSCore.ShareInstance.m_ArrayFavorite[indexPath.item]
+    let l_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)!
     let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
     if let l_image = l_Story.m_image
     {
@@ -114,23 +122,29 @@ extension FavoriteViewController : LayoutDelegate
       return rect.size.height
       
     }
+    else
+    {
+     
+      //print("Have to retrun default size 400x266")
+      let sizeImage = CGSize(width: 400, height: 266)
+      let rect = AVMakeRectWithAspectRatioInsideRect(sizeImage, boundingRect)
+      return rect.size.height
+
+    }
     
-    return (SCREEN_WIDTH / 3)
+    //return (SCREEN_WIDTH / 3)
   }
   
   // 2
   func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
     let annotationPadding = CGFloat(15)
-    let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
+    let l_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)!
 
     let font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
     
     //height title
     let annotationHeaderHeight = l_Story.heightForTitle(font, width: width)
-    //height comment
-    //let commentHeight = l_Story.heightForComment(font, width: width)
-    //height annotation
     let height = annotationPadding + annotationHeaderHeight /*+ commentHeight*/ + annotationPadding
     
     return height

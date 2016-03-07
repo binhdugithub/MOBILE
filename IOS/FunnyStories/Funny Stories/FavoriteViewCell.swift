@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FavoriteViewCell: UICollectionViewCell
 {
@@ -40,17 +41,56 @@ class FavoriteViewCell: UICollectionViewCell
       {
         captionLabel.text = l_Story.m_title
         captionLabel.numberOfLines = 2
-        //commentLabel.text = l_Story.m_content
-        //commentLabel.numberOfLines = 2
         if let l_image = l_Story.m_image
         {
           imageView.image = UIImage(data: l_image)?.decompressedImage
-          m_ActivityIndicator.stopAnimating()
+          //m_ActivityIndicator.stopAnimating()
         }
         else
         {
           imageView.image = UIImage(named: "story_default")
-          m_ActivityIndicator.startAnimating()
+          let l_imageURL = m_Story?.m_imageurl
+          
+          Alamofire.request(.GET, l_imageURL!).validate().response(){
+            (_,_,imgData, p_error) in
+            
+            if p_error == nil
+            {
+              dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+                {
+                  if imgData?.length > 0
+                  {
+                    
+//                    for l_story in FSCore.ShareInstance.m_ArrayFavorite
+//                    {
+//                      if l_story.m_imageurl == l_imageURL
+//                      {
+                        if self.m_Story?.m_image == nil
+                        {
+                          self.m_Story!.m_image = imgData
+                          dispatch_async(dispatch_get_main_queue())
+                          {
+                              self.imageView.image = UIImage(data: self.m_Story!.m_image!)
+                          }
+                        }
+                        
+//                        break
+//                      }
+//                    }
+                    
+                    
+                  }
+              }
+              
+            }
+            else
+            {
+              print("Load image fail: \(self.m_Story?.m_imageurl)")
+            }
+            
+            
+          }//end Alamofire
+          //m_ActivityIndicator.startAnimating()
         }
         
       }

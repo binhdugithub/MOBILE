@@ -10,9 +10,17 @@
 		AF07CE451C50D2DA00CDEBAC /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF07CE441C50D2DA00CDEBAC /* click.mp3 */; };
 		AF631BAC1C844EFC00340B03 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; };
 		AF631BAD1C844EFC00340B03 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF81644E1C8AB5860033F33F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF81644D1C8AB5860033F33F /* libsqlite3.tbd */; };
+		AF8164E21C8AC5F90033F33F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8164D91C8AC5F90033F33F /* FMDatabase.m */; };
+		AF8164E31C8AC5F90033F33F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8164DB1C8AC5F90033F33F /* FMResultSet.m */; };
+		AF8164E41C8AC5F90033F33F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8164DD1C8AC5F90033F33F /* FMDatabaseQueue.m */; };
+		AF8164E51C8AC5F90033F33F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8164DF1C8AC5F90033F33F /* FMDatabaseAdditions.m */; };
+		AF8164E61C8AC5F90033F33F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8164E11C8AC5F90033F33F /* FMDatabasePool.m */; };
+		AF8164EF1C8AD46A0033F33F /* DBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8164EE1C8AD46A0033F33F /* DBModel.swift */; };
+		AF8164F11C8AD55A0033F33F /* FSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8164F01C8AD55A0033F33F /* FSCore.swift */; };
 		AF9DDCDC1C3CC6650047E441 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF9DDCDB1C3CC6650047E441 /* config.plist */; };
-		AF9DDCDF1C3CC6750047E441 /* ConfigControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */; };
-		AF9DDCE01C3CC6750047E441 /* SoundControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */; };
+		AF9DDCDF1C3CC6750047E441 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDD1C3CC6750047E441 /* ConfigModel.swift */; };
+		AF9DDCE01C3CC6750047E441 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCDE1C3CC6750047E441 /* SoundModel.swift */; };
 		AF9DDCE21C3CF7CA0047E441 /* UITextView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE11C3CF7CA0047E441 /* UITextView+Protocol.swift */; };
 		AF9DDCE81C3F72540047E441 /* UICollectionView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE71C3F72540047E441 /* UICollectionView+Protocol.swift */; };
 		AF9DDCEA1C3F72610047E441 /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE91C3F72610047E441 /* FavoriteViewCell.swift */; };
@@ -25,8 +33,8 @@
 		AFDEC8681C32B2E3002A4D72 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8661C32B2E3002A4D72 /* Layout.swift */; };
 		AFDEC8691C32B2E3002A4D72 /* LayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8671C32B2E3002A4D72 /* LayoutAttributes.swift */; };
 		AFDEC86F1C32B355002A4D72 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86A1C32B355002A4D72 /* Common.swift */; };
-		AFDEC8701C32B355002A4D72 /* FSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86B1C32B355002A4D72 /* FSCore.swift */; };
-		AFDEC8711C32B355002A4D72 /* FSDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86C1C32B355002A4D72 /* FSDesign.swift */; };
+		AFDEC8701C32B355002A4D72 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86B1C32B355002A4D72 /* NetworkModel.swift */; };
+		AFDEC8711C32B355002A4D72 /* DesignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86C1C32B355002A4D72 /* DesignModel.swift */; };
 		AFDEC8721C32B355002A4D72 /* GADControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86D1C32B355002A4D72 /* GADControl.swift */; };
 		AFDEC8731C32B355002A4D72 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC86E1C32B355002A4D72 /* Story.swift */; };
 		AFDEC8751C32B361002A4D72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8741C32B361002A4D72 /* AppDelegate.swift */; };
@@ -114,9 +122,24 @@
 		7B0AC7B61AAEF90000885D4A /* Funny Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Funny Stories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF07CE441C50D2DA00CDEBAC /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = "Funny Stories/audio/click.mp3"; sourceTree = SOURCE_ROOT; };
 		AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		AF81644D1C8AB5860033F33F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		AF8164D61C8AC5F80033F33F /* Funny Stories-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Funny Stories-Bridging-Header.h"; sourceTree = "<group>"; };
+		AF8164D71C8AC5F90033F33F /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = SOURCE_ROOT; };
+		AF8164D81C8AC5F90033F33F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = SOURCE_ROOT; };
+		AF8164D91C8AC5F90033F33F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = SOURCE_ROOT; };
+		AF8164DA1C8AC5F90033F33F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = SOURCE_ROOT; };
+		AF8164DB1C8AC5F90033F33F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = SOURCE_ROOT; };
+		AF8164DC1C8AC5F90033F33F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = SOURCE_ROOT; };
+		AF8164DD1C8AC5F90033F33F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = SOURCE_ROOT; };
+		AF8164DE1C8AC5F90033F33F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = SOURCE_ROOT; };
+		AF8164DF1C8AC5F90033F33F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = SOURCE_ROOT; };
+		AF8164E01C8AC5F90033F33F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = SOURCE_ROOT; };
+		AF8164E11C8AC5F90033F33F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = SOURCE_ROOT; };
+		AF8164EE1C8AD46A0033F33F /* DBModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBModel.swift; sourceTree = SOURCE_ROOT; };
+		AF8164F01C8AD55A0033F33F /* FSCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCore.swift; sourceTree = SOURCE_ROOT; };
 		AF9DDCDB1C3CC6650047E441 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Funny Stories/config.plist"; sourceTree = SOURCE_ROOT; };
-		AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigControl.swift; path = "Funny Stories/ConfigControl.swift"; sourceTree = SOURCE_ROOT; };
-		AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundControl.swift; path = "Funny Stories/SoundControl.swift"; sourceTree = SOURCE_ROOT; };
+		AF9DDCDD1C3CC6750047E441 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigModel.swift; path = "Funny Stories/ConfigModel.swift"; sourceTree = SOURCE_ROOT; };
+		AF9DDCDE1C3CC6750047E441 /* SoundModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundModel.swift; path = "Funny Stories/SoundModel.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCE11C3CF7CA0047E441 /* UITextView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Protocol.swift"; path = "Funny Stories/UITextView+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCE71C3F72540047E441 /* UICollectionView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Protocol.swift"; path = "Funny Stories/UICollectionView+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCE91C3F72610047E441 /* FavoriteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewCell.swift; path = "Funny Stories/FavoriteViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -129,8 +152,8 @@
 		AFDEC8661C32B2E3002A4D72 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Layout.swift; path = "Funny Stories/Layout.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8671C32B2E3002A4D72 /* LayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LayoutAttributes.swift; path = "Funny Stories/LayoutAttributes.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86A1C32B355002A4D72 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = "Funny Stories/Common.swift"; sourceTree = SOURCE_ROOT; };
-		AFDEC86B1C32B355002A4D72 /* FSCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FSCore.swift; path = "Funny Stories/FSCore.swift"; sourceTree = SOURCE_ROOT; };
-		AFDEC86C1C32B355002A4D72 /* FSDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FSDesign.swift; path = "Funny Stories/FSDesign.swift"; sourceTree = SOURCE_ROOT; };
+		AFDEC86B1C32B355002A4D72 /* NetworkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkModel.swift; path = "Funny Stories/NetworkModel.swift"; sourceTree = SOURCE_ROOT; };
+		AFDEC86C1C32B355002A4D72 /* DesignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignModel.swift; path = "Funny Stories/DesignModel.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86D1C32B355002A4D72 /* GADControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GADControl.swift; path = "Funny Stories/GADControl.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC86E1C32B355002A4D72 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Story.swift; path = "Funny Stories/Story.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8741C32B361002A4D72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Funny Stories/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
@@ -147,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF81644E1C8AB5860033F33F /* libsqlite3.tbd in Frameworks */,
 				AFDEC87B1C32B459002A4D72 /* GoogleMobileAds.framework in Frameworks */,
 				AF631BAC1C844EFC00340B03 /* Alamofire.framework in Frameworks */,
 			);
@@ -158,6 +182,7 @@
 		7B0AC7AD1AAEF90000885D4A = {
 			isa = PBXGroup;
 			children = (
+				AF81644D1C8AB5860033F33F /* libsqlite3.tbd */,
 				AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */,
 				7B0AC7B81AAEF90000885D4A /* Funny Stories */,
 				7B0AC7B71AAEF90000885D4A /* Products */,
@@ -195,6 +220,7 @@
 		7B0AC7B91AAEF90000885D4A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF9DDCDB1C3CC6650047E441 /* config.plist */,
 				AFDEC8821C32B58B002A4D72 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -203,7 +229,6 @@
 		7B0AC7DB1AAEF99600885D4A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				AF9DDCDB1C3CC6650047E441 /* config.plist */,
 				AF06043D1C32D74300B56812 /* audio */,
 				AFDEC8601C32B2C5002A4D72 /* Images.xcassets */,
 			);
@@ -243,13 +268,16 @@
 		7B0AC7DF1AAEF9BD00885D4A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AF9DDCDD1C3CC6750047E441 /* ConfigControl.swift */,
-				AF9DDCDE1C3CC6750047E441 /* SoundControl.swift */,
+				AF8164D51C8AC5ED0033F33F /* fmdb */,
+				AF9DDCDD1C3CC6750047E441 /* ConfigModel.swift */,
+				AF9DDCDE1C3CC6750047E441 /* SoundModel.swift */,
 				AFDEC86D1C32B355002A4D72 /* GADControl.swift */,
 				AFDEC86A1C32B355002A4D72 /* Common.swift */,
-				AFDEC86C1C32B355002A4D72 /* FSDesign.swift */,
-				AFDEC86B1C32B355002A4D72 /* FSCore.swift */,
+				AFDEC86C1C32B355002A4D72 /* DesignModel.swift */,
+				AFDEC86B1C32B355002A4D72 /* NetworkModel.swift */,
 				AFDEC86E1C32B355002A4D72 /* Story.swift */,
+				AF8164EE1C8AD46A0033F33F /* DBModel.swift */,
+				AF8164F01C8AD55A0033F33F /* FSCore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -301,6 +329,25 @@
 				AF631BA31C844D5200340B03 /* Alamofire.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AF8164D51C8AC5ED0033F33F /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				AF8164D71C8AC5F90033F33F /* FMDB.h */,
+				AF8164D81C8AC5F90033F33F /* FMDatabase.h */,
+				AF8164D91C8AC5F90033F33F /* FMDatabase.m */,
+				AF8164DA1C8AC5F90033F33F /* FMResultSet.h */,
+				AF8164DB1C8AC5F90033F33F /* FMResultSet.m */,
+				AF8164DC1C8AC5F90033F33F /* FMDatabaseQueue.h */,
+				AF8164DD1C8AC5F90033F33F /* FMDatabaseQueue.m */,
+				AF8164DE1C8AC5F90033F33F /* FMDatabaseAdditions.h */,
+				AF8164DF1C8AC5F90033F33F /* FMDatabaseAdditions.m */,
+				AF8164E01C8AC5F90033F33F /* FMDatabasePool.h */,
+				AF8164E11C8AC5F90033F33F /* FMDatabasePool.m */,
+				AF8164D61C8AC5F80033F33F /* Funny Stories-Bridging-Header.h */,
+			);
+			name = fmdb;
 			sourceTree = "<group>";
 		};
 		AF9136C41C318E63007D14A0 /* FrameWork */ = {
@@ -450,24 +497,31 @@
 			files = (
 				AFDEC86F1C32B355002A4D72 /* Common.swift in Sources */,
 				AFDEC85D1C32B295002A4D72 /* StoryViewController.swift in Sources */,
-				AF9DDCE01C3CC6750047E441 /* SoundControl.swift in Sources */,
+				AF9DDCE01C3CC6750047E441 /* SoundModel.swift in Sources */,
+				AF8164E21C8AC5F90033F33F /* FMDatabase.m in Sources */,
 				AFDEC85C1C32B295002A4D72 /* RootTabBarController.swift in Sources */,
 				AFDEC8691C32B2E3002A4D72 /* LayoutAttributes.swift in Sources */,
-				AFDEC8711C32B355002A4D72 /* FSDesign.swift in Sources */,
-				AF9DDCDF1C3CC6750047E441 /* ConfigControl.swift in Sources */,
+				AFDEC8711C32B355002A4D72 /* DesignModel.swift in Sources */,
+				AF9DDCDF1C3CC6750047E441 /* ConfigModel.swift in Sources */,
+				AF8164E31C8AC5F90033F33F /* FMResultSet.m in Sources */,
 				AFDEC8791C32B373002A4D72 /* RoundedCornersView.swift in Sources */,
 				AFDEC8681C32B2E3002A4D72 /* Layout.swift in Sources */,
 				AFDEC8721C32B355002A4D72 /* GADControl.swift in Sources */,
+				AF8164E61C8AC5F90033F33F /* FMDatabasePool.m in Sources */,
+				AF8164F11C8AD55A0033F33F /* FSCore.swift in Sources */,
+				AF8164E41C8AC5F90033F33F /* FMDatabaseQueue.m in Sources */,
 				AF9DDCE21C3CF7CA0047E441 /* UITextView+Protocol.swift in Sources */,
+				AF8164EF1C8AD46A0033F33F /* DBModel.swift in Sources */,
 				AFDEC85B1C32B295002A4D72 /* HomeViewController.swift in Sources */,
 				AFDEC85F1C32B2B2002A4D72 /* UIImage+Protocol.swift in Sources */,
 				AFDEC85A1C32B295002A4D72 /* FavoriteViewController.swift in Sources */,
-				AFDEC8701C32B355002A4D72 /* FSCore.swift in Sources */,
+				AFDEC8701C32B355002A4D72 /* NetworkModel.swift in Sources */,
 				AFDEC8781C32B373002A4D72 /* HomeViewCell.swift in Sources */,
 				AFDEC8751C32B361002A4D72 /* AppDelegate.swift in Sources */,
 				AF9DDCEA1C3F72610047E441 /* FavoriteViewCell.swift in Sources */,
 				AFDEC8731C32B355002A4D72 /* Story.swift in Sources */,
 				AF9DDCE81C3F72540047E441 /* UICollectionView+Protocol.swift in Sources */,
+				AF8164E51C8AC5F90033F33F /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -604,7 +659,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ca7b250b-8f43-47cd-ad8a-47b5ef95eb02";
+				PROVISIONING_PROFILE = "57d5b393-5a73-4653-8472-ffee4a25c15e";
+				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -613,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -628,7 +686,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ca7b250b-8f43-47cd-ad8a-47b5ef95eb02";
+				PROVISIONING_PROFILE = "57d5b393-5a73-4653-8472-ffee4a25c15e";
+				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -18,11 +18,14 @@ let AMOD_INTERSTITIAL_UNIT :String  = "ca-app-pub-2735696870763171/6648970044"
 let URL_FB: String = "https://www.facebook.com/cusikiapp"
 let URL_TW: String = "https://twitter.com/cusikiapp"
 
-let TIME_TO_SHOW_ADS = 4
-let TIME_TO_SHOW_RATE = 5
+let TIME_TO_SHOW_ADS = 5
+let TIME_TO_SHOW_RATE = 13
 
-//let FILECONFIG:String = "/data.plist"
+
 let TEXT_COPYRIGHT:String = "CUSIKI @2015"
+
+let FILE_CONFIG = "/config.plist"
+let FILE_DATABASE = "funnystories.db"
 
 let IS_IPAD:Bool               =     (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
 let IS_IPHONE: Bool            =     (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
@@ -153,4 +156,17 @@ func ScreenShot() -> UIImage
   UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
   
   return screenshot
+}
+
+//Get full Path
+
+func GetDocPathFile(p_name: String) -> String
+{
+  var destinationPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask , true)[0]
+  destinationPath.appendContentsOf("/")
+  destinationPath.appendContentsOf(p_name)
+  
+  //print("Path: \(destinationPath)")
+  return destinationPath;
+  
 }

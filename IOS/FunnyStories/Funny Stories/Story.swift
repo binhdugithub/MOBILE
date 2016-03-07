@@ -10,7 +10,7 @@ import UIKit
 
 class Story
 {
-  var m_row: NSIndexPath?
+  //var m_row: NSIndexPath?
   var m_id: Int?
   var m_title: String?
   var m_content: String?
@@ -22,7 +22,7 @@ class Story
   
   init()
   {
-    print("Init Story")
+    //print("Init Story")
   }
   
   func Copy() -> Story
@@ -35,20 +35,31 @@ class Story
     l_Story.m_audiourl = self.m_audiourl
     l_Story.m_image = self.m_image
     l_Story.m_audio = self.m_audio
-    l_Story.m_row   = self.m_row
     l_Story.m_liked  = self.m_liked
     
     return l_Story
   }
   
-  init(p_id: Int?,p_title: String?, p_content: String?, p_imageurl: String?, p_audiourl: String?)
+  init(p_id: Int?,p_title: String?, p_content: String?, p_imageurl: String?, p_audiourl: String?, p_liked: Bool? = false)
   {
     self.m_id = p_id
     self.m_title = p_title
     self.m_content = p_content
     self.m_imageurl = p_imageurl
     self.m_audiourl = p_audiourl
-    self.m_liked = false
+    self.m_liked = p_liked
+  }
+  
+  init(p_id: Int?,p_title: String?, p_content: String?,p_imageurl: String?, p_image: NSData?, p_audiourl: String?, p_audio: NSData?, p_like: Bool?)
+  {
+    self.m_id = p_id
+    self.m_title = p_title
+    self.m_content = p_content
+    self.m_imageurl = p_imageurl
+    self.m_image = p_image
+    self.m_audiourl = p_audiourl
+    self.m_audio = p_audio
+    self.m_liked = p_like
   }
   
   func Discription() -> Void
@@ -56,7 +67,7 @@ class Story
     print("******************")
     print("Id:\(self.m_id)")
     print("Title:\(self.m_title)")
-    print("Row:\(self.m_row?.row)")
+   // print("Row:\(self.m_row?.row)")
     print("******************")
   }
   

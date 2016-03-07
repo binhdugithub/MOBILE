@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKS-yb-t5q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKS-yb-t5q">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="k8m-CN-g9G" customClass="HomeLayout" customModule="Funny_Stories" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="UJi-Dw-Zbq" customClass="HomeLayout" customModule="Funny_Stories" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeViewCell" id="YvZ-ba-bjz" customClass="HomeViewCell" customModule="Funny_Stories" customModuleProvider="target">
                                 <rect key="frame" x="70" y="64" width="180" height="180"/>
@@ -310,6 +310,6 @@
         <image name="home" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="glE-87-YXZ"/>
+        <segue reference="Mfv-DS-bTP"/>
     </inferredMetricsTieBreakers>
 </document>

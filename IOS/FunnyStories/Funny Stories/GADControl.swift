@@ -122,7 +122,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
                 NSLog("GADInterstitial not ready")
                 self.GETInterstitialAds()
                 
-                sleep(2)
+                sleep(1)
                 if m_Interstitial!.isReady
                 {
                     m_Interstitial!.presentFromRootViewController(p_view)

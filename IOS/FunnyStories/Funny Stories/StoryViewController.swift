@@ -12,7 +12,7 @@ import Alamofire
 
 class StoryViewController: UIViewController
 {
-    var m_Story: Story = Story()
+    var m_Story: Story? = Story()
     var m_IsHomeView: Bool?
   
     var m_AdView        = UIView()
@@ -67,14 +67,19 @@ class StoryViewController: UIViewController
   
   func RefreshStory()
   {
+    if m_Story == nil
+    {
+      return
+    }
+    
     m_AudioPlayer = nil
     
     //title
-    m_LblTitle.text = m_Story.m_title
+    m_LblTitle.text = m_Story!.m_title
     
     //content
     let l_content = NSMutableAttributedString(string: "\n\n")
-    l_content.appendAttributedString(NSAttributedString(string: self.m_Story.m_content!))
+    l_content.appendAttributedString(NSAttributedString(string: self.m_Story!.m_content!))
     let l_EndContent = NSMutableAttributedString(string: "\n\n[End]")
     l_content.appendAttributedString(l_EndContent)
     
@@ -88,9 +93,9 @@ class StoryViewController: UIViewController
     
     let l_attachment = NSTextAttachment()
     
-    if self.m_Story.m_image != nil
+    if self.m_Story!.m_image != nil
     {
-      let l_image = UIImage(data: self.m_Story.m_image!)
+      let l_image = UIImage(data: self.m_Story!.m_image!)
       l_attachment.image = l_image
 
     }
@@ -99,28 +104,28 @@ class StoryViewController: UIViewController
       l_attachment.image = UIImage(named: "story_default")
     }
 
-    let l_scale: CGFloat = (l_attachment.image?.size.width)! / (m_TextView.frame.size.width/3)
+    let l_scale: CGFloat = (l_attachment.image?.size.width)! / (m_TextView.frame.size.width/2)
     l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
     let attrStringWithImage = NSAttributedString(attachment: l_attachment)
     l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
     
-    //facebook button
-    let l_frmfb = CGRectMake((l_attachment.image?.size.width)! + 10,
-                              (l_attachment.image?.size.height)! - m_TextView.frame.size.width/8 + 8,
-                              m_TextView.frame.size.width/8,
-                              m_TextView.frame.size.width/8)
-    
-    self.m_BtnFB.frame = l_frmfb
-  
-    //twitter button
-    var l_frmtw = self.m_BtnFB.frame
-    l_frmtw.origin.x += l_frmtw.size.width + 15
-    self.m_BtnTW.frame = l_frmtw
+//    //facebook button
+//    let l_frmfb = CGRectMake((l_attachment.image?.size.width)! + 10,
+//                              (l_attachment.image?.size.height)! - m_TextView.frame.size.width/8 + 8,
+//                              m_TextView.frame.size.width/8,
+//                              m_TextView.frame.size.width/8)
+//    
+//    self.m_BtnFB.frame = l_frmfb
+//  
+//    //twitter button
+//    var l_frmtw = self.m_BtnFB.frame
+//    l_frmtw.origin.x += l_frmtw.size.width + 15
+//    self.m_BtnTW.frame = l_frmtw
     
     m_TextView.attributedText = l_content
     
     
-    FSCore.ShareInstance.m_ReadingCount += 1
+    FSCore.ShareInstance.m_ReadingCount++
     if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
     {
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
@@ -136,6 +141,19 @@ class StoryViewController: UIViewController
     {
       m_AudioLoadIndicator?.stopAnimating()
     }
+    
+    
+    //favorite
+    if m_Story!.m_liked == true
+    {
+      m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
+    }
+    else
+    {
+      m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
+    }
+    
+ 
     
   }
   
@@ -315,7 +333,7 @@ class StoryViewController: UIViewController
         m_BtnFavorite = UIButton(frame: l_rect)
         m_BtnFavorite.setTitle("", forState: UIControlState.Normal)
         m_BtnFavorite.addTarget(self, action: "FavoriteClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        if m_Story.m_liked == true
+        if m_Story!.m_liked == true
         {
           m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
         }
@@ -479,34 +497,18 @@ class StoryViewController: UIViewController
       
         if m_IsHomeView == true
         {
-          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInArrayStory(m_Story)
+          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInArrayStory(m_Story!)
           l_currentIndex = (l_currentIndex == 0) ? FSCore.ShareInstance.m_ArrayStory.count - 1 : (l_currentIndex - 1)
-          if l_currentIndex >= 0
+          if l_currentIndex >= 0 && FSCore.ShareInstance.m_ArrayStory.count > 0
           {
             m_Story = FSCore.ShareInstance.m_ArrayStory[l_currentIndex]
           }
         }
         else
         {
-          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInFaovrite(m_Story)
-          l_currentIndex = (l_currentIndex == 0) ? FSCore.ShareInstance.m_ArrayFavorite.count - 1 : (l_currentIndex - 1)
-          if l_currentIndex >= 0
-          {
-            m_Story = FSCore.ShareInstance.m_ArrayFavorite[l_currentIndex]
-           
-          }
+            m_Story = FSCore.ShareInstance.PreStoryFavorite(m_Story)
         }
       
-      
-        if m_Story.m_liked == true
-        {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
-        }
-        else
-        {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
-        }
-
         RefreshStory()
     }
   
@@ -523,34 +525,21 @@ class StoryViewController: UIViewController
       
         if m_IsHomeView == true
         {
-          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInArrayStory(m_Story)
+          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInArrayStory(m_Story!)
           l_currentIndex = (l_currentIndex == (FSCore.ShareInstance.m_ArrayStory.count - 1)) ? 0 : (l_currentIndex + 1)
-          if l_currentIndex >= 0
+          if l_currentIndex >= 0 && FSCore.ShareInstance.m_ArrayStory.count > 0
           {
             m_Story = FSCore.ShareInstance.m_ArrayStory[l_currentIndex]
           }
           
+          
         }
         else
         {
-          var l_currentIndex = FSCore.ShareInstance.IndexOfStoryInFaovrite(m_Story)
-          l_currentIndex = (l_currentIndex == (FSCore.ShareInstance.m_ArrayFavorite.count - 1)) ? 0 : (l_currentIndex + 1)
-          if l_currentIndex >= 0
-          {
-            m_Story = FSCore.ShareInstance.m_ArrayFavorite[l_currentIndex]
-          }
+          m_Story = FSCore.ShareInstance.NextStoryFavorite(m_Story)
           
         }
       
-        if m_Story.m_liked == true
-        {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
-        }
-        else
-        {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
-        }
-        
         RefreshStory()
     }
     
@@ -594,37 +583,33 @@ class StoryViewController: UIViewController
       SoundController.ShareInstance.PlayButton()
       //print("Favorite click")
       
-      if m_Story.m_liked == true
+      if m_Story!.m_liked == true
       {
-        let l_index = FSCore.ShareInstance.IndexOfStoryInFaovrite(m_Story)
-        if l_index >= 0
-        {
-          m_Story.m_liked = false
-          FSCore.ShareInstance.m_ArrayFavorite.removeAtIndex(l_index)
-          m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
-        }
+        m_Story!.m_liked = false
+        m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
         
       }
       else
       {
-        let l_index = FSCore.ShareInstance.IndexOfStoryInFaovrite(m_Story)
-        if l_index < 0
-        {
-          m_Story.m_liked = true
-          FSCore.ShareInstance.m_ArrayFavorite.append(m_Story)
-          m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
-        }
+
+        m_Story!.m_liked = true
+        m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
       }
       
     }
 
     func PlayAudio()
     {
+      if (self.m_AudioLoadIndicator?.isAnimating() == true)
+      {
+        self.m_AudioLoadIndicator?.stopAnimating()
+      }
+      
       do
       {
         if m_AudioPlayer == nil
         {
-          if let l_data = m_Story.m_audio
+          if let l_data = m_Story!.m_audio
           {
             m_AudioPlayer = try  AVAudioPlayer(data: l_data)
             m_AudioPlayer?.delegate = self
@@ -673,7 +658,7 @@ class StoryViewController: UIViewController
     {
         if m_AudioPlayer == nil
         {
-          if let _ = m_Story.m_audio
+          if let _ = m_Story!.m_audio
           {
             self.PlayAudio()
           }
@@ -682,46 +667,60 @@ class StoryViewController: UIViewController
             print("You have to get audio data of here")
             m_AudioLoadIndicator?.startAnimating()
             sender.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-            let l_audioURL = m_Story.m_audiourl
+            let l_audioURL = m_Story!.m_audiourl
+            let l_id = m_Story!.m_id
             
             Alamofire.request(.GET, l_audioURL!).validate().response(){
                 (_,_,audioData, p_error) in
-              if (self.m_AudioLoadIndicator?.isAnimating() == true)
-              {
-                self.m_AudioLoadIndicator?.stopAnimating()
-              }
+              
               
               if p_error == nil
               {
                   if audioData?.length > 0
                   {
-                    if (l_audioURL == self.m_Story.m_audiourl)
+                    if (l_id == self.m_Story!.m_id)
                     {
-                      if self.m_Story.m_audio == nil
+                      if self.m_Story!.m_audio == nil
                       {
-                        self.m_Story.m_audio = audioData
+                        self.m_Story!.m_audio = audioData
+                        DBModel.ShareInstance.UpdateAudio(self.m_Story!)
                       }
                       
                       self.PlayAudio()
                     }
                     else
                     {
+                      
                       for l_story in FSCore.ShareInstance.m_ArrayStory
                       {
-                        if l_story.m_audiourl == l_audioURL
+                        if l_story.m_id == l_id
                         {
-                          if self.m_Story.m_audio == nil
+                          if l_story.m_audio == nil
                           {
-                            self.m_Story.m_audio = audioData
+                            l_story.m_audio = audioData
+                            DBModel.ShareInstance.UpdateAudio(l_story)
+                            
                           }
                           
                           break
                         }
                       }
+                      
                     }
                     
                   }
               }
+              else
+              {
+                print("Error load audio: \(p_error)")
+                print("Request: \(l_audioURL)")
+                
+                if (self.m_AudioLoadIndicator?.isAnimating() == true)
+                {
+                  self.m_AudioLoadIndicator?.stopAnimating()
+                }
+              }
+              
             }//end Alamofire
             
             print("Ngoai Alamofire")
@@ -767,7 +766,7 @@ class StoryViewController: UIViewController
 
 extension StoryViewController : UIAlertViewDelegate
 {
-  func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+  func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
   {
     switch buttonIndex
     {
