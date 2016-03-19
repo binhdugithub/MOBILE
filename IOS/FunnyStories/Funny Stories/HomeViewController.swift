@@ -48,9 +48,20 @@ class HomeViewController: UICollectionViewController
     
     
     //load story
-    if FSCore.ShareInstance.m_ArrayStory.count == 0
+    if FSCore.ShareInstance.m_ArrayStory.count <= 8
     {
-      NetWorkModel.ShareInstance.GETStories(0,p_type: 0, p_object: self, p_limit: NUMBER_IMAGES_ONCE_LOAD, p_thefirst: 0)
+      self.view.bringSubviewToFront(m_Indicator!)
+      m_Indicator!.startAnimating()
+      
+      if FSCore.ShareInstance.m_ArrayTemp.count > 0
+      {
+        NetWorkModel.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayTemp.last?.m_id)!, p_limit: NUMBER_IMAGES_ONCE_LOAD, p_object: self)
+      }
+      else
+      {
+         NetWorkModel.ShareInstance.GETStories(-1, p_limit: NUMBER_IMAGES_ONCE_LOAD, p_object: self)
+      }
+      
     }
     
   }
@@ -63,12 +74,6 @@ class HomeViewController: UICollectionViewController
     self.navigationController?.navigationBarHidden = true
   
     m_TxtSearch.hidden = true
-    
-    if FSCore.ShareInstance.m_ArrayStory.count == 0
-    {
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
-    }
 
   }
   
@@ -180,6 +185,43 @@ class HomeViewController: UICollectionViewController
     }
   }
   
+  
+  func ShowToast(p_title: String)
+  {
+    var l_frm = CGRectMake(0, 0, 0, 0)
+    l_frm.size.width = self.view.frame.size.width - 100
+    if IS_IPAD_PRO || IS_IPAD_2X
+    {
+        l_frm.size.width = self.view.frame.size.width - 300
+    }
+    l_frm.size.height = 40
+    if IS_IPAD_PRO || IS_IPAD_2X
+    {
+        l_frm.size.height = 45
+    }
+    
+    l_frm.origin.x = 1.0/2 * (self.view.frame.size.width - l_frm.size.width)
+    l_frm.origin.y = self.view.frame.size.height - 100
+    let toastLabel = UILabel(frame: l_frm)
+    
+    toastLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE - 2)!
+    toastLabel.backgroundColor = UIColor.blackColor()
+    toastLabel.textColor = UIColor.whiteColor()
+    toastLabel.textAlignment = NSTextAlignment.Center;
+    self.view.addSubview(toastLabel)
+    toastLabel.text = p_title
+    toastLabel.alpha = 1.0
+    toastLabel.layer.cornerRadius = 10;
+    toastLabel.clipsToBounds  =  true
+    UIView.animateWithDuration(6.0, delay: 0.1, options: .CurveEaseOut, animations: {
+      toastLabel.alpha = 0.0
+        }, completion: { (finished: Bool) -> Void in
+            toastLabel.removeFromSuperview()
+            })
+
+    
+  }
+  
 }
 
 //Collection delegate
@@ -192,7 +234,6 @@ extension HomeViewController
     self.performSegueWithIdentifier("Segue2Story", sender: indexPath)
   }
 
-  
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
   {
@@ -225,7 +266,7 @@ extension HomeViewController
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView)
   {
     
-    print("****scrollViewDidEndDecelerating****")
+    //print("****scrollViewDidEndDecelerating****")
     let l_visibles: [NSIndexPath] = (collectionView?.indexPathsForVisibleItems())!
     
     var l_row = l_visibles[0].row
@@ -253,7 +294,7 @@ extension HomeViewController
       self.view.bringSubviewToFront(m_Indicator!)
       m_Indicator!.startAnimating()
       
-      NetWorkModel.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!,p_type: 0, p_object:self,p_limit: NUMBER_IMAGES_ONCE_LOAD, p_thefirst: 1)
+      NetWorkModel.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!,p_limit: NUMBER_IMAGES_ONCE_LOAD,  p_object:self)
 
     }
 

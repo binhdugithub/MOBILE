@@ -19,7 +19,7 @@ let URL_FB: String = "https://www.facebook.com/cusikiapp"
 let URL_TW: String = "https://twitter.com/cusikiapp"
 
 let TIME_TO_SHOW_ADS = 5
-let TIME_TO_SHOW_RATE = 13
+//let TIME_TO_SHOW_RATE = 13
 
 
 let TEXT_COPYRIGHT:String = "CUSIKI @2015"
@@ -47,6 +47,8 @@ let IS_IPAD_PRO:Bool          =     (IS_IPAD && (SCREEN_MAX_LENGTH == 1366)) //I
 
 let VERSION: String            =     (UIDevice.currentDevice().systemVersion)
 
+let NAVIGATOR_HEIGHT = CGFloat(64)
+let TABBAR_HEIGHT = CGFloat(49)
 
 
 

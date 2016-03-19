@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AF07CE451C50D2DA00CDEBAC /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF07CE441C50D2DA00CDEBAC /* click.mp3 */; };
+		AF44F27B1C8FD6DD00322F0A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */; };
+		AF44F2831C91661200322F0A /* UIButton+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F2821C91661200322F0A /* UIButton+Protocol.swift */; };
 		AF631BAC1C844EFC00340B03 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; };
 		AF631BAD1C844EFC00340B03 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF631B971C844D5200340B03 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF81644E1C8AB5860033F33F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF81644D1C8AB5860033F33F /* libsqlite3.tbd */; };
@@ -24,6 +26,7 @@
 		AF9DDCE21C3CF7CA0047E441 /* UITextView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE11C3CF7CA0047E441 /* UITextView+Protocol.swift */; };
 		AF9DDCE81C3F72540047E441 /* UICollectionView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE71C3F72540047E441 /* UICollectionView+Protocol.swift */; };
 		AF9DDCEA1C3F72610047E441 /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9DDCE91C3F72610047E441 /* FavoriteViewCell.swift */; };
+		AFC156CF1C96AADC00EE5991 /* NSTextAttachment+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC156CE1C96AADC00EE5991 /* NSTextAttachment+Protocol.swift */; };
 		AFDEC85A1C32B295002A4D72 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8561C32B295002A4D72 /* FavoriteViewController.swift */; };
 		AFDEC85B1C32B295002A4D72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8571C32B295002A4D72 /* HomeViewController.swift */; };
 		AFDEC85C1C32B295002A4D72 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEC8581C32B295002A4D72 /* RootTabBarController.swift */; };
@@ -121,6 +124,8 @@
 /* Begin PBXFileReference section */
 		7B0AC7B61AAEF90000885D4A /* Funny Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Funny Stories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF07CE441C50D2DA00CDEBAC /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = "Funny Stories/audio/click.mp3"; sourceTree = SOURCE_ROOT; };
+		AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreViewController.swift; path = "Funny Stories/MoreViewController.swift"; sourceTree = SOURCE_ROOT; };
+		AF44F2821C91661200322F0A /* UIButton+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Protocol.swift"; path = "Funny Stories/UIButton+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF631B8C1C844D5200340B03 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		AF81644D1C8AB5860033F33F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		AF8164D61C8AC5F80033F33F /* Funny Stories-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Funny Stories-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 		AF9DDCE11C3CF7CA0047E441 /* UITextView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Protocol.swift"; path = "Funny Stories/UITextView+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCE71C3F72540047E441 /* UICollectionView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Protocol.swift"; path = "Funny Stories/UICollectionView+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCE91C3F72610047E441 /* FavoriteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewCell.swift; path = "Funny Stories/FavoriteViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		AFC156CE1C96AADC00EE5991 /* NSTextAttachment+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSTextAttachment+Protocol.swift"; path = "Funny Stories/NSTextAttachment+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8561C32B295002A4D72 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = "Funny Stories/FavoriteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8571C32B295002A4D72 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "Funny Stories/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		AFDEC8581C32B295002A4D72 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = "Funny Stories/RootTabBarController.swift"; sourceTree = SOURCE_ROOT; };
@@ -242,6 +248,7 @@
 				AFDEC8571C32B295002A4D72 /* HomeViewController.swift */,
 				AFDEC8581C32B295002A4D72 /* RootTabBarController.swift */,
 				AFDEC8591C32B295002A4D72 /* StoryViewController.swift */,
+				AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +259,8 @@
 				AF9DDCE71C3F72540047E441 /* UICollectionView+Protocol.swift */,
 				AFDEC85E1C32B2B2002A4D72 /* UIImage+Protocol.swift */,
 				AF9DDCE11C3CF7CA0047E441 /* UITextView+Protocol.swift */,
+				AF44F2821C91661200322F0A /* UIButton+Protocol.swift */,
+				AFC156CE1C96AADC00EE5991 /* NSTextAttachment+Protocol.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -516,12 +525,15 @@
 				AFDEC85F1C32B2B2002A4D72 /* UIImage+Protocol.swift in Sources */,
 				AFDEC85A1C32B295002A4D72 /* FavoriteViewController.swift in Sources */,
 				AFDEC8701C32B355002A4D72 /* NetworkModel.swift in Sources */,
+				AF44F27B1C8FD6DD00322F0A /* MoreViewController.swift in Sources */,
 				AFDEC8781C32B373002A4D72 /* HomeViewCell.swift in Sources */,
 				AFDEC8751C32B361002A4D72 /* AppDelegate.swift in Sources */,
 				AF9DDCEA1C3F72610047E441 /* FavoriteViewCell.swift in Sources */,
 				AFDEC8731C32B355002A4D72 /* Story.swift in Sources */,
+				AFC156CF1C96AADC00EE5991 /* NSTextAttachment+Protocol.swift in Sources */,
 				AF9DDCE81C3F72540047E441 /* UICollectionView+Protocol.swift in Sources */,
 				AF8164E51C8AC5F90033F33F /* FMDatabaseAdditions.m in Sources */,
+				AF44F2831C91661200322F0A /* UIButton+Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

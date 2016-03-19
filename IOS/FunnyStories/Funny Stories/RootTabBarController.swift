@@ -27,9 +27,13 @@ class RootTabBarController: UITabBarController
       
         let favoriteSelectImage: UIImage! = UIImage(named: "tabbar_favorite")?.imageWithRenderingMode(.AlwaysTemplate)
         self.tabBar.items![1].image = favoriteSelectImage
-      
         self.tabBar.items![1].selectedImage = favoriteSelectImage
         self.tabBar.items![1].title = String("Favorite")
+      
+        let moreSelectImage: UIImage! = UIImage(named: "tabbar_more")?.imageWithRenderingMode(.AlwaysTemplate)
+        self.tabBar.items![2].image = moreSelectImage
+        self.tabBar.items![2].selectedImage = moreSelectImage
+        self.tabBar.items![2].title = String("More")
 
     }
     

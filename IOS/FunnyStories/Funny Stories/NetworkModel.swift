@@ -31,19 +31,24 @@ class NetWorkModel
     
     
   
-  func GETStories(p_id: Int, p_type: Int, p_object: HomeViewController, p_limit: Int = NUMBER_IMAGES_ONCE_LOAD, p_thefirst: Int = 1) -> Bool
+  func GETStories(p_id: Int,  p_limit: Int = NUMBER_IMAGES_ONCE_LOAD, p_object: HomeViewController) -> Bool
   {
     if (self.m_IsLoading == true)
     {
       print("Is loading => return")
       return false
     }
+    else
+    {
+      print("Get sotires")
+    }
+    
+  
     
     self.m_IsLoading = true
-    
     let l_url : String =  SERVER_URL + String("/stories")
       
-    Alamofire.request(.GET, l_url, parameters: ["id_start": "\(p_id)", "limit" : "\(p_limit)", "type" : "\(p_type)", "thefirst" : "\(p_thefirst)"]).responseJSON(){
+    Alamofire.request(.GET, l_url, parameters: ["id_start": "\(p_id)", "limit" : "\(p_limit)"]).responseJSON(){
         p_response in
       
       print("Request: \(p_response.request)")
@@ -53,6 +58,14 @@ class NetWorkModel
             {
               case .Failure(let error):
                 print("Request failed with error: \(error)")
+              
+                if error.code == -6006
+                {
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        p_object.ShowToast("We'll update the story as soon as possible.")
+                    }
+                }
               case .Success(let JSON):
                 //print("Success with JSON: \(JSON)")
                 let JSONResponse = JSON as! NSDictionary
@@ -65,6 +78,8 @@ class NetWorkModel
                 listStories.sortInPlace({$0.m_id < $1.m_id})
                 if listStories.count > 0
                 {
+                  
+                  
                   for p_story in listStories
                   {
                     let l_i = FSCore.ShareInstance.IndexOfStoryInArrayStory(p_story)
@@ -72,7 +87,7 @@ class NetWorkModel
                     {
                       FSCore.ShareInstance.m_ArrayStory.append(p_story)
                       
-                      print("id: \(p_story.m_id) audio: \(p_story.m_audiourl)")
+                      //print("id: \(p_story.m_id) audio: \(p_story.m_audiourl)")
                     }
                   }
                   
@@ -81,25 +96,45 @@ class NetWorkModel
                   {
                       p_object.ReloadData()
                   }
+                  
+                  
+                  if FSCore.ShareInstance.m_ArrayStory.count - FSCore.ShareInstance.m_ArrayTemp.count >= 10
+                  {
+                    print("************ Insert story in database **********")
+                    let l_i = FSCore.ShareInstance.m_ArrayTemp.count
+                    for i in l_i..<FSCore.ShareInstance.m_ArrayStory.count
+                    {
+                      if DBModel.ShareInstance.InsertStory(FSCore.ShareInstance.m_ArrayStory[i]) == false
+                      {
+                        break
+                      }
+                      else
+                      {
+                        FSCore.ShareInstance.m_ArrayTemp.append(FSCore.ShareInstance.m_ArrayStory[i].Copy())
+                      }
+                    }
+                  }
+                  else
+                  {
+                    print("ArrayStory: \(FSCore.ShareInstance.m_ArrayStory.count) and Temp: \(FSCore.ShareInstance.m_ArrayTemp.count)")
+                  }
+                  
                 }//end if listStories.cout > 0
               
               }//end switch
-          
-          
-          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+
+          dispatch_async(dispatch_get_main_queue())
           {
-            dispatch_async(dispatch_get_main_queue())
+            if (p_object.m_Indicator!.isAnimating())
             {
-              if (p_object.m_Indicator!.isAnimating())
-              {
-                p_object.m_Indicator!.stopAnimating()
-              }
+              p_object.m_Indicator!.stopAnimating()
             }
           }
-
+          
+          self.m_IsLoading = false
         }//end dispatch_async
         
-        self.m_IsLoading = false
+      
         
     }//end Alamofire.request
     
@@ -155,5 +190,65 @@ class NetWorkModel
 //    return true
 //    
 //  }//end function GETStory
+  
+  
+  func GETApps(p_object: MoreViewController) -> Bool
+  {
+    if (self.m_IsLoading == true)
+    {
+      print("Is loading => return")
+      return false
+    }
+    
+    self.m_IsLoading = true
+    
+    let l_url : String =  SERVER_URL + String("/apps")
+    
+    Alamofire.request(.GET, l_url, parameters: nil).responseJSON(){
+      p_response in
+      
+      print("Request: \(p_response.request)")
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+        {
+          switch p_response.result
+          {
+          case .Failure(let error):
+            print("Request failed with error: \(error)")
+          case .Success(let JSON):
+            //print("Success with JSON: \(JSON)")
+            let JSONResponse = JSON as! NSDictionary
+            let JSONApps = JSONResponse.valueForKey("apps")! as! [NSDictionary]
+            let listApps = JSONApps.map{
+              //Story(p_id: $0.valueForKey("id") as! Int, , p_imageurl: $0.valueForKey("imageurl") as! String, )
+              App(p_name: $0.valueForKey("nameapp") as! String, p_imageurl: $0.valueForKey("imageurl") as! String, p_link: $0.valueForKey("linkapp") as! String)
+            }
+            
+            if listApps.count > 0
+            {
+              
+              for p_app in listApps
+              {
+                FSCore.ShareInstance.m_ArrayApp.append(p_app)
+              }
+              
+              //refresh UI
+              dispatch_async(dispatch_get_main_queue())
+              {
+                  p_object.SetupMoreAppView()
+              }
+            }//end if listApps.cout > 0
+            
+          }//end switch
+          
+      }//end dispatch_async
+      
+      self.m_IsLoading = false
+      
+    }//end Alamofire.request
+    
+    return true
+    
+  }//end function GETApps
+  
 
   }//end class

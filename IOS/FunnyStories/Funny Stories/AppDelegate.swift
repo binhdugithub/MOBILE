@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     else
     {
       DBModel.ShareInstance.GetAllStories()
-      FSCore.ShareInstance.m_OldSizeStories = FSCore.ShareInstance.m_ArrayStory.count
 
     }
     
@@ -64,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     print("Save Story")
-    for i in 0..<FSCore.ShareInstance.m_OldSizeStories
+    for i in 0..<FSCore.ShareInstance.m_ArrayTemp.count
     {
       if FSCore.ShareInstance.m_ArrayTemp[i].m_liked != FSCore.ShareInstance.m_ArrayStory[i].m_liked!
       {
@@ -72,9 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
       }
     }
     
-    for i in FSCore.ShareInstance.m_OldSizeStories..<FSCore.ShareInstance.m_ArrayStory.count
+    for i in FSCore.ShareInstance.m_ArrayTemp.count..<FSCore.ShareInstance.m_ArrayStory.count
     {
-      DBModel.ShareInstance.InsertStory(FSCore.ShareInstance.m_ArrayStory[i])
+      if DBModel.ShareInstance.InsertStory(FSCore.ShareInstance.m_ArrayStory[i]) == false
+      {
+        break
+      }
     }
     
     //Save currentStory displayed

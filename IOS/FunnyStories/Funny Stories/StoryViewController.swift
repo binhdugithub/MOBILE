@@ -97,33 +97,76 @@ class StoryViewController: UIViewController
     {
       let l_image = UIImage(data: self.m_Story!.m_image!)
       l_attachment.image = l_image
+      let l_scale: CGFloat = (CGFloat(l_attachment.image!.size.width)) / (self.m_TextView.frame.size.width/2)
+      l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
+      let attrStringWithImage = NSAttributedString(attachment: l_attachment)
+      l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
+      
+      self.m_TextView.attributedText = l_content
 
     }
-    else
+    else if self.m_Story!.m_imageurl != ""
     {
-      l_attachment.image = UIImage(named: "story_default")
+      //l_attachment.GetImageFromStory(self.m_Story!)
+      
+      Alamofire.request(.GET, self.m_Story!.m_imageurl!).validate().response(){
+        (_,_,imgData, p_error) in
+        print("Request: \(self.m_Story!.m_imageurl!)")
+        if p_error == nil
+        {
+          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+            {
+              if imgData?.length > 0
+              {
+                if (self.m_Story!.m_image == nil)
+                {
+                  self.m_Story!.m_image = imgData
+                  
+                }
+                
+                dispatch_async(dispatch_get_main_queue())
+                {
+                    //here
+                    let l_image = UIImage(data: self.m_Story!.m_image!)
+                    l_attachment.image = l_image
+                  
+                    let l_scale: CGFloat = (CGFloat(l_attachment.image!.size.width)) / (self.m_TextView.frame.size.width/2)
+                    l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
+                    let attrStringWithImage = NSAttributedString(attachment: l_attachment)
+                    l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
+                  
+                    self.m_TextView.attributedText = l_content
+                    
+                    //end here
+                }
+
+                
+              }
+          }
+          
+        }
+        else
+        {
+          print("Load image fail: \(self.m_Story!.m_imageurl)")
+          //here
+          let l_image = UIImage(named: "story_default")
+          l_attachment.image = l_image
+          
+          let l_scale: CGFloat = (CGFloat(400)) / (self.m_TextView.frame.size.width/2)
+          l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
+          let attrStringWithImage = NSAttributedString(attachment: l_attachment)
+          l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
+          
+          self.m_TextView.attributedText = l_content
+          
+          //end here
+        }
+        
+        
+      }//end Alamofire
+
     }
 
-    let l_scale: CGFloat = (l_attachment.image?.size.width)! / (m_TextView.frame.size.width/2)
-    l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
-    let attrStringWithImage = NSAttributedString(attachment: l_attachment)
-    l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
-    
-//    //facebook button
-//    let l_frmfb = CGRectMake((l_attachment.image?.size.width)! + 10,
-//                              (l_attachment.image?.size.height)! - m_TextView.frame.size.width/8 + 8,
-//                              m_TextView.frame.size.width/8,
-//                              m_TextView.frame.size.width/8)
-//    
-//    self.m_BtnFB.frame = l_frmfb
-//  
-//    //twitter button
-//    var l_frmtw = self.m_BtnFB.frame
-//    l_frmtw.origin.x += l_frmtw.size.width + 15
-//    self.m_BtnTW.frame = l_frmtw
-    
-    m_TextView.attributedText = l_content
-    
     
     FSCore.ShareInstance.m_ReadingCount++
     if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
@@ -131,17 +174,10 @@ class StoryViewController: UIViewController
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     }
     
-    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_RATE) == 0 &&
-         Configuration.ShareInstance.m_Rate == 1)
-    {
-      ShowRate()
-    }
-    
     if m_AudioLoadIndicator?.isAnimating() == true
     {
       m_AudioLoadIndicator?.stopAnimating()
     }
-    
     
     //favorite
     if m_Story!.m_liked == true
@@ -152,8 +188,7 @@ class StoryViewController: UIViewController
     {
       m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
     }
-    
- 
+
     
   }
   
@@ -246,25 +281,6 @@ class StoryViewController: UIViewController
     m_TextView.textAlignment = NSTextAlignment.Left
     m_TextView.backgroundColor = UIColor.clearColor()
     m_TextView.delegate = self
-    
-//    //Facebook button
-//    m_BtnFB.backgroundColor = UIColor.clearColor()
-//    m_BtnFB.setImage(UIImage(named: "fb"), forState: UIControlState.Normal)
-//    m_BtnFB.setTitle("", forState: UIControlState.Normal)
-//    m_BtnFB.addTarget(self, action: "FBClick:", forControlEvents: UIControlEvents.TouchUpInside)
-//    
-//    //Twitter button
-//    var l_frmtw = m_BtnFB.frame
-//    l_frmtw.origin.x += l_frmtw.size.width + 10
-//    m_BtnTW.frame = l_frmtw
-//    m_BtnTW.backgroundColor = UIColor.clearColor()
-//    m_BtnTW.setImage(UIImage(named: "tw"), forState: UIControlState.Normal)
-//    m_BtnTW.setTitle("", forState: .Normal)
-//    m_BtnTW.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//    m_BtnTW.addTarget(self, action: "TWClick:", forControlEvents: UIControlEvents.TouchUpInside)
-//  
-//    m_TextView.addSubview(m_BtnFB)
-//    m_TextView.addSubview(m_BtnTW)
 
     self.view.addSubview(m_TextView)
 
@@ -470,20 +486,7 @@ class StoryViewController: UIViewController
       
     }
   
-    func FBClick(sender: UIButton!)
-    {
-      SoundController.ShareInstance.PlayButton()
-      print("FB Click")
-      UIApplication.sharedApplication().openURL(NSURL(string: URL_FB)!)
-    }
-    
-    func TWClick(sender: UIButton!)
-    {
-      SoundController.ShareInstance.PlayButton()
-      print("TW Click")
-      UIApplication.sharedApplication().openURL(NSURL(string: URL_TW)!)
-    }
-  
+     
   
     func PreviousClick(sender: UIButton!)
     {

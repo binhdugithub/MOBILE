@@ -28,20 +28,17 @@ class HomeViewCell: UICollectionViewCell
     
     m_View.cornerRadius = 5
     captionLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
-    //commentLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
     captionLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-   // commentLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-    
+   
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
-    
-    //print("width: \(m_View.frame.size)")
-    //commentLabel.hidden = true
+    imageView.backgroundColor = UIColor.whiteColor()
   }
   
   var m_Story: Story?
   {
     didSet
     {
+      //imageView.backgroundColor = UIColor.whiteColor()
       m_ActivityIndicator.stopAnimating()
       if let l_Story = m_Story
       {
@@ -50,7 +47,7 @@ class HomeViewCell: UICollectionViewCell
 
         if let l_image = l_Story.m_image
         {
-          imageView.image = UIImage(data: l_image)?.decompressedImage
+          imageView.image = UIImage(data: l_image)
           //m_ActivityIndicator.stopAnimating()
         }
         else
@@ -83,6 +80,7 @@ class HomeViewCell: UICollectionViewCell
                   }
                   else
                   {
+                    print("***********Doi vao day: current id: \(self.m_Story!.m_id) and old id: \(l_id)")
                     for l_story in FSCore.ShareInstance.m_ArrayStory
                     {
                       if l_story.m_id == l_id
@@ -106,8 +104,16 @@ class HomeViewCell: UICollectionViewCell
            else
            {
               print("Load image fail: \(self.m_Story?.m_imageurl)")
+//            
+//              for l_story in FSCore.ShareInstance.m_ArrayStory
+//              {
+//                if l_story.m_id == l_id
+//                {
+//                  l_story.m_image = NSData()
+//                  break
+//                }
+//              }
            }
-            
             
           }//end Alamofire
           //m_ActivityIndicator.startAnimating()

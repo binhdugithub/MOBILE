@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class Story
 {
@@ -62,13 +63,50 @@ class Story
     self.m_liked = p_like
   }
   
-  func Discription() -> Void
+  func GetImage() -> UIImage?
   {
-    print("******************")
-    print("Id:\(self.m_id)")
-    print("Title:\(self.m_title)")
-   // print("Row:\(self.m_row?.row)")
-    print("******************")
+    if self.m_imageurl == "" && self.m_image == nil
+    {
+      return UIImage(named: "story_default")
+    }
+    
+    let l_img: UIImage! = UIImage(named: "story_default")
+    
+    Alamofire.request(.GET, self.m_imageurl!).validate().response(){
+      (_,_,imgData, p_error) in
+      
+      if p_error == nil
+      {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+          {
+            if imgData?.length > 0
+            {
+              if (self.m_image == nil)
+              {
+                self.m_image = imgData
+              }
+              
+            }
+        }
+        
+      }
+      else
+      {
+        print("Load image fail: \(self.m_imageurl)")
+      }
+      
+      
+    }//end Alamofire
+    
+    if (self.m_image == nil)
+    {
+      return l_img
+    }
+    else
+    {
+      return UIImage(data: self.m_image!)
+    }
+
   }
   
   
@@ -86,5 +124,28 @@ class Story
     return ceil(rect.height)
   }
 
+  
+}
+
+
+class App
+{
+  var m_name: String
+  var m_imageurl: String
+  var m_link: String
+  
+  init()
+  {
+    m_name = ""
+    m_imageurl = ""
+    m_link = ""
+  }
+  
+  init(p_name: String, p_imageurl: String, p_link: String)
+  {
+    m_name = p_name
+    m_imageurl = p_imageurl
+    m_link = p_link
+  }
   
 }

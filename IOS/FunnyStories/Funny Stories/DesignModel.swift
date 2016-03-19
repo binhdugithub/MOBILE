@@ -48,7 +48,11 @@ class FSDesign
     var COLOR_CELL_BG = UIColor()
     var COLOR_NAV_HEADER_BG = UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
     var COLOR_CONTROL_BG =  UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
+    var COLOR_MOREAPP_BG = UIColor(red: 253.0/255, green: 189.0/255, blue: 190.0/255, alpha: 0.9)
+    //UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
     var COLOR_BACKGROUND = UIColor(red: 182.0/255, green: 180.0/255, blue: 180.0/255, alpha: 0.3)
+    var COLOR_BODER_BG = UIColor(red: 241.0/255, green: 241.0/255, blue: 241.0/255, alpha: 1)
+  
     var COLOR_TEXTVIEW_BG = UIColor()
   
     let INSET_COLLECTION = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
@@ -83,7 +87,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 12
-          FONT_SIZE_TEXTVIEW = 16
+          FONT_SIZE_TEXTVIEW = 17
           FONT_SIZE_COPYRIGHT = 16
           
           ICON_WIDTH = 30
@@ -98,7 +102,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 14
-          FONT_SIZE_TEXTVIEW = 17
+          FONT_SIZE_TEXTVIEW = 18
           FONT_SIZE_COPYRIGHT = 17
           
           ICON_WIDTH = 40
@@ -114,7 +118,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 15
-          FONT_SIZE_TEXTVIEW = 18
+          FONT_SIZE_TEXTVIEW = 20
           FONT_SIZE_COPYRIGHT = 18
           
           ICON_WIDTH = 50
@@ -130,7 +134,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 15
-          FONT_SIZE_TEXTVIEW = 19
+          FONT_SIZE_TEXTVIEW = 20
           FONT_SIZE_COPYRIGHT = 19
           
           ICON_WIDTH = 45
@@ -146,7 +150,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 20
-          FONT_SIZE_TEXTVIEW = 26
+          FONT_SIZE_TEXTVIEW = 27
           FONT_SIZE_COPYRIGHT = 22
           
           ICON_WIDTH = 60
@@ -162,7 +166,7 @@ class FSDesign
           CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 28
-          FONT_SIZE_TEXTVIEW = 34
+          FONT_SIZE_TEXTVIEW = 35
           FONT_SIZE_COPYRIGHT = 28
           
           ICON_WIDTH = 70

@@ -111,10 +111,11 @@ class DBModel
         FSCore.ShareInstance.m_ArrayStory.append(l_Story)
         FSCore.ShareInstance.m_ArrayTemp.append(l_Story.Copy())
         
-        print("id: \(l_Story.m_id)  img: \(l_Story.m_imageurl) audio: \(l_Story.m_audiourl)")
+        //print("id: \(l_Story.m_id)  img: \(l_Story.m_imageurl) audio: \(l_Story.m_audiourl)")
 
       }
       
+      print("Loaded \(FSCore.ShareInstance.m_ArrayStory.count) stories from database")
       l_funnyDB.close()
       return l_results
     }
@@ -132,6 +133,7 @@ class DBModel
   {
     if p_story.m_image == nil
     {
+      print("Image is null")
       return false
     }
     

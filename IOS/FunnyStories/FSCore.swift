@@ -13,9 +13,10 @@ class FSCore
   static let ShareInstance = FSCore()
   var m_ArrayStory = [Story]()
   var m_ArrayTemp = [Story]()
+  var m_ArrayApp = [App]()
+  
   var m_ArrayUI = [Int]()
   var m_ReadingCount:Int = 0
-  var m_OldSizeStories = 0
   var m_IndexStoryStartDisplayed = 0
   
   
