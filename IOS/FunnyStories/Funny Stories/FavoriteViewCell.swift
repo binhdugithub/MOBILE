@@ -28,9 +28,9 @@ class FavoriteViewCell: UICollectionViewCell
     captionLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
     //commentLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
     captionLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
-    //commentLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
     
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
+    imageView.backgroundColor = UIColor.whiteColor()
     
   }
   
@@ -49,48 +49,6 @@ class FavoriteViewCell: UICollectionViewCell
         else
         {
           imageView.image = UIImage(named: "story_default")
-          let l_imageURL = m_Story?.m_imageurl
-          
-          Alamofire.request(.GET, l_imageURL!).validate().response(){
-            (_,_,imgData, p_error) in
-            
-            if p_error == nil
-            {
-              dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-                {
-                  if imgData?.length > 0
-                  {
-                    
-//                    for l_story in FSCore.ShareInstance.m_ArrayFavorite
-//                    {
-//                      if l_story.m_imageurl == l_imageURL
-//                      {
-                        if self.m_Story?.m_image == nil
-                        {
-                          self.m_Story!.m_image = imgData
-                          dispatch_async(dispatch_get_main_queue())
-                          {
-                              self.imageView.image = UIImage(data: self.m_Story!.m_image!)
-                          }
-                        }
-                        
-//                        break
-//                      }
-//                    }
-                    
-                    
-                  }
-              }
-              
-            }
-            else
-            {
-              print("Load image fail: \(self.m_Story?.m_imageurl)")
-            }
-            
-            
-          }//end Alamofire
-          //m_ActivityIndicator.startAnimating()
         }
         
       }

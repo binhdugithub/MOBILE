@@ -46,6 +46,8 @@ class HomeViewController: UICollectionViewController
     m_Indicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
     self.view.addSubview(m_Indicator!)
     
+    FSCore.ShareInstance.m_IndexStoryStartDisplayed =  FSCore.ShareInstance.m_IndexStoryStartDisplayed > (FSCore.ShareInstance.m_ArrayStory.count - 1) ? FSCore.ShareInstance.m_ArrayStory.count - 1 : FSCore.ShareInstance.m_IndexStoryStartDisplayed
+    
     
     //load story
     if FSCore.ShareInstance.m_ArrayStory.count <= 8
@@ -111,6 +113,7 @@ class HomeViewController: UICollectionViewController
     }
     
     print("Find something: \(l_row.row)")
+    print("have to: \(FSCore.ShareInstance.m_IndexStoryStartDisplayed)")
     
     if l_row.row <= FSCore.ShareInstance.m_IndexStoryStartDisplayed
     {
@@ -131,6 +134,10 @@ class HomeViewController: UICollectionViewController
         self.m_IsScrolled = true
       }
 
+    }
+    else
+    {
+      self.m_IsScrolled = true
     }
     
   }

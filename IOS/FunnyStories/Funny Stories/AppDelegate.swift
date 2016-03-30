@@ -71,16 +71,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate
       }
     }
     
+    var l_savemax: Int = FSCore.ShareInstance.m_ArrayTemp.count - 1
     for i in FSCore.ShareInstance.m_ArrayTemp.count..<FSCore.ShareInstance.m_ArrayStory.count
     {
       if DBModel.ShareInstance.InsertStory(FSCore.ShareInstance.m_ArrayStory[i]) == false
       {
         break
       }
+      
+      l_savemax++
     }
+    
+    
     
     //Save currentStory displayed
     //write current story
+    
+    Configuration.ShareInstance.m_CurrentStory = Configuration.ShareInstance.m_CurrentStory > l_savemax ? l_savemax : Configuration.ShareInstance.m_CurrentStory
     print("Save current displayed story:\(Configuration.ShareInstance.m_CurrentStory!)")
     
     Configuration.ShareInstance.WriteCurrentStory(Configuration.ShareInstance.m_CurrentStory!)

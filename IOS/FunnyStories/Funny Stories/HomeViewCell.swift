@@ -104,15 +104,6 @@ class HomeViewCell: UICollectionViewCell
            else
            {
               print("Load image fail: \(self.m_Story?.m_imageurl)")
-//            
-//              for l_story in FSCore.ShareInstance.m_ArrayStory
-//              {
-//                if l_story.m_id == l_id
-//                {
-//                  l_story.m_image = NSData()
-//                  break
-//                }
-//              }
            }
             
           }//end Alamofire

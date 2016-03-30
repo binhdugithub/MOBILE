@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKS-yb-t5q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKS-yb-t5q">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -165,7 +165,8 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ATH-K1-gcK">
                                                     <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="I7B-Bb-t1h"/>
                                                     </constraints>
@@ -183,7 +184,7 @@
                                                     <rect key="frame" x="72" y="72" width="37" height="37"/>
                                                 </activityIndicatorView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="gQQ-ld-l2l" firstAttribute="top" secondItem="ATH-K1-gcK" secondAttribute="bottom" constant="4" id="7tM-5C-kwR"/>
                                                 <constraint firstItem="gQQ-ld-l2l" firstAttribute="top" secondItem="ATH-K1-gcK" secondAttribute="bottom" id="B92-8i-FDf"/>
@@ -331,6 +332,6 @@
         <image name="home" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mfv-DS-bTP"/>
+        <segue reference="glE-87-YXZ"/>
     </inferredMetricsTieBreakers>
 </document>
