@@ -32,19 +32,6 @@ class SoundController: NSObject
             try AVAudioSession.sharedInstance().setActive(true)
             m_AudioPlayerClickButton!.numberOfLoops = 0
           
-          
-//            path = NSBundle.mainBundle().pathForResource("gameover", ofType:"mp3")!
-//            mp3URL = NSURL.fileURLWithPath(path)
-//            m_AudioPlayerGameOver = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
-//            path = NSBundle.mainBundle().pathForResource("congratulation", ofType:"mp3")!
-//            mp3URL=NSURL.fileURLWithPath(path)
-//            m_AudioPlayerGameWin = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
-//            path = NSBundle.mainBundle().pathForResource("correct", ofType:"mp3")!
-//            mp3URL = NSURL.fileURLWithPath(path)
-//            m_AudioPlayerCorrect = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
-//          
-//            //m_AudioPlayerStory = AVAudioPlayer()
-          
         }
         catch let l_error as NSError
         {
@@ -205,7 +192,7 @@ class SoundController: NSObject
       m_PlayerStory?.volume = 1.0
 
       
-      NSNotificationCenter.defaultCenter().addObserver(p_object, selector: "PlayerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+      NSNotificationCenter.defaultCenter().addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
       
       m_PlayerStory?.play()
       
@@ -235,7 +222,7 @@ class SoundController: NSObject
         m_PlayerStory?.volume = 1.0
         //m_PlayerStory?.actionAtItemEnd = .Pause
         NSNotificationCenter.defaultCenter().removeObserver(p_object)
-        NSNotificationCenter.defaultCenter().addObserver(p_object, selector: "PlayerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
         m_PlayerStory?.play()
         
       }
@@ -256,7 +243,7 @@ class SoundController: NSObject
       m_PlayerStory  = AVPlayer(URL: l_url!)
       m_PlayerStory?.volume = 1.0
 
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: "PlayerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
       
       m_PlayerStory?.play()
       
@@ -285,7 +272,7 @@ class SoundController: NSObject
         m_PlayerStory  = AVPlayer(URL: l_url!)
         m_PlayerStory?.volume = 1.0
         //m_PlayerStory?.actionAtItemEnd = .Pause
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "PlayerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
         m_PlayerStory?.play()
         
       }

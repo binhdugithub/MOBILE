@@ -54,11 +54,8 @@ class FavoriteViewController: UICollectionViewController
           self.collectionView!.reloadData()
       }
     }
-  
 
 }
-
-
 
 extension FavoriteViewController
 {
@@ -69,7 +66,7 @@ extension FavoriteViewController
     {
       if p_story.m_liked == true
       {
-        l_count++
+        l_count += 1
       }
     }
     

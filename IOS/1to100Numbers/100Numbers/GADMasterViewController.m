@@ -63,7 +63,7 @@
 
 -(void)resetAdBannerView:(UIViewController *)p_RootViewController AtFrame:(CGRect) frm
 {
-    NSLog(@"GADMaster:resetAdBannerView with frame:%f-%f", frm.size.width, frm.size.height);
+   // NSLog(@"GADMaster:resetAdBannerView with frame:%f-%f", frm.size.width, frm.size.height);
 
     m_Banner.frame = frm;
     

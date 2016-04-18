@@ -116,7 +116,7 @@ class FSCore
           return l_i
         }
         
-        l_i++
+        l_i += 1
       }
       
       if l_i == m_ArrayStory.count
@@ -135,7 +135,7 @@ class FSCore
     {
       if p_story.m_liked == true
       {
-        l_count++
+        l_count += 1
         
         if l_count == p_indexfavorite
         {

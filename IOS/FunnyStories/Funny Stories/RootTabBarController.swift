@@ -24,6 +24,7 @@ class RootTabBarController: UITabBarController
         self.tabBar.items![0].selectedImage = homeSelectImage
         self.tabBar.items![0].title = String("Home")
       
+        FSDesign.ShareInstance.TABBAR_HEIGHT  = self.tabBar.bounds.size.height
       
         let favoriteSelectImage: UIImage! = UIImage(named: "tabbar_favorite")?.imageWithRenderingMode(.AlwaysTemplate)
         self.tabBar.items![1].image = favoriteSelectImage

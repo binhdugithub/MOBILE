@@ -399,7 +399,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Razeware LLC";
 				TargetAttributes = {
 					7B0AC7B51AAEF90000885D4A = {
@@ -584,7 +584,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -605,8 +605,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "";
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "1410d273-06de-41c3-a191-8761f7dde2fb";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
@@ -630,7 +630,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -645,7 +645,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1410d273-06de-41c3-a191-8761f7dde2fb";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -656,10 +656,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pinterest",
@@ -671,7 +671,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1410d273-06de-41c3-a191-8761f7dde2fb";
+				PROVISIONING_PROFILE = "7613df06-988d-4b57-836b-eb079d3ebb61";
 				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -683,10 +683,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: The Binh Nguyen (XV7BX9FZLH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pinterest",
@@ -698,7 +698,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1410d273-06de-41c3-a191-8761f7dde2fb";
+				PROVISIONING_PROFILE = "7613df06-988d-4b57-836b-eb079d3ebb61";
 				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

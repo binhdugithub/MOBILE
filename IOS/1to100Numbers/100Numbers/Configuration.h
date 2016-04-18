@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "HomeViewController.h"
 
 @interface Configuration : NSObject
 {
@@ -15,6 +16,8 @@
     NSInteger m_TimesPlayed;
     NSInteger m_BestScore;
     NSInteger m_AverageScore;
+    
+    NSMutableArray *m_more_apps;
 }
 
 +(instancetype) GetSingleton;
@@ -26,4 +29,6 @@
 - (NSInteger) GetAverageScore;
 - (BOOL) GetIsMute;
 - (UIImage*) TakeScreenshot;
+- (NSMutableArray*) GetMoreApps;
+- (void) LoadMoreApps: (NSObject*) p_view;
 @end

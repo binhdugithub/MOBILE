@@ -81,6 +81,8 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:0.9]];
     [self CalculateView];
     [[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewFooter.frame];
     [self ShowSpeaker];
@@ -100,9 +102,6 @@ enum
     //CGFloat W = [UIScreen mainScreen].bounds.size.width;
     CGFloat w = [UIScreen mainScreen].bounds.size.width / (9.0/20 + 10);
     CGFloat h = w;
-    
-    //1 bacground
-    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
     
     //Advertisement
     CGRect frm;
@@ -142,7 +141,7 @@ enum
     frm.origin.x = 0;
     if(IS_IPHONE_4_OR_LESS || IS_IPAD)
     {
-        frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/4 * w;
+        frm.origin.y = m_UIViewFooter.frame.origin.y + m_UIViewFooter.frame.size.height + 1.0/6 * w;
     }
     else
     {
@@ -156,7 +155,7 @@ enum
     
     if(IS_IPHONE_4_OR_LESS || IS_IPAD)
     {
-        frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/4 * w;
+        frm.origin.y = m_UIViewFooter.frame.origin.y - frm.size.height - 1.0/6 * w;
     }
     else
     {
@@ -185,13 +184,13 @@ enum
     }
     
     frm.size.height = frm.size.width;
-    frm.origin.x = 1.0/4 * frm.size.width;
+    frm.origin.x = 1.0/2 * frm.size.width;
     frm.origin.y = 1.0/2 *(m_UIViewGroup1.frame.size.height - frm.size.height);
     m_UIButtonSpeaker1.frame = frm;
     
     //home 1
     frm = m_UIButtonSpeaker1.frame;
-    frm.origin.x = m_UIViewGroup1.frame.size.width - 1.0/4 * frm.size.width - frm.size.width;
+    frm.origin.x = m_UIViewGroup1.frame.size.width - 1.0/2 * frm.size.width - frm.size.width;
     m_UIButtonHome1.frame = frm;
     
     //ready 1
@@ -206,16 +205,21 @@ enum
     
     if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:13 weight:0.5];
     }
-    else if(IS_IPAD)
+    else if(IS_IPAD_1X || IS_IPAD_2X)
     {
-        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
+    else if (IS_IPAD_PRO)
+    {
+        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:24 weight:0.5];
     }
     else
     {
         m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
     }
+    
     //[m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonReady1 setTitleColor:[UIColor colorWithRed:160/255.0 green:189/255.0 blue:96/255.0 alpha:1] forState:UIControlStateNormal];
     [m_UIButtonReady1 setTitle:[NSString stringWithFormat:@"READY"] forState:UIControlStateNormal];
@@ -243,11 +247,16 @@ enum
     
     if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
-    }else if(IS_IPAD)
+        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:13 weight:0.5];
+    }else if(IS_IPAD_1X || IS_IPAD_2X)
     {
-        m_UIButtonReady1.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
-    }else
+        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
+    else if (IS_IPAD_PRO)
+    {
+        m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:24 weight:0.5];
+    }
+    else
     {
         m_UIButtonReady2.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
     }
@@ -276,9 +285,35 @@ enum
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
-        if(IS_IPAD)
-            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        
+        int l_size = 0;
+        if (IS_IPHONE_4_OR_LESS || IS_IPHONE_5)
+        {
+            l_size = 11;
+        }
+        else if (IS_IPHONE_6)
+        {
+            l_size = 13;
+        }
+        else if (IS_IPHONE_6P)
+        {
+            l_size = 15;
+        }
+        else if(IS_IPAD_1X || IS_IPAD_2X)
+        {
+            l_size = 19;
+        }
+        else if (IS_IPAD_PRO)
+        {
+            l_size = 24;
+        }
+        else
+        {
+            l_size = 26;
+        }
+        
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:l_size weight:1];
+        
         [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         //[MyNumber setBackgroundColor:[UIColor whiteColor]];
@@ -301,9 +336,34 @@ enum
         
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake( frm.size.width- x - w, frm.size.height - y - h, w, h)];
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
-        if(IS_IPAD)
-            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        int l_size = 0;
+        if (IS_IPHONE_4_OR_LESS || IS_IPHONE_5)
+        {
+            l_size = 11;
+        }
+        else if (IS_IPHONE_6)
+        {
+            l_size = 13;
+        }
+        else if (IS_IPHONE_6P)
+        {
+            l_size = 15;
+        }
+        else if(IS_IPAD_1X || IS_IPAD_2X)
+        {
+            l_size = 19;
+        }
+        else if (IS_IPAD_PRO)
+        {
+            l_size = 24;
+        }
+        else
+        {
+            l_size = 26;
+        }
+        
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:l_size weight:1];
+        
         [MyNumber addTarget:self action:@selector(NumberClick2:) forControlEvents:UIControlEventTouchUpInside];
         [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag ) ] forState:UIControlStateNormal];
@@ -341,9 +401,8 @@ enum
     frm_share.origin.y = 3.0/5 * m_UIViewResult1.frame.size.height;
     m_UIButtonShare.frame = frm_share;
     m_UIButtonShare.layer.cornerRadius = 10;
-    //[m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
     [m_UIButtonShare setBackgroundColor:[UIColor colorWithRed:0/255.0 green:94.0/255 blue:91.0/255 alpha:1]];
-    
+    [m_UIButtonShare setHidden:true];
     //view result 2
     CGRect frm2 = m_UIView51to100.frame;
     frm2.origin.y = 0 - frm2.size.height - m_UIViewGroup2.frame.size.height;

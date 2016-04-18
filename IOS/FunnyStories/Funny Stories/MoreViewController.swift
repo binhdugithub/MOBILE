@@ -96,7 +96,7 @@ class MoreViewController: UIViewController
     m_FBButton.setImage(l_image, forState: UIControlState.Highlighted)
     m_FBButton.setTitle("", forState: UIControlState.Normal)
     
-    m_FBButton.addTarget(self, action: "FBClick:", forControlEvents: UIControlEvents.TouchUpInside)
+    m_FBButton.addTarget(self, action: #selector(MoreViewController.FBClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     //tw 
     l_frame = m_FBButton.frame
@@ -115,7 +115,7 @@ class MoreViewController: UIViewController
     UIGraphicsEndImageContext()
     m_TWButton.setImage(l_image, forState: UIControlState.Highlighted)
     m_TWButton.setTitle("", forState: UIControlState.Normal)
-    m_TWButton.addTarget(self, action: "TWClick:", forControlEvents: UIControlEvents.TouchUpInside)
+    m_TWButton.addTarget(self, action: #selector(MoreViewController.TWClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     //rate
     l_frame = m_TWButton.frame
@@ -135,7 +135,7 @@ class MoreViewController: UIViewController
     UIGraphicsEndImageContext()
     m_RateButton.setImage(l_image, forState: UIControlState.Highlighted)
     m_RateButton.setTitle("", forState: UIControlState.Normal)
-    m_RateButton.addTarget(self, action: "RateClick:", forControlEvents: UIControlEvents.TouchUpInside)
+    m_RateButton.addTarget(self, action: #selector(MoreViewController.RateClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     
     //view more app
@@ -143,7 +143,7 @@ class MoreViewController: UIViewController
     l_frame2.size.width = SCREEN_WIDTH - 20
     l_frame2.origin.x = 10
     l_frame2.size.height = m_RateButton.frame.size.height * CGFloat(2)
-    l_frame2.origin.y = SCREEN_HEIGHT - TABBAR_HEIGHT - l_frame2.size.height - 20
+    l_frame2.origin.y = SCREEN_HEIGHT - FSDesign.ShareInstance.TABBAR_HEIGHT - l_frame2.size.height - 20
     
     m_MoreAppScrollView = UIScrollView(frame: l_frame2)
     m_MoreAppScrollView.layer.cornerRadius = 5
@@ -194,7 +194,7 @@ class MoreViewController: UIViewController
       l_btn.layer.borderColor = FSDesign.ShareInstance.COLOR_BODER_BG.CGColor
       l_btn.meSetImage(FSCore.ShareInstance.m_ArrayApp[i].m_imageurl)
       l_btn.tag = i
-      l_btn.addTarget(self, action: "MoreAppClick:", forControlEvents: UIControlEvents.TouchUpInside)
+      l_btn.addTarget(self, action: #selector(MoreViewController.MoreAppClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
       m_MoreAppScrollView.addSubview(l_btn)
     }

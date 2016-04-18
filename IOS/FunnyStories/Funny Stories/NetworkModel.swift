@@ -44,7 +44,6 @@ class NetWorkModel
     }
     
   
-    
     self.m_IsLoading = true
     let l_url : String =  SERVER_URL + String("/stories")
       
@@ -141,55 +140,6 @@ class NetWorkModel
     return true
     
   }//end function GETStories
-  
-  
-//  func GETStory(p_id: Int, p_object: FavoriteViewController) -> Bool
-//  {
-//    print("Id: \(p_id)")
-//    
-//    let l_url : String =  SERVER_URL + String("/story")
-//    
-//    Alamofire.request(.GET, l_url, parameters: ["id": "\(p_id)"]).responseJSON(){
-//      p_response in
-//      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-//        {
-//
-//        switch p_response.result
-//        {
-//        case .Failure(let error):
-//          print("Request failed with error: \(error)")
-//        case .Success(let JSON):
-//          //print("Success with JSON: \(JSON)")
-//          let JSONResponse = JSON as! NSDictionary
-//          let l_id = JSONResponse.valueForKey("id")! as? Int
-//          let l_title = JSONResponse.valueForKey("title")! as? String
-//          let l_content = JSONResponse.valueForKey("content")! as? String
-//          let l_imageurl   = JSONResponse.valueForKey("image")! as? String
-//          let l_audiourl = JSONResponse.valueForKey("audio")! as? String
-//          
-//          let l_Story = Story(p_id: l_id, p_title: l_title, p_content: l_content, p_imageurl: l_imageurl, p_audiourl: l_audiourl)
-//          l_Story.m_liked = true
-//          FSCore.ShareInstance.m_ArrayFavorite.append(l_Story)
-//
-//          FSCore.ShareInstance.m_ArrayFavorite.sortInPlace({$0.m_id < $1.m_id})
-//          
-//          if FSCore.ShareInstance.m_ArrayFavorite.count == Configuration.ShareInstance.m_Favorite?.count
-//          {
-//            dispatch_async(dispatch_get_main_queue())
-//            {
-//                p_object.ReloadData()
-//            }
-//          }
-//         
-//
-//        }//end switch
-//      }
-//      
-//    }//end Alamofire.request
-//    
-//    return true
-//    
-//  }//end function GETStory
   
   
   func GETApps(p_object: MoreViewController) -> Bool

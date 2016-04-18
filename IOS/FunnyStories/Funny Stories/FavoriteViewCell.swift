@@ -26,7 +26,6 @@ class FavoriteViewCell: UICollectionViewCell
     m_ActivityIndicator.hidesWhenStopped = true
     
     captionLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
-    //commentLabel.textColor = FSDesign.ShareInstance.COLOR_COLLECTION_TEXT
     captionLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
     
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
@@ -43,7 +42,7 @@ class FavoriteViewCell: UICollectionViewCell
         captionLabel.numberOfLines = 2
         if let l_image = l_Story.m_image
         {
-          imageView.image = UIImage(data: l_image)?.decompressedImage
+          imageView.image = UIImage(data: l_image)
           //m_ActivityIndicator.stopAnimating()
         }
         else

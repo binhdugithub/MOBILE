@@ -38,7 +38,6 @@ class HomeViewCell: UICollectionViewCell
   {
     didSet
     {
-      //imageView.backgroundColor = UIColor.whiteColor()
       m_ActivityIndicator.stopAnimating()
       if let l_Story = m_Story
       {

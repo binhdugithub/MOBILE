@@ -9,6 +9,7 @@
 #import "Configuration.h"
 #import "Define.h"
 #import "GCViewController.h"
+#import "GameOverViewController.h"
 
 @implementation Configuration
 
@@ -31,11 +32,67 @@
     if(self)
     {
         [self LoadConfig];
+        m_more_apps = [[NSMutableArray alloc] init];
+       
     }
     
     return self;
 }
 
+- (void) LoadMoreApps: (GameOverViewController*) p_view
+{
+     NSURL *url = [NSURL URLWithString:@"http://cusiki.com:8888/api/funnystories/apps"];
+    // Create a download task.
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
+                                                             completionHandler:^(NSData *data,
+                                                                                 NSURLResponse *response,
+                                                                                 NSError *error)
+                                  {
+                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                                         
+                                          if (!error)
+                                          {
+                                              NSError *JSONError = nil;
+                                              NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                         options:0
+                                                                                                           error:&JSONError];
+                                              if (JSONError)
+                                              {
+                                                  NSLog(@"Serialization error: %@", JSONError.localizedDescription);
+                                                  
+                                              }
+                                              else
+                                              {
+                                                  m_more_apps = [[NSMutableArray alloc] init];
+                                                  NSArray *l_arry = dictionary[@"apps"];
+                                                  for (int i = 0; i < l_arry.count; i++)
+                                                  {
+                                                      NSMutableDictionary *l_dict = [[NSMutableDictionary alloc] initWithDictionary:l_arry[i] copyItems:true];
+                                                      //[l_dict setObject: nil  forKey:@"imgdata"];
+                                                      [m_more_apps addObject:l_dict];
+                                                  }
+                                                  
+                                                  //m_more_apps = [[NSMutableArray alloc] initWithArray:l_arry copyItems:true];
+                                                  //m_more_apps = dictionary[@"apps"];
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [p_view SetupMoreAppView];
+                                                  });
+                                              }
+                                          }
+                                          else
+                                          {
+                                              NSLog(@"Error: %@", error.localizedDescription);
+                                          }
+                                          
+                                         
+                                      });
+                                      
+                                      
+                                  }];
+    // Start the task.
+    [task resume];
+}
 
 - (void) LoadConfig
 {
@@ -236,7 +293,10 @@
     
 };
 
-
+- (NSMutableArray*) GetMoreApps
+{
+    return m_more_apps;
+}
 - (UIImage*) TakeScreenshot
 {
     CGSize imageSize = [[UIScreen mainScreen] bounds].size;

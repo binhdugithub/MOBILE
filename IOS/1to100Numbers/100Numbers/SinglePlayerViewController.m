@@ -49,6 +49,7 @@
 {
     [super viewDidLoad];
     NSLog(@"*******************SinglePlayerViewController*******************");
+    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:0.9]];
     
     [self CalculateView];
     [self ShowSpeaker];
@@ -73,14 +74,11 @@
 
 -(void)CalculateView
 {
-    //1 bacground
-    //[self.view setBackgroundColor:[UIColor colorWithRed:83/255.0 green:162/255.0 blue:201/255.0 alpha:1]];
-    [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
-    //
+    
     //Header
     //
     
-    //About
+    //Home
     CGRect frm;
     frm.size.width = W_ICON * SCREEN_WIDTH;
     
@@ -89,24 +87,24 @@
         frm.size.width -= 5;
     }else if(IS_IPAD)
     {
-        frm.size.width -= 10;
+        frm.size.width -= 15;
     }
     
     frm.size.height = frm.size.width;
-    frm.origin.x = 1.0/4 * frm.size.width;
-    frm.origin.y = 1.0/2 * frm.size.height;
+    frm.origin.x = 1.0/2 * frm.size.width;
+    frm.origin.y = 1.0/4 * frm.size.height;
     m_UIButtonHome.frame =frm;
     
     //header
     frm.size.width = SCREEN_WIDTH;
-    frm.size.height = 2 * m_UIButtonHome.frame.size.height;
+    frm.size.height = 3.0/2 * m_UIButtonHome.frame.size.height;
     frm.origin.x = 0;
     frm.origin.y = 0;
     m_UIViewHeader.frame = frm;
     
     //Speaker
     frm = m_UIButtonHome.frame;
-    frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/4 * frm.size.width;
+    frm.origin.x = m_UIViewHeader.frame.size.width - frm.size.width - 1.0/2 * frm.size.width;
     m_UIButtonSpeaker.frame = frm;
     
     //statistics
@@ -183,11 +181,15 @@
     
     if (IS_IPHONE_4_OR_LESS)
     {
-        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:13 weight:1];
+        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:13 weight:0.5];
     }
-    else if(IS_IPAD)
+    else if(IS_IPAD_1X || IS_IPAD_2X)
     {
-        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:21 weight:1];
+        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize:21 weight:0.5];
+    }
+    else if (IS_IPAD_PRO)
+    {
+        m_UIButtonPlay.titleLabel.font = [UIFont systemFontOfSize: 24 weight: 0.5];
     }
     else
     {
@@ -222,6 +224,7 @@
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:l_number.frame];
         MyNumber.tag = l_number.tag;
         MyNumber.titleLabel.font = l_number.titleLabel.font;
+        
         [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];
         [MyNumber setBackgroundColor:l_number.backgroundColor];
@@ -266,10 +269,35 @@
         UIButton *MyNumber = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
         MyNumber.frame = CGRectMake(x, y, w, h);
         MyNumber.tag = i + 1;
-        MyNumber.titleLabel.font = [UIFont systemFontOfSize:12 weight:1];
         
-        if(IS_IPAD)
-            MyNumber.titleLabel.font = [UIFont systemFontOfSize:17 weight:1];
+        
+        int l_size = 0;
+        if (IS_IPHONE_4_OR_LESS || IS_IPHONE_5)
+        {
+            l_size = 11;
+        }
+        else if (IS_IPHONE_6)
+        {
+            l_size = 13;
+        }
+        else if (IS_IPHONE_6P)
+        {
+            l_size = 15;
+        }
+        else if(IS_IPAD_1X || IS_IPAD_2X)
+        {
+            l_size = 19;
+        }
+        else if (IS_IPAD_PRO)
+        {
+            l_size = 24;
+        }
+        else
+        {
+            l_size = 26;
+        }
+        
+        MyNumber.titleLabel.font = [UIFont systemFontOfSize:l_size weight:1];
         
         [MyNumber setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [MyNumber setTitle:[NSString stringWithFormat:@"%li", (long)(MyNumber.tag) ] forState:UIControlStateNormal];

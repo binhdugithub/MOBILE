@@ -15,4 +15,5 @@
 
 - (void)SetArrayNumber: (NSMutableArray*) p_array;
 - (void)SetCurrentNumber: (NSInteger) p_index;
+- (void) SetupMoreAppView;
 @end

@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFBCAAAB1CAD7FB4001A2F1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAAAA1CAD7FB4001A2F1D /* AppDelegate.swift */; };
+		AFBCAAAD1CAD7FB4001A2F1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAAAC1CAD7FB4001A2F1D /* ViewController.swift */; };
+		AFBCAAB01CAD7FB4001A2F1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBCAAAE1CAD7FB4001A2F1D /* Main.storyboard */; };
+		AFBCAAB21CAD7FB5001A2F1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFBCAAB11CAD7FB5001A2F1D /* Assets.xcassets */; };
+		AFBCAAB51CAD7FB5001A2F1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBCAAB31CAD7FB5001A2F1D /* LaunchScreen.storyboard */; };
+		AFBCAAC01CAD7FB5001A2F1D /* Photo_LockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAABF1CAD7FB5001A2F1D /* Photo_LockTests.swift */; };
+		AFBCAACB1CAD7FB5001A2F1D /* Photo_LockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAACA1CAD7FB5001A2F1D /* Photo_LockUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFBCAABC1CAD7FB5001A2F1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFBCAA9F1CAD7FB4001A2F1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFBCAAA61CAD7FB4001A2F1D;
+			remoteInfo = "Photo Lock";
+		};
+		AFBCAAC71CAD7FB5001A2F1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFBCAA9F1CAD7FB4001A2F1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFBCAAA61CAD7FB4001A2F1D;
+			remoteInfo = "Photo Lock";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AFBCAAA71CAD7FB4001A2F1D /* Photo Lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFBCAAAA1CAD7FB4001A2F1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AFBCAAAC1CAD7FB4001A2F1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AFBCAAAF1CAD7FB4001A2F1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AFBCAAB11CAD7FB5001A2F1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AFBCAAB41CAD7FB5001A2F1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AFBCAAB61CAD7FB5001A2F1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFBCAABB1CAD7FB5001A2F1D /* Photo LockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo LockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFBCAABF1CAD7FB5001A2F1D /* Photo_LockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_LockTests.swift; sourceTree = "<group>"; };
+		AFBCAAC11CAD7FB5001A2F1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFBCAAC61CAD7FB5001A2F1D /* Photo LockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo LockUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFBCAACA1CAD7FB5001A2F1D /* Photo_LockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_LockUITests.swift; sourceTree = "<group>"; };
+		AFBCAACC1CAD7FB5001A2F1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFBCAAA41CAD7FB4001A2F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAB81CAD7FB5001A2F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAC31CAD7FB5001A2F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFBCAA9E1CAD7FB4001A2F1D = {
+			isa = PBXGroup;
+			children = (
+				AFBCAAA91CAD7FB4001A2F1D /* Photo Lock */,
+				AFBCAABE1CAD7FB5001A2F1D /* Photo LockTests */,
+				AFBCAAC91CAD7FB5001A2F1D /* Photo LockUITests */,
+				AFBCAAA81CAD7FB4001A2F1D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AFBCAAA81CAD7FB4001A2F1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAAA71CAD7FB4001A2F1D /* Photo Lock.app */,
+				AFBCAABB1CAD7FB5001A2F1D /* Photo LockTests.xctest */,
+				AFBCAAC61CAD7FB5001A2F1D /* Photo LockUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFBCAAA91CAD7FB4001A2F1D /* Photo Lock */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAAAA1CAD7FB4001A2F1D /* AppDelegate.swift */,
+				AFBCAAAC1CAD7FB4001A2F1D /* ViewController.swift */,
+				AFBCAAAE1CAD7FB4001A2F1D /* Main.storyboard */,
+				AFBCAAB11CAD7FB5001A2F1D /* Assets.xcassets */,
+				AFBCAAB31CAD7FB5001A2F1D /* LaunchScreen.storyboard */,
+				AFBCAAB61CAD7FB5001A2F1D /* Info.plist */,
+			);
+			path = "Photo Lock";
+			sourceTree = "<group>";
+		};
+		AFBCAABE1CAD7FB5001A2F1D /* Photo LockTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAABF1CAD7FB5001A2F1D /* Photo_LockTests.swift */,
+				AFBCAAC11CAD7FB5001A2F1D /* Info.plist */,
+			);
+			path = "Photo LockTests";
+			sourceTree = "<group>";
+		};
+		AFBCAAC91CAD7FB5001A2F1D /* Photo LockUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAACA1CAD7FB5001A2F1D /* Photo_LockUITests.swift */,
+				AFBCAACC1CAD7FB5001A2F1D /* Info.plist */,
+			);
+			path = "Photo LockUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFBCAAA61CAD7FB4001A2F1D /* Photo Lock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFBCAACF1CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo Lock" */;
+			buildPhases = (
+				AFBCAAA31CAD7FB4001A2F1D /* Sources */,
+				AFBCAAA41CAD7FB4001A2F1D /* Frameworks */,
+				AFBCAAA51CAD7FB4001A2F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Photo Lock";
+			productName = "Photo Lock";
+			productReference = AFBCAAA71CAD7FB4001A2F1D /* Photo Lock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFBCAABA1CAD7FB5001A2F1D /* Photo LockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFBCAAD21CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo LockTests" */;
+			buildPhases = (
+				AFBCAAB71CAD7FB5001A2F1D /* Sources */,
+				AFBCAAB81CAD7FB5001A2F1D /* Frameworks */,
+				AFBCAAB91CAD7FB5001A2F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFBCAABD1CAD7FB5001A2F1D /* PBXTargetDependency */,
+			);
+			name = "Photo LockTests";
+			productName = "Photo LockTests";
+			productReference = AFBCAABB1CAD7FB5001A2F1D /* Photo LockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AFBCAAC51CAD7FB5001A2F1D /* Photo LockUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFBCAAD51CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo LockUITests" */;
+			buildPhases = (
+				AFBCAAC21CAD7FB5001A2F1D /* Sources */,
+				AFBCAAC31CAD7FB5001A2F1D /* Frameworks */,
+				AFBCAAC41CAD7FB5001A2F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFBCAAC81CAD7FB5001A2F1D /* PBXTargetDependency */,
+			);
+			name = "Photo LockUITests";
+			productName = "Photo LockUITests";
+			productReference = AFBCAAC61CAD7FB5001A2F1D /* Photo LockUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFBCAA9F1CAD7FB4001A2F1D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nguyen The Binh";
+				TargetAttributes = {
+					AFBCAAA61CAD7FB4001A2F1D = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 59R4ZJFHM6;
+					};
+					AFBCAABA1CAD7FB5001A2F1D = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = AFBCAAA61CAD7FB4001A2F1D;
+					};
+					AFBCAAC51CAD7FB5001A2F1D = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = AFBCAAA61CAD7FB4001A2F1D;
+					};
+				};
+			};
+			buildConfigurationList = AFBCAAA21CAD7FB4001A2F1D /* Build configuration list for PBXProject "Photo Lock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFBCAA9E1CAD7FB4001A2F1D;
+			productRefGroup = AFBCAAA81CAD7FB4001A2F1D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFBCAAA61CAD7FB4001A2F1D /* Photo Lock */,
+				AFBCAABA1CAD7FB5001A2F1D /* Photo LockTests */,
+				AFBCAAC51CAD7FB5001A2F1D /* Photo LockUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFBCAAA51CAD7FB4001A2F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFBCAAB51CAD7FB5001A2F1D /* LaunchScreen.storyboard in Resources */,
+				AFBCAAB21CAD7FB5001A2F1D /* Assets.xcassets in Resources */,
+				AFBCAAB01CAD7FB4001A2F1D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAB91CAD7FB5001A2F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAC41CAD7FB5001A2F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFBCAAA31CAD7FB4001A2F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFBCAAAD1CAD7FB4001A2F1D /* ViewController.swift in Sources */,
+				AFBCAAAB1CAD7FB4001A2F1D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAB71CAD7FB5001A2F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFBCAAC01CAD7FB5001A2F1D /* Photo_LockTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFBCAAC21CAD7FB5001A2F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFBCAACB1CAD7FB5001A2F1D /* Photo_LockUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFBCAABD1CAD7FB5001A2F1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFBCAAA61CAD7FB4001A2F1D /* Photo Lock */;
+			targetProxy = AFBCAABC1CAD7FB5001A2F1D /* PBXContainerItemProxy */;
+		};
+		AFBCAAC81CAD7FB5001A2F1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFBCAAA61CAD7FB4001A2F1D /* Photo Lock */;
+			targetProxy = AFBCAAC71CAD7FB5001A2F1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AFBCAAAE1CAD7FB4001A2F1D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFBCAAAF1CAD7FB4001A2F1D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AFBCAAB31CAD7FB5001A2F1D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFBCAAB41CAD7FB5001A2F1D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFBCAACD1CAD7FB5001A2F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AFBCAACE1CAD7FB5001A2F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFBCAAD01CAD7FB5001A2F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Photo Lock/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-Lock";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AFBCAAD11CAD7FB5001A2F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Photo Lock/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-Lock";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AFBCAAD31CAD7FB5001A2F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Photo LockTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-LockTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo Lock.app/Photo Lock";
+			};
+			name = Debug;
+		};
+		AFBCAAD41CAD7FB5001A2F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Photo LockTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-LockTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo Lock.app/Photo Lock";
+			};
+			name = Release;
+		};
+		AFBCAAD61CAD7FB5001A2F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Photo LockUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-LockUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Photo Lock";
+			};
+			name = Debug;
+		};
+		AFBCAAD71CAD7FB5001A2F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Photo LockUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cusiki.Photo-LockUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Photo Lock";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFBCAAA21CAD7FB4001A2F1D /* Build configuration list for PBXProject "Photo Lock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBCAACD1CAD7FB5001A2F1D /* Debug */,
+				AFBCAACE1CAD7FB5001A2F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFBCAACF1CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo Lock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBCAAD01CAD7FB5001A2F1D /* Debug */,
+				AFBCAAD11CAD7FB5001A2F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AFBCAAD21CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo LockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBCAAD31CAD7FB5001A2F1D /* Debug */,
+				AFBCAAD41CAD7FB5001A2F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AFBCAAD51CAD7FB5001A2F1D /* Build configuration list for PBXNativeTarget "Photo LockUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBCAAD61CAD7FB5001A2F1D /* Debug */,
+				AFBCAAD71CAD7FB5001A2F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFBCAA9F1CAD7FB4001A2F1D /* Project object */;
+}

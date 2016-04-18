@@ -26,6 +26,11 @@ class FSDesign
     
     var CELL_HEIGHT: CGFloat = 50
     var CELL_MARGIN: CGFloat = 4
+  
+    var TABBAR_HEIGHT: CGFloat = 0
+    var NAVIGATOR_HEIGHT: CGFloat = 0
+    var STATUSBAR_HEIGHT: CGFloat = 0
+  
     var TEXTVIEW_MARGIN: CGFloat = 2
   
     var COLLECTION_COLUMN_NUMBER = 2

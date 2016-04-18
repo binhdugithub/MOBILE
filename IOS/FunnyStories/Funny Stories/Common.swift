@@ -22,10 +22,10 @@ let TIME_TO_SHOW_ADS = 5
 //let TIME_TO_SHOW_RATE = 13
 
 
-let TEXT_COPYRIGHT:String = "CUSIKI @2015"
+let TEXT_COPYRIGHT:String = "CUSIKI @2016"
 
 let FILE_CONFIG = "/config.plist"
-let FILE_DATABASE = "funnystories.db"
+let FILE_DATABASE = "/funnystories.db"
 
 let IS_IPAD:Bool               =     (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
 let IS_IPHONE: Bool            =     (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
@@ -45,12 +45,11 @@ let IS_IPAD_1X:Bool           =     (IS_IPAD && (SCREEN_MAX_LENGTH == 512))  //7
 let IS_IPAD_2X:Bool           =     (IS_IPAD && (SCREEN_MAX_LENGTH == 1024)) //1536 x 2048 IPAD, IPADmini 2x
 let IS_IPAD_PRO:Bool          =     (IS_IPAD && (SCREEN_MAX_LENGTH == 1366)) //IPAD pro
 
-let VERSION: String            =     (UIDevice.currentDevice().systemVersion)
+let VERSION: String           =     (UIDevice.currentDevice().systemVersion)
 
-let NAVIGATOR_HEIGHT = CGFloat(64)
-let TABBAR_HEIGHT = CGFloat(49)
-
-
+let NAVIGATOR_1X_HEIGHT        =     CGFloat(22)
+let STATUS_BAR_HEIGHT         =     CGFloat(10)
+let DISPLAY_X                 =     UIScreen.mainScreen().scale
 
 //open flash iphone
 func toggleTorch()
@@ -170,5 +169,76 @@ func GetDocPathFile(p_name: String) -> String
   
   //print("Path: \(destinationPath)")
   return destinationPath;
+  
+}
+
+
+//get height of font
+func HeightForText(p_text: String, p_font: UIFont, p_width: CGFloat) -> CGFloat
+{
+  //  let rect = NSString(string: p_text).boundingRectWithSize(CGSize(width: p_width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: p_font], context: nil)
+  //  return ceil(rect.height)
+  
+  let label:UILabel = UILabel(frame: CGRectMake(0, 0, p_width, CGFloat.max))
+  label.numberOfLines = 0
+  label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+  label.font = p_font
+  label.text = p_text
+  
+  label.sizeToFit()
+  return label.frame.height
+  
+}
+
+
+//get width of font
+func WidthForText(p_text: String, p_font: UIFont, p_heigh: CGFloat) -> CGFloat
+{
+  //    let rect = NSString(string: p_text).boundingRectWithSize(CGSize(width: CGFloat(MAXFLOAT), height: p_heigh), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: p_font], context: nil)
+  //    return ceil(rect.width)
+  
+  let label:UILabel = UILabel(frame: CGRectMake(0, 0, CGFloat.max, p_heigh))
+  label.numberOfLines = 0
+  label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+  label.font = p_font
+  label.text = p_text
+  
+  label.sizeToFit()
+  return label.frame.width
+  
+}
+
+
+//alert
+func ShowAlert(title : String? , message : String?) -> UIAlertController
+{
+  let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+  let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+  alert.addAction(action)
+  
+  //self.presentViewController(alert, animated: true, completion: nil)
+  
+  return alert
+}
+
+
+//alert
+func ShowSettingsAlert(title : String? , message : String?) -> UIAlertController
+{
+  let l_alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+  let settingAction = UIAlertAction(title: "Setting", style: .Default, handler: {(action: UIAlertAction) -> Void in
+    dispatch_async(dispatch_get_main_queue())
+    {
+      UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+    }
+  })
+  
+  let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+  
+  l_alertController.addAction(settingAction)
+  l_alertController.addAction(cancelAction)
+  
+  //self.presentViewController(alertController, animated: true, completion: nil)
+  return l_alertController
   
 }

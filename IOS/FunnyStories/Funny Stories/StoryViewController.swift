@@ -51,8 +51,13 @@ class StoryViewController: UIViewController
         InitContentView()
         InitControlView()
         InitAd()
-    
         RefreshStory()
+    
+        print("Status bar: \(FSDesign.ShareInstance.STATUSBAR_HEIGHT)")
+        print("Navigator: \(FSDesign.ShareInstance.NAVIGATOR_HEIGHT)")
+        print("textview: \(m_TextView.frame.size.height)")
+        print("control: \(m_ControlView.frame.size.height)")
+        print("tabbar bar: \(FSDesign.ShareInstance.TABBAR_HEIGHT)")
       
        GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
     }
@@ -61,7 +66,7 @@ class StoryViewController: UIViewController
     {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
-
+      
     }
   
   
@@ -168,7 +173,7 @@ class StoryViewController: UIViewController
     }
 
     
-    FSCore.ShareInstance.m_ReadingCount++
+    FSCore.ShareInstance.m_ReadingCount += 1
     if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
     {
       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
@@ -213,7 +218,7 @@ class StoryViewController: UIViewController
     l_backButton.setTitle("", forState: .Normal)
     l_backButton.setImage(UIImage(named: "back_home"), forState: UIControlState.Normal)
     l_backButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-    l_backButton.addTarget(self, action: "BackClick:", forControlEvents: UIControlEvents.TouchUpInside)
+    l_backButton.addTarget(self, action: #selector(StoryViewController.BackClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: l_backButton)
     
@@ -234,7 +239,7 @@ class StoryViewController: UIViewController
     l_ShareButton.setTitle("", forState: .Normal)
     l_ShareButton.setImage(UIImage(named: "share"), forState: UIControlState.Normal)
     l_ShareButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-    l_ShareButton.addTarget(self, action: "ShareClick:", forControlEvents: UIControlEvents.TouchUpInside)
+    l_ShareButton.addTarget(self, action: #selector(StoryViewController.ShareClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     let l_ShareBarButton = UIBarButtonItem(customView: l_ShareButton)
     
     self.navigationItem.rightBarButtonItem = l_ShareBarButton
@@ -273,15 +278,16 @@ class StoryViewController: UIViewController
 
     //text view
     l_rect.origin.x = FSDesign.ShareInstance.TEXTVIEW_MARGIN//0.5 * (m_ContentView.frame.size.width - l_rect.size.width)
-    l_rect.origin.y = 0
+    l_rect.origin.y = FSDesign.ShareInstance.NAVIGATOR_HEIGHT + FSDesign.ShareInstance.STATUSBAR_HEIGHT
     l_rect.size.width = SCREEN_WIDTH - 2 * FSDesign.ShareInstance.TEXTVIEW_MARGIN
-    l_rect.size.height = SCREEN_HEIGHT - FSDesign.ShareInstance.AD_HEIGHT - FSDesign.ShareInstance.ICON_HEIGTH - FSDesign.ShareInstance.ICON_VHSPACE * 2 - 1
-    print("Height: \(SCREEN_HEIGHT)")
+    l_rect.size.height = SCREEN_HEIGHT - l_rect.origin.y - FSDesign.ShareInstance.AD_HEIGHT - FSDesign.ShareInstance.ICON_HEIGTH - FSDesign.ShareInstance.ICON_VHSPACE * 2 - 1
+  
     m_TextView = UITextView(frame: l_rect)
     m_TextView.textAlignment = NSTextAlignment.Left
     m_TextView.backgroundColor = UIColor.clearColor()
     m_TextView.delegate = self
 
+    print("Frame of content: \(m_TextView.frame)")
     self.view.addSubview(m_TextView)
 
   }
@@ -300,7 +306,7 @@ class StoryViewController: UIViewController
         let l_UIButtonPrevious = UIButton(frame: l_rect)
         l_UIButtonPrevious.setImage(UIImage(named: "previous"), forState: UIControlState.Normal)
         l_UIButtonPrevious.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonPrevious.addTarget(self, action: "PreviousClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonPrevious.addTarget(self, action: #selector(StoryViewController.PreviousClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //audio button
         l_rect = CGRectMake(
@@ -312,7 +318,7 @@ class StoryViewController: UIViewController
         m_BtnAudio = UIButton(frame: l_rect)
         m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
         m_BtnAudio.setTitle("", forState: UIControlState.Normal)
-        m_BtnAudio.addTarget(self, action: "AudioClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        m_BtnAudio.addTarget(self, action: #selector(StoryViewController.AudioClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
       
         //A-
@@ -325,7 +331,7 @@ class StoryViewController: UIViewController
         let l_UIButtonASub = UIButton(frame: l_rect)
         l_UIButtonASub.setImage(UIImage(named: "a_sub"), forState: UIControlState.Normal)
         l_UIButtonASub.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonASub.addTarget(self, action: "ASubClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //A+
         l_rect = CGRectMake(
@@ -337,7 +343,7 @@ class StoryViewController: UIViewController
         let l_UIButtonAPlus = UIButton(frame: l_rect)
         l_UIButtonAPlus.setImage(UIImage(named: "a_plus"), forState: UIControlState.Normal)
         l_UIButtonAPlus.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonAPlus.addTarget(self, action: "APlusClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonAPlus.addTarget(self, action: #selector(StoryViewController.APlusClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //Favorite
         l_rect = CGRectMake(
@@ -348,7 +354,7 @@ class StoryViewController: UIViewController
         
         m_BtnFavorite = UIButton(frame: l_rect)
         m_BtnFavorite.setTitle("", forState: UIControlState.Normal)
-        m_BtnFavorite.addTarget(self, action: "FavoriteClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        m_BtnFavorite.addTarget(self, action: #selector(StoryViewController.FavoriteClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         if m_Story!.m_liked == true
         {
           m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
@@ -368,7 +374,7 @@ class StoryViewController: UIViewController
         let l_UIButtonNext = UIButton(frame: l_rect)
         l_UIButtonNext.setImage(UIImage(named: "next"), forState: UIControlState.Normal)
         l_UIButtonNext.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonNext.addTarget(self, action: "NextClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonNext.addTarget(self, action: #selector(StoryViewController.NextClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
         // indicator
         m_AudioLoadIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -841,13 +847,10 @@ extension StoryViewController: UITextViewDelegate
   
   func textViewShouldBeginEditing(textView: UITextView) -> Bool
   {
-    
-    
       if self.m_ControlView.frame.origin.y > (SCREEN_HEIGHT - 5)
       {
         UIView.animateWithDuration(0.4, animations:
         {
-
           var l_frame = self.m_ControlView.frame
           l_frame.origin.y = l_frame.origin.y - l_frame.size.height
           self.m_ControlView.frame = l_frame
@@ -876,18 +879,11 @@ extension StoryViewController: UITextViewDelegate
           self.m_AdView.frame = l_frame
           
           l_frame = self.m_TextView.frame
-          //l_frame.origin.y += l_frame.size.height
           l_frame.size.height = l_frame.size.height + self.m_ControlView.frame.size.height
           self.m_TextView.frame = l_frame
-
-          //self.m_ControlView.hidden = true
-        
         })
         
-        
-        
       }
-  
     
     return false
   }

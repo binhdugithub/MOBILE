@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         break
       }
       
-      l_savemax++
+      l_savemax += 1
     }
     
     

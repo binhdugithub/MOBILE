@@ -26,18 +26,21 @@ class CommonLayout: UICollectionViewLayout
   // 4
   private var contentHeight: CGFloat  = 0.0
   private var contentWidth: CGFloat
-    {
+  {
       let insets = collectionView!.contentInset
       return CGRectGetWidth(collectionView!.bounds) - (insets.left + insets.right)
   }
   
   
   
-  override func collectionViewContentSize() -> CGSize {
+  override func collectionViewContentSize() -> CGSize
+  {
     return CGSize(width: contentWidth, height: contentHeight)
   }
   
-  override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+  
+  override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]?
+  {
     
     var layoutAttributes = [UICollectionViewLayoutAttributes]()
     
@@ -48,6 +51,7 @@ class CommonLayout: UICollectionViewLayout
         layoutAttributes.append(attributes)
       }
     }
+    
     return layoutAttributes
   }
   
@@ -118,7 +122,7 @@ class HomeLayout: CommonLayout
         contentHeight = max(contentHeight, CGRectGetMaxY(frame))
         yOffset[column] = yOffset[column] + height
         
-        column = column >= (numberOfColumns - 1) ? 0 : ++column
+        column = column >= (numberOfColumns - 1) ? 0 : (column + 1)
       }
     }
   }
@@ -176,7 +180,7 @@ class FavoriteLayout: CommonLayout
         contentHeight = max(contentHeight, CGRectGetMaxY(frame))
         yOffset[column] = yOffset[column] + height
         
-        column = column >= (numberOfColumns - 1) ? 0 : ++column
+        column = column >= (numberOfColumns - 1) ? 0 : (column + 1)
       }
     }
   }

@@ -25,13 +25,10 @@ class HomeViewController: UICollectionViewController
   {
     super.viewDidLoad()
     
-//    collectionView!.registerClass(HomeViewLoadingCell.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: HomeViewLoadingCellIdentifier)
-    
     if let layout = collectionView?.collectionViewLayout as? HomeLayout
     {
       layout.delegate = self
     }
-    
     
     collectionView!.backgroundColor = UIColor.clearColor()
     collectionView!.contentInset = FSDesign.ShareInstance.INSET_COLLECTION
@@ -66,6 +63,9 @@ class HomeViewController: UICollectionViewController
       
     }
     
+    FSDesign.ShareInstance.NAVIGATOR_HEIGHT = (self.navigationController?.navigationBar.bounds.size.height)!
+    FSDesign.ShareInstance.STATUSBAR_HEIGHT = UIApplication.sharedApplication().statusBarFrame.size.height
+    
   }
   
   override func viewWillAppear(animated: Bool)
@@ -85,7 +85,7 @@ class HomeViewController: UICollectionViewController
 
     if m_IsScrolled == false && FSCore.ShareInstance.m_IndexStoryStartDisplayed > 0
     {
-      NSThread(target: self, selector: "doSomething:", object: Int(0)).start()
+      NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(0)).start()
     }
 
   }
@@ -122,12 +122,12 @@ class HomeViewController: UICollectionViewController
         print("Scroll to: \(l_row.row)")
         ScrollToRow(l_row)
         
-        NSThread(target: self, selector: "doSomething:", object: Int(l_row.row)).start()
+        NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_row.row)).start()
       }
       else if l_row.row < FSCore.ShareInstance.m_IndexStoryStartDisplayed
       {
         //NSThread.sleepForTimeInterval(0.5)
-        NSThread(target: self, selector: "doSomething:", object: Int(l_indexParam)).start()
+        NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_indexParam)).start()
       }
       else
       {

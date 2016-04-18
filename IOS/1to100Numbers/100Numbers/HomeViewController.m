@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonGameCenter;
 @property (weak, nonatomic) IBOutlet UIButton *m_UIButtonRate;
 
+
+@property (strong, nonatomic) UIButton *m_FBButton;
+@property (strong, nonatomic) UIButton *m_TWButton;
+
 @end
 
 @implementation HomeViewController
@@ -31,18 +35,16 @@
 @synthesize m_UIlabelCopyright, m_UIViewFooter, m_UIViewHeader;
 @synthesize m_UILabel100;
 @synthesize m_UIButtonGameCenter, m_UIButtonRate;
+@synthesize m_FBButton, m_TWButton;
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"*******************HomeViewController*******************");
-    
     [self CalculateView];
     [self ShowSpeaker];
-
-    //[[GADMasterViewController GetSingleton] resetAdBannerView:self AtFrame:m_UIViewHeader.frame];
     [[GCViewController GetSingleton] AuthenticateLocalPlayer];
-    
     
 }
 
@@ -52,13 +54,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self ShowSocialButton];
+    
+}
 
 -(void)CalculateView
 {
-    //CGFloat W = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat H = [UIScreen mainScreen].bounds.size.height;
-   
-    //[self.view setBackgroundColor:[UIColor darkGrayColor]];
     [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:66/255.0 blue:66/255.0 alpha:1]];
 
     // header
@@ -87,14 +92,13 @@
     frm.size.width = 2 * frm.size.height;
     
     frm.origin.x = (SCREEN_WIDTH - frm.size.width ) /2.0;
-    frm.origin.y = 1.0/2 * SCREEN_HEIGHT ;
+    frm.origin.y = 1.0/2 * (SCREEN_HEIGHT - frm.size.height);
     m_UIButton2Players.frame = frm;
     m_UIButton2Players.layer.cornerRadius = 10;
    
     [m_UIButton2Players setBackgroundColor:[UIColor clearColor]];
     [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2.png"] forState:UIControlStateNormal];
     [m_UIButton2Players setBackgroundImage:[UIImage imageNamed:@"btn_play2_pressed.png"] forState:UIControlStateHighlighted];
-    
     
     //1 Player
     CGRect frm2 = m_UIButton2Players.frame;
@@ -117,7 +121,6 @@
     frm.size.width = SCREEN_WIDTH;
     if(SCREEN_HEIGHT <= 400){frm.size.height = 32;}else if(SCREEN_HEIGHT > 400 && SCREEN_HEIGHT <= 720){frm.size.height = 50;}else if(SCREEN_HEIGHT > 720){frm.size.height = 90;};
     
-    NSLog(@"Size h: %f", frm.size.height);
     frm.origin.x = 0;
     frm.origin.y = SCREEN_HEIGHT - frm.size.height;
     m_UIViewFooter.frame = frm;
@@ -163,7 +166,7 @@
     CGRect frm_gamecenter = m_UIButton2Players.frame;
     frm_gamecenter.size.width = 9.0/20 * m_UIButton2Players.frame.size.width;
     frm_gamecenter.size.height = 1.0/2 * m_UIButton2Players.frame.size.height;
-    frm_gamecenter.origin.y = m_UIButton2Players.frame.origin.y + m_UIButton2Players.frame.size.height + 1.0/4 * m_UIButton2Players.frame.size.height ;
+    frm_gamecenter.origin.y = m_UIViewFooter.frame.origin.y - frm_gamecenter.size.height;
     m_UIButtonGameCenter.frame = frm_gamecenter;
     m_UIButtonGameCenter.layer.cornerRadius = 5;
     //[m_UIButtonGameCenter setBackgroundColor:[UIColor colorWithRed:131.0/255.0 green:104.0/255.0 blue:175.0/255.0 alpha:1]];
@@ -180,6 +183,91 @@
     [m_UIButtonRate setBackgroundColor:[UIColor clearColor]];
     [m_UIButtonRate setBackgroundImage:[UIImage imageNamed:@"btn_rate.png"] forState:UIControlStateNormal];
     [m_UIButtonRate setBackgroundImage:[UIImage imageNamed:@"btn_rate_pressed.png"] forState:UIControlStateHighlighted];
+    
+   
+    
+    //facebook
+    CGRect l_frame = CGRectMake(0, 0, 0, 0);
+    l_frame.size.height =  3.0/4 * m_UIButtonRate.frame.size.height;
+    l_frame.size.width = 3.0 * l_frame.size.height;
+    l_frame.origin.x = self.view.frame.size.width;
+    l_frame.origin.y = m_UIButtonRate.frame.origin.y - 2 * l_frame.size.height - 2.0/5 * l_frame.size.height;
+    
+    m_FBButton = [[UIButton alloc] initWithFrame:l_frame];
+    m_FBButton.backgroundColor = [UIColor clearColor];
+    
+//    UIGraphicsBeginImageContext(m_FBButton.frame.size);
+//    [[UIImage imageNamed:@"fb"] drawInRect:m_FBButton.bounds];
+//    UIImage *l_img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    [m_FBButton setImage:[UIImage imageNamed:@"fb"] forState:UIControlStateNormal];
+    
+//    UIGraphicsBeginImageContext(m_FBButton.frame.size);
+//    [[UIImage imageNamed:@"fb_pressed"] drawInRect:m_FBButton.bounds];
+//    UIImage *l_img2 = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    [m_FBButton setImage:[UIImage imageNamed:@"fb_pressed"] forState:UIControlStateHighlighted];
+  
+    [m_FBButton setTitle:@"" forState:UIControlStateNormal];
+    [m_FBButton addTarget:self action:@selector(FBClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+     //tw
+    l_frame = m_FBButton.frame;
+    //l_frame.origin.x = m_UIButtonRate.frame.origin.x + m_UIButtonRate.frame.size.width + 10;
+    l_frame.origin.y = m_FBButton.frame.origin.y + m_FBButton.frame.size.height + 1.0/5 * m_FBButton.frame.size.height;
+    m_TWButton = [[UIButton alloc] initWithFrame:l_frame];
+    m_TWButton.backgroundColor = [UIColor clearColor];
+    
+//    UIGraphicsBeginImageContext(m_TWButton.frame.size);
+//    [[UIImage imageNamed:@"tw"] drawInRect:m_FBButton.bounds];
+//    UIImage *l_imgtw = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    [m_TWButton setImage:[UIImage imageNamed:@"tw"] forState:UIControlStateNormal];
+    
+//    UIGraphicsBeginImageContext(m_TWButton.frame.size);
+//    [[UIImage imageNamed:@"tw_pressed"] drawInRect:m_FBButton.bounds];
+//    UIImage *l_imgtw_pressed = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    [m_TWButton setImage:[UIImage imageNamed:@"tw_pressed"] forState:UIControlStateHighlighted];
+    
+    [m_TWButton setTitle:@"" forState:UIControlStateNormal];
+    [m_TWButton addTarget:self action:@selector(TWClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self.view addSubview:m_FBButton];
+    [self.view addSubview:m_TWButton];
+}
+
+- (void) ShowSocialButton
+{
+    CGRect l_fb = self.m_FBButton.frame;
+    l_fb.origin.x = self.view.frame.size.width - l_fb.size.width + 10;
+    
+    CGRect l_tw = self.m_TWButton.frame;
+    l_tw.origin.x = l_fb.origin.x;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    self.m_FBButton.frame = l_fb;
+    self.m_TWButton.frame = l_tw;
+    [UIView commitAnimations];
+}
+
+-(void) FBClick: (UIButton*) sender
+{
+
+    NSString *l_linkapp = @"https://www.facebook.com/cusikiapp";
+    NSURL *l_url = [[NSURL alloc] initWithString:l_linkapp];
+    [[UIApplication sharedApplication] openURL:l_url];
+
+}
+
+-(void) TWClick: (UIButton*) sender
+{
+    
+    NSString *l_linkapp = @"https://twitter.com/cusikiapp";
+    NSURL *l_url = [[NSURL alloc] initWithString:l_linkapp];
+    [[UIApplication sharedApplication] openURL:l_url];
     
 }
 
