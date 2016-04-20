@@ -129,7 +129,7 @@ class HomeViewController: UIViewController
         //subheader view
         var l_view_subheader_frm: CGRect = CGRectMake(0,0,0,0)
         l_view_subheader_frm.size.width = SCREEN_WIDTH
-        l_view_subheader_frm.size.height = 2
+        l_view_subheader_frm.size.height = ViewDesign.ShareInstance.HEIGHT_SUBHEADER
         l_view_subheader_frm.origin = CGPointMake(0, 0)
         m_view_subheader = UIView(frame: l_view_subheader_frm)
         m_view_subheader.backgroundColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG

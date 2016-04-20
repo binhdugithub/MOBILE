@@ -417,10 +417,10 @@
 		AFD692671CC29CEA008B7F54 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AFD693261CC499D1008B7F54 /* PPNavigationController.swift */,
 				AFD6921C1CC26B07008B7F54 /* HomeViewController.swift */,
 				AFD692721CC38220008B7F54 /* ListPhotoCollectionViewController.swift */,
 				AFD692701CC38208008B7F54 /* MoreTableViewController.swift */,
-				AFD693261CC499D1008B7F54 /* PPNavigationController.swift */,
 				AFD693281CC4A884008B7F54 /* PlayViewController.swift */,
 			);
 			name = Controller;

@@ -123,7 +123,7 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         //subheader view
         var l_view_subheader_frm: CGRect = CGRectMake(0,0,0,0)
         l_view_subheader_frm.size.width = SCREEN_WIDTH
-        l_view_subheader_frm.size.height = 2
+        l_view_subheader_frm.size.height = ViewDesign.ShareInstance.HEIGHT_SUBHEADER
         l_view_subheader_frm.origin = CGPointMake(0, m_view_header.frame.size.height)
         m_view_subheader = UIView(frame: l_view_subheader_frm)
         m_view_subheader.backgroundColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG
@@ -192,12 +192,10 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         if segue.identifier == "segue_listphoto_to_play"
         {
             let l_item: NSIndexPath = sender as! NSIndexPath
-//            let StoryView = segue.destinationViewController as! StoryViewController
+            let ViewPlay = segue.destinationViewController as! PlayViewController
+            ViewPlay.m_photo_index = l_item.item
             
-//            StoryView.m_Story = FSCore.ShareInstance.m_ArrayStory[l_item.row]
-//            StoryView.m_IsHomeView = true
-            
-            PPCore.ShareInstance.m_ArrayPhoto[l_item.item].m_completed = true
+            //PPCore.ShareInstance.m_ArrayPhoto[l_item.item].m_completed = PHOTO_STATUS.PHOTO_COMPLETED
             self.m_indexpath_photo = l_item
             
         }

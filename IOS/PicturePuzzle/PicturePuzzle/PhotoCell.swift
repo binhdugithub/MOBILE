@@ -12,7 +12,7 @@ class PhotoCell: UICollectionViewCell
 {
     var m_imgview_photo: UIImageView!
     var m_view_congratulation: UIView!
-    var m_imgview_congratulation: UIImageView!
+    var m_imgview_lock: UIImageView!
     
     override init(frame: CGRect)
     {
@@ -48,10 +48,18 @@ class PhotoCell: UICollectionViewCell
         self.m_view_congratulation = UIView(frame: self.m_imgview_photo.frame)
         self.m_view_congratulation.backgroundColor = UIColor.init(white: 0.3, alpha: 0.5)
         
+        //imgv lock
+        var l_frm = CGRectMake(0,0 , 0, 0)
+        l_frm.size.width = 1.0/4 * self.contentView.frame.size.width
+        l_frm.size.height = l_frm.size.width
+        l_frm.origin.x = self.contentView.frame.size.width - l_frm.size.width
+        l_frm.origin.y = self.contentView.frame.size.height - l_frm.size.height
+        m_imgview_lock = UIImageView(frame: l_frm)
         
         
         self.contentView.addSubview(self.m_imgview_photo)
-        self.contentView.addSubview(self.m_view_congratulation)
+        self.contentView.addSubview(self.m_imgview_lock)
+        //self.contentView.addSubview(self.m_view_congratulation)
     }//end SetupView
     
     override func prepareForReuse()
@@ -64,22 +72,22 @@ class PhotoCell: UICollectionViewCell
     func SetPhoto(p_photo:  Photo)
     {
         let l_img = UIImage(named: p_photo.m_name)
-        m_imgview_photo.image = l_img
+        self.m_imgview_photo.image = l_img
         
-        if p_photo.m_completed == false
+        if p_photo.m_completed == PHOTO_STATUS.PHOTO_LOCK
         {
-            self.m_view_congratulation.frame = m_imgview_photo.frame
+            self.m_imgview_lock.image = UIImage(named: "img_lock")
+            self.m_imgview_photo.alpha = 0.5
+        }
+        else if p_photo.m_completed == PHOTO_STATUS.PHOTO_NOT_COMPLETED
+        {
+            self.m_imgview_photo.alpha = 1
+            self.m_imgview_lock.image = nil
         }
         else
         {
-            //self.m_view_congratulation.hidden = true
-            var l_frm = CGRectMake(0, 0, 0, 0)
-            l_frm.size.width = self.bounds.width
-            l_frm.size.height = 1.0/5 * self.bounds.height
-            l_frm.origin.x = 0
-            l_frm.origin.y = self.bounds.height - l_frm.size.height
-
-            self.m_view_congratulation.frame = l_frm
+            self.m_imgview_photo.alpha = 1
+            self.m_imgview_lock.image = UIImage(named: "img_favorite")
         }
     }
 

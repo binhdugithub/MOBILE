@@ -101,23 +101,12 @@ func toggleTorchOff()
   }
 }
 
-//random array
-func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C
-{
-  let counts = list.count
-  for i in 0..<(counts - 1)
-  {
-    let j = Int(arc4random_uniform(UInt32(counts - i))) + i
-    swap(&list[i], &list[j])
-  }
-  return list
-}
+
 
 //resize image
-func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
+func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
 {
   let size = image.size
-  
   let widthRatio  = targetSize.width  / image.size.width
   let heightRatio = targetSize.height / image.size.height
   
@@ -126,7 +115,8 @@ func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
   if(widthRatio > heightRatio)
   {
     newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
-  } else
+  }
+  else
   {
     newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
   }

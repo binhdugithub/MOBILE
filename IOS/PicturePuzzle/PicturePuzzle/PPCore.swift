@@ -32,7 +32,7 @@ class PPCore
             //print("Dic: \(dicData)")
             for (p_id, p_completed) in dicData!
             {
-                let l_photo = Photo(p_id: p_id as! String, p_completed: p_completed as! Bool)
+                let l_photo = Photo(p_id: p_id as! String, p_completed: PHOTO_STATUS(rawValue: p_completed as! Int)!)
                 m_ArrayPhoto.append(l_photo)
             }
             

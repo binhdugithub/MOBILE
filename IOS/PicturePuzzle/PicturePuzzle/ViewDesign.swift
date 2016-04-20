@@ -14,8 +14,11 @@ class ViewDesign
     static let ShareInstance = ViewDesign()
     var HEIGHT_ADS: CGFloat  = 60
     var HEIGHT_HEADER: CGFloat = 1.0/14 * SCREEN_HEIGHT
+    var HEIGHT_SUBHEADER: CGFloat = 0
     var HEIGHT_BTN_SOCIAL = 1.0/16 * SCREEN_HEIGHT
     var HEIGHT_BTN_START = 1.0/5 * SCREEN_HEIGHT
+    
+    var WIDTH_VIEW_PHOTO = 18.0/20 * SCREEN_WIDTH
     
     let COLOR_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
     let COLOR_HEADER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
@@ -32,42 +35,6 @@ class ViewDesign
     var FONT_SIZE_COPYRIGHT = 15.0
     var FONT_SIZE_TITLE: CGFloat = 15.0
   
-    var CELL_HEIGHT: CGFloat = 50
-    var CELL_MARGIN: CGFloat = 4
-  
-    var TABBAR_HEIGHT: CGFloat = 0
-    var NAVIGATOR_HEIGHT: CGFloat = 0
-    var STATUSBAR_HEIGHT: CGFloat = 0
-  
-    var TEXTVIEW_MARGIN: CGFloat = 2
-  
-    var COLLECTION_COLUMN_NUMBER = 2
-
-  
-    var ICON_WIDTH: CGFloat = 30
-    var ICON_HEIGTH: CGFloat = 30
-    var ICON_VHSPACE: CGFloat = 10
-    
-
-  
-    var NAVI_HEIGHT: CGFloat  = 64
-  
-  
-    //var COLOR_COLLECTION_BG = UIColor()
-    let COLOR_STORY_TITLE = UIColor(red: 87.0/255, green: 116.0/255, blue: 189.0/255, alpha: 0.9)
-    var COLOR_COLLECTION_TEXT = UIColor.blackColor()
-    var COLOR_TABBAR_BG = UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
-    var COLOR_TABBAR_TINT = UIColor(red: 103.0/255, green: 152.0/255, blue: 5.0/255, alpha: 1)
-    var COLOR_CELL_BG = UIColor()
-    var COLOR_NAV_HEADER_BG = UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
-    var COLOR_CONTROL_BG =  UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
-    var COLOR_MOREAPP_BG = UIColor(red: 253.0/255, green: 189.0/255, blue: 190.0/255, alpha: 0.9)
-    //UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
-    var COLOR_BACKGROUND = UIColor(red: 182.0/255, green: 180.0/255, blue: 180.0/255, alpha: 0.3)
-    var COLOR_BODER_BG = UIColor(red: 241.0/255, green: 241.0/255, blue: 241.0/255, alpha: 1)
-  
-    var COLOR_TEXTVIEW_BG = UIColor()
-  
     let INSET_COLLECTION = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
   
     private init()
@@ -78,126 +45,70 @@ class ViewDesign
 //        //COLOR_COLLECTION_BG = UIColor(patternImage: l_image!)
 //        COLOR_CELL_BG = UIColor(patternImage: l_image!)
       
+        HEIGHT_SUBHEADER = 1.0/10 * HEIGHT_HEADER
       
         if IS_IPHONE_4_OR_LESS
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 50
-          CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 12
           FONT_SIZE_TEXTVIEW = 16
           FONT_SIZE_COPYRIGHT = 16
           
-          ICON_WIDTH = 30
-          ICON_HEIGTH = ICON_WIDTH
-        
         }
         else if IS_IPHONE_5
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 60
-          CELL_MARGIN = 4
-          
-          FONT_CELL_SIZE = 12
+            
+            FONT_CELL_SIZE = 12
           FONT_SIZE_TEXTVIEW = 17
           FONT_SIZE_COPYRIGHT = 16
-          
-          ICON_WIDTH = 30
-          ICON_HEIGTH = ICON_WIDTH
-          
+    
         }
         else if IS_IPHONE_6
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 60
-          CELL_MARGIN = 4
-          
-          FONT_CELL_SIZE = 14
+4
           FONT_SIZE_TEXTVIEW = 18
           FONT_SIZE_COPYRIGHT = 17
-          
-          ICON_WIDTH = 40
-          ICON_HEIGTH = ICON_WIDTH
+
           
         }
         else if IS_IPHONE_6P
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 60
-          CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 15
           FONT_SIZE_TEXTVIEW = 20
           FONT_SIZE_COPYRIGHT = 18
-          
-          ICON_WIDTH = 50
-          ICON_HEIGTH = ICON_WIDTH
+
           
         }
         else if IS_IPAD_1X
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 150
-          CELL_MARGIN = 4
-          
+
           FONT_CELL_SIZE = 15
           FONT_SIZE_TEXTVIEW = 20
           FONT_SIZE_COPYRIGHT = 19
-          
-          ICON_WIDTH = 45
-          ICON_HEIGTH = ICON_WIDTH
+
           
         }
         else if IS_IPAD_2X
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 70
-          CELL_MARGIN = 4
-          
           FONT_CELL_SIZE = 20
           FONT_SIZE_TEXTVIEW = 27
           FONT_SIZE_COPYRIGHT = 22
-          
-          ICON_WIDTH = 60
-          ICON_HEIGTH = ICON_WIDTH
-          
+
         }
         else if IS_IPAD_PRO
         {
-          
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 70
-          CELL_MARGIN = 4
           
           FONT_CELL_SIZE = 28
           FONT_SIZE_TEXTVIEW = 35
           FONT_SIZE_COPYRIGHT = 28
           
-          ICON_WIDTH = 70
-          ICON_HEIGTH = ICON_WIDTH
-          
         }
         else
         {
-          COLLECTION_COLUMN_NUMBER = 2
-          
-          CELL_HEIGHT = 70
-          CELL_MARGIN = 4
-          
           FONT_CELL_SIZE = 26
           FONT_SIZE_TEXTVIEW = 30
           FONT_SIZE_COPYRIGHT = 28
-          
-          ICON_WIDTH = 70
-          ICON_HEIGTH = ICON_WIDTH
 
         }
       
