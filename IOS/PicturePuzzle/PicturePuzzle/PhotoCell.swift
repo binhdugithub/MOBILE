@@ -11,26 +11,24 @@ import UIKit
 class PhotoCell: UICollectionViewCell
 {
     var m_imgview_photo: UIImageView!
-    var m_view_congratulation: UIView!
     var m_imgview_lock: UIImageView!
-    
+    var m_btn_coin: UIButton!
+    //var m_is_clicked: Bool! = false
+
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         self.SetupView()
-        
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
-        self.SetupView()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
+
     func SetupView() -> Void
     {
         self.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
-        self.layer.borderColor = UIColor.whiteColor().CGColor;
+        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
         self.layer.borderWidth = 2.0;
         self.layer.shadowColor = UIColor.blackColor().CGColor;
         self.layer.shadowRadius = 3.0;
@@ -44,10 +42,6 @@ class PhotoCell: UICollectionViewCell
         self.m_imgview_photo.contentMode = .ScaleAspectFill
         self.m_imgview_photo.clipsToBounds = true;
         
-        //viw congratulation
-        self.m_view_congratulation = UIView(frame: self.m_imgview_photo.frame)
-        self.m_view_congratulation.backgroundColor = UIColor.init(white: 0.3, alpha: 0.5)
-        
         //imgv lock
         var l_frm = CGRectMake(0,0 , 0, 0)
         l_frm.size.width = 1.0/4 * self.contentView.frame.size.width
@@ -56,10 +50,19 @@ class PhotoCell: UICollectionViewCell
         l_frm.origin.y = self.contentView.frame.size.height - l_frm.size.height
         m_imgview_lock = UIImageView(frame: l_frm)
         
+        //btn coin
+        var l_btn_coin_frm = m_imgview_photo.frame
+        l_btn_coin_frm.size.height = 0.3 * l_btn_coin_frm.size.width
+        l_btn_coin_frm.origin.x = 0
+        l_btn_coin_frm.origin.y = m_imgview_photo.frame.size.height - l_btn_coin_frm.size.height
+        m_btn_coin  = UIButton(frame: l_btn_coin_frm)
+        m_btn_coin.setImage(UIImage(named: "btn_openphoto"), forState: .Normal)
+        m_btn_coin.hidden = true
         
+        //add
         self.contentView.addSubview(self.m_imgview_photo)
         self.contentView.addSubview(self.m_imgview_lock)
-        //self.contentView.addSubview(self.m_view_congratulation)
+        self.contentView.addSubview(m_btn_coin)
     }//end SetupView
     
     override func prepareForReuse()
@@ -89,6 +92,23 @@ class PhotoCell: UICollectionViewCell
             self.m_imgview_photo.alpha = 1
             self.m_imgview_lock.image = UIImage(named: "img_favorite")
         }
+        
+        if (p_photo.m_is_choosing == true)
+        {
+            UIView.animateWithDuration(0.5, animations: {
+                self.m_btn_coin.hidden = false
+                self.m_btn_coin.tag = p_photo.m_id
+            })
+            
+            self.m_btn_coin.Shake()
+        }
+        else
+        {
+            UIView.animateWithDuration(0.5, animations: {
+                self.m_btn_coin.hidden = true
+                self.m_btn_coin.tag = -1
+            })
+        }
     }
-
+    
 }

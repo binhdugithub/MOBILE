@@ -12,14 +12,17 @@ class PPCore
     static let ShareInstance = PPCore()
     var m_ArrayPhoto = [Photo]()
     var m_complete_photo = false
+    var m_coin: Int!
+    var m_level: Int!
     
+    var m_array_indexpath_reload: [NSIndexPath]!
     private init()
     {
-        print("Coin is : \(Configuration.ShareInstance.m_coin)")
+        m_array_indexpath_reload = [NSIndexPath]()
         LoadListPhoto()
-        
-        //self.DiaplayArray()
     }
+    
+   
     
     //load list photo
     func LoadListPhoto() -> Void
@@ -32,6 +35,7 @@ class PPCore
             //print("Dic: \(dicData)")
             for (p_id, p_completed) in dicData!
             {
+                //print("ID: \(p_id)")
                 let l_photo = Photo(p_id: p_id as! String, p_completed: PHOTO_STATUS(rawValue: p_completed as! Int)!)
                 m_ArrayPhoto.append(l_photo)
             }

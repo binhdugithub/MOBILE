@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFD6921B1CC26B07008B7F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD6921A1CC26B07008B7F54 /* AppDelegate.swift */; };
+		7F8B49FA1CE0712E0029C78B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD6921A1CC26B07008B7F54 /* AppDelegate.swift */; };
+		7F8B49FC1CE0734D0029C78B /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B49FB1CE0734D0029C78B /* IAPHelper.swift */; };
+		AF28319A1CE0346E0069F8EF /* PPProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2831991CE0346E0069F8EF /* PPProducts.swift */; };
+		AF9E70691CC86CA100B1659A /* Extension + Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E70681CC86CA100B1659A /* Extension + Protocol.swift */; };
+		AF9E70741CC92AC900B1659A /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E70731CC92AC900B1659A /* KDCircularProgress.swift */; };
+		AFBE35B01CCCB2CB0064FE8A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBE35AF1CCCB2CB0064FE8A /* GoogleMobileAds.framework */; };
 		AFD6921D1CC26B07008B7F54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD6921C1CC26B07008B7F54 /* HomeViewController.swift */; };
 		AFD692201CC26B07008B7F54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6921E1CC26B07008B7F54 /* Main.storyboard */; };
 		AFD692221CC26B07008B7F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD692211CC26B07008B7F54 /* Assets.xcassets */; };
@@ -95,7 +100,7 @@
 		AFD693091CC382F8008B7F54 /* 73.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD692BD1CC382F8008B7F54 /* 73.jpg */; };
 		AFD6930A1CC382F8008B7F54 /* 74.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD692BE1CC382F8008B7F54 /* 74.jpg */; };
 		AFD6930B1CC382F8008B7F54 /* 80.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD692BF1CC382F8008B7F54 /* 80.jpg */; };
-		AFD6930C1CC382F8008B7F54 /* 90.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD692C01CC382F8008B7F54 /* 90.jpg */; };
+		AFD6930C1CC382F8008B7F54 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFD692C01CC382F8008B7F54 /* 0.jpg */; };
 		AFD6930E1CC38635008B7F54 /* photolist.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD6930D1CC38635008B7F54 /* photolist.plist */; };
 		AFD693101CC38763008B7F54 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD6930F1CC38763008B7F54 /* config.plist */; };
 		AFD693121CC38787008B7F54 /* PPCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD693111CC38787008B7F54 /* PPCore.swift */; };
@@ -105,6 +110,15 @@
 		AFD693231CC3E318008B7F54 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD693211CC3E318008B7F54 /* PhotoCell.swift */; };
 		AFD693271CC499D1008B7F54 /* PPNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD693261CC499D1008B7F54 /* PPNavigationController.swift */; };
 		AFD693291CC4A884008B7F54 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD693281CC4A884008B7F54 /* PlayViewController.swift */; };
+		AFD6D7D71CCA5E6B00196ED9 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7D21CCA5E6B00196ED9 /* click.mp3 */; };
+		AFD6D7D81CCA5E6B00196ED9 /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7D31CCA5E6B00196ED9 /* congratulation.mp3 */; };
+		AFD6D7D91CCA5E6B00196ED9 /* swap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7D41CCA5E6B00196ED9 /* swap.mp3 */; };
+		AFD6D7DA1CCA5E6B00196ED9 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7D51CCA5E6B00196ED9 /* fail.mp3 */; };
+		AFD6D7DB1CCA5E6B00196ED9 /* gameover.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7D61CCA5E6B00196ED9 /* gameover.mp3 */; };
+		AFD6D7DE1CCA5E8700196ED9 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD6D7DD1CCA5E8700196ED9 /* SoundModel.swift */; };
+		AFD6D7E01CCB8D9C00196ED9 /* wincoin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFD6D7DF1CCB8D9C00196ED9 /* wincoin.mp3 */; };
+		AFD6D7E31CCCB15500196ED9 /* GADControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD6D7E21CCCB15500196ED9 /* GADControl.swift */; };
+		AFDD8E7C1CE076DE00A83314 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDD8E7B1CE076DE00A83314 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +209,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F8B49FB1CE0734D0029C78B /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		AF2831991CE0346E0069F8EF /* PPProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPProducts.swift; sourceTree = "<group>"; };
+		AF9E70681CC86CA100B1659A /* Extension + Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Protocol.swift"; sourceTree = "<group>"; };
+		AF9E70731CC92AC900B1659A /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
+		AFBE35AF1CCCB2CB0064FE8A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		AFD692171CC26B06008B7F54 /* PicturePuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicturePuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD6921A1CC26B07008B7F54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFD6921C1CC26B07008B7F54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -288,7 +307,7 @@
 		AFD692BD1CC382F8008B7F54 /* 73.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 73.jpg; sourceTree = "<group>"; };
 		AFD692BE1CC382F8008B7F54 /* 74.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 74.jpg; sourceTree = "<group>"; };
 		AFD692BF1CC382F8008B7F54 /* 80.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 80.jpg; sourceTree = "<group>"; };
-		AFD692C01CC382F8008B7F54 /* 90.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 90.jpg; sourceTree = "<group>"; };
+		AFD692C01CC382F8008B7F54 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		AFD6930D1CC38635008B7F54 /* photolist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = photolist.plist; sourceTree = "<group>"; };
 		AFD6930F1CC38763008B7F54 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		AFD693111CC38787008B7F54 /* PPCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPCore.swift; sourceTree = "<group>"; };
@@ -298,6 +317,15 @@
 		AFD693211CC3E318008B7F54 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		AFD693261CC499D1008B7F54 /* PPNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPNavigationController.swift; sourceTree = "<group>"; };
 		AFD693281CC4A884008B7F54 /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		AFD6D7D21CCA5E6B00196ED9 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		AFD6D7D31CCA5E6B00196ED9 /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulation.mp3; sourceTree = "<group>"; };
+		AFD6D7D41CCA5E6B00196ED9 /* swap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swap.mp3; sourceTree = "<group>"; };
+		AFD6D7D51CCA5E6B00196ED9 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
+		AFD6D7D61CCA5E6B00196ED9 /* gameover.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameover.mp3; sourceTree = "<group>"; };
+		AFD6D7DD1CCA5E8700196ED9 /* SoundModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
+		AFD6D7DF1CCB8D9C00196ED9 /* wincoin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wincoin.mp3; sourceTree = "<group>"; };
+		AFD6D7E21CCCB15500196ED9 /* GADControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADControl.swift; sourceTree = "<group>"; };
+		AFDD8E7B1CE076DE00A83314 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +333,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDD8E7C1CE076DE00A83314 /* StoreKit.framework in Frameworks */,
+				AFBE35B01CCCB2CB0064FE8A /* GoogleMobileAds.framework in Frameworks */,
 				AFD692601CC292DE008B7F54 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,9 +356,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF9E70721CC92AB800B1659A /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				AF9E70731CC92AC900B1659A /* KDCircularProgress.swift */,
+			);
+			name = Thirdparty;
+			sourceTree = "<group>";
+		};
 		AFD6920E1CC26B06008B7F54 = {
 			isa = PBXGroup;
 			children = (
+				AFDD8E7B1CE076DE00A83314 /* StoreKit.framework */,
+				AFBE35AF1CCCB2CB0064FE8A /* GoogleMobileAds.framework */,
 				AFD692481CC292D2008B7F54 /* Alamofire.xcodeproj */,
 				AFD692191CC26B07008B7F54 /* PicturePuzzle */,
 				AFD6922E1CC26B07008B7F54 /* PicturePuzzleTests */,
@@ -350,6 +390,7 @@
 		AFD692191CC26B07008B7F54 /* PicturePuzzle */ = {
 			isa = PBXGroup;
 			children = (
+				AF9E70721CC92AB800B1659A /* Thirdparty */,
 				AFD6926C1CC29DF4008B7F54 /* Delegate */,
 				AFD692651CC29CDC008B7F54 /* Model */,
 				AFD692661CC29CE5008B7F54 /* View */,
@@ -396,10 +437,15 @@
 		AFD692651CC29CDC008B7F54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7F8B49FB1CE0734D0029C78B /* IAPHelper.swift */,
+				AF2831991CE0346E0069F8EF /* PPProducts.swift */,
 				AFD693161CC38FE5008B7F54 /* Configuration.swift */,
+				AFD6D7DD1CCA5E8700196ED9 /* SoundModel.swift */,
+				AFD6D7E21CCCB15500196ED9 /* GADControl.swift */,
 				AFD692681CC29D03008B7F54 /* Common.swift */,
 				AFD693111CC38787008B7F54 /* PPCore.swift */,
 				AFD693141CC38B23008B7F54 /* Photo.swift */,
+				AF9E70681CC86CA100B1659A /* Extension + Protocol.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -446,6 +492,7 @@
 		AFD6926E1CC29E7F008B7F54 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				AFD6D7CB1CCA5E4200196ED9 /* sound */,
 				AFD692741CC3829F008B7F54 /* picture */,
 				AFD692261CC26B07008B7F54 /* Info.plist */,
 				AFD6930D1CC38635008B7F54 /* photolist.plist */,
@@ -532,9 +579,22 @@
 				AFD692BD1CC382F8008B7F54 /* 73.jpg */,
 				AFD692BE1CC382F8008B7F54 /* 74.jpg */,
 				AFD692BF1CC382F8008B7F54 /* 80.jpg */,
-				AFD692C01CC382F8008B7F54 /* 90.jpg */,
+				AFD692C01CC382F8008B7F54 /* 0.jpg */,
 			);
 			name = picture;
+			sourceTree = "<group>";
+		};
+		AFD6D7CB1CCA5E4200196ED9 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				AFD6D7DF1CCB8D9C00196ED9 /* wincoin.mp3 */,
+				AFD6D7D21CCA5E6B00196ED9 /* click.mp3 */,
+				AFD6D7D31CCA5E6B00196ED9 /* congratulation.mp3 */,
+				AFD6D7D41CCA5E6B00196ED9 /* swap.mp3 */,
+				AFD6D7D51CCA5E6B00196ED9 /* fail.mp3 */,
+				AFD6D7D61CCA5E6B00196ED9 /* gameover.mp3 */,
+			);
+			name = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +667,15 @@
 				TargetAttributes = {
 					AFD692161CC26B06008B7F54 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 59R4ZJFHM6;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					AFD6922A1CC26B07008B7F54 = {
 						CreatedOnToolsVersion = 7.3;
@@ -709,8 +778,11 @@
 				AFD692E01CC382F8008B7F54 /* 32.jpg in Resources */,
 				AFD692DD1CC382F8008B7F54 /* 29.jpg in Resources */,
 				AFD692D71CC382F8008B7F54 /* 23.jpg in Resources */,
+				AFD6D7D81CCA5E6B00196ED9 /* congratulation.mp3 in Resources */,
 				AFD692EA1CC382F8008B7F54 /* 42.jpg in Resources */,
+				AFD6D7D71CCA5E6B00196ED9 /* click.mp3 in Resources */,
 				AFD692CA1CC382F8008B7F54 /* 10.jpg in Resources */,
+				AFD6D7DB1CCA5E6B00196ED9 /* gameover.mp3 in Resources */,
 				AFD693031CC382F8008B7F54 /* 67.jpg in Resources */,
 				AFD692DA1CC382F8008B7F54 /* 26.jpg in Resources */,
 				AFD692EB1CC382F8008B7F54 /* 43.jpg in Resources */,
@@ -724,7 +796,7 @@
 				AFD692F61CC382F8008B7F54 /* 54.jpg in Resources */,
 				AFD692C51CC382F8008B7F54 /* 5.jpg in Resources */,
 				AFD692D21CC382F8008B7F54 /* 18.jpg in Resources */,
-				AFD6930C1CC382F8008B7F54 /* 90.jpg in Resources */,
+				AFD6930C1CC382F8008B7F54 /* 0.jpg in Resources */,
 				AFD692D11CC382F8008B7F54 /* 17.jpg in Resources */,
 				AFD692DF1CC382F8008B7F54 /* 31.jpg in Resources */,
 				AFD692DB1CC382F8008B7F54 /* 27.jpg in Resources */,
@@ -746,6 +818,7 @@
 				AFD692E61CC382F8008B7F54 /* 38.jpg in Resources */,
 				AFD692F11CC382F8008B7F54 /* 49.jpg in Resources */,
 				AFD692D61CC382F8008B7F54 /* 22.jpg in Resources */,
+				AFD6D7D91CCA5E6B00196ED9 /* swap.mp3 in Resources */,
 				AFD692E71CC382F8008B7F54 /* 39.jpg in Resources */,
 				AFD692D31CC382F8008B7F54 /* 19.jpg in Resources */,
 				AFD692C41CC382F8008B7F54 /* 4.jpg in Resources */,
@@ -756,6 +829,7 @@
 				AFD692C11CC382F8008B7F54 /* 1.jpg in Resources */,
 				AFD692CD1CC382F8008B7F54 /* 13.jpg in Resources */,
 				AFD692F51CC382F8008B7F54 /* 53.jpg in Resources */,
+				AFD6D7E01CCB8D9C00196ED9 /* wincoin.mp3 in Resources */,
 				AFD692C21CC382F8008B7F54 /* 2.jpg in Resources */,
 				AFD692F31CC382F8008B7F54 /* 51.jpg in Resources */,
 				AFD692E91CC382F8008B7F54 /* 41.jpg in Resources */,
@@ -774,6 +848,7 @@
 				AFD693021CC382F8008B7F54 /* 66.jpg in Resources */,
 				AFD692D81CC382F8008B7F54 /* 24.jpg in Resources */,
 				AFD692F71CC382F8008B7F54 /* 55.jpg in Resources */,
+				AFD6D7DA1CCA5E6B00196ED9 /* fail.mp3 in Resources */,
 				AFD692E21CC382F8008B7F54 /* 34.jpg in Resources */,
 				AFD692221CC26B07008B7F54 /* Assets.xcassets in Resources */,
 				AFD692D01CC382F8008B7F54 /* 16.jpg in Resources */,
@@ -806,16 +881,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F8B49FA1CE0712E0029C78B /* AppDelegate.swift in Sources */,
 				AFD693151CC38B23008B7F54 /* Photo.swift in Sources */,
 				AFD693171CC38FE5008B7F54 /* Configuration.swift in Sources */,
+				AF9E70691CC86CA100B1659A /* Extension + Protocol.swift in Sources */,
 				AFD693291CC4A884008B7F54 /* PlayViewController.swift in Sources */,
 				AFD6921D1CC26B07008B7F54 /* HomeViewController.swift in Sources */,
+				AFD6D7DE1CCA5E8700196ED9 /* SoundModel.swift in Sources */,
+				AF28319A1CE0346E0069F8EF /* PPProducts.swift in Sources */,
+				AFD6D7E31CCCB15500196ED9 /* GADControl.swift in Sources */,
 				AFD693271CC499D1008B7F54 /* PPNavigationController.swift in Sources */,
 				AFD693121CC38787008B7F54 /* PPCore.swift in Sources */,
+				7F8B49FC1CE0734D0029C78B /* IAPHelper.swift in Sources */,
 				AFD693221CC3E318008B7F54 /* PhotoLayout.swift in Sources */,
 				AFD693231CC3E318008B7F54 /* PhotoCell.swift in Sources */,
 				AFD692691CC29D03008B7F54 /* Common.swift in Sources */,
-				AFD6921B1CC26B07008B7F54 /* AppDelegate.swift in Sources */,
+				AF9E70741CC92AC900B1659A /* KDCircularProgress.swift in Sources */,
 				AFD692731CC38220008B7F54 /* ListPhotoCollectionViewController.swift in Sources */,
 				AFD6926B1CC29D87008B7F54 /* ViewDesign.swift in Sources */,
 				AFD692711CC38208008B7F54 /* MoreTableViewController.swift in Sources */,
@@ -967,12 +1048,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire-master",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PicturePuzzle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.PicturePuzzle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.picturepuzzleanimal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -980,12 +1069,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire-master",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PicturePuzzle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.PicturePuzzle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.picturepuzzleanimal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

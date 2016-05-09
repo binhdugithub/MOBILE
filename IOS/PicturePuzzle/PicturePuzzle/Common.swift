@@ -12,14 +12,11 @@ import AVFoundation
 
 
 let YOUR_APP_ID: String             = "1070241747"
-let AMOD_BANNER_FOOTER_UNIT :String = "ca-app-pub-2735696870763171/5172236840"
-let AMOD_INTERSTITIAL_UNIT :String  = "ca-app-pub-2735696870763171/6648970044"
+let AMOD_BANNER_FOOTER_UNIT :String = "ca-app-pub-2735696870763171/6366944847"
+let AMOD_INTERSTITIAL_UNIT :String  = "ca-app-pub-2735696870763171/7843678049"
 
 let URL_FB: String = "https://www.facebook.com/cusikiapp"
 let URL_TW: String = "https://twitter.com/cusikiapp"
-
-let TIME_TO_SHOW_ADS = 5
-//let TIME_TO_SHOW_RATE = 13
 
 
 let TEXT_COPYRIGHT:String = "CUSIKI @2016"
@@ -103,35 +100,7 @@ func toggleTorchOff()
 
 
 
-//resize image
-func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
-{
-  let size = image.size
-  let widthRatio  = targetSize.width  / image.size.width
-  let heightRatio = targetSize.height / image.size.height
-  
-  // Figure out what our orientation is, and use that to form the rectangle
-  var newSize: CGSize
-  if(widthRatio > heightRatio)
-  {
-    newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
-  }
-  else
-  {
-    newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
-  }
-  
-  // This is the rect that we've calculated out and this is what is actually used below
-  let rect = CGRectMake(0, 0, newSize.width, newSize.height)
-  
-  // Actually do the resizing to the rect using the ImageContext stuff
-  UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-  image.drawInRect(rect)
-  let newImage = UIGraphicsGetImageFromCurrentImageContext()
-  UIGraphicsEndImageContext()
-  
-  return newImage
-}
+
 
 //capture screenShot
 func ScreenShot() -> UIImage
@@ -198,9 +167,6 @@ func HeightForText(p_text: String, p_font: UIFont, p_width: CGFloat) -> CGFloat
 //get width of font
 func WidthForText(p_text: String, p_font: UIFont, p_heigh: CGFloat) -> CGFloat
 {
-  //    let rect = NSString(string: p_text).boundingRectWithSize(CGSize(width: CGFloat(MAXFLOAT), height: p_heigh), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: p_font], context: nil)
-  //    return ceil(rect.width)
-  
   let label:UILabel = UILabel(frame: CGRectMake(0, 0, CGFloat.max, p_heigh))
   label.numberOfLines = 1
   label.lineBreakMode = NSLineBreakMode.ByWordWrapping

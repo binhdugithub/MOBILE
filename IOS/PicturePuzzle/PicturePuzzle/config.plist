@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>coin</key>
-	<integer>100</integer>
+	<integer>50</integer>
 	<key>level</key>
 	<integer>1</integer>
 	<key>ismuted</key>

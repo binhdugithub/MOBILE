@@ -18,14 +18,12 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
     //header 
     var m_view_header: UIView!
     var m_view_subheader: UIView!
+    var m_view_body: UIView!
     var m_view_footer: UIView!
-    
     var m_btn_home: UIButton!
     var m_btn_coin: UIButton!
-    var m_lbl_level: UILabel!
-    
-    //index path 
-    var m_indexpath_photo: NSIndexPath!
+    var m_lbl_coin: UILabel!
+    var m_lbl_title: UILabel!
     
     override func viewDidLoad()
     {
@@ -34,30 +32,37 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         SetupView()
+        
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
+        m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+        GADMasterViewController.ShareInstance.ShowBannerView(self, p_ads_b: self.m_view_footer)
     }
     
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        if let l_indexpath = self.m_indexpath_photo
+        ReloadAllChangedPhoto()
+    }
+    
+    func ReloadAllChangedPhoto() -> Void
+    {
+        for l_indexpath in PPCore.ShareInstance.m_array_indexpath_reload
         {
             if let visibleIndexPaths = self.m_collectionview.indexPathsForVisibleItems().indexOf(l_indexpath)
             {
                 if visibleIndexPaths != NSNotFound
                 {
+                    print("Reload item: \(l_indexpath.item)")
                     self.m_collectionview.reloadItemsAtIndexPaths([l_indexpath])
                 }
             }
-            
         }
         
-        self.m_indexpath_photo = nil
+        PPCore.ShareInstance.m_array_indexpath_reload.removeAll()
     }
 
     override func didReceiveMemoryWarning()
@@ -84,49 +89,46 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         l_btn_home_frm.size.height = 3.0/4 * m_view_header.frame.size.height
         l_btn_home_frm.size.width = l_btn_home_frm.size.height
         l_btn_home_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_home_frm.size.height)
-        l_btn_home_frm.origin.x = 1.0/2 * l_btn_home_frm.size.width
+        l_btn_home_frm.origin.x = 1.0/3 * l_btn_home_frm.size.width
         m_btn_home = UIButton(frame: l_btn_home_frm)
-        m_btn_home.setImage(UIImage(named: "btn_back"), forState: .Normal)
+        m_btn_home.setImage(UIImage(named: "btn_home"), forState: .Normal)
         m_btn_home.addTarget(self, action: #selector(ListPhotoCollectionViewController.HomeClick(_:)), forControlEvents: .TouchUpInside)
-        
-        //ads
-        //        var l_btn_ads_frm = CGRectMake(0, 0, 0, 0)
-        //        l_btn_ads_frm.size.height = 3.0/4 * m_view_header.frame.size.height
-        //        l_btn_ads_frm.size.width = l_btn_ads_frm.size.height
-        //        l_btn_ads_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_ads_frm.size.height)
-        //        l_btn_ads_frm.origin.x = m_btn_home.frame.origin.x + m_btn_home.frame.size.width + 1.0/2 * m_btn_home.frame.size.width
-        //        m_btn_ads = UIButton(frame: l_btn_ads_frm)
-        //        m_btn_ads.setImage(UIImage(named: "btn_mute"), forState: .Normal)
+
         
         //level
         var l_lbl_level_frm = CGRectMake(0, 0, 0, 0)
-        let l_font: UIFont = UIFont.systemFontOfSize(30)
-        l_lbl_level_frm.size.width = WidthForText("LEVEL 10", p_font: l_font, p_heigh: m_view_header.frame.size.height)
+        let l_font_level: UIFont = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[6], size: ViewDesign.ShareInstance.FONT_SIZE_HEADER)!
+        l_lbl_level_frm.size.width = WidthForText("PICTURE PUZZLE", p_font: l_font_level, p_heigh: m_view_header.frame.size.height)
         l_lbl_level_frm.size.height = m_btn_home.frame.size.height
         l_lbl_level_frm.origin.x = 1.0/2 * (m_view_header.frame.size.width - l_lbl_level_frm.size.width)
         l_lbl_level_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_lbl_level_frm.size.height)
-        m_lbl_level = UILabel(frame: l_lbl_level_frm)
-        m_lbl_level.textColor = UIColor.init(white: 1, alpha: 0.9)
-        m_lbl_level.textAlignment = .Center
-        m_lbl_level.text = "LEVEL 10"
+        m_lbl_title = UILabel(frame: l_lbl_level_frm)
+        m_lbl_title.textColor = UIColor.whiteColor()
+        m_lbl_title.textAlignment = .Center
+        m_lbl_title.text = "PICTURE PUZZLE"
+        m_lbl_title.font = l_font_level
         
         //coins
-        var l_btn_coin_frm = CGRectMake(0, 0, 0, 0)
-        l_btn_coin_frm.size.height = 1.0/2 * m_view_header.frame.size.height
-        l_btn_coin_frm.size.width = 3 * l_btn_coin_frm.size.height
-        l_btn_coin_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_coin_frm.size.height)
-        l_btn_coin_frm.origin.x = m_view_header.frame.size.width - l_btn_coin_frm.size.width - 1.0/3 * l_btn_coin_frm.size.width
+        var l_btn_coin_frm = m_btn_home.frame
+        l_btn_coin_frm.size.height = 0.5 * l_btn_coin_frm.size.height
+        l_btn_coin_frm.size.width = 2.5 * l_btn_coin_frm.size.height
+        l_btn_coin_frm.origin.x = m_view_header.frame.size.width - l_btn_coin_frm.size.width - 1.0/4 * l_btn_coin_frm.size.width
+        l_btn_coin_frm.origin.y = m_btn_home.frame.origin.y + m_btn_home.frame.size.height - l_btn_coin_frm.size.height
         m_btn_coin = UIButton(frame: l_btn_coin_frm)
-        m_btn_coin.setImage(UIImage(named: "btn_coin"), forState: .Normal)
+        m_btn_coin.addTarget(self, action: #selector(HomeViewController.CoinClick(_:)), forControlEvents: .TouchUpInside)
+        m_btn_coin.backgroundColor = UIColor.clearColor()
+        m_btn_coin.setBackgroundImage(UIImage(named: "btn_coin"), forState: .Normal)
         
+        //title coin
+        var l_lbl_coin_frm = m_btn_coin.frame
+        let l_font_coin: UIFont = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_COIN)!
+        l_lbl_coin_frm.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: l_font_coin, p_heigh: l_lbl_coin_frm.size.height)
+        l_lbl_coin_frm.origin.x = m_btn_coin.frame.origin.x + 0.6 * m_btn_coin.frame.size.width - l_lbl_coin_frm.size.width
         
-        //subheader view
-        var l_view_subheader_frm: CGRect = CGRectMake(0,0,0,0)
-        l_view_subheader_frm.size.width = SCREEN_WIDTH
-        l_view_subheader_frm.size.height = ViewDesign.ShareInstance.HEIGHT_SUBHEADER
-        l_view_subheader_frm.origin = CGPointMake(0, m_view_header.frame.size.height)
-        m_view_subheader = UIView(frame: l_view_subheader_frm)
-        m_view_subheader.backgroundColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG
+        m_lbl_coin = UILabel(frame: l_lbl_coin_frm)
+        m_lbl_coin.textAlignment = .Right
+        m_lbl_coin.font = l_font_coin
+        m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
         
     
         //footer view
@@ -136,41 +138,66 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         l_view_footer_frm.origin.x = 0
         l_view_footer_frm.origin.y = SCREEN_HEIGHT - l_view_footer_frm.size.height
         m_view_footer = UIView(frame: l_view_footer_frm)
-        m_view_footer.backgroundColor = ViewDesign.ShareInstance.COLOR_FOOTER_BG
+        m_view_footer.backgroundColor = UIColor.clearColor()
+        
+        let l_lbl_copyright = UILabel.init(frame: l_view_footer_frm)
+        l_lbl_copyright.frame.origin.x = 0
+        l_lbl_copyright.frame.origin.y = 0
+        l_lbl_copyright.textColor = UIColor.blackColor()
+        l_lbl_copyright.text = TEXT_COPYRIGHT
+        l_lbl_copyright.textAlignment = .Center
+        l_lbl_copyright.font = UIFont.systemFontOfSize(CGFloat(ViewDesign.ShareInstance.FONT_SIZE_COPYRIGHT))
+        m_view_footer.addSubview(l_lbl_copyright)
         
         //
+        //body view
+        var l_body_frm = CGRectMake(0, 0, 0, 0)
+        l_body_frm.size.width = self.view.frame.width
+        l_body_frm.size.height = self.view.frame.height - m_view_header.frame.size.height - m_view_footer.frame.size.height
+        l_body_frm.origin.x = 0
+        l_body_frm.origin.y = 0 + m_view_header.frame.size.height
+        m_view_body = UIView(frame: l_body_frm)
+        
+        //subheader view
+        var l_view_subheader_frm: CGRect = CGRectMake(0,0,0,0)
+        l_view_subheader_frm.size.width = m_view_body.frame.size.width
+        l_view_subheader_frm.size.height = ViewDesign.ShareInstance.HEIGHT_SUBHEADER
+        l_view_subheader_frm.origin = CGPointMake(0, 0)
+        m_view_subheader = UIView(frame: l_view_subheader_frm)
+        m_view_subheader.backgroundColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG
+        
         //collection view
-        var l_collectionview_frm = CGRectMake(0, 0, 0, 0)
-        l_collectionview_frm.size.width = self.view.frame.width
-        l_collectionview_frm.size.height = self.view.frame.height - m_view_header.frame.size.height - m_view_subheader.frame.size.height - m_view_footer.frame.size.height - 20
-        l_collectionview_frm.origin.x = 0
-        l_collectionview_frm.origin.y = m_view_subheader.frame.origin.y + m_view_subheader.frame.size.height + 10
+        var l_cllv_frm = m_view_body.frame
+        l_cllv_frm.size.height = l_cllv_frm.size.height - m_view_subheader.frame.size.height
+        l_cllv_frm.origin.x = 0
+        l_cllv_frm.origin.y = m_view_subheader.frame.size.height
         self.m_layout = PhotoLayout()
-        m_collectionview = UICollectionView(frame: l_collectionview_frm, collectionViewLayout: self.m_layout)
+        m_collectionview = UICollectionView(frame: l_cllv_frm, collectionViewLayout: self.m_layout)
         m_collectionview.delegate = self
         m_collectionview.dataSource = self
         m_collectionview.backgroundColor = UIColor.clearColor()
-        
-        // Register cell classes
+
         self.m_collectionview.registerClass(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         //
         //
         //self add
         //
         m_view_header.addSubview(m_btn_home)
-        //m_view_header.addSubview(m_btn_ads)
         m_view_header.addSubview(m_btn_coin)
-        m_view_header.addSubview(m_lbl_level)
+        m_view_header.addSubview(m_lbl_coin)
+        m_view_header.addSubview(m_lbl_title)
     
         self.view.addSubview(m_view_header)
-        self.view.addSubview(m_view_subheader)
-        self.view.addSubview(m_collectionview)
+        self.m_view_body.addSubview(m_view_subheader)
+        self.m_view_body.addSubview(m_collectionview)
+        self.view.addSubview(m_view_body)
         self.view.addSubview(m_view_footer)
     }
     
 
     func HomeClick(sender: UIButton)
     {
+        SoundController.ShareInstance.PlayClick()
         if let l_navController = self.navigationController
         {
             for controller in l_navController.viewControllers
@@ -185,19 +212,40 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         }
     }
     
+    func CoinClick(sender: UIButton)
+    {
+        print("Coin click")
+        SoundController.ShareInstance.PlayClick()
+    }
+    
+    func OpenPhoto(sender: UIButton)
+    {
+        print("Open photo: \(sender.tag)")
+        SoundController.ShareInstance.PlayClick()
+        if PPCore.ShareInstance.m_coin < COIN_OPEN_PHOTO
+        {
+            ShowToast("You don't have enough coin!")
+            return
+        }
+        
+        
+        PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin - COIN_OPEN_PHOTO
+        PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_completed = PHOTO_STATUS.PHOTO_NOT_COMPLETED
+        PPCore.ShareInstance.m_level = sender.tag
+        PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_is_choosing = false
+        PPCore.ShareInstance.m_array_indexpath_reload.append(NSIndexPath(forItem: sender.tag, inSection: 0))
+        self.performSegueWithIdentifier("segue_listphoto_to_play", sender: nil)
+        
+    }
+    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "segue_listphoto_to_play"
         {
-            let l_item: NSIndexPath = sender as! NSIndexPath
-            let ViewPlay = segue.destinationViewController as! PlayViewController
-            ViewPlay.m_photo_index = l_item.item
-            
-            //PPCore.ShareInstance.m_ArrayPhoto[l_item.item].m_completed = PHOTO_STATUS.PHOTO_COMPLETED
-            self.m_indexpath_photo = l_item
-            
+//            let l_item: NSIndexPath = sender as! NSIndexPath
+//            let ViewPlay = segue.destinationViewController as! PlayViewController
         }
     }
  
@@ -221,6 +269,7 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? PhotoCell
         let photo: Photo = PPCore.ShareInstance.m_ArrayPhoto[indexPath.item]
         cell!.SetPhoto(photo)
+        cell?.m_btn_coin.addTarget(self, action: #selector(ListPhotoCollectionViewController.OpenPhoto(_:)), forControlEvents: .TouchUpInside)
     
         return cell!
     }
@@ -231,17 +280,56 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool
     {
-        self.performSegueWithIdentifier("segue_listphoto_to_play", sender: indexPath)
+        //print("shouldHighlightItemAtIndexPath")
         return true
     }
     
 
-    /*
+    
     // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        
+        if PPCore.ShareInstance.m_ArrayPhoto[indexPath.item].m_completed == PHOTO_STATUS.PHOTO_LOCK
+        {
+            for l_item in 0..<PPCore.ShareInstance.m_ArrayPhoto.count
+            {
+                if PPCore.ShareInstance.m_ArrayPhoto[l_item].m_is_choosing == true
+                {
+                    PPCore.ShareInstance.m_ArrayPhoto[l_item].m_is_choosing = false
+                    PPCore.ShareInstance.m_array_indexpath_reload.append(NSIndexPath(forItem: l_item, inSection: 0))
+                }
+            }
+            
+            
+            PPCore.ShareInstance.m_ArrayPhoto[indexPath.item].m_is_choosing = true
+            PPCore.ShareInstance.m_array_indexpath_reload.append(indexPath)
+            self.ReloadAllChangedPhoto()
+            
+            PPCore.ShareInstance.m_array_indexpath_reload.append(indexPath)
+
+        }
+        else
+        {
+            for l_index in PPCore.ShareInstance.m_array_indexpath_reload
+            {
+                PPCore.ShareInstance.m_ArrayPhoto[l_index.item].m_is_choosing = false
+            }
+            self.ReloadAllChangedPhoto()
+            
+            PPCore.ShareInstance.m_level = indexPath.item
+            PPCore.ShareInstance.m_array_indexpath_reload.append(indexPath)
+            
+            self.performSegueWithIdentifier("segue_listphoto_to_play", sender: nil)
+        }
+
         return true
+
     }
-    */
+    
+    
+    
+ 
 
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
@@ -258,4 +346,33 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
     }
     */
 
+    func ShowToast(p_title: String)
+    {
+        var l_frm = CGRectMake(0, 0, 0, 0)
+        let l_font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_COIN - 2)!
+        
+        l_frm.size.width = WidthForText(p_title, p_font: l_font, p_heigh: 1000)
+        l_frm.size.width = l_frm.size.width + 0.25 * l_frm.size.width
+        l_frm.size.height = HeightForText(p_title, p_font: l_font, p_width: 1000)
+        l_frm.size.height = l_frm.size.height + 0.2 * l_frm.size.height
+        l_frm.origin.x = 1.0/2 * (self.view.frame.size.width - l_frm.size.width)
+        l_frm.origin.y = m_view_subheader.frame.size.height
+        let toastLabel = UILabel(frame: l_frm)
+        
+        toastLabel.font = l_font
+        toastLabel.backgroundColor = UIColor.blackColor()
+        toastLabel.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
+        toastLabel.textAlignment = NSTextAlignment.Center;
+        self.m_view_body.addSubview(toastLabel)
+        toastLabel.text = p_title
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        UIView.animateWithDuration(6.0, delay: 0.2, options: .CurveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+            }, completion: { (finished: Bool) -> Void in
+                toastLabel.removeFromSuperview()
+        })
+    }
+    
 }

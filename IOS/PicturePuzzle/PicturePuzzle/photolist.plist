@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>0</key>
+	<integer>0</integer>
 	<key>1</key>
 	<integer>0</integer>
 	<key>2</key>
@@ -51,8 +53,6 @@
 	<key>24</key>
 	<integer>0</integer>
 	<key>25</key>
-	<integer>0</integer>
-	<key>26</key>
 	<integer>0</integer>
 </dict>
 </plist>

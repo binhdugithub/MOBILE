@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jby-EN-sRg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jby-EN-sRg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,7 +22,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="lyl-LV-uSW" kind="modal" identifier="segue_home_to_more" id="c7H-YM-wb8"/>
-                        <segue destination="C9u-Sg-M7C" kind="push" identifier="segue_home_to_listphoto" animates="NO" id="3e2-Xi-DTK"/>
+                        <segue destination="C9u-Sg-M7C" kind="push" identifier="segue_home_to_listphoto" id="3e2-Xi-DTK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -74,7 +74,7 @@
                     <navigationItem key="navigationItem" id="C4o-In-5CN"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="LSt-8X-Zu6" kind="push" identifier="segue_listphoto_to_play" animates="NO" id="Yvq-n6-ZVy"/>
+                        <segue destination="LSt-8X-Zu6" kind="push" identifier="segue_listphoto_to_play" id="Yvq-n6-ZVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mk-NT-wp2" userLabel="First Responder" sceneMemberID="firstResponder"/>

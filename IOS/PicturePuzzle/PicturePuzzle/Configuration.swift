@@ -10,62 +10,59 @@ import GameKit
 
 class Configuration
 {
-    var m_ismuted: Bool!
-    var m_coin: Int!
-    var m_level: Int!
-    
     static let ShareInstance = Configuration()
   
     
     private init()
     {
-        m_ismuted = false
-        m_coin = -1
-        m_level = -1
-        
         LoadConfig()
     }
   
+    func CallSelf() -> Void
+    {
+        print("Function do nothing")
+    }
+    
     func LoadConfig()
     {
         let pathData: String = GetDocPathFile(FILE_CONFIG)
         let dicData: NSDictionary? = NSDictionary(contentsOfFile: pathData)!
         if dicData != nil
         {
-          if let a = dicData?.objectForKey("ismuted") as? Bool
+          if let l_ismuted = dicData?.objectForKey("ismuted") as? Bool
           {
-            m_ismuted = a
+            SoundController.ShareInstance.m_ismuted = l_ismuted
           }
           else
           {
-            m_ismuted = false
+            SoundController.ShareInstance.m_ismuted = false
           }
           
-          if let a = dicData?.objectForKey("level") as? Int
+          if let l_level = dicData?.objectForKey("level") as? Int
           {
-            m_level = a
+            PPCore.ShareInstance.m_level = l_level
           }
           else
           {
-            m_level = 1
+            PPCore.ShareInstance.m_level = 1
           }
           
-          if let a = dicData?.objectForKey("coin") as? Int
+          if let l_coin = dicData?.objectForKey("coin") as? Int
           {
-            m_coin = a
+            PPCore.ShareInstance.m_coin = l_coin
           }
           else
           {
-            m_coin = 100
+            PPCore.ShareInstance.m_coin = 100
           }
           
         }
         else
         {
             NSLog("Load data.plist fail !!")
-            m_ismuted = false
-            m_level = 1
-            m_coin = 100
+            SoundController.ShareInstance.m_ismuted = false
+            PPCore.ShareInstance.m_level = 1
+            PPCore.ShareInstance.m_coin = 100
         }
         
     }
@@ -78,9 +75,6 @@ class Configuration
         {
             l_dicData.setObject(NSNumber(integer: p_level), forKey:"level")
             l_dicData.writeToFile(pathData, atomically:true)
-            m_level = p_level
-            print("write rate:\(m_level)")
-            
         }
         else
         {
@@ -97,9 +91,22 @@ class Configuration
         {
             l_dicData.setObject(NSNumber(integer: p_coin), forKey:"coin")
             l_dicData.writeToFile(pathData, atomically:true)
-            m_coin = p_coin
-            print("write coin:\(m_coin)")
+        }
+        else
+        {
+            NSLog("Load data plist info fail !!")
             
+        }
+    }
+    
+    func WriteMute(p_mute: Bool)
+    {
+        let pathData: String = GetDocPathFile(FILE_CONFIG)
+        let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
+        if let l_dicData = dicData
+        {
+            l_dicData.setObject(p_mute, forKey:"ismuted")
+            l_dicData.writeToFile(pathData, atomically:true)
         }
         else
         {
