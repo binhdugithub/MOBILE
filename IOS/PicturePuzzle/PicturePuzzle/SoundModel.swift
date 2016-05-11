@@ -29,6 +29,7 @@ class SoundController: NSObject
     {
         var l_IsMute: Bool = SoundController.ShareInstance.m_ismuted
         l_IsMute = l_IsMute ? false : true
+        SoundController.ShareInstance.m_ismuted = l_IsMute
         Configuration.ShareInstance.WriteMute(l_IsMute)
     }
   

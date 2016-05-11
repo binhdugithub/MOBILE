@@ -212,3 +212,8 @@ func ShowSettingsAlert(title : String? , message : String?) -> UIAlertController
   return l_alertController
   
 }
+
+func resourceNameForProductIdentifier(productIdentifier: String) -> String?
+{
+    return productIdentifier.componentsSeparatedByString("_").last
+}

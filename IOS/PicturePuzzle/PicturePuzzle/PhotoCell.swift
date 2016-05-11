@@ -79,8 +79,13 @@ class PhotoCell: UICollectionViewCell
         
         if p_photo.m_completed == PHOTO_STATUS.PHOTO_LOCK
         {
-            self.m_imgview_lock.image = UIImage(named: "img_lock")
             self.m_imgview_photo.alpha = 0.5
+            
+            self.m_imgview_lock.image = UIImage(named: "img_lock")
+            m_imgview_lock.frame.origin.x = 0.5 * (self.contentView.frame.size.width - m_imgview_lock.frame.size.width)
+            m_imgview_lock.frame.origin.y = 0.5 * (self.contentView.frame.size.height - m_imgview_lock.frame.size.height)
+            
+            
         }
         else if p_photo.m_completed == PHOTO_STATUS.PHOTO_NOT_COMPLETED
         {
@@ -89,6 +94,9 @@ class PhotoCell: UICollectionViewCell
         }
         else
         {
+            m_imgview_lock.frame.origin.x = self.contentView.frame.size.width - m_imgview_lock.frame.size.width
+            m_imgview_lock.frame.origin.y = self.contentView.frame.size.height - m_imgview_lock.frame.size.height
+            
             self.m_imgview_photo.alpha = 1
             self.m_imgview_lock.image = UIImage(named: "img_favorite")
         }

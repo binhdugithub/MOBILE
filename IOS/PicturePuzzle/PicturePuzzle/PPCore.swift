@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import StoreKit
+
+
 class PPCore
 {
     static let ShareInstance = PPCore()
@@ -14,41 +17,25 @@ class PPCore
     var m_complete_photo = false
     var m_coin: Int!
     var m_level: Int!
-    
     var m_array_indexpath_reload: [NSIndexPath]!
+    var m_ArrayApp = [App]()
+    
+    // TODO:  Change this to the BundleID chosen when registering this app's App ID in the Apple Member Center.
+    private static let Prefix = "com.cusiki.picturepuzzleanimal."
+    private static let m_buy200coin = Prefix + "200coins"
+    private static let m_buy400coin = Prefix + "400coins"
+    private static let m_buy600coin = Prefix + "600coins"
+    private static let m_buy800coin = Prefix + "800coins"
+    private static let productIdentifiers: Set<ProductIdentifier> = [PPCore.m_buy200coin, PPCore.m_buy400coin, PPCore.m_buy600coin,PPCore.m_buy800coin]
+    var m_iaphelper = IAPHelper(productIds: PPCore.productIdentifiers)
+    var m_products = [SKProduct]()
+    
     private init()
     {
         m_array_indexpath_reload = [NSIndexPath]()
-        LoadListPhoto()
     }
     
-   
-    
-    //load list photo
-    func LoadListPhoto() -> Void
-    {
-        let pathData: String = GetDocPathFile(FILE_DATA)
-        let dicData: NSDictionary? = NSDictionary(contentsOfFile: pathData)!
-
-        if dicData != nil
-        {
-            //print("Dic: \(dicData)")
-            for (p_id, p_completed) in dicData!
-            {
-                //print("ID: \(p_id)")
-                let l_photo = Photo(p_id: p_id as! String, p_completed: PHOTO_STATUS(rawValue: p_completed as! Int)!)
-                m_ArrayPhoto.append(l_photo)
-            }
-            
-            m_ArrayPhoto.sortInPlace{$0.m_id < $1.m_id}
-        }
-        else
-        {
-            NSLog("Load data.plist fail !!")
-            
-        }
-    }
-    
+       
     func DiaplayArray() -> Void
     {
         for p_photo in m_ArrayPhoto

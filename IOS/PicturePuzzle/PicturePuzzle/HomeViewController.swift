@@ -9,7 +9,7 @@
 //
 
 import UIKit
-
+import StoreKit
 
 class HomeViewController: UIViewController
 {
@@ -33,26 +33,32 @@ class HomeViewController: UIViewController
     var m_btn_tw: UIButton!
     var m_btn_rate: UIButton!
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //productIDs.append("com.cusiki.picturepuzzleanimal_get100coin")
-        //requestProductInfo()
+       
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.HandlePurchaseNotification(_:)),
+                                                         name: IAPHelper.IAPHelperPurchaseNotification,
+                                                         object: nil)
         
         SetupView()
     }
 
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    override func viewWillAppear(animated: Bool)
+    func HandlePurchaseNotification(notification: NSNotification)
     {
-        HideSocialBtn()
+        guard let productID = notification.object as? String else { return }
+        
+        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
+        {
+            guard product.productIdentifier == productID else { continue }
+        }
     }
+    
     
     override func viewDidAppear(animated: Bool)
     {
@@ -73,14 +79,6 @@ class HomeViewController: UIViewController
         m_btn_more.pulseToSize(1.2, p_duration: 0.5, p_repeat: true)
     }
     
-    
-    func HideSocialBtn() -> Void
-    {
-        var l_frm = m_view_3btn_social.frame
-        l_frm.origin.x = m_view_body.frame.size.width + 10
-    
-        self.m_view_3btn_social.frame = l_frm
-    }
     
     
     func SetupView() -> Void
@@ -103,7 +101,14 @@ class HomeViewController: UIViewController
         l_btn_speaker_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_speaker_frm.size.height)
         l_btn_speaker_frm.origin.x = 1.0/3 * l_btn_speaker_frm.size.width
         m_btn_speaker = UIButton(frame: l_btn_speaker_frm)
-        m_btn_speaker.setImage(UIImage(named: "btn_unmute"), forState: .Normal)
+        if SoundController.ShareInstance.m_ismuted == true
+        {
+            m_btn_speaker.setImage(UIImage(named: "btn_mute"), forState: .Normal)
+        }
+        else
+        {
+            m_btn_speaker.setImage(UIImage(named: "btn_unmute"), forState: .Normal)
+        }
         m_btn_speaker.addTarget(self, action: #selector(HomeViewController.SpeakerClick(_:)), forControlEvents: .TouchUpInside)
 
         //title
@@ -224,6 +229,7 @@ class HomeViewController: UIViewController
         m_btn_more.clipsToBounds = true
         m_btn_more.backgroundColor = ViewDesign.ShareInstance.COLOR_HEADER_BG
         m_btn_more.setTitle("More Free", forState: .Normal)
+        m_btn_more.addTarget(self, action: #selector(HomeViewController.MoreClick(_:)), forControlEvents: .TouchUpInside)
         m_btn_more.titleLabel?.font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[6], size: ViewDesign.ShareInstance.FONT_SIZE_HEADER)!
         
         //Start game
@@ -266,8 +272,16 @@ class HomeViewController: UIViewController
     
     func StartClick(sender: UIButton)
     {
-        self.performSegueWithIdentifier("segue_home_to_listphoto", sender: self)
         SoundController.ShareInstance.PlayClick()
+        self.performSegueWithIdentifier("segue_home_to_listphoto", sender: self)
+        
+    }
+    
+    func MoreClick(sender: UIButton)
+    {
+        SoundController.ShareInstance.PlayClick()
+        self.performSegueWithIdentifier("segue_home_to_listmore", sender: self)
+        
     }
     
     func CoinClick(sender: UIButton)
@@ -324,37 +338,45 @@ class HomeViewController: UIViewController
         m_btn_closepurchase.addTarget(self, action: #selector(HomeViewController.CloseClick(_:)), forControlEvents: .TouchUpInside)
         
 
-        //100
+        //2 dollar
         let l_h = m_btn_closepurchase.frame.origin.y - l_lbl_bonus.frame.origin.y - l_lbl_bonus.frame.size.height
         let l_btn_purchase_h = l_h * 1.0 / 5.75
-        
-        
         var l_btn_frm = CGRectMake(0, 0, 0, 0)
         l_btn_frm.size.height = l_btn_purchase_h
         l_btn_frm.size.width = 3 * l_btn_frm.size.height
         l_btn_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_frm.size.width)
         l_btn_frm.origin.y = l_lbl_bonus.frame.origin.y + l_lbl_bonus.frame.size.height + 0.5 * l_btn_frm.size.height
-        let l_btn_100 = UIButton(frame: l_btn_frm)
-        l_btn_100.setImage(UIImage(named: "100"), forState: .Normal)
+        let l_btn_2dollar = UIButton(frame: l_btn_frm)
+        l_btn_2dollar.setImage(UIImage(named: "2dollar"), forState: .Normal)
+        l_btn_2dollar.tag = 2
+        l_btn_2dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //300
-        l_btn_frm.origin.y = l_btn_100.frame.origin.y + 1.25 * l_btn_100.frame.size.height
-        let l_btn_300 = UIButton(frame: l_btn_frm)
-        l_btn_300.setImage(UIImage(named: "300"), forState: .Normal)
-        //400
-        l_btn_frm.origin.y = l_btn_300.frame.origin.y + 1.25 * l_btn_300.frame.size.height
-        let l_btn_400 = UIButton(frame: l_btn_frm)
-        l_btn_400.setImage(UIImage(named: "400"), forState: .Normal)
-        //600
-        l_btn_frm.origin.y = l_btn_400.frame.origin.y + 1.25 * l_btn_400.frame.size.height
-        let l_btn_600 = UIButton(frame: l_btn_frm)
-        l_btn_600.setImage(UIImage(named: "600"), forState: .Normal)
+        //3 dollar
+        l_btn_frm.origin.y = l_btn_2dollar.frame.origin.y + 1.25 * l_btn_2dollar.frame.size.height
+        let l_btn_3dollar = UIButton(frame: l_btn_frm)
+        l_btn_3dollar.setImage(UIImage(named: "3dollar"), forState: .Normal)
+        l_btn_3dollar.tag = 3
+        l_btn_3dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
+        //4 dollar
+        l_btn_frm.origin.y = l_btn_3dollar.frame.origin.y + 1.25 * l_btn_3dollar.frame.size.height
+        let l_btn_4dollar = UIButton(frame: l_btn_frm)
+        l_btn_4dollar.setImage(UIImage(named: "4dollar"), forState: .Normal)
+        l_btn_4dollar.tag = 4
+        l_btn_4dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+       
+        //5 dollar
+        l_btn_frm.origin.y = l_btn_4dollar.frame.origin.y + 1.25 * l_btn_4dollar.frame.size.height
+        let l_btn_5dollar = UIButton(frame: l_btn_frm)
+        l_btn_5dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
+        l_btn_5dollar.tag = 5
+        l_btn_5dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
         
-        l_view_purchase.addSubview(l_btn_100)
-        l_view_purchase.addSubview(l_btn_300)
-        l_view_purchase.addSubview(l_btn_400)
-        l_view_purchase.addSubview(l_btn_600)
+        l_view_purchase.addSubview(l_btn_2dollar)
+        l_view_purchase.addSubview(l_btn_3dollar)
+        l_view_purchase.addSubview(l_btn_4dollar)
+        l_view_purchase.addSubview(l_btn_5dollar)
         l_view_purchase.addSubview(m_btn_closepurchase)
         l_view_purchase.addSubview(l_lbl_bonus)
         
@@ -374,6 +396,21 @@ class HomeViewController: UIViewController
         })
         
     }
+    
+    
+    func GetCoin(sender: UIButton)
+    {
+        print("Get \(sender.tag) coin")
+        for l_product in PPCore.ShareInstance.m_products
+        {
+            if Int(ceil(l_product.price.floatValue)) == sender.tag
+            {
+                PPCore.ShareInstance.m_iaphelper.buyProduct(l_product)
+            }
+        }
+        
+    }
+    
     func SpeakerClick(sender: UIButton)
     {
         print("speaker click")

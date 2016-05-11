@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "identifer_photocell"
 
-class ListPhotoCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
 {
     var m_layout: PhotoLayout!
     var m_collectionview: UICollectionView!
@@ -92,7 +92,7 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         l_btn_home_frm.origin.x = 1.0/3 * l_btn_home_frm.size.width
         m_btn_home = UIButton(frame: l_btn_home_frm)
         m_btn_home.setImage(UIImage(named: "btn_home"), forState: .Normal)
-        m_btn_home.addTarget(self, action: #selector(ListPhotoCollectionViewController.HomeClick(_:)), forControlEvents: .TouchUpInside)
+        m_btn_home.addTarget(self, action: #selector(ListPhotoViewController.HomeClick(_:)), forControlEvents: .TouchUpInside)
 
         
         //level
@@ -234,6 +234,9 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         PPCore.ShareInstance.m_level = sender.tag
         PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_is_choosing = false
         PPCore.ShareInstance.m_array_indexpath_reload.append(NSIndexPath(forItem: sender.tag, inSection: 0))
+        
+        Configuration.ShareInstance.WriteComplete(sender.tag, p_completed: PHOTO_STATUS.PHOTO_NOT_COMPLETED.rawValue)
+        
         self.performSegueWithIdentifier("segue_listphoto_to_play", sender: nil)
         
     }
@@ -269,7 +272,7 @@ class ListPhotoCollectionViewController: UIViewController, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? PhotoCell
         let photo: Photo = PPCore.ShareInstance.m_ArrayPhoto[indexPath.item]
         cell!.SetPhoto(photo)
-        cell?.m_btn_coin.addTarget(self, action: #selector(ListPhotoCollectionViewController.OpenPhoto(_:)), forControlEvents: .TouchUpInside)
+        cell?.m_btn_coin.addTarget(self, action: #selector(ListPhotoViewController.OpenPhoto(_:)), forControlEvents: .TouchUpInside)
     
         return cell!
     }

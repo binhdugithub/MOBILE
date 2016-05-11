@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jby-EN-sRg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jby-EN-sRg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,47 +21,38 @@
                     <navigationItem key="navigationItem" id="UzS-a8-rwJ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="lyl-LV-uSW" kind="modal" identifier="segue_home_to_more" id="c7H-YM-wb8"/>
-                        <segue destination="C9u-Sg-M7C" kind="push" identifier="segue_home_to_listphoto" id="3e2-Xi-DTK"/>
+                        <segue destination="C9u-Sg-M7C" kind="push" identifier="segue_home_to_listphoto" animates="NO" id="3e2-Xi-DTK"/>
+                        <segue destination="May-c9-QAA" kind="push" identifier="segue_home_to_listmore" animates="NO" id="w4t-so-Kgs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1004" y="273"/>
         </scene>
-        <!--More Table View Controller-->
-        <scene sceneID="EOX-q8-j73">
+        <!--List More View Controller-->
+        <scene sceneID="YfA-zT-6Rs">
             <objects>
-                <tableViewController id="lyl-LV-uSW" customClass="MoreTableViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yOk-fu-1eb">
+                <viewController id="May-c9-QAA" customClass="ListMoreViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qvn-fW-aze"/>
+                        <viewControllerLayoutGuide type="bottom" id="fuH-JU-JHg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PgN-em-ILJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4HW-qs-fyX">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HW-qs-fyX" id="PKU-Dg-VZQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="lyl-LV-uSW" id="9yL-6u-WKY"/>
-                            <outlet property="delegate" destination="lyl-LV-uSW" id="yzN-X1-3cY"/>
-                        </connections>
-                    </tableView>
+                    </view>
+                    <navigationItem key="navigationItem" id="gMk-HQ-avn"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jrt-Ve-3Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xo9-J2-A7N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="141"/>
+            <point key="canvasLocation" x="1502" y="122"/>
         </scene>
-        <!--List Photo Collection View Controller-->
+        <!--List Photo View Controller-->
         <scene sceneID="oRD-pU-VwI">
             <objects>
-                <viewController id="C9u-Sg-M7C" customClass="ListPhotoCollectionViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="C9u-Sg-M7C" customClass="ListPhotoViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rDs-Nc-Ohh"/>
                         <viewControllerLayoutGuide type="bottom" id="XeU-US-bPK"/>
@@ -74,7 +65,7 @@
                     <navigationItem key="navigationItem" id="C4o-In-5CN"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="LSt-8X-Zu6" kind="push" identifier="segue_listphoto_to_play" id="Yvq-n6-ZVy"/>
+                        <segue destination="LSt-8X-Zu6" kind="push" identifier="segue_listphoto_to_play" animates="NO" id="Yvq-n6-ZVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mk-NT-wp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
