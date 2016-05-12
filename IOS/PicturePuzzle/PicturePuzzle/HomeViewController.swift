@@ -47,22 +47,12 @@ class HomeViewController: UIViewController
         
         SetupView()
     }
-
-
-    func HandlePurchaseNotification(notification: NSNotification)
-    {
-        guard let productID = notification.object as? String else { return }
-        
-        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
-        {
-            guard product.productIdentifier == productID else { continue }
-        }
-    }
     
     
     override func viewDidAppear(animated: Bool)
     {
         self.AnimationGUI()
+        
     }
     
     
@@ -77,6 +67,8 @@ class HomeViewController: UIViewController
         UIView.commitAnimations()
     
         m_btn_more.pulseToSize(1.2, p_duration: 0.5, p_repeat: true)
+        
+        m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
     }
     
     
@@ -264,8 +256,6 @@ class HomeViewController: UIViewController
         m_view_body.addSubview(m_imgv_logo)
         
         
-        
-        
         self.view.addSubview(m_view_header)
         self.view.addSubview(m_view_body)
     }
@@ -282,6 +272,67 @@ class HomeViewController: UIViewController
         SoundController.ShareInstance.PlayClick()
         self.performSegueWithIdentifier("segue_home_to_listmore", sender: self)
         
+    }
+
+    
+    func SpeakerClick(sender: UIButton)
+    {
+        print("speaker click")
+        SoundController.ShareInstance.PlayClick()
+        SoundController.ShareInstance.ChangeMute()
+        if SoundController.ShareInstance.m_ismuted == true
+        {
+            m_btn_speaker.setImage(UIImage(named: "btn_mute"), forState: .Normal)
+        }
+        else
+        {
+            m_btn_speaker.setImage(UIImage(named: "btn_unmute"), forState: .Normal)
+        }
+        
+    }
+}
+
+
+extension HomeViewController
+{
+    func HandlePurchaseNotification(notification: NSNotification)
+    {
+        guard let productID = notification.object as? String else { return }
+        
+        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
+        {
+            guard product.productIdentifier == productID else { continue }
+            
+            let l_price = Int(ceil(product.price.floatValue))
+            switch l_price
+            {
+            case 2:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 200
+                print("Buy ok 200 coin")
+                break
+            case 3:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 400
+                print("Buy ok 400 coin")
+                break
+            case 4:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 600
+                print("Buy ok 600 coin")
+                break
+            case 5:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 800
+                print("Buy ok 800 coin")
+                break
+            default:
+                print("Don't know this price")
+                break
+            }
+            
+            SoundController.ShareInstance.WinCoin()
+            m_lbl_coin.Shake()
+            m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+            m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
+            Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
+        }
     }
     
     func CoinClick(sender: UIButton)
@@ -321,7 +372,7 @@ class HomeViewController: UIViewController
         l_lbl_bonus.font = l_font
         l_lbl_bonus.textColor = UIColor.whiteColor()
         
-        //close 
+        //close
         var l_btn_close_frm = CGRectMake(0, 0, 0, 0)
         l_btn_close_frm.size.width = 1.0/6 * l_view_purchase.frame.size.width
         l_btn_close_frm.size.height = l_btn_close_frm.size.width
@@ -337,7 +388,7 @@ class HomeViewController: UIViewController
         m_btn_closepurchase.layer.borderWidth = 1.0/40 * l_btn_close_frm.size.width
         m_btn_closepurchase.addTarget(self, action: #selector(HomeViewController.CloseClick(_:)), forControlEvents: .TouchUpInside)
         
-
+        
         //2 dollar
         let l_h = m_btn_closepurchase.frame.origin.y - l_lbl_bonus.frame.origin.y - l_lbl_bonus.frame.size.height
         let l_btn_purchase_h = l_h * 1.0 / 5.75
@@ -350,6 +401,7 @@ class HomeViewController: UIViewController
         l_btn_2dollar.setImage(UIImage(named: "2dollar"), forState: .Normal)
         l_btn_2dollar.tag = 2
         l_btn_2dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
         
         //3 dollar
         l_btn_frm.origin.y = l_btn_2dollar.frame.origin.y + 1.25 * l_btn_2dollar.frame.size.height
@@ -364,7 +416,7 @@ class HomeViewController: UIViewController
         l_btn_4dollar.setImage(UIImage(named: "4dollar"), forState: .Normal)
         l_btn_4dollar.tag = 4
         l_btn_4dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
-       
+        
         //5 dollar
         l_btn_frm.origin.y = l_btn_4dollar.frame.origin.y + 1.25 * l_btn_4dollar.frame.size.height
         let l_btn_5dollar = UIButton(frame: l_btn_frm)
@@ -372,6 +424,13 @@ class HomeViewController: UIViewController
         l_btn_5dollar.tag = 5
         l_btn_5dollar.addTarget(self, action: #selector(HomeViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
+        if IAPHelper.canMakePayments() == false
+        {
+            l_btn_2dollar.enabled = false
+            l_btn_3dollar.enabled = false
+            l_btn_4dollar.enabled = false
+            l_btn_5dollar.enabled = false
+        }
         
         l_view_purchase.addSubview(l_btn_2dollar)
         l_view_purchase.addSubview(l_btn_3dollar)
@@ -400,33 +459,15 @@ class HomeViewController: UIViewController
     
     func GetCoin(sender: UIButton)
     {
-        print("Get \(sender.tag) coin")
         for l_product in PPCore.ShareInstance.m_products
         {
             if Int(ceil(l_product.price.floatValue)) == sender.tag
             {
                 PPCore.ShareInstance.m_iaphelper.buyProduct(l_product)
+                break
             }
         }
         
     }
-    
-    func SpeakerClick(sender: UIButton)
-    {
-        print("speaker click")
-        SoundController.ShareInstance.PlayClick()
-        SoundController.ShareInstance.ChangeMute()
-        if SoundController.ShareInstance.m_ismuted == true
-        {
-            m_btn_speaker.setImage(UIImage(named: "btn_mute"), forState: .Normal)
-        }
-        else
-        {
-            m_btn_speaker.setImage(UIImage(named: "btn_unmute"), forState: .Normal)
-        }
-        
-    }
-
-    
 }
 

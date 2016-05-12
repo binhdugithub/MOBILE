@@ -186,9 +186,19 @@ func ShowAlert(title : String? , message : String?) -> UIAlertController
   let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
   alert.addAction(action)
   
-  //self.presentViewController(alert, animated: true, completion: nil)
-  
   return alert
+}
+
+//alert yes no
+func ShowAlertYESNO(title : String? , message : String?) -> UIAlertController
+{
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    let actionOK = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    let actionCancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    alert.addAction(actionOK)
+    alert.addAction(actionCancel)
+    
+    return alert
 }
 
 

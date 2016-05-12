@@ -11,8 +11,8 @@ import UIKit
 
 let NUMBER_V_ITEM = 5
 let NUMBER_H_ITEM = 5
-let MAX_TIME = 180
-let COIN_BONUS = 5
+let MAX_TIME = 6
+let COIN_BONUS = 10
 let COIN_HINT_ONE = 10
 let COIN_HINT_FULL = 20
 let COIN_GAME_WIN    = 100
@@ -59,6 +59,7 @@ class PlayViewController: UIViewController
     var m_touched_frm: CGRect!
     var m_number_hintone: Int! = 0
     var m_number_hintfull: Int! = 0
+    
     
     required init?(coder aDecoder: NSCoder)
     {
@@ -317,7 +318,7 @@ class PlayViewController: UIViewController
         l_btn_coin_frm.origin.x = m_view_header.frame.size.width - l_btn_coin_frm.size.width - 1.0/4 * l_btn_coin_frm.size.width
         l_btn_coin_frm.origin.y = m_btn_back.frame.origin.y + m_btn_back.frame.size.height - l_btn_coin_frm.size.height
         m_btn_coin = UIButton(frame: l_btn_coin_frm)
-        m_btn_coin.addTarget(self, action: #selector(HomeViewController.CoinClick(_:)), forControlEvents: .TouchUpInside)
+        m_btn_coin.addTarget(self, action: #selector(PlayViewController.CoinClick(_:)), forControlEvents: .TouchUpInside)
         m_btn_coin.backgroundColor = UIColor.clearColor()
         m_btn_coin.setBackgroundImage(UIImage(named: "btn_coin"), forState: .Normal)
         
@@ -517,7 +518,7 @@ class PlayViewController: UIViewController
             self.m_timer.invalidate()
         }
         self.m_timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(PlayViewController.HandleTimer), userInfo: nil, repeats: true)
-        self.m_btn_bonus_ads.enabled = false
+        //self.m_btn_bonus_ads.enabled = false
     }
     
     func HandlePan(sender: UIPanGestureRecognizer) -> Void
@@ -810,12 +811,12 @@ class PlayViewController: UIViewController
         l_imgv_pre.layer.rasterizationScale = UIScreen.mainScreen().scale;
         l_imgv_pre.layer.shouldRasterize = true;
         
-        let l_level = PPCore.ShareInstance.m_level - 1
+        var l_level = PPCore.ShareInstance.m_level - 1
         if l_level >= 0
         {
             l_imgv_pre.setImage(UIImage(named: PPCore.ShareInstance.m_ArrayPhoto[l_level].m_name), forState: .Normal)
             l_imgv_pre.addTarget(self, action: #selector(PlayViewController.XClick(_:)), forControlEvents: .TouchUpInside)
-            l_imgv_pre.tag = 1
+            l_imgv_pre.tag = l_level
             self.InitImgvLock(l_imgv_pre, p_level: l_level)
         }
         
@@ -845,7 +846,7 @@ class PlayViewController: UIViewController
         l_imgv_replay.layer.shouldRasterize = true;
         l_imgv_replay.setImage(UIImage(named: PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_name), forState: .Normal)
         l_imgv_replay.addTarget(self, action: #selector(PlayViewController.XClick(_:)), forControlEvents: .TouchUpInside)
-        l_imgv_replay.tag = 2
+        l_imgv_replay.tag = PPCore.ShareInstance.m_level
         self.InitImgvLock(l_imgv_replay, p_level: PPCore.ShareInstance.m_level)
         
         var l_lbl_replay_frm = l_imgv_replay.frame
@@ -869,10 +870,14 @@ class PlayViewController: UIViewController
         l_imgv_next.layer.shadowOpacity = 0.5;
         l_imgv_next.layer.rasterizationScale = UIScreen.mainScreen().scale;
         l_imgv_next.layer.shouldRasterize = true;
-        l_imgv_next.setImage(UIImage(named: PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level + 1].m_name), forState: .Normal)
-        l_imgv_next.addTarget(self, action: #selector(PlayViewController.XClick(_:)), forControlEvents: .TouchUpInside)
-        l_imgv_next.tag = 3
-        self.InitImgvLock(l_imgv_next, p_level: PPCore.ShareInstance.m_level + 1)
+        l_level = PPCore.ShareInstance.m_level + 1
+        if l_level <= PPCore.ShareInstance.m_ArrayPhoto.count
+        {
+            l_imgv_next.setImage(UIImage(named: PPCore.ShareInstance.m_ArrayPhoto[l_level].m_name), forState: .Normal)
+            l_imgv_next.addTarget(self, action: #selector(PlayViewController.XClick(_:)), forControlEvents: .TouchUpInside)
+            l_imgv_next.tag = l_level
+            self.InitImgvLock(l_imgv_next, p_level: l_level)
+        }
         
         var l_lbl_next_frm = l_imgv_next.frame
         l_lbl_next_frm.size.height = HeightForText("Next", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
@@ -902,7 +907,6 @@ class PlayViewController: UIViewController
         l_imgv_replay.Shake()
         l_imgv_next.Shake()
         
-        
         self.view.addSubview(l_view_gameend)
     }
     
@@ -911,28 +915,27 @@ class PlayViewController: UIViewController
         print("Game over")
         SoundController.ShareInstance.PlayGameOver()
         self.m_status_game = STATUSGAME.GAMEOVER
+        PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin - COIN_GAME_OVER
+        Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
         self.StopTimer()
-        
         self.ShowGameEnd(false)
-       
     }
-    
     
     func GameWin() -> Void
     {
         print("Game win")
+        SoundController.ShareInstance.WinCoin()
+        
         self.m_status_game = STATUSGAME.GAMEOVER
         PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + COIN_GAME_WIN
+        Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
-        
-        SoundController.ShareInstance.WinCoin()
         self.StopTimer()
         self.ShowFullPhoto()
         self.UIGetWinCoin()
         
         PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed = PHOTO_STATUS.PHOTO_COMPLETED
         Configuration.ShareInstance.WriteComplete(PPCore.ShareInstance.m_level, p_completed: PHOTO_STATUS.PHOTO_COMPLETED.rawValue)
-        
         
         self.ShowGameEnd(false)
     }
@@ -950,30 +953,62 @@ class PlayViewController: UIViewController
         }
     }
     
-    
     func BackClick(sender: UIButton)
     {
         SoundController.ShareInstance.PlayClick()
-        StopTimer()
-        if let l_navController = self.navigationController
+        if m_status_game == STATUSGAME.PLAYING
         {
-            for controller in l_navController.viewControllers
-            {
-                if controller.isKindOfClass(ListPhotoViewController)
+            // Create the alert controller
+            let alertController = UIAlertController(title: "Game is playing !", message: "If you back you will lose " + String(COIN_GAME_OVER) + " coins", preferredStyle: .Alert)
+            // Create the actions
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                UIAlertAction in
+                self.StopTimer()
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin - COIN_GAME_OVER
+                if let l_navController = self.navigationController
                 {
-                    let ListPhotoView = controller as! ListPhotoViewController
-                    l_navController.popToViewController(ListPhotoView, animated: true)
+                    for controller in l_navController.viewControllers
+                    {
+                        if controller.isKindOfClass(ListPhotoViewController)
+                        {
+                            let ListPhotoView = controller as! ListPhotoViewController
+                            l_navController.popToViewController(ListPhotoView, animated: true)
+                        }
+                    }
+                    
                 }
             }
             
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+                UIAlertAction in
+                NSLog("Cancel Pressed")
+            }
+            
+            // Add the actions
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            
+            // Present the controller
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-
+        else
+        {
+            StopTimer()
+            if let l_navController = self.navigationController
+            {
+                for controller in l_navController.viewControllers
+                {
+                    if controller.isKindOfClass(ListPhotoViewController)
+                    {
+                        let ListPhotoView = controller as! ListPhotoViewController
+                        l_navController.popToViewController(ListPhotoView, animated: true)
+                    }
+                }
+                
+            }
     
-    func CoinClick(sender: UIButton)
-    {
-        print("Coin click")
-        SoundController.ShareInstance.PlayClick()
+        }
+        
     }
     
     
@@ -994,7 +1029,6 @@ class PlayViewController: UIViewController
         
     }
     
-
     func HintOneClick(sender: UIButton)
     {
         SoundController.ShareInstance.PlayClick()
@@ -1115,29 +1149,16 @@ class PlayViewController: UIViewController
     
     func XClick(sender: UIButton)
     {
-        switch sender.tag
-        {
-        case 1:
-            if PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed != PHOTO_STATUS.PHOTO_LOCK
-            {
-                PPCore.ShareInstance.m_level = PPCore.ShareInstance.m_level - 1
-            }
-           
-            break
-        case 3:
-            if PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed != PHOTO_STATUS.PHOTO_LOCK
-            {
-                PPCore.ShareInstance.m_level = PPCore.ShareInstance.m_level + 1
-            }
-            
-            break
-        default:
-            print("Dont know click")
-            break
-        }
-
        
-        if PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed == PHOTO_STATUS.PHOTO_LOCK
+        if PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_completed != PHOTO_STATUS.PHOTO_LOCK
+        {
+            PPCore.ShareInstance.m_level = sender.tag
+            sender.superview?.removeFromSuperview()
+            self.ClearAllView()
+            self.viewDidLoad()
+            self.viewDidAppear(true)
+        }
+        else //if PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed == PHOTO_STATUS.PHOTO_LOCK
         {
             //btn coin
             var l_btn_coin_frm = sender.frame
@@ -1146,18 +1167,11 @@ class PlayViewController: UIViewController
             l_btn_coin_frm.origin.y = sender.frame.size.height - l_btn_coin_frm.size.height
             let m_btn_coin  = UIButton(frame: l_btn_coin_frm)
             m_btn_coin.setImage(UIImage(named: "btn_openphoto"), forState: .Normal)
+            m_btn_coin.tag = sender.tag
             m_btn_coin.addTarget(self, action: #selector(PlayViewController.OpenPhoto(_:)), forControlEvents: .TouchUpInside)
             sender.addSubview(m_btn_coin)
             
             m_btn_coin.Shake()
-        }
-        else
-        {
-            
-            sender.superview?.removeFromSuperview()
-            self.ClearAllView()
-            self.viewDidLoad()
-            self.viewDidAppear(true)
         }
     }
     
@@ -1169,21 +1183,8 @@ class PlayViewController: UIViewController
             ShowToast("You don't have enough coin!")
             return
         }
-        
-        switch sender.tag
-        {
-        case 1:
-            PPCore.ShareInstance.m_level = PPCore.ShareInstance.m_level - 1
-            break
-        case 3:
-            PPCore.ShareInstance.m_level = PPCore.ShareInstance.m_level + 1
-            break
-        default:
-            print("Dont know click")
-            break
-        }
-        
-        
+
+        PPCore.ShareInstance.m_level = sender.tag
         PPCore.ShareInstance.m_array_indexpath_reload.append(NSIndexPath(forItem: PPCore.ShareInstance.m_level, inSection: 0))
         PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed = PHOTO_STATUS.PHOTO_NOT_COMPLETED
         
@@ -1286,6 +1287,176 @@ class PlayViewController: UIViewController
                 toastLabel.removeFromSuperview()
         })
     }
+}
 
+
+extension PlayViewController
+{
+    func HandlePurchaseNotification(notification: NSNotification)
+    {
+        guard let productID = notification.object as? String else { return }
+        
+        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
+        {
+            guard product.productIdentifier == productID else { continue }
+            
+            let l_price = Int(ceil(product.price.floatValue))
+            switch l_price
+            {
+            case 2:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 200
+                print("Buy ok 200 coin")
+                break
+            case 3:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 400
+                print("Buy ok 400 coin")
+                break
+            case 4:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 600
+                print("Buy ok 600 coin")
+                break
+            case 5:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 800
+                print("Buy ok 800 coin")
+                break
+            default:
+                print("Don't know this price")
+                break
+            }
+            
+            SoundController.ShareInstance.WinCoin()
+            m_lbl_coin.Shake()
+            m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+            m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
+            Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
+        }
+    }
+    
+    func CoinClick(sender: UIButton)
+    {
+        print("Coin click")
+        SoundController.ShareInstance.PlayClick()
+        
+        //view purchase background
+        var l_frm = self.view.frame
+        l_frm.origin = CGPointMake(0, 0)
+        let l_view = UIView(frame: l_frm)
+        l_view.backgroundColor = UIColor.init(white: 0.2, alpha: 0.8)
+        
+        //view purchase
+        var l_view_purchase_frm = CGRectMake(0, 0, 0, 0)
+        l_view_purchase_frm.size.width = ViewDesign.ShareInstance.WIDTH_PURCHASE
+        l_view_purchase_frm.size.height = 1.5 * l_view_purchase_frm.size.width
+        l_view_purchase_frm.origin.x = 0.5 * (SCREEN_WIDTH - l_view_purchase_frm.size.width)
+        l_view_purchase_frm.origin.y = 0.5 * (SCREEN_HEIGHT - l_view_purchase_frm.size.height)
+        let l_view_purchase = UIView(frame: l_view_purchase_frm)
+        l_view_purchase.backgroundColor = UIColor.darkGrayColor()
+        l_view_purchase.layer.borderColor = UIColor.whiteColor().CGColor
+        l_view_purchase.layer.borderWidth = 1.0/50 * l_view_purchase_frm.size.width
+        l_view_purchase.layer.cornerRadius = l_view_purchase.layer.borderWidth
+        
+        //label bonus
+        var l_lbl_bonus_frm = l_view_purchase.frame
+        let l_font = m_lbl_coin.font
+        l_lbl_bonus_frm.size.width = l_lbl_bonus_frm.size.width - 2 * l_view_purchase.layer.borderWidth
+        l_lbl_bonus_frm.size.height = HeightForText("Bonus! Make any purchase and deactivate the ads!", p_font: l_font, p_width: l_lbl_bonus_frm.size.width)
+        l_lbl_bonus_frm.origin = CGPointMake(l_view_purchase.layer.borderWidth, 2 * l_view_purchase.layer.borderWidth)
+        let l_lbl_bonus = UILabel(frame: l_lbl_bonus_frm)
+        l_lbl_bonus.text = "Bonus! Make any purchase and deactivate the ads!"
+        l_lbl_bonus.numberOfLines = 0
+        l_lbl_bonus.lineBreakMode = .ByWordWrapping
+        l_lbl_bonus.textAlignment = .Center
+        l_lbl_bonus.font = l_font
+        l_lbl_bonus.textColor = UIColor.whiteColor()
+        
+        //close
+        var l_btn_close_frm = CGRectMake(0, 0, 0, 0)
+        l_btn_close_frm.size.width = 1.0/6 * l_view_purchase.frame.size.width
+        l_btn_close_frm.size.height = l_btn_close_frm.size.width
+        l_btn_close_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_close_frm.size.width)
+        l_btn_close_frm.origin.y = l_view_purchase.frame.size.height - 1.5 * l_btn_close_frm.size.height
+        let m_btn_closepurchase = UIButton(frame: l_btn_close_frm)
+        m_btn_closepurchase.backgroundColor = UIColor.redColor()
+        m_btn_closepurchase.setTitle("x", forState: .Normal)
+        m_btn_closepurchase.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        m_btn_closepurchase.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
+        m_btn_closepurchase.layer.cornerRadius = 0.5 * l_btn_close_frm.size.width
+        m_btn_closepurchase.layer.borderColor = UIColor.whiteColor().CGColor
+        m_btn_closepurchase.layer.borderWidth = 1.0/40 * l_btn_close_frm.size.width
+        m_btn_closepurchase.addTarget(self, action: #selector(PlayViewController.CloseClick(_:)), forControlEvents: .TouchUpInside)
+        
+        
+        //2 dollar
+        let l_h = m_btn_closepurchase.frame.origin.y - l_lbl_bonus.frame.origin.y - l_lbl_bonus.frame.size.height
+        let l_btn_purchase_h = l_h * 1.0 / 5.75
+        var l_btn_frm = CGRectMake(0, 0, 0, 0)
+        l_btn_frm.size.height = l_btn_purchase_h
+        l_btn_frm.size.width = 3 * l_btn_frm.size.height
+        l_btn_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_frm.size.width)
+        l_btn_frm.origin.y = l_lbl_bonus.frame.origin.y + l_lbl_bonus.frame.size.height + 0.5 * l_btn_frm.size.height
+        let l_btn_2dollar = UIButton(frame: l_btn_frm)
+        l_btn_2dollar.setImage(UIImage(named: "2dollar"), forState: .Normal)
+        l_btn_2dollar.tag = 2
+        l_btn_2dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
+        //3 dollar
+        l_btn_frm.origin.y = l_btn_2dollar.frame.origin.y + 1.25 * l_btn_2dollar.frame.size.height
+        let l_btn_3dollar = UIButton(frame: l_btn_frm)
+        l_btn_3dollar.setImage(UIImage(named: "3dollar"), forState: .Normal)
+        l_btn_3dollar.tag = 3
+        l_btn_3dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
+        //4 dollar
+        l_btn_frm.origin.y = l_btn_3dollar.frame.origin.y + 1.25 * l_btn_3dollar.frame.size.height
+        let l_btn_4dollar = UIButton(frame: l_btn_frm)
+        l_btn_4dollar.setImage(UIImage(named: "4dollar"), forState: .Normal)
+        l_btn_4dollar.tag = 4
+        l_btn_4dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
+        //5 dollar
+        l_btn_frm.origin.y = l_btn_4dollar.frame.origin.y + 1.25 * l_btn_4dollar.frame.size.height
+        let l_btn_5dollar = UIButton(frame: l_btn_frm)
+        l_btn_5dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
+        l_btn_5dollar.tag = 5
+        l_btn_5dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
+        
+        
+        l_view_purchase.addSubview(l_btn_2dollar)
+        l_view_purchase.addSubview(l_btn_3dollar)
+        l_view_purchase.addSubview(l_btn_4dollar)
+        l_view_purchase.addSubview(l_btn_5dollar)
+        l_view_purchase.addSubview(m_btn_closepurchase)
+        l_view_purchase.addSubview(l_lbl_bonus)
+        
+        
+        l_view.addSubview(l_view_purchase)
+        
+        
+        UIView.animateWithDuration(0.5, animations: {
+            self.view.addSubview(l_view)
+        })
+    }
+    
+    func CloseClick(sender: UIButton)
+    {
+        UIView.animateWithDuration(0.5, animations: {
+            sender.superview?.superview?.removeFromSuperview()
+        })
+        
+    }
+    
+    
+    func GetCoin(sender: UIButton)
+    {
+        for l_product in PPCore.ShareInstance.m_products
+        {
+            if Int(ceil(l_product.price.floatValue)) == sender.tag
+            {
+                PPCore.ShareInstance.m_iaphelper.buyProduct(l_product)
+                break
+            }
+        }
+        
+    }
 
 }
