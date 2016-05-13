@@ -66,7 +66,7 @@ class ListMoreViewController: UIViewController, UICollectionViewDelegate, UIColl
         l_btn_home_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_home_frm.size.height)
         l_btn_home_frm.origin.x = 1.0/3 * l_btn_home_frm.size.width
         m_btn_home = UIButton(frame: l_btn_home_frm)
-        m_btn_home.setImage(UIImage(named: "btn_back"), forState: .Normal)
+        m_btn_home.setImage(UIImage(named: "btn_home"), forState: .Normal)
         m_btn_home.addTarget(self, action: #selector(ListPhotoViewController.HomeClick(_:)), forControlEvents: .TouchUpInside)
         
         

@@ -66,7 +66,7 @@ class HomeViewController: UIViewController
         self.m_view_3btn_social.frame = l_frm
         UIView.commitAnimations()
     
-        m_btn_more.pulseToSize(1.2, p_duration: 0.5, p_repeat: true)
+        m_btn_more.pulseToSize(1.1, p_duration: 0.6, p_repeat: true)
         
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
     }
@@ -106,21 +106,21 @@ class HomeViewController: UIViewController
         //title
         var l_lbl_level_frm = CGRectMake(0, 0, 0, 0)
         let l_font_title: UIFont = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[6], size: ViewDesign.ShareInstance.FONT_SIZE_HEADER)!
-        l_lbl_level_frm.size.width = WidthForText("PICTURE PUZZLE", p_font: l_font_title, p_heigh: m_view_header.frame.size.height)
+        l_lbl_level_frm.size.width = WidthForText(NAME_APP, p_font: l_font_title, p_heigh: m_view_header.frame.size.height)
         l_lbl_level_frm.size.height = m_btn_speaker.frame.size.height
         l_lbl_level_frm.origin.x = 1.0/2 * (m_view_header.frame.size.width - l_lbl_level_frm.size.width)
         l_lbl_level_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_lbl_level_frm.size.height)
         m_lbl_title = UILabel(frame: l_lbl_level_frm)
         m_lbl_title.textColor = UIColor.whiteColor()
         m_lbl_title.textAlignment = .Center
-        m_lbl_title.text = "PICTURE PUZZLE"
+        m_lbl_title.text = NAME_APP
         m_lbl_title.font = l_font_title
         
-        //coins
+        //btn coins
         var l_btn_coin_frm = m_btn_speaker.frame
-        l_btn_coin_frm.size.height = 0.5 * l_btn_coin_frm.size.height
-        l_btn_coin_frm.size.width = 2.5 * l_btn_coin_frm.size.height
-        l_btn_coin_frm.origin.x = m_view_header.frame.size.width - l_btn_coin_frm.size.width - 1.0/4 * l_btn_coin_frm.size.width
+        l_btn_coin_frm.size.height = 0.6 * l_btn_coin_frm.size.height
+        l_btn_coin_frm.size.width = 3 * l_btn_coin_frm.size.height
+        l_btn_coin_frm.origin.x = m_view_header.frame.size.width - l_btn_coin_frm.size.width - m_btn_speaker.frame.origin.x
         l_btn_coin_frm.origin.y = m_btn_speaker.frame.origin.y + m_btn_speaker.frame.size.height - l_btn_coin_frm.size.height
         m_btn_coin = UIButton(frame: l_btn_coin_frm)
         m_btn_coin.addTarget(self, action: #selector(HomeViewController.CoinClick(_:)), forControlEvents: .TouchUpInside)
@@ -130,14 +130,17 @@ class HomeViewController: UIViewController
         //title coin
         var l_lbl_coin_frm = m_btn_coin.frame
         let l_font_coin: UIFont = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_COIN)!
-        l_lbl_coin_frm.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: l_font_coin, p_heigh: l_lbl_coin_frm.size.height)
-        l_lbl_coin_frm.origin.x = m_btn_coin.frame.origin.x + 0.6 * m_btn_coin.frame.size.width - l_lbl_coin_frm.size.width
+        //l_lbl_coin_frm.size.width =  //WidthForText(String(PPCore.ShareInstance.m_coin), p_font: l_font_coin, p_heigh: l_lbl_coin_frm.size.height)
+        l_lbl_coin_frm.origin.x = 0 - 1.0/4 * l_lbl_coin_frm.size.width
+        l_lbl_coin_frm.origin.y = 0.1 * l_lbl_coin_frm.size.height
         
         m_lbl_coin = UILabel(frame: l_lbl_coin_frm)
         m_lbl_coin.textAlignment = .Right
         m_lbl_coin.font = l_font_coin
         m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+        
+        m_btn_coin.addSubview(m_lbl_coin)
         
         //subheader view
         var l_view_subheader_frm: CGRect = CGRectMake(0,0,0,0)
@@ -216,11 +219,12 @@ class HomeViewController: UIViewController
         l_btn_more_frm.origin.y = m_view_3btn_social.frame.origin.y + m_view_3btn_social.frame.size.height + m_btn_rate.frame.size.height
         m_btn_more = UIButton(frame: l_btn_more_frm)
         m_btn_more.layer.cornerRadius = 0.5 * l_btn_more_frm.size.height
-        m_btn_more.layer.borderColor = UIColor.whiteColor().CGColor
+        m_btn_more.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor//UIColor.whiteColor().CGColor
         m_btn_more.layer.borderWidth = 0.05 * l_btn_more_frm.size.height
         m_btn_more.clipsToBounds = true
-        m_btn_more.backgroundColor = ViewDesign.ShareInstance.COLOR_HEADER_BG
+        m_btn_more.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_BG
         m_btn_more.setTitle("More Free", forState: .Normal)
+        m_btn_more.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
         m_btn_more.addTarget(self, action: #selector(HomeViewController.MoreClick(_:)), forControlEvents: .TouchUpInside)
         m_btn_more.titleLabel?.font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[6], size: ViewDesign.ShareInstance.FONT_SIZE_HEADER)!
         
@@ -230,11 +234,12 @@ class HomeViewController: UIViewController
         l_btn_start_frm.origin.y = m_btn_more.frame.origin.y + m_btn_more.frame.size.height + m_btn_rate.frame.size.height
         m_btn_start = UIButton(frame: l_btn_start_frm)
         m_btn_start.layer.cornerRadius = 0.5 * l_btn_start_frm.size.height
-        m_btn_start.layer.borderColor = UIColor.whiteColor().CGColor
+        m_btn_start.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor//UIColor.whiteColor().CGColor
         m_btn_start.layer.borderWidth = 0.05 * l_btn_start_frm.size.height
         m_btn_start.clipsToBounds = true
-        m_btn_start.backgroundColor = ViewDesign.ShareInstance.COLOR_HEADER_BG
+        m_btn_start.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_BG
         m_btn_start.setTitle("Start", forState: .Normal)
+        m_btn_start.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
         m_btn_start.addTarget(self, action: #selector(HomeViewController.StartClick(_:)), forControlEvents: .TouchUpInside)
         m_btn_start.titleLabel?.font = m_btn_more.titleLabel?.font
         //
@@ -243,7 +248,7 @@ class HomeViewController: UIViewController
         m_view_header.addSubview(m_btn_speaker)
         //m_view_header.addSubview(m_btn_ads)
         m_view_header.addSubview(m_btn_coin)
-        m_view_header.addSubview(m_lbl_coin)
+        //m_view_header.addSubview(m_lbl_coin)
         m_view_header.addSubview(m_lbl_title)
         
         m_view_body.addSubview(m_view_subheader)
@@ -332,6 +337,7 @@ extension HomeViewController
             m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
             m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
             Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
+            Configuration.ShareInstance.WriteAdsMode(false)
         }
     }
     
@@ -374,7 +380,7 @@ extension HomeViewController
         
         //close
         var l_btn_close_frm = CGRectMake(0, 0, 0, 0)
-        l_btn_close_frm.size.width = 1.0/6 * l_view_purchase.frame.size.width
+        l_btn_close_frm.size.width = 1.0/7 * l_view_purchase.frame.size.width
         l_btn_close_frm.size.height = l_btn_close_frm.size.width
         l_btn_close_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_close_frm.size.width)
         l_btn_close_frm.origin.y = l_view_purchase.frame.size.height - 1.5 * l_btn_close_frm.size.height
@@ -394,7 +400,7 @@ extension HomeViewController
         let l_btn_purchase_h = l_h * 1.0 / 5.75
         var l_btn_frm = CGRectMake(0, 0, 0, 0)
         l_btn_frm.size.height = l_btn_purchase_h
-        l_btn_frm.size.width = 3 * l_btn_frm.size.height
+        l_btn_frm.size.width = 4 * l_btn_frm.size.height
         l_btn_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_frm.size.width)
         l_btn_frm.origin.y = l_lbl_bonus.frame.origin.y + l_lbl_bonus.frame.size.height + 0.5 * l_btn_frm.size.height
         let l_btn_2dollar = UIButton(frame: l_btn_frm)

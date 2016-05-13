@@ -27,8 +27,8 @@ class MoreCell: UICollectionViewCell
     
     func SetupView() -> Void
     {
-        self.backgroundColor = UIColor.init(white: 0.3, alpha: 1)
-        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
+        self.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_BG
+        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor
         self.layer.borderWidth = 1.0;
         self.layer.shadowColor = UIColor.blackColor().CGColor;
         self.layer.shadowRadius = 3.0;
@@ -42,6 +42,12 @@ class MoreCell: UICollectionViewCell
         self.m_imgview_photo = UIImageView(frame: CGRectMake(l_space, l_space, self.bounds.width - 2 * l_space, self.bounds.width - 2 * l_space))
         self.m_imgview_photo.contentMode = .ScaleAspectFill
         self.m_imgview_photo.clipsToBounds = true;
+        self.m_imgview_photo.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor
+        self.m_imgview_photo.layer.borderWidth = 1.0;
+        self.m_imgview_photo.layer.shadowColor = UIColor.blackColor().CGColor;
+        self.m_imgview_photo.layer.shadowRadius = 3.0;
+        self.m_imgview_photo.layer.shadowOffset = CGSizeMake(0.0, 2.0);
+        self.m_imgview_photo.layer.shadowOpacity = 0.5;
         
         //name 
         var l_name_frm = CGRectMake(0, 0, 0, 0)

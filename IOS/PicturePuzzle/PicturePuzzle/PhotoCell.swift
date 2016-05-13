@@ -28,7 +28,7 @@ class PhotoCell: UICollectionViewCell
     func SetupView() -> Void
     {
         self.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
-        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
+        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
         self.layer.borderWidth = 2.0;
         self.layer.shadowColor = UIColor.blackColor().CGColor;
         self.layer.shadowRadius = 3.0;
@@ -44,7 +44,7 @@ class PhotoCell: UICollectionViewCell
         
         //imgv lock
         var l_frm = CGRectMake(0,0 , 0, 0)
-        l_frm.size.width = 1.0/4 * self.contentView.frame.size.width
+        l_frm.size.width = 1.0/5 * self.contentView.frame.size.width
         l_frm.size.height = l_frm.size.width
         l_frm.origin.x = self.contentView.frame.size.width - l_frm.size.width
         l_frm.origin.y = self.contentView.frame.size.height - l_frm.size.height
@@ -52,7 +52,7 @@ class PhotoCell: UICollectionViewCell
         
         //btn coin
         var l_btn_coin_frm = m_imgview_photo.frame
-        l_btn_coin_frm.size.height = 0.3 * l_btn_coin_frm.size.width
+        l_btn_coin_frm.size.height = 1.0/3 * l_btn_coin_frm.size.width
         l_btn_coin_frm.origin.x = 0
         l_btn_coin_frm.origin.y = m_imgview_photo.frame.size.height - l_btn_coin_frm.size.height
         m_btn_coin  = UIButton(frame: l_btn_coin_frm)
@@ -79,9 +79,9 @@ class PhotoCell: UICollectionViewCell
         
         if p_photo.m_completed == PHOTO_STATUS.PHOTO_LOCK
         {
-            self.m_imgview_photo.alpha = 0.5
-            
+            self.m_imgview_photo.alpha = 0.4
             self.m_imgview_lock.image = UIImage(named: "img_lock")
+            self.m_imgview_lock.hidden = false
             m_imgview_lock.frame.origin.x = 0.5 * (self.contentView.frame.size.width - m_imgview_lock.frame.size.width)
             m_imgview_lock.frame.origin.y = 0.5 * (self.contentView.frame.size.height - m_imgview_lock.frame.size.height)
             
@@ -103,6 +103,8 @@ class PhotoCell: UICollectionViewCell
         
         if (p_photo.m_is_choosing == true)
         {
+            self.m_imgview_lock.hidden = true
+            self.m_imgview_photo.alpha = 1
             UIView.animateWithDuration(0.5, animations: {
                 self.m_btn_coin.hidden = false
                 self.m_btn_coin.tag = p_photo.m_id

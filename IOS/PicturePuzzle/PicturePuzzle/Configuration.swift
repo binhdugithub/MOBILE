@@ -11,7 +11,7 @@ import GameKit
 class Configuration
 {
     static let ShareInstance = Configuration()
-  
+    var m_isads: Bool! = true
     
     private init()
     {
@@ -51,12 +51,23 @@ class Configuration
           if let l_coin = dicData?.objectForKey("coin") as? Int
           {
             PPCore.ShareInstance.m_coin = l_coin
+            print("mycoinis: \(PPCore.ShareInstance.m_coin)")
           }
           else
           {
             PPCore.ShareInstance.m_coin = 100
           }
           
+            if let l_ismuted = dicData?.objectForKey("isads") as? Bool
+            {
+                m_isads = l_ismuted
+                //m_isads = true
+            }
+            else
+            {
+                m_isads = true
+            }
+            
         }
         else
         {
@@ -100,6 +111,24 @@ class Configuration
             
         }
     }
+    
+    func WriteAdsMode(p_ads: Bool)
+    {
+        let pathData: String = GetDocPathFile(FILE_CONFIG)
+        let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
+        if let l_dicData = dicData
+        {
+            l_dicData.setObject(p_ads, forKey:"isads")
+            l_dicData.writeToFile(pathData, atomically:true)
+            m_isads = p_ads
+        }
+        else
+        {
+            NSLog("Load data plist info fail !!")
+            
+        }
+    }
+
     
     //load list photo
     func LoadListPhoto() -> Void

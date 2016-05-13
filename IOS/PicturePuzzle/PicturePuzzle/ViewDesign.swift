@@ -9,9 +9,31 @@
 import Foundation
 import UIKit
 
+let NAME_APP = String("ANIMAL PUZZLE")
 class ViewDesign
 {
     static let ShareInstance = ViewDesign()
+    
+//    let COLOR_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
+//    let COLOR_HEADER_BG = UIColor(red: 102.0/255, green: 205.0/255, blue: 204.0/255, alpha: 1)
+//    let COLOR_SUBHEADER_BG = UIColor(red: 123.0/255, green: 86.0/255, blue: 79.0/255, alpha: 1)
+//    let COLOR_FOOTER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
+//    let COLOR_BODY_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
+//    let COLOR_COIN_TITLE = UIColor(red: 200.0/255, green: 81.0/255, blue: 2.0/255, alpha: 1)
+//    let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.7)
+    
+    let COLOR_BG = UIColor(red: 208/255.0, green: 219/255.0, blue: 203/255.0, alpha: 1)
+    let COLOR_HEADER_BG = UIColor(red: 116/255.0, green: 158/255.0, blue: 170/255.0, alpha: 1)
+    let COLOR_SUBHEADER_BG = UIColor(red: 71/255.0, green: 61/255.0, blue: 72/255.0, alpha: 1)
+    let COLOR_BTN_BG = UIColor(red: 139/255.0, green: 87/255.0, blue: 91/255.0, alpha: 1)
+    let COLOR_BTN_BORDER = UIColor(red: 232/255.0, green: 189/255.0, blue: 196/255.0, alpha: 1)
+    let COLOR_FOOTER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
+    //let COLOR_BODY_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
+    let COLOR_COIN_TITLE = UIColor(red: 0, green: 118/255.0, blue: 163/255.0, alpha: 1)
+    let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.7)
+    let COLOR_TEXT_WIN = UIColor(red: 235/255.0, green: 222/255.0, blue: 9/255.0, alpha: 1)
+    
+    
     var HEIGHT_ADS: CGFloat  = 60
     var HEIGHT_HEADER: CGFloat = 1.0/13 * SCREEN_HEIGHT
     var HEIGHT_SUBHEADER: CGFloat = 0
@@ -20,14 +42,6 @@ class ViewDesign
     var WIDTH_VIEW_PHOTO = 19.0/20 * SCREEN_WIDTH //18.0/20 * SCREEN_WIDTH
     var WIDTH_BTN_NEXT = 1.0/5 * SCREEN_WIDTH
     var WIDTH_PURCHASE = 0.7 * SCREEN_WIDTH
-    
-    let COLOR_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
-    let COLOR_HEADER_BG = UIColor(red: 102.0/255, green: 205.0/255, blue: 204.0/255, alpha: 1)
-    let COLOR_SUBHEADER_BG = UIColor(red: 123.0/255, green: 86.0/255, blue: 79.0/255, alpha: 1)
-    let COLOR_FOOTER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
-    let COLOR_BODY_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
-    let COLOR_COIN_TITLE = UIColor(red: 200.0/255, green: 81.0/255, blue: 2.0/255, alpha: 1)
-    let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.9)
   
     var FONT_NAMES  = ["Avenir-Light", "AvenirNext-Regular","AvenirNext-Bold", "Chalkduster", "Zapfino", "HelveticaNeue-Bold", "Noteworthy-Bold", "Phosphate"]
     var FONT_SIZE_HEADER: CGFloat = 16

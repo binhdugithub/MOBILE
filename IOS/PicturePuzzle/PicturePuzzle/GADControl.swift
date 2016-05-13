@@ -57,9 +57,9 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         }
     }
   
-    func ShowBannerView(p_controller: UIViewController?, p_ads_b: UIView) -> Bool
+    func ShowBannerView(p_controller: UIViewController?, p_ads_b: UIView!) -> Bool
     {
-      if p_controller != nil
+      if p_controller != nil && p_ads_b != nil
       {
         if m_IsLoaded
         {

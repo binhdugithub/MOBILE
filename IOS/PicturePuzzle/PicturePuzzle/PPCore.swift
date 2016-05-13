@@ -15,7 +15,20 @@ class PPCore
     static let ShareInstance = PPCore()
     var m_ArrayPhoto = [Photo]()
     var m_complete_photo = false
-    var m_coin: Int!
+    var m_coin: Int = 0
+    {
+        didSet(newValue)
+        {
+            if self.m_coin <= 0
+            {
+                self.m_coin = 0
+            }
+            
+        }
+        
+        
+    }
+    
     var m_level: Int!
     var m_array_indexpath_reload: [NSIndexPath]!
     var m_ArrayApp = [App]()
