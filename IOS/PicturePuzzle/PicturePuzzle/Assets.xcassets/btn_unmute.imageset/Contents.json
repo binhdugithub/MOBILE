@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "btn_unute3.png",
+      "filename" : "btn_unmute.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "btn_unute3-1.png",
+      "filename" : "btn_unmute-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "btn_unute3-2.png",
+      "filename" : "btn_unmute-2.png",
       "scale" : "3x"
     }
   ],

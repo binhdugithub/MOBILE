@@ -86,6 +86,8 @@ class PlayViewController: UIViewController
         
         SetupView()
         GADMasterViewController.ShareInstance.ShowBannerView(self, p_ads_b: self.m_view_footer)
+        
+        
     }
     
     
@@ -219,6 +221,7 @@ class PlayViewController: UIViewController
     func ShowFullPhoto() -> Void
     {
         var l_frm = m_view_tiles_photo.frame
+         m_imgv_full_photo.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
         l_frm.origin = CGPointMake(0, 0)
         self.m_imgv_full_photo.hidden = false
         m_view_tiles_photo.bringSubviewToFront(m_imgv_full_photo)
@@ -314,7 +317,7 @@ class PlayViewController: UIViewController
         l_lbl_level_frm.origin.x = 1.0/2 * (m_view_header.frame.size.width - l_lbl_level_frm.size.width)
         l_lbl_level_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_lbl_level_frm.size.height)
         m_lbl_title = UILabel(frame: l_lbl_level_frm)
-        m_lbl_title.textColor = UIColor.whiteColor()
+        m_lbl_title.textColor = ViewDesign.ShareInstance.COLOR_TEXT_HEADER
         m_lbl_title.textAlignment = .Center
         m_lbl_title.text = NAME_APP
         m_lbl_title.font = l_font_title
@@ -340,7 +343,7 @@ class PlayViewController: UIViewController
         m_lbl_coin = UILabel(frame: l_lbl_coin_frm)
         m_lbl_coin.textAlignment = .Right
         m_lbl_coin.font = l_font_coin
-        m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
+        m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
         
         m_btn_coin.addSubview(m_lbl_coin)
@@ -408,7 +411,7 @@ class PlayViewController: UIViewController
         l_view_tiles_photo_frm.origin.x = 1.0/2 * (m_view_body.frame.size.width - l_view_tiles_photo_frm.size.width)
         l_view_tiles_photo_frm.origin.y = 0
         m_view_tiles_photo = UIView(frame: l_view_tiles_photo_frm)
-        m_view_tiles_photo.backgroundColor = UIColor.darkGrayColor()//ViewDesign.ShareInstance.COLOR_HEADER_BG
+        m_view_tiles_photo.backgroundColor = ViewDesign.ShareInstance.COLOR_CELL_BG
         
         let l_size: Int = NUMBER_V_ITEM * NUMBER_H_ITEM;
         let imgViewWidth: CGFloat = m_view_tiles_photo.frame.size.width / CGFloat(NUMBER_H_ITEM);
@@ -452,8 +455,7 @@ class PlayViewController: UIViewController
             frmImgView.origin.y = 0.5 * (self.m_view_tiles_photo.frame.size.height - frmImgView.size.height)
             let l_ImgView = UIImageView(frame: frmImgView)
             l_ImgView.layer.borderWidth = 1
-            l_ImgView.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
-            //l_ImgView.backgroundColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG
+            l_ImgView.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
             l_ImgView.userInteractionEnabled = true;
             l_ImgView.multipleTouchEnabled = false;
             let l_Pan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(PlayViewController.HandlePan(_:)))
@@ -564,7 +566,7 @@ class PlayViewController: UIViewController
             {
                 //SoundController.ShareInstance.PlaySwap()
                 self.m_touched_frm = sender.view?.frame
-                sender.view?.layer.borderColor = UIColor.whiteColor().CGColor//ViewDesign.ShareInstance.COLOR_HEADER_BG.CGColor
+                //sender.view?.layer.borderColor = UIColor.whiteColor().CGColor//ViewDesign.ShareInstance.COLOR_HEADER_BG.CGColor
                 
                 for l_ImgView in self.m_array_tiles
                 {
@@ -622,11 +624,11 @@ class PlayViewController: UIViewController
                             continue
                         }
                         
-                        l_tempIcon.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
+                        l_tempIcon.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
                     }
                     
-                    l_destination.layer.borderColor = UIColor.whiteColor().CGColor//ViewDesign.ShareInstance.COLOR_HEADER_BG.CGColor
-                    sender.view?.layer.borderColor  = UIColor.whiteColor().CGColor//ViewDesign.ShareInstance.COLOR_HEADER_BG.CGColor
+                    l_destination.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
+                    sender.view?.layer.borderColor  = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
                 }
     
             }
@@ -786,14 +788,21 @@ class PlayViewController: UIViewController
         l_lbl_gamewin.font = l_font
         l_lbl_gamewin.text = p_iswin == true ? String("Game win:") : String("Game over:")
         l_lbl_gamewin.textAlignment = .Left
-        l_lbl_gamewin.textColor = UIColor.whiteColor()
+        l_lbl_gamewin.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
         
         let l_0 = UILabel(frame: l_frm)
         l_0.frame.origin.x = l_lbl_gamewin.frame.origin.x + l_lbl_gamewin.frame.size.width
         l_0.textAlignment = .Right
         l_0.textColor = ViewDesign.ShareInstance.COLOR_TEXT_WIN
         l_0.font = l_lbl_gamewin.font
-        l_0.text = p_iswin == true ? String(COIN_GAME_WIN) : "-" + String(COIN_GAME_OVER)
+        l_0.text = p_iswin == true ? "+" + String(COIN_GAME_WIN) : "-" + String(COIN_GAME_OVER)
+        
+        let l_0_0 = UIImageView(frame: CGRectMake(l_0.frame.origin.x + l_0.frame.size.width,
+                                l_0.frame.origin.y,
+                                l_frm.size.height,
+                                l_frm.size.height))
+        l_0_0.image = UIImage(named: "img_wincoin")
+        print(l_0_0.frame)
         
         //label hine one
         l_frm.origin.y =  l_lbl_gamewin.frame.origin.y + l_lbl_gamewin.frame.size.height * 1.2
@@ -824,7 +833,7 @@ class PlayViewController: UIViewController
         l_2.textAlignment = .Right
         l_2.textColor = l_0.textColor
         l_2.font = l_lbl_hintone.font
-        l_2.text = (m_number_hintfull > 0 ? "yes" : "no")
+        l_2.text = (m_number_hintfull > 0 ? "1" : "0")
         
         //label corrected
         l_frm.origin.y = l_lbl_hintfull.frame.origin.y + l_lbl_hintfull.frame.size.height * 1.2
@@ -859,7 +868,7 @@ class PlayViewController: UIViewController
         l_imgv_pre_frm.origin.y = l_lbl_corrected.frame.origin.y + l_lbl_corrected.frame.size.height + 0.5 * (l_view_gameend.frame.size.height - l_imgv_pre_frm.size.height - l_lbl_corrected.frame.origin.y - l_lbl_corrected.frame.size.height)
         l_imgv_pre = UIButton(frame: l_imgv_pre_frm)
         
-        l_imgv_pre.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
+        l_imgv_pre.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
         l_imgv_pre.layer.borderWidth = 2.0;
         l_imgv_pre.layer.shadowColor = UIColor.blackColor().CGColor;
         l_imgv_pre.layer.shadowRadius = 3.0;
@@ -879,12 +888,12 @@ class PlayViewController: UIViewController
         
         l_font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_NEXT)!
         var l_lbl_pre_frm = l_imgv_pre.frame
-        l_lbl_pre_frm.size.height = HeightForText("Pre", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
+        l_lbl_pre_frm.size.height = HeightForText("Prev:", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
         l_lbl_pre_frm.origin.y  = l_imgv_pre.frame.origin.y + l_imgv_pre.frame.size.height
         l_lbl_pre = UILabel(frame: l_lbl_pre_frm)
         l_lbl_pre.font = l_font
-        l_lbl_pre.textColor = UIColor.whiteColor()
-        l_lbl_pre.text = "Pre"
+        l_lbl_pre.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
+        l_lbl_pre.text = "Prev:"
         l_lbl_pre.textAlignment = .Center
         
         
@@ -893,9 +902,9 @@ class PlayViewController: UIViewController
         l_imgv_replay_frm.origin.x = l_imgv_pre.frame.origin.x + l_imgv_pre.frame.size.width + 0.5 * l_imgv_pre.frame.size.width
         l_imgv_replay = UIButton(frame: l_imgv_replay_frm)
         
-        l_imgv_replay.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
+        l_imgv_replay.layer.borderColor = l_imgv_pre.layer.borderColor
         l_imgv_replay.layer.borderWidth = 2.0;
-        l_imgv_replay.layer.shadowColor = UIColor.blackColor().CGColor;
+        l_imgv_replay.layer.shadowColor = l_imgv_pre.layer.shadowColor
         l_imgv_replay.layer.shadowRadius = 3.0;
         l_imgv_replay.layer.shadowOffset = CGSizeMake(0.0, 2.0);
         l_imgv_replay.layer.shadowOpacity = 0.5;
@@ -907,28 +916,28 @@ class PlayViewController: UIViewController
         self.InitImgvLock(l_imgv_replay, p_level: PPCore.ShareInstance.m_level)
         
         var l_lbl_replay_frm = l_imgv_replay.frame
-        l_lbl_replay_frm.size.height = HeightForText("Replay", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
+        l_lbl_replay_frm.size.height = HeightForText("Replay:", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
         l_lbl_replay_frm.origin.y  = l_imgv_replay.frame.origin.y + l_imgv_replay.frame.size.height
         m_lbl_replay = UILabel(frame: l_lbl_replay_frm)
         m_lbl_replay.font = l_font
-        m_lbl_replay.textColor = UIColor.whiteColor()
-        m_lbl_replay.text = "Replay"
+        m_lbl_replay.textColor = l_lbl_pre.textColor
+        m_lbl_replay.text = "Replay:"
         m_lbl_replay.textAlignment = .Center
         
         //next
         var l_imgv_next_frm = l_imgv_replay.frame
         l_imgv_next_frm.origin.x = l_imgv_replay.frame.origin.x + l_imgv_replay.frame.size.width + 0.5 * l_imgv_replay.frame.size.width
         l_imgv_next = UIButton(frame: l_imgv_next_frm)
-        l_imgv_next.layer.borderColor = ViewDesign.ShareInstance.COLOR_SUBHEADER_BG.CGColor
-        l_imgv_next.layer.borderWidth = 2.0;
-        l_imgv_next.layer.shadowColor = UIColor.blackColor().CGColor;
-        l_imgv_next.layer.shadowRadius = 3.0;
+        l_imgv_next.layer.borderColor = l_imgv_pre.layer.borderColor
+        l_imgv_next.layer.borderWidth = 2.0
+        l_imgv_next.layer.shadowColor = l_imgv_pre.layer.shadowColor
+        l_imgv_next.layer.shadowRadius = 3.0
         l_imgv_next.layer.shadowOffset = CGSizeMake(0.0, 2.0);
-        l_imgv_next.layer.shadowOpacity = 0.5;
-        l_imgv_next.layer.rasterizationScale = UIScreen.mainScreen().scale;
+        l_imgv_next.layer.shadowOpacity = 0.5
+        l_imgv_next.layer.rasterizationScale = UIScreen.mainScreen().scale
         l_imgv_next.layer.shouldRasterize = true;
         l_level = PPCore.ShareInstance.m_level + 1
-        if l_level <= PPCore.ShareInstance.m_ArrayPhoto.count
+        if l_level <= PPCore.ShareInstance.m_ArrayPhoto.count - 1
         {
             l_imgv_next.setImage(UIImage(named: PPCore.ShareInstance.m_ArrayPhoto[l_level].m_name), forState: .Normal)
             l_imgv_next.addTarget(self, action: #selector(PlayViewController.XClick(_:)), forControlEvents: .TouchUpInside)
@@ -937,17 +946,18 @@ class PlayViewController: UIViewController
         }
         
         var l_lbl_next_frm = l_imgv_next.frame
-        l_lbl_next_frm.size.height = HeightForText("Next", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
+        l_lbl_next_frm.size.height = HeightForText("Next:", p_font: l_font, p_width: l_lbl_pre_frm.size.width)
         l_lbl_next_frm.origin.y  = l_imgv_next.frame.origin.y + l_imgv_next.frame.size.height
         l_lbl_next = UILabel(frame: l_lbl_next_frm)
         l_lbl_next.font = l_font
-        l_lbl_next.textColor = UIColor.whiteColor()
-        l_lbl_next.text = "Next"
+        l_lbl_next.textColor = l_lbl_pre.textColor
+        l_lbl_next.text = "Next:"
         l_lbl_next.textAlignment = .Center
 
         //view photo game end
         l_view_gameend.addSubview(l_lbl_gamewin)
         l_view_gameend.addSubview(l_0)
+        l_view_gameend.addSubview(l_0_0)
         l_view_gameend.addSubview(l_lbl_hintone)
         l_view_gameend.addSubview(l_1)
         l_view_gameend.addSubview(l_lbl_hintfull)
@@ -966,19 +976,39 @@ class PlayViewController: UIViewController
         l_imgv_replay.Shake()
         l_imgv_next.Shake()
         
+        if (p_iswin)
+        {
+//            self.view.layer.addSublayer(
+//                animatedLineFrom(CGPoint(x: 160,y: 550), to: l_view_gameend.center)
+//            )
+
+            delay(seconds: 1.0, completion: {
+                l_view_gameend.layer.addSublayer(firework1(at: l_2.frame.origin))
+            })
+            
+//            delay(seconds: 2.0, completion: {
+//                l_view_gameend.layer.addSublayer(firework2(at: l_2.frame.origin))
+//            })
+            
+        }
+        
         self.view.addSubview(l_view_gameend)
+        
+       
     }
     
     func GameOver() -> Void
     {
         print("Game over")
-        SoundController.ShareInstance.PlayGameOver()
+        
         self.m_status_game = STATUSGAME.GAMEOVER
         PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin - COIN_GAME_OVER
         
         Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
         self.StopTimer()
         self.ShowGameEnd(false)
+        
+        SoundController.ShareInstance.PlayGameOver()
     }
     
     func GameWin() -> Void
@@ -992,13 +1022,15 @@ class PlayViewController: UIViewController
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
         
         self.StopTimer()
-        self.UIGetWinCoin()
+        //self.UIGetWinCoin()
         
         PPCore.ShareInstance.m_ArrayPhoto[PPCore.ShareInstance.m_level].m_completed = PHOTO_STATUS.PHOTO_COMPLETED
         Configuration.ShareInstance.WriteComplete(PPCore.ShareInstance.m_level, p_completed: PHOTO_STATUS.PHOTO_COMPLETED.rawValue)
         
-        self.ShowGameEnd(false)
+        self.ShowGameEnd(true)
         self.ShowFullPhoto()
+        
+        SoundController.ShareInstance.PlayCongratulation()
     }
     
     func StopTimer()
@@ -1082,6 +1114,7 @@ class PlayViewController: UIViewController
         {
             PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + COIN_BONUS
             m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+            m_btn_coin.Shake()
         }
         else
         {
@@ -1092,7 +1125,7 @@ class PlayViewController: UIViewController
     
     func HintOneClick(sender: UIButton)
     {
-        if (m_current_time > MAX_TIME || m_status_game != STATUSGAME.PLAYING)
+        if (m_current_time >= MAX_TIME || m_status_game != STATUSGAME.PLAYING)
         {
             return
         }
@@ -1146,7 +1179,7 @@ class PlayViewController: UIViewController
                     
                     if IsCompleted()
                     {
-                        if (m_current_time < MAX_TIME)
+                        if (m_current_time <= MAX_TIME)
                         {
                             self.GameWin()
                         }
@@ -1327,7 +1360,7 @@ class PlayViewController: UIViewController
 
         toastLabel.font = l_font
         toastLabel.backgroundColor = UIColor.blackColor()
-        toastLabel.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
+        toastLabel.textColor = UIColor.whiteColor()
         toastLabel.textAlignment = NSTextAlignment.Center;
         self.m_view_body.addSubview(toastLabel)
         toastLabel.text = p_title
@@ -1378,9 +1411,9 @@ extension PlayViewController
             }
             
             SoundController.ShareInstance.WinCoin()
-            m_lbl_coin.Shake()
+            m_btn_coin.Shake()
             m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
-            m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
+            //m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
             Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
             Configuration.ShareInstance.WriteAdsMode(false)
             
@@ -1396,7 +1429,7 @@ extension PlayViewController
         var l_frm = self.view.frame
         l_frm.origin = CGPointMake(0, 0)
         let l_view = UIView(frame: l_frm)
-        l_view.backgroundColor = UIColor.init(white: 0.2, alpha: 0.8)
+        l_view.backgroundColor = ViewDesign.ShareInstance.COLOR_BG_WIN
         
         //view purchase
         var l_view_purchase_frm = CGRectMake(0, 0, 0, 0)
@@ -1405,17 +1438,17 @@ extension PlayViewController
         l_view_purchase_frm.origin.x = 0.5 * (SCREEN_WIDTH - l_view_purchase_frm.size.width)
         l_view_purchase_frm.origin.y = 0.5 * (SCREEN_HEIGHT - l_view_purchase_frm.size.height)
         let l_view_purchase = UIView(frame: l_view_purchase_frm)
-        l_view_purchase.backgroundColor = UIColor.darkGrayColor()
-        l_view_purchase.layer.borderColor = UIColor.whiteColor().CGColor
-        l_view_purchase.layer.borderWidth = 1.0/50 * l_view_purchase_frm.size.width
+        l_view_purchase.backgroundColor = ViewDesign.ShareInstance.COLOR_CELL_BG
+        l_view_purchase.layer.borderColor = ViewDesign.ShareInstance.COLOR_BG.CGColor
+        l_view_purchase.layer.borderWidth = 1.0/60 * l_view_purchase_frm.size.width
         l_view_purchase.layer.cornerRadius = l_view_purchase.layer.borderWidth
         
         //label bonus
         var l_lbl_bonus_frm = l_view_purchase.frame
         let l_font = m_lbl_coin.font
-        l_lbl_bonus_frm.size.width = l_lbl_bonus_frm.size.width - 2 * l_view_purchase.layer.borderWidth
+        l_lbl_bonus_frm.size.width = l_lbl_bonus_frm.size.width - 0.2 * l_view_purchase.frame.size.width
         l_lbl_bonus_frm.size.height = HeightForText("Bonus! Make any purchase and deactivate the ads!", p_font: l_font, p_width: l_lbl_bonus_frm.size.width)
-        l_lbl_bonus_frm.origin = CGPointMake(l_view_purchase.layer.borderWidth, 2 * l_view_purchase.layer.borderWidth)
+        l_lbl_bonus_frm.origin = CGPointMake(0.1 * l_view_purchase.frame.size.width, 0.1 * l_view_purchase.frame.size.width)
         let l_lbl_bonus = UILabel(frame: l_lbl_bonus_frm)
         l_lbl_bonus.text = "Bonus! Make any purchase and deactivate the ads!"
         l_lbl_bonus.numberOfLines = 0
@@ -1431,12 +1464,12 @@ extension PlayViewController
         l_btn_close_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_close_frm.size.width)
         l_btn_close_frm.origin.y = l_view_purchase.frame.size.height - 1.5 * l_btn_close_frm.size.height
         let m_btn_closepurchase = UIButton(frame: l_btn_close_frm)
-        m_btn_closepurchase.backgroundColor = UIColor.redColor()
+        m_btn_closepurchase.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_MORE_BG
         m_btn_closepurchase.setTitle("x", forState: .Normal)
         m_btn_closepurchase.setTitleColor(UIColor.blackColor(), forState: .Normal)
         m_btn_closepurchase.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
         m_btn_closepurchase.layer.cornerRadius = 0.5 * l_btn_close_frm.size.width
-        m_btn_closepurchase.layer.borderColor = UIColor.whiteColor().CGColor
+        m_btn_closepurchase.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_MORE_BORDER.CGColor
         m_btn_closepurchase.layer.borderWidth = 1.0/40 * l_btn_close_frm.size.width
         m_btn_closepurchase.addTarget(self, action: #selector(PlayViewController.CloseClick(_:)), forControlEvents: .TouchUpInside)
         
@@ -1454,25 +1487,25 @@ extension PlayViewController
         l_btn_2dollar.tag = 2
         l_btn_2dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //3 dollar
+        //5 dollar
         l_btn_frm.origin.y = l_btn_2dollar.frame.origin.y + 1.25 * l_btn_2dollar.frame.size.height
         let l_btn_3dollar = UIButton(frame: l_btn_frm)
-        l_btn_3dollar.setImage(UIImage(named: "3dollar"), forState: .Normal)
-        l_btn_3dollar.tag = 3
+        l_btn_3dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
+        l_btn_3dollar.tag = 5
         l_btn_3dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //4 dollar
+        //10 dollar
         l_btn_frm.origin.y = l_btn_3dollar.frame.origin.y + 1.25 * l_btn_3dollar.frame.size.height
         let l_btn_4dollar = UIButton(frame: l_btn_frm)
-        l_btn_4dollar.setImage(UIImage(named: "4dollar"), forState: .Normal)
-        l_btn_4dollar.tag = 4
+        l_btn_4dollar.setImage(UIImage(named: "10dollar"), forState: .Normal)
+        l_btn_4dollar.tag = 10
         l_btn_4dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //5 dollar
+        //20 dollar
         l_btn_frm.origin.y = l_btn_4dollar.frame.origin.y + 1.25 * l_btn_4dollar.frame.size.height
         let l_btn_5dollar = UIButton(frame: l_btn_frm)
-        l_btn_5dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
-        l_btn_5dollar.tag = 5
+        l_btn_5dollar.setImage(UIImage(named: "20dollar"), forState: .Normal)
+        l_btn_5dollar.tag = 20
         l_btn_5dollar.addTarget(self, action: #selector(PlayViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
         
@@ -1513,5 +1546,6 @@ extension PlayViewController
         }
         
     }
+
 
 }

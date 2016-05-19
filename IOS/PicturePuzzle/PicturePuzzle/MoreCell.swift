@@ -27,8 +27,8 @@ class MoreCell: UICollectionViewCell
     
     func SetupView() -> Void
     {
-        self.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_BG
-        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor
+        self.backgroundColor = ViewDesign.ShareInstance.COLOR_CELL_BG
+        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
         self.layer.borderWidth = 1.0;
         self.layer.shadowColor = UIColor.blackColor().CGColor;
         self.layer.shadowRadius = 3.0;
@@ -42,7 +42,7 @@ class MoreCell: UICollectionViewCell
         self.m_imgview_photo = UIImageView(frame: CGRectMake(l_space, l_space, self.bounds.width - 2 * l_space, self.bounds.width - 2 * l_space))
         self.m_imgview_photo.contentMode = .ScaleAspectFill
         self.m_imgview_photo.clipsToBounds = true;
-        self.m_imgview_photo.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BORDER.CGColor
+        self.m_imgview_photo.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
         self.m_imgview_photo.layer.borderWidth = 1.0;
         self.m_imgview_photo.layer.shadowColor = UIColor.blackColor().CGColor;
         self.m_imgview_photo.layer.shadowRadius = 3.0;
@@ -56,7 +56,7 @@ class MoreCell: UICollectionViewCell
         l_name_frm.origin.x = 5
         l_name_frm.origin.y = m_imgview_photo.frame.origin.y + m_imgview_photo.frame.size.height
         m_lbl_name = UILabel(frame: l_name_frm)
-        m_lbl_name.textColor = UIColor.whiteColor()
+        m_lbl_name.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
         m_lbl_name.textAlignment = .Center
         m_lbl_name.font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_COIN)!
         m_lbl_name.numberOfLines = 2

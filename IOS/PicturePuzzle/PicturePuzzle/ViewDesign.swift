@@ -22,26 +22,44 @@ class ViewDesign
 //    let COLOR_COIN_TITLE = UIColor(red: 200.0/255, green: 81.0/255, blue: 2.0/255, alpha: 1)
 //    let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.7)
     
-    let COLOR_BG = UIColor(red: 208/255.0, green: 219/255.0, blue: 203/255.0, alpha: 1)
-    let COLOR_HEADER_BG = UIColor(red: 116/255.0, green: 158/255.0, blue: 170/255.0, alpha: 1)
-    let COLOR_SUBHEADER_BG = UIColor(red: 71/255.0, green: 61/255.0, blue: 72/255.0, alpha: 1)
-    let COLOR_BTN_BG = UIColor(red: 139/255.0, green: 87/255.0, blue: 91/255.0, alpha: 1)
-    let COLOR_BTN_BORDER = UIColor(red: 232/255.0, green: 189/255.0, blue: 196/255.0, alpha: 1)
+//    let COLOR_BG = UIColor(red: 208/255.0, green: 219/255.0, blue: 203/255.0, alpha: 1)
+//    let COLOR_HEADER_BG = UIColor(red: 116/255.0, green: 158/255.0, blue: 170/255.0, alpha: 1)
+//    let COLOR_SUBHEADER_BG = UIColor(red: 71/255.0, green: 61/255.0, blue: 72/255.0, alpha: 1)
+//    let COLOR_BTN_BG = UIColor(red: 139/255.0, green: 87/255.0, blue: 91/255.0, alpha: 1)
+//    let COLOR_BTN_BORDER = UIColor(red: 232/255.0, green: 189/255.0, blue: 196/255.0, alpha: 1)
+//    let COLOR_FOOTER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
+//    //let COLOR_BODY_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
+//    let COLOR_COIN_TITLE = UIColor(red: 0, green: 118/255.0, blue: 163/255.0, alpha: 1)
+//    let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.7)
+//    let COLOR_TEXT_WIN = UIColor(red: 235/255.0, green: 222/255.0, blue: 9/255.0, alpha: 1)
+    
+    let COLOR_BG = UIColor(red: 31/255.0, green: 37/255.0, blue: 53/255.0, alpha: 1)
+    let COLOR_HEADER_BG = UIColor(red: 28/255.0, green: 27/255.0, blue: 32/255.0, alpha: 1)
+    let COLOR_SUBHEADER_BG = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1)
+    let COLOR_BTN_BG = UIColor(red: 132/255.0, green: 184/255.0, blue: 1/255.0, alpha: 1)
+    let COLOR_BTN_MORE_BG = UIColor(red: 226/255.0, green: 226/255.0, blue: 226/255.0, alpha: 1)
+    let COLOR_BTN_BORDER = UIColor(red: 70/255.0, green: 101/255.0, blue: 10/255.0, alpha: 1)
+    let COLOR_BTN_MORE_BORDER = UIColor(red: 126/255.0, green: 126/255.0, blue: 127/255.0, alpha: 1)
+    let COLOR_BTN_TEXT = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
+    let COLOR_BTN_MORE_TEXT = UIColor(red: 54/255.0, green: 57/255.0, blue: 70/255.0, alpha: 1)
     let COLOR_FOOTER_BG = UIColor(red: 66.0/255, green: 84.0/255, blue: 83.0/255, alpha: 1)
-    //let COLOR_BODY_BG = UIColor(red: 85.0/255, green: 137.0/255, blue: 125.0/255, alpha: 1)
-    let COLOR_COIN_TITLE = UIColor(red: 0, green: 118/255.0, blue: 163/255.0, alpha: 1)
+    let COLOR_TEXT_HEADER = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1)
+    let COLOR_TEXT_COIN = UIColor(red: 133/255.0, green: 148/255.0, blue: 164/255.0, alpha: 1)
     let COLOR_BG_WIN = UIColor.init(red: 65.0/255, green: 65.0/255, blue: 65.0/255, alpha: 0.7)
-    let COLOR_TEXT_WIN = UIColor(red: 235/255.0, green: 222/255.0, blue: 9/255.0, alpha: 1)
+    let COLOR_TEXT_WIN =  UIColor(red: 226/255.0, green: 226/255.0, blue: 226/255.0, alpha: 1)
+    let COLOR_IMGV_BORDER = UIColor(red: 90/255.0, green: 95/255.0, blue: 102/255.0, alpha: 1)
+    
+    let COLOR_CELL_BG = UIColor(red: 52/255.0, green: 55/255.0, blue: 72/255.0, alpha: 1)
     
     
     var HEIGHT_ADS: CGFloat  = 60
     var HEIGHT_HEADER: CGFloat = 1.0/13 * SCREEN_HEIGHT
     var HEIGHT_SUBHEADER: CGFloat = 0
-    var HEIGHT_BTN_SOCIAL = 1.0/16 * SCREEN_HEIGHT
+    var HEIGHT_BTN_SOCIAL = 1.0/20 * SCREEN_HEIGHT
     var HEIGHT_BTN_START = 1.0/5 * SCREEN_HEIGHT
     var WIDTH_VIEW_PHOTO = 19.0/20 * SCREEN_WIDTH //18.0/20 * SCREEN_WIDTH
     var WIDTH_BTN_NEXT = 1.0/5 * SCREEN_WIDTH
-    var WIDTH_PURCHASE = 0.7 * SCREEN_WIDTH
+    var WIDTH_PURCHASE = 0.9 * SCREEN_WIDTH
   
     var FONT_NAMES  = ["Avenir-Light", "AvenirNext-Regular","AvenirNext-Bold", "Chalkduster", "Zapfino", "HelveticaNeue-Bold", "Noteworthy-Bold", "Phosphate"]
     var FONT_SIZE_HEADER: CGFloat = 16

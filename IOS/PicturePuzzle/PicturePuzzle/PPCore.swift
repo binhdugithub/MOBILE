@@ -36,10 +36,10 @@ class PPCore
     // TODO:  Change this to the BundleID chosen when registering this app's App ID in the Apple Member Center.
     private static let Prefix = "com.cusiki.picturepuzzleanimal."
     private static let m_buy200coin = Prefix + "200coins"
-    private static let m_buy400coin = Prefix + "400coins"
     private static let m_buy600coin = Prefix + "600coins"
-    private static let m_buy800coin = Prefix + "800coins"
-    private static let productIdentifiers: Set<ProductIdentifier> = [PPCore.m_buy200coin, PPCore.m_buy400coin, PPCore.m_buy600coin,PPCore.m_buy800coin]
+    private static let m_buy1500coin = Prefix + "1500coins"
+    private static let m_buy3500coin = Prefix + "3500coins"
+    private static let productIdentifiers: Set<ProductIdentifier> = [PPCore.m_buy200coin, PPCore.m_buy600coin, PPCore.m_buy1500coin,PPCore.m_buy3500coin]
     var m_iaphelper = IAPHelper(productIds: PPCore.productIdentifiers)
     var m_products = [SKProduct]()
     

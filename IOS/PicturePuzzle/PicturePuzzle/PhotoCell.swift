@@ -28,7 +28,7 @@ class PhotoCell: UICollectionViewCell
     func SetupView() -> Void
     {
         self.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
-        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_BG.CGColor
+        self.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
         self.layer.borderWidth = 2.0;
         self.layer.shadowColor = UIColor.blackColor().CGColor;
         self.layer.shadowRadius = 3.0;

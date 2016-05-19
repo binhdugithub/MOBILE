@@ -95,7 +95,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         l_btn_home_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_btn_home_frm.size.height)
         l_btn_home_frm.origin.x = 1.0/3 * l_btn_home_frm.size.width
         m_btn_home = UIButton(frame: l_btn_home_frm)
-        m_btn_home.setImage(UIImage(named: "btn_home"), forState: .Normal)
+        m_btn_home.setImage(UIImage(named: "btn_back"), forState: .Normal)
         m_btn_home.addTarget(self, action: #selector(ListPhotoViewController.HomeClick(_:)), forControlEvents: .TouchUpInside)
 
         
@@ -107,7 +107,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         l_lbl_level_frm.origin.x = 1.0/2 * (m_view_header.frame.size.width - l_lbl_level_frm.size.width)
         l_lbl_level_frm.origin.y = 1.0/2 * (m_view_header.frame.size.height - l_lbl_level_frm.size.height)
         m_lbl_title = UILabel(frame: l_lbl_level_frm)
-        m_lbl_title.textColor = UIColor.whiteColor()
+        m_lbl_title.textColor = ViewDesign.ShareInstance.COLOR_TEXT_HEADER
         m_lbl_title.textAlignment = .Center
         m_lbl_title.text = NAME_APP
         m_lbl_title.font = l_font_level
@@ -133,7 +133,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         m_lbl_coin = UILabel(frame: l_lbl_coin_frm)
         m_lbl_coin.textAlignment = .Right
         m_lbl_coin.font = l_font_coin
-        m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
+        m_lbl_coin.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
         m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
         
         m_btn_coin.addSubview(m_lbl_coin)
@@ -382,7 +382,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         
         toastLabel.font = l_font
         toastLabel.backgroundColor = UIColor.blackColor()
-        toastLabel.textColor = ViewDesign.ShareInstance.COLOR_COIN_TITLE
+        toastLabel.textColor = ViewDesign.ShareInstance.COLOR_TEXT_COIN
         toastLabel.textAlignment = NSTextAlignment.Center;
         self.m_view_body.addSubview(toastLabel)
         toastLabel.text = p_title
@@ -435,9 +435,8 @@ extension ListPhotoViewController
             }
             
             SoundController.ShareInstance.WinCoin()
-            m_lbl_coin.Shake()
+            m_btn_coin.Shake()
             m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
-            m_lbl_coin.frame.size.width = WidthForText(String(PPCore.ShareInstance.m_coin), p_font: m_lbl_coin.font, p_heigh: m_lbl_coin.frame.size.height)
             Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
             Configuration.ShareInstance.WriteAdsMode(false)
         }
@@ -452,7 +451,7 @@ extension ListPhotoViewController
         var l_frm = self.view.frame
         l_frm.origin = CGPointMake(0, 0)
         let l_view = UIView(frame: l_frm)
-        l_view.backgroundColor = UIColor.init(white: 0.2, alpha: 0.8)
+        l_view.backgroundColor = ViewDesign.ShareInstance.COLOR_BG_WIN
         
         //view purchase
         var l_view_purchase_frm = CGRectMake(0, 0, 0, 0)
@@ -461,17 +460,17 @@ extension ListPhotoViewController
         l_view_purchase_frm.origin.x = 0.5 * (SCREEN_WIDTH - l_view_purchase_frm.size.width)
         l_view_purchase_frm.origin.y = 0.5 * (SCREEN_HEIGHT - l_view_purchase_frm.size.height)
         let l_view_purchase = UIView(frame: l_view_purchase_frm)
-        l_view_purchase.backgroundColor = UIColor.darkGrayColor()
-        l_view_purchase.layer.borderColor = UIColor.whiteColor().CGColor
-        l_view_purchase.layer.borderWidth = 1.0/50 * l_view_purchase_frm.size.width
+        l_view_purchase.backgroundColor = ViewDesign.ShareInstance.COLOR_CELL_BG
+        l_view_purchase.layer.borderColor = ViewDesign.ShareInstance.COLOR_BG.CGColor
+        l_view_purchase.layer.borderWidth = 1.0/60 * l_view_purchase_frm.size.width
         l_view_purchase.layer.cornerRadius = l_view_purchase.layer.borderWidth
         
         //label bonus
         var l_lbl_bonus_frm = l_view_purchase.frame
         let l_font = m_lbl_coin.font
-        l_lbl_bonus_frm.size.width = l_lbl_bonus_frm.size.width - 2 * l_view_purchase.layer.borderWidth
+        l_lbl_bonus_frm.size.width = l_lbl_bonus_frm.size.width - 0.2 * l_view_purchase.frame.size.width
         l_lbl_bonus_frm.size.height = HeightForText("Bonus! Make any purchase and deactivate the ads!", p_font: l_font, p_width: l_lbl_bonus_frm.size.width)
-        l_lbl_bonus_frm.origin = CGPointMake(l_view_purchase.layer.borderWidth, 2 * l_view_purchase.layer.borderWidth)
+        l_lbl_bonus_frm.origin = CGPointMake(0.1 * l_view_purchase.frame.size.width, 0.1 * l_view_purchase.frame.size.width)
         let l_lbl_bonus = UILabel(frame: l_lbl_bonus_frm)
         l_lbl_bonus.text = "Bonus! Make any purchase and deactivate the ads!"
         l_lbl_bonus.numberOfLines = 0
@@ -487,12 +486,12 @@ extension ListPhotoViewController
         l_btn_close_frm.origin.x = 0.5 * (l_view_purchase.frame.size.width - l_btn_close_frm.size.width)
         l_btn_close_frm.origin.y = l_view_purchase.frame.size.height - 1.5 * l_btn_close_frm.size.height
         let m_btn_closepurchase = UIButton(frame: l_btn_close_frm)
-        m_btn_closepurchase.backgroundColor = UIColor.redColor()
+        m_btn_closepurchase.backgroundColor = ViewDesign.ShareInstance.COLOR_BTN_MORE_BG
         m_btn_closepurchase.setTitle("x", forState: .Normal)
         m_btn_closepurchase.setTitleColor(UIColor.blackColor(), forState: .Normal)
         m_btn_closepurchase.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
         m_btn_closepurchase.layer.cornerRadius = 0.5 * l_btn_close_frm.size.width
-        m_btn_closepurchase.layer.borderColor = UIColor.whiteColor().CGColor
+        m_btn_closepurchase.layer.borderColor = ViewDesign.ShareInstance.COLOR_BTN_MORE_BORDER.CGColor
         m_btn_closepurchase.layer.borderWidth = 1.0/40 * l_btn_close_frm.size.width
         m_btn_closepurchase.addTarget(self, action: #selector(ListPhotoViewController.CloseClick(_:)), forControlEvents: .TouchUpInside)
         
@@ -510,25 +509,25 @@ extension ListPhotoViewController
         l_btn_2dollar.tag = 2
         l_btn_2dollar.addTarget(self, action: #selector(ListPhotoViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //3 dollar
+        //5 dollar
         l_btn_frm.origin.y = l_btn_2dollar.frame.origin.y + 1.25 * l_btn_2dollar.frame.size.height
         let l_btn_3dollar = UIButton(frame: l_btn_frm)
-        l_btn_3dollar.setImage(UIImage(named: "3dollar"), forState: .Normal)
-        l_btn_3dollar.tag = 3
+        l_btn_3dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
+        l_btn_3dollar.tag = 5
         l_btn_3dollar.addTarget(self, action: #selector(ListPhotoViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //4 dollar
+        //10 dollar
         l_btn_frm.origin.y = l_btn_3dollar.frame.origin.y + 1.25 * l_btn_3dollar.frame.size.height
         let l_btn_4dollar = UIButton(frame: l_btn_frm)
-        l_btn_4dollar.setImage(UIImage(named: "4dollar"), forState: .Normal)
-        l_btn_4dollar.tag = 4
+        l_btn_4dollar.setImage(UIImage(named: "10dollar"), forState: .Normal)
+        l_btn_4dollar.tag = 10
         l_btn_4dollar.addTarget(self, action: #selector(ListPhotoViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
-        //5 dollar
+        //20 dollar
         l_btn_frm.origin.y = l_btn_4dollar.frame.origin.y + 1.25 * l_btn_4dollar.frame.size.height
         let l_btn_5dollar = UIButton(frame: l_btn_frm)
-        l_btn_5dollar.setImage(UIImage(named: "5dollar"), forState: .Normal)
-        l_btn_5dollar.tag = 5
+        l_btn_5dollar.setImage(UIImage(named: "20dollar"), forState: .Normal)
+        l_btn_5dollar.tag = 20
         l_btn_5dollar.addTarget(self, action: #selector(ListPhotoViewController.GetCoin(_:)), forControlEvents: .TouchUpInside)
         
         
