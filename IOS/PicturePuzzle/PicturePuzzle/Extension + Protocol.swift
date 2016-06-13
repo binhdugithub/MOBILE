@@ -51,6 +51,11 @@ extension UIImage
     {
         let size = self.size
         let widthRatio  = targetSize.width  / self.size.width
+        
+        if widthRatio <= 1
+        {
+            return self
+        }
         //let heightRatio = targetSize.height / self.size.height
         
         // Figure out what our orientation is, and use that to form the rectangle

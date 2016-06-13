@@ -28,11 +28,11 @@ class ListMoreViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         if PPCore.ShareInstance.m_ArrayApp.count <= 0
         {
-            NetWorkModel.ShareInstance.GETApps()
+            NetWorkModel.ShareInstance.LoadMoreApps()
         }
     
         SetupView()
-        
+        PPCore.ShareInstance.m_status_game = STATUSGAME.PREPAREPLAY
     }
     
     override func viewWillAppear(animated: Bool) {

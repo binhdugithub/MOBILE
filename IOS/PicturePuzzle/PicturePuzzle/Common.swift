@@ -11,7 +11,7 @@ import UIKit
 import AVFoundation
 
 
-let YOUR_APP_ID: String             = "1070241747"
+let YOUR_APP_ID: String             = "1111859523"
 let AMOD_BANNER_FOOTER_UNIT :String = "ca-app-pub-2735696870763171/6366944847"
 let AMOD_INTERSTITIAL_UNIT :String  = "ca-app-pub-2735696870763171/7843678049"
 

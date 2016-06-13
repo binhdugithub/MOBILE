@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 
 class MoreCell: UICollectionViewCell
@@ -88,27 +87,36 @@ class MoreCell: UICollectionViewCell
             {
                 let l_imageURL = l_app.m_imgurl
                 
-                Alamofire.request(.GET, l_imageURL).validate().response(){
-                    (_,_,imgData, p_error) in
+                let url = NSURL(string:l_imageURL)
+                let task: NSURLSessionDataTask = NSURLSession.sharedSession().dataTaskWithURL(url!)
+                { (data, response, error) -> Void in
                     
-                    if p_error == nil
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
                     {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+                        
+                        if error == nil
                         {
-                            if imgData?.length > 0
+                            if data != nil
                             {
-                                
                                 dispatch_async(dispatch_get_main_queue())
                                 {
-                                    self.m_imgview_photo.image = UIImage(data: imgData!)
+                                    self.m_imgview_photo.image = UIImage(data: data!)
                                 }
-                        
                             }
                         }
+                        else
+                        {
+                            print("Error:\(error!.localizedDescription)");
+                        }
+                        
                         
                     }
-                }//end Alamofire
-                //m_ActivityIndicator.startAnimating()
+                    
+                    
+                }
+                // Start the task.
+                task.resume()
+
             }
 
         }//end didset

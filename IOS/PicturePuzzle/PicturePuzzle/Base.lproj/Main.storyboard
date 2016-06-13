@@ -8,7 +8,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="AnimalPuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -32,7 +32,7 @@
         <!--List More View Controller-->
         <scene sceneID="YfA-zT-6Rs">
             <objects>
-                <viewController id="May-c9-QAA" customClass="ListMoreViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="May-c9-QAA" customClass="ListMoreViewController" customModule="AnimalPuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qvn-fW-aze"/>
                         <viewControllerLayoutGuide type="bottom" id="fuH-JU-JHg"/>
@@ -52,7 +52,7 @@
         <!--List Photo View Controller-->
         <scene sceneID="oRD-pU-VwI">
             <objects>
-                <viewController id="C9u-Sg-M7C" customClass="ListPhotoViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="C9u-Sg-M7C" customClass="ListPhotoViewController" customModule="AnimalPuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rDs-Nc-Ohh"/>
                         <viewControllerLayoutGuide type="bottom" id="XeU-US-bPK"/>
@@ -75,7 +75,7 @@
         <!--Play View Controller-->
         <scene sceneID="SXK-Ab-499">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="LSt-8X-Zu6" customClass="PlayViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="LSt-8X-Zu6" customClass="PlayViewController" customModule="AnimalPuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Hk-tr-aNF"/>
                         <viewControllerLayoutGuide type="bottom" id="I19-wi-Vzu"/>
@@ -95,7 +95,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ghY-3o-Q8X">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jby-EN-sRg" customClass="PPNavigationController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jby-EN-sRg" customClass="PPNavigationController" customModule="AnimalPuzzle" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="glb-do-yMC">

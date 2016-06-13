@@ -46,6 +46,7 @@ class HomeViewController: UIViewController
                                                          object: nil)
         
         SetupView()
+        
     }
     
     
@@ -53,6 +54,13 @@ class HomeViewController: UIViewController
     {
         self.AnimationGUI()
         
+        PPCore.ShareInstance.m_status_game = STATUSGAME.HOMEVIEW
+        delay(seconds: 10, completion: {
+            if PPCore.ShareInstance.m_status_game == STATUSGAME.HOMEVIEW && Configuration.ShareInstance.m_isads == true
+            {
+                GADMasterViewController.ShareInstance.ShowInterstitialView(self)
+            }
+        })
     }
     
     
@@ -172,6 +180,7 @@ class HomeViewController: UIViewController
         m_imgv_logo.layer.cornerRadius = 0.05 * l_imgv_logo_frm.size.height
         m_imgv_logo.layer.borderWidth = 0.05 * l_imgv_logo_frm.size.height
         m_imgv_logo.layer.borderColor = ViewDesign.ShareInstance.COLOR_IMGV_BORDER.CGColor
+        m_imgv_logo.image = UIImage(named: "logo")
         
         //3 social button
         var l_view_3btn_social = CGRectMake(0, 0, 0, 0)
@@ -306,9 +315,41 @@ class HomeViewController: UIViewController
 
 extension HomeViewController
 {
+    func ShowToast(p_title: String)
+    {
+        var l_frm = CGRectMake(0, 0, 0, 0)
+        let l_font = UIFont(name: ViewDesign.ShareInstance.FONT_NAMES[2], size: ViewDesign.ShareInstance.FONT_SIZE_COIN - 2)!
+        
+        l_frm.size.width = WidthForText(p_title, p_font: l_font, p_heigh: 1000)
+        l_frm.size.width = l_frm.size.width + 0.25 * l_frm.size.width
+        l_frm.size.height = HeightForText(p_title, p_font: l_font, p_width: 1000)
+        l_frm.size.height = l_frm.size.height + l_frm.size.height
+        l_frm.origin.x = 1.0/2 * (self.view.frame.size.width - l_frm.size.width)
+        l_frm.origin.y = m_view_subheader.frame.size.height
+        let toastLabel = UILabel(frame: l_frm)
+        
+        toastLabel.font = l_font
+        toastLabel.backgroundColor = UIColor.blackColor()
+        toastLabel.textColor = UIColor.whiteColor()
+        toastLabel.textAlignment = NSTextAlignment.Center;
+        self.m_view_body.addSubview(toastLabel)
+        toastLabel.text = p_title
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        UIView.animateWithDuration(6.0, delay: 0.2, options: .CurveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+            }, completion: { (finished: Bool) -> Void in
+                toastLabel.removeFromSuperview()
+        })
+    }
+    
     func HandlePurchaseNotification(notification: NSNotification)
     {
-        guard let productID = notification.object as? String else { return }
+        guard let productID = notification.object as? String else {
+            print("notification productID is wrong: \(notification.object as? String)")
+            return
+        }
         
         for (_, product) in PPCore.ShareInstance.m_products.enumerate()
         {
@@ -319,19 +360,23 @@ extension HomeViewController
             {
             case 2:
                 PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 200
+                ShowToast("You have just bought 200 coins")
                 print("Buy ok 200 coin")
                 break
-            case 3:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 400
-                print("Buy ok 400 coin")
-                break
-            case 4:
+            case 5:
                 PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 600
+                ShowToast("You have just bought 600 coins")
                 print("Buy ok 600 coin")
                 break
-            case 5:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 800
-                print("Buy ok 800 coin")
+            case 10:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 1500
+                ShowToast("You have just bought 1500 coins")
+                print("Buy ok 1500 coin")
+                break
+            case 20:
+                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 3500
+                ShowToast("You have just bought 3500 coins")
+                print("Buy ok 3500 coin")
                 break
             default:
                 print("Don't know this price")

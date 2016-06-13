@@ -173,11 +173,13 @@ class StoryViewController: UIViewController
     }
 
     
-    FSCore.ShareInstance.m_ReadingCount += 1
-    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
-    {
-      GADMasterViewController.ShareInstance.ResetInterstitialView(self)
-    }
+//    FSCore.ShareInstance.m_ReadingCount += 1
+//    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
+//    {
+//      GADMasterViewController.ShareInstance.ResetInterstitialView(self)
+//    }
+    
+    GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     
     if m_AudioLoadIndicator?.isAnimating() == true
     {

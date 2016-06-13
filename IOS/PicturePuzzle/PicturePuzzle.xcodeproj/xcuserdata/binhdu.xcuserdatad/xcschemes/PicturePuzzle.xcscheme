@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AFD692161CC26B06008B7F54"
-               BuildableName = "PicturePuzzle.app"
+               BuildableName = "AnimalPuzzle.app"
                BlueprintName = "PicturePuzzle"
                ReferencedContainer = "container:PicturePuzzle.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AFD692161CC26B06008B7F54"
-            BuildableName = "PicturePuzzle.app"
+            BuildableName = "AnimalPuzzle.app"
             BlueprintName = "PicturePuzzle"
             ReferencedContainer = "container:PicturePuzzle.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AFD692161CC26B06008B7F54"
-            BuildableName = "PicturePuzzle.app"
+            BuildableName = "AnimalPuzzle.app"
             BlueprintName = "PicturePuzzle"
             ReferencedContainer = "container:PicturePuzzle.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AFD692161CC26B06008B7F54"
-            BuildableName = "PicturePuzzle.app"
+            BuildableName = "AnimalPuzzle.app"
             BlueprintName = "PicturePuzzle"
             ReferencedContainer = "container:PicturePuzzle.xcodeproj">
          </BuildableReference>

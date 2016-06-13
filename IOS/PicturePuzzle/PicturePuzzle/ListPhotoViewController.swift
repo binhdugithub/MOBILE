@@ -37,6 +37,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
                                                          object: nil)
         SetupView()
         
+        
     }
     
     override func viewWillAppear(animated: Bool)
@@ -50,6 +51,18 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
     {
         super.viewDidAppear(animated)
         ReloadAllChangedPhoto()
+        
+        if PPCore.ShareInstance.m_status_game != STATUSGAME.LISTVIEW
+        {
+            PPCore.ShareInstance.m_status_game = STATUSGAME.LISTVIEW
+            delay(seconds: 15, completion: {
+                if PPCore.ShareInstance.m_status_game == STATUSGAME.LISTVIEW && Configuration.ShareInstance.m_isads == true
+                {
+                    GADMasterViewController.ShareInstance.ShowInterstitialView(self)
+                }
+            })
+        }
+        
     }
     
     func ReloadAllChangedPhoto() -> Void
@@ -242,12 +255,14 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         SoundController.ShareInstance.PlayClick()
         if PPCore.ShareInstance.m_coin < COIN_OPEN_PHOTO
         {
-            ShowToast("You don't have enough coin!")
+            ShowToast("You don't have enough coin. Click bonus or buy the coin")
             return
         }
         
         
         PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin - COIN_OPEN_PHOTO
+        Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
+        
         PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_completed = PHOTO_STATUS.PHOTO_NOT_COMPLETED
         PPCore.ShareInstance.m_level = sender.tag
         PPCore.ShareInstance.m_ArrayPhoto[sender.tag].m_is_choosing = false
@@ -375,7 +390,7 @@ class ListPhotoViewController: UIViewController, UICollectionViewDelegate, UICol
         l_frm.size.width = WidthForText(p_title, p_font: l_font, p_heigh: 1000)
         l_frm.size.width = l_frm.size.width + 0.25 * l_frm.size.width
         l_frm.size.height = HeightForText(p_title, p_font: l_font, p_width: 1000)
-        l_frm.size.height = l_frm.size.height + 0.2 * l_frm.size.height
+        l_frm.size.height = l_frm.size.height + l_frm.size.height
         l_frm.origin.x = 1.0/2 * (self.view.frame.size.width - l_frm.size.width)
         l_frm.origin.y = m_view_subheader.frame.size.height
         let toastLabel = UILabel(frame: l_frm)
@@ -404,42 +419,45 @@ extension ListPhotoViewController
 {
     func HandlePurchaseNotification(notification: NSNotification)
     {
-        guard let productID = notification.object as? String else { return }
+//        guard let productID = notification.object as? String else { return }
+//        
+//        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
+//        {
+//            guard product.productIdentifier == productID else { continue }
+//            
+//            let l_price = Int(ceil(product.price.floatValue))
+//            switch l_price
+//            {
+//            case 2:
+//                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 200
+//                print("Buy ok 200 coin")
+//                break
+//            case 5:
+//                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 600
+//                print("Buy ok 600 coin")
+//                break
+//            case 10:
+//                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 1500
+//                print("Buy ok 1500 coin")
+//                break
+//            case 20:
+//                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 3500
+//                print("Buy ok 3500 coin")
+//                break
+//            default:
+//                print("Don't know this price")
+//                break
+//            }
+//            
+//            SoundController.ShareInstance.WinCoin()
+//            m_btn_coin.Shake()
+//            m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
+//            Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
+//            Configuration.ShareInstance.WriteAdsMode(false)
+//        }
+//        
         
-        for (_, product) in PPCore.ShareInstance.m_products.enumerate()
-        {
-            guard product.productIdentifier == productID else { continue }
-            
-            let l_price = Int(ceil(product.price.floatValue))
-            switch l_price
-            {
-            case 2:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 200
-                print("Buy ok 200 coin")
-                break
-            case 3:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 400
-                print("Buy ok 400 coin")
-                break
-            case 4:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 600
-                print("Buy ok 600 coin")
-                break
-            case 5:
-                PPCore.ShareInstance.m_coin = PPCore.ShareInstance.m_coin + 800
-                print("Buy ok 800 coin")
-                break
-            default:
-                print("Don't know this price")
-                break
-            }
-            
-            SoundController.ShareInstance.WinCoin()
-            m_btn_coin.Shake()
-            m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
-            Configuration.ShareInstance.WriteCoin(PPCore.ShareInstance.m_coin)
-            Configuration.ShareInstance.WriteAdsMode(false)
-        }
+        m_lbl_coin.text = String(PPCore.ShareInstance.m_coin)
     }
     
     func CoinClick(sender: UIButton)

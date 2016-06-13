@@ -121,11 +121,18 @@ class SoundController: NSObject
             let path = NSBundle.mainBundle().pathForResource("gameover", ofType:"mp3")!
             let mp3URL = NSURL.fileURLWithPath(path)
             m_AudioPlayerGameOver = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: .DefaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
             try AVAudioSession.sharedInstance().setActive(true)
             if m_AudioPlayerGameOver!.prepareToPlay()
             {
-                m_AudioPlayerGameOver!.play()
+                if m_AudioPlayerGameOver!.play()
+                {
+                    print("play ok")
+                }
+                else
+                {
+                    print("play gameover fail")
+                }
             }
             else
             {
@@ -188,7 +195,7 @@ class SoundController: NSObject
             let path = NSBundle.mainBundle().pathForResource("swap", ofType:"mp3")!
             let mp3URL = NSURL.fileURLWithPath(path)
             m_AudioPlayerSwap = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
             try AVAudioSession.sharedInstance().setActive(true)
             
             if m_AudioPlayerSwap!.prepareToPlay()

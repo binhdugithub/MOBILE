@@ -190,6 +190,7 @@ extension IAPHelper: SKPaymentTransactionObserver
     guard let identifier = identifier else { return }
     
     purchasedProductIdentifiers.insert(identifier)
+    
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: identifier)
     NSUserDefaults.standardUserDefaults().synchronize()
     NSNotificationCenter.defaultCenter().postNotificationName(IAPHelper.IAPHelperPurchaseNotification, object: identifier)

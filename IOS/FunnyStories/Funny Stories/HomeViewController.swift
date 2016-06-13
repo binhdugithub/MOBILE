@@ -83,10 +83,10 @@ class HomeViewController: UICollectionViewController
   {
     super.viewDidAppear(animated)
 
-    if m_IsScrolled == false && FSCore.ShareInstance.m_IndexStoryStartDisplayed > 0
-    {
-      NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(0)).start()
-    }
+//    if m_IsScrolled == false && FSCore.ShareInstance.m_IndexStoryStartDisplayed > 0
+//    {
+//      NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(0)).start()
+//    }
 
   }
   

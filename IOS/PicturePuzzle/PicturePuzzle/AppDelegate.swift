@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if PPCore.ShareInstance.m_ArrayApp.count <= 0
         {
-            NetWorkModel.ShareInstance.GETApps()
+            NetWorkModel.ShareInstance.LoadMoreApps()
         }
         
         PPCore.ShareInstance.m_iaphelper.requestProducts{success, products in

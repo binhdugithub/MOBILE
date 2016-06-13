@@ -5,7 +5,7 @@
 	<key>isads</key>
 	<true/>
 	<key>coin</key>
-	<integer>20000</integer>
+	<integer>200</integer>
 	<key>ismuted</key>
 	<false/>
 </dict>

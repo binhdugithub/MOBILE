@@ -110,7 +110,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         {
             if m_Interstitial!.isReady
             {
-                m_Interstitial!.presentFromRootViewController(p_controller)
+                m_Interstitial!.presentFromRootViewController(p_controller!)
             }
             else
             {
@@ -118,7 +118,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
                 sleep(1)
                 if m_Interstitial!.isReady
                 {
-                    m_Interstitial!.presentFromRootViewController(p_controller)
+                    m_Interstitial!.presentFromRootViewController(p_controller!)
                 }
                 else
                 {
