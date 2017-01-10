@@ -45,23 +45,7 @@ class HomeViewController: UICollectionViewController
     
     FSCore.ShareInstance.m_IndexStoryStartDisplayed =  FSCore.ShareInstance.m_IndexStoryStartDisplayed > (FSCore.ShareInstance.m_ArrayStory.count - 1) ? FSCore.ShareInstance.m_ArrayStory.count - 1 : FSCore.ShareInstance.m_IndexStoryStartDisplayed
     
-    
-    //load story
-    if FSCore.ShareInstance.m_ArrayStory.count <= 8
-    {
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
-      
-      if FSCore.ShareInstance.m_ArrayTemp.count > 0
-      {
-        NetWorkModel.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayTemp.last?.m_id)!, p_limit: NUMBER_IMAGES_ONCE_LOAD, p_object: self)
-      }
-      else
-      {
-         NetWorkModel.ShareInstance.GETStories(-1, p_limit: NUMBER_IMAGES_ONCE_LOAD, p_object: self)
-      }
-      
-    }
+  
     
     FSDesign.ShareInstance.NAVIGATOR_HEIGHT = (self.navigationController?.navigationBar.bounds.size.height)!
     FSDesign.ShareInstance.STATUSBAR_HEIGHT = UIApplication.sharedApplication().statusBarFrame.size.height
@@ -273,37 +257,37 @@ extension HomeViewController
   override func scrollViewDidEndDecelerating(scrollView: UIScrollView)
   {
     
-    //print("****scrollViewDidEndDecelerating****")
-    let l_visibles: [NSIndexPath] = (collectionView?.indexPathsForVisibleItems())!
+   // print("****scrollViewDidEndDecelerating****")
     
-    var l_row = l_visibles[0].row
-    for l_indexpath in l_visibles
-    {
-      if l_indexpath.row < l_row
-      {
-        l_row = l_indexpath.row
-      }
-    }
-    
-    Configuration.ShareInstance.m_CurrentStory = l_row
-    
-    
-    if (scrollView.contentOffset.y < 0)
-    {
-
-    }
-    else if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
-    {
-
-      var l_frame = m_Indicator?.frame;
-      l_frame?.origin.y = SCREEN_HEIGHT - 49 - ((l_frame?.size.height)! / 2.0)
-      m_Indicator?.frame = l_frame!;
-      self.view.bringSubviewToFront(m_Indicator!)
-      m_Indicator!.startAnimating()
-      
-      NetWorkModel.ShareInstance.GETStories((FSCore.ShareInstance.m_ArrayStory.last?.m_id)!,p_limit: NUMBER_IMAGES_ONCE_LOAD,  p_object:self)
-
-    }
+//    
+//    let l_visibles: [NSIndexPath] = (collectionView?.indexPathsForVisibleItems())!
+//    
+//    var l_row = l_visibles[0].row
+//    for l_indexpath in l_visibles
+//    {
+//      if l_indexpath.row < l_row
+//      {
+//        l_row = l_indexpath.row
+//      }
+//    }
+//    
+//    Configuration.ShareInstance.m_CurrentStory = l_row
+//    
+//    
+//    if (scrollView.contentOffset.y < 0)
+//    {
+//
+//    }
+//    else if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
+//    {
+//
+//      var l_frame = m_Indicator?.frame;
+//      l_frame?.origin.y = SCREEN_HEIGHT - 49 - ((l_frame?.size.height)! / 2.0)
+//      m_Indicator?.frame = l_frame!;
+//      self.view.bringSubviewToFront(m_Indicator!)
+//      m_Indicator!.startAnimating()
+//
+//    }
 
   }
   
@@ -317,7 +301,6 @@ extension HomeViewController
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
   {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeViewCell", forIndexPath: indexPath) as! HomeViewCell
-    //cell.m_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.row + FSCore.ShareInstance.m_IndexStoryStartDisplayed]
     cell.m_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.row]
     
     return cell
@@ -332,23 +315,14 @@ extension HomeViewController : LayoutDelegate
   {
       let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
       let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-      if let l_image = l_Story.m_image
+    
+      if let image = UIImage(contentsOfFile: l_Story.m_imageurl!)
       {
-        let image = UIImage(data: l_image)?.decompressedImage
-        let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
+        let rect = AVMakeRectWithAspectRatioInsideRect(image.size, boundingRect)
         return rect.size.height
-        
-      }
-      else
-      {
-        //print("Have to retrun default size 400x266")
-        let sizeImage = CGSize(width: 400, height: 266)
-        let rect = AVMakeRectWithAspectRatioInsideRect(sizeImage, boundingRect)
-        return rect.size.height
-        
       }
     
-      //return (SCREEN_WIDTH / 3 - 8)
+      return 0
   }
   
   // 2

@@ -17,8 +17,7 @@ class Story
   var m_content: String?
   var m_imageurl: String?
   var m_audiourl: String?
-  var m_image: NSData?
-  var m_audio: NSData?
+ 
   var m_liked: Bool? = false
   
   init()
@@ -34,8 +33,6 @@ class Story
     l_Story.m_content = self.m_content
     l_Story.m_imageurl = self.m_imageurl
     l_Story.m_audiourl = self.m_audiourl
-    l_Story.m_image = self.m_image
-    l_Story.m_audio = self.m_audio
     l_Story.m_liked  = self.m_liked
     
     return l_Story
@@ -46,67 +43,36 @@ class Story
     self.m_id = p_id
     self.m_title = p_title
     self.m_content = p_content
-    self.m_imageurl = p_imageurl
+    
+    var l_pathimg: String =  NSBundle.mainBundle().resourcePath!
+    l_pathimg.appendContentsOf("/")
+    l_pathimg.appendContentsOf(p_imageurl!)
+    
+    if NSFileManager.defaultManager().fileExistsAtPath(l_pathimg)
+    {
+      self.m_imageurl = l_pathimg
+    }
+    else
+    {
+      self.m_imageurl = ""
+    }
+    
+    
     self.m_audiourl = p_audiourl
     self.m_liked = p_liked
   }
   
-  init(p_id: Int?,p_title: String?, p_content: String?,p_imageurl: String?, p_image: NSData?, p_audiourl: String?, p_audio: NSData?, p_like: Bool?)
-  {
-    self.m_id = p_id
-    self.m_title = p_title
-    self.m_content = p_content
-    self.m_imageurl = p_imageurl
-    self.m_image = p_image
-    self.m_audiourl = p_audiourl
-    self.m_audio = p_audio
-    self.m_liked = p_like
-  }
-  
+
   func GetImage() -> UIImage?
   {
-    if self.m_imageurl == "" && self.m_image == nil
+    if self.m_imageurl == ""
     {
       return UIImage(named: "story_default")
     }
     
-    let l_img: UIImage! = UIImage(named: "story_default")
+    let l_img: UIImage! = UIImage(named: self.m_imageurl!)
     
-    Alamofire.request(.GET, self.m_imageurl!).validate().response(){
-      (_,_,imgData, p_error) in
-      
-      if p_error == nil
-      {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-          {
-            if imgData?.length > 0
-            {
-              if (self.m_image == nil)
-              {
-                self.m_image = imgData
-              }
-              
-            }
-        }
-        
-      }
-      else
-      {
-        print("Load image fail: \(self.m_imageurl)")
-      }
-      
-      
-    }//end Alamofire
-    
-    if (self.m_image == nil)
-    {
-      return l_img
-    }
-    else
-    {
-      return UIImage(data: self.m_image!)
-    }
-
+    return l_img
   }
   
   

@@ -106,30 +106,14 @@ extension FavoriteViewController : LayoutDelegate
   // 1
   func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
   {
-    //print("heightForPhotoAtIndexPath")
-    
-    //return ((SCREEN_WIDTH / 3) - 8)
-    
+      
     let l_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)!
     let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-    if let l_image = l_Story.m_image
-    {
-      let image = UIImage(data: l_image)?.decompressedImage
+   
+      let image = UIImage(contentsOfFile: l_Story.m_imageurl!)
       let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
       return rect.size.height
-      
-    }
-    else
-    {
-     
-      //print("Have to retrun default size 400x266")
-      let sizeImage = CGSize(width: 400, height: 266)
-      let rect = AVMakeRectWithAspectRatioInsideRect(sizeImage, boundingRect)
-      return rect.size.height
-
-    }
-    
-    //return (SCREEN_WIDTH / 3)
+ 
   }
   
   // 2

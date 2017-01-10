@@ -97,88 +97,17 @@ class StoryViewController: UIViewController
 
     
     let l_attachment = NSTextAttachment()
+  
+      l_attachment.image = self.m_Story!.GetImage()
     
-    if self.m_Story!.m_image != nil
-    {
-      let l_image = UIImage(data: self.m_Story!.m_image!)
-      l_attachment.image = l_image
-      let l_scale: CGFloat = (CGFloat(l_attachment.image!.size.width)) / (self.m_TextView.frame.size.width/2)
+      let l_scale: CGFloat = (CGFloat(400)) / (self.m_TextView.frame.size.width/2)
       l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
       let attrStringWithImage = NSAttributedString(attachment: l_attachment)
       l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
       
       self.m_TextView.attributedText = l_content
-
-    }
-    else if self.m_Story!.m_imageurl != ""
-    {
-      //l_attachment.GetImageFromStory(self.m_Story!)
-      
-      Alamofire.request(.GET, self.m_Story!.m_imageurl!).validate().response(){
-        (_,_,imgData, p_error) in
-        print("Request: \(self.m_Story!.m_imageurl!)")
-        if p_error == nil
-        {
-          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-            {
-              if imgData?.length > 0
-              {
-                if (self.m_Story!.m_image == nil)
-                {
-                  self.m_Story!.m_image = imgData
-                  
-                }
-                
-                dispatch_async(dispatch_get_main_queue())
-                {
-                    //here
-                    let l_image = UIImage(data: self.m_Story!.m_image!)
-                    l_attachment.image = l_image
-                  
-                    let l_scale: CGFloat = (CGFloat(l_attachment.image!.size.width)) / (self.m_TextView.frame.size.width/2)
-                    l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
-                    let attrStringWithImage = NSAttributedString(attachment: l_attachment)
-                    l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
-                  
-                    self.m_TextView.attributedText = l_content
-                    
-                    //end here
-                }
-
-                
-              }
-          }
-          
-        }
-        else
-        {
-          print("Load image fail: \(self.m_Story!.m_imageurl)")
-          //here
-          let l_image = UIImage(named: "story_default")
-          l_attachment.image = l_image
-          
-          let l_scale: CGFloat = (CGFloat(400)) / (self.m_TextView.frame.size.width/2)
-          l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
-          let attrStringWithImage = NSAttributedString(attachment: l_attachment)
-          l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
-          
-          self.m_TextView.attributedText = l_content
-          
-          //end here
-        }
-        
-        
-      }//end Alamofire
-
-    }
-
     
-//    FSCore.ShareInstance.m_ReadingCount += 1
-//    if ((FSCore.ShareInstance.m_ReadingCount % TIME_TO_SHOW_ADS) == 0)
-//    {
-//      GADMasterViewController.ShareInstance.ResetInterstitialView(self)
-//    }
-    
+
     GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     
     if m_AudioLoadIndicator?.isAnimating() == true
@@ -198,6 +127,8 @@ class StoryViewController: UIViewController
 
     
   }
+//end RefreshStory
+
   
   
   //init header
@@ -297,10 +228,10 @@ class StoryViewController: UIViewController
     func InitControlView()
     {
 
-        let l_HSpaceButton: CGFloat = ((SCREEN_WIDTH - 6.0 * FSDesign.ShareInstance.ICON_WIDTH) / 6)
+        let l_HSpaceButton: CGFloat = ((SCREEN_WIDTH - 5.0 * FSDesign.ShareInstance.ICON_WIDTH) / 5)
         //Previous button
         var l_rect = CGRectMake(
-            0.5 * l_HSpaceButton,
+            0.4 * l_HSpaceButton,
             FSDesign.ShareInstance.ICON_VHSPACE,
             FSDesign.ShareInstance.ICON_WIDTH,
             FSDesign.ShareInstance.ICON_HEIGTH)
@@ -311,30 +242,44 @@ class StoryViewController: UIViewController
         l_UIButtonPrevious.addTarget(self, action: #selector(StoryViewController.PreviousClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //audio button
-        l_rect = CGRectMake(
-            l_HSpaceButton + l_UIButtonPrevious.frame.size.width + l_UIButtonPrevious.frame.origin.x,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
-        
-        m_BtnAudio = UIButton(frame: l_rect)
-        m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-        m_BtnAudio.setTitle("", forState: UIControlState.Normal)
-        m_BtnAudio.addTarget(self, action: #selector(StoryViewController.AudioClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//        l_rect = CGRectMake(
+//            l_HSpaceButton + l_UIButtonPrevious.frame.size.width + l_UIButtonPrevious.frame.origin.x,
+//            FSDesign.ShareInstance.ICON_VHSPACE,
+//            FSDesign.ShareInstance.ICON_WIDTH,
+//            FSDesign.ShareInstance.ICON_HEIGTH)
+//        
+//        m_BtnAudio = UIButton(frame: l_rect)
+//        m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
+//        m_BtnAudio.setTitle("", forState: UIControlState.Normal)
       
       
-        //A-
-        l_rect = CGRectMake(
-            l_HSpaceButton + m_BtnAudio.frame.size.width + m_BtnAudio.frame.origin.x,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
-        
-        let l_UIButtonASub = UIButton(frame: l_rect)
-        l_UIButtonASub.setImage(UIImage(named: "a_sub"), forState: UIControlState.Normal)
-        l_UIButtonASub.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
+//      
+//        //A-
+//        l_rect = CGRectMake(
+//            l_HSpaceButton + m_BtnAudio.frame.size.width + m_BtnAudio.frame.origin.x,
+//            FSDesign.ShareInstance.ICON_VHSPACE,
+//            FSDesign.ShareInstance.ICON_WIDTH,
+//            FSDesign.ShareInstance.ICON_HEIGTH)
+//        
+//        let l_UIButtonASub = UIButton(frame: l_rect)
+//        l_UIButtonASub.setImage(UIImage(named: "a_sub"), forState: UIControlState.Normal)
+//        l_UIButtonASub.setTitle("", forState: UIControlState.Normal)
+//        l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+      
+      
+      
+      //A-
+      l_rect = CGRectMake(
+        l_HSpaceButton + l_UIButtonPrevious.frame.size.width + l_UIButtonPrevious.frame.origin.x,
+        FSDesign.ShareInstance.ICON_VHSPACE,
+        FSDesign.ShareInstance.ICON_WIDTH,
+        FSDesign.ShareInstance.ICON_HEIGTH)
+      
+      let l_UIButtonASub = UIButton(frame: l_rect)
+      l_UIButtonASub.setImage(UIImage(named: "a_sub"), forState: UIControlState.Normal)
+      l_UIButtonASub.setTitle("", forState: UIControlState.Normal)
+      l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+      
         //A+
         l_rect = CGRectMake(
             l_HSpaceButton + l_UIButtonASub.frame.size.width + l_UIButtonASub.frame.origin.x,
@@ -598,159 +543,20 @@ class StoryViewController: UIViewController
       {
         m_Story!.m_liked = false
         m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
-        
+      
       }
       else
       {
 
         m_Story!.m_liked = true
         m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
+        
       }
       
+      
+      DBModel.ShareInstance.UpdateFavoriteStory(m_Story!)
     }
 
-    func PlayAudio()
-    {
-      if (self.m_AudioLoadIndicator?.isAnimating() == true)
-      {
-        self.m_AudioLoadIndicator?.stopAnimating()
-      }
-      
-      do
-      {
-        if m_AudioPlayer == nil
-        {
-          if let l_data = m_Story!.m_audio
-          {
-            m_AudioPlayer = try  AVAudioPlayer(data: l_data)
-            m_AudioPlayer?.delegate = self
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            m_AudioPlayer!.numberOfLoops = 0
-            if m_AudioPlayer!.prepareToPlay()
-            {
-              if (m_AudioPlayer!.play() == true)
-              {
-                if NSThread.isMainThread()
-                {
-                  self.m_BtnAudio.setImage(UIImage(named: "audio_stop"), forState: UIControlState.Normal)
-                  
-                }
-                else
-                {
-                  dispatch_sync(dispatch_get_main_queue(),
-                    {
-                      self.m_BtnAudio.setImage(UIImage(named: "audio_stop"), forState: UIControlState.Normal)
-                      
-                      
-                  });
-                  
-                  
-                }
-                
-              }
-              
-            }
-            else
-            {
-              m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-              print("Prepaire play fail")
-            }
-          }
-        }
-      }
-      catch let l_error as NSError
-      {
-        print("PlayAudio:\(l_error)")
-      }
-    }
-    
-    func AudioClick(sender: UIButton!)
-    {
-        if m_AudioPlayer == nil
-        {
-          if let _ = m_Story!.m_audio
-          {
-            self.PlayAudio()
-          }
-          else
-          {
-            print("You have to get audio data of here")
-            m_AudioLoadIndicator?.startAnimating()
-            sender.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-            let l_audioURL = m_Story!.m_audiourl
-            let l_id = m_Story!.m_id
-            
-            Alamofire.request(.GET, l_audioURL!).validate().response(){
-                (_,_,audioData, p_error) in
-              
-              
-              if p_error == nil
-              {
-                  if audioData?.length > 0
-                  {
-                    if (l_id == self.m_Story!.m_id)
-                    {
-                      if self.m_Story!.m_audio == nil
-                      {
-                        self.m_Story!.m_audio = audioData
-                        DBModel.ShareInstance.UpdateAudio(self.m_Story!)
-                      }
-                      
-                      self.PlayAudio()
-                    }
-                    else
-                    {
-                      
-                      for l_story in FSCore.ShareInstance.m_ArrayStory
-                      {
-                        if l_story.m_id == l_id
-                        {
-                          if l_story.m_audio == nil
-                          {
-                            l_story.m_audio = audioData
-                            DBModel.ShareInstance.UpdateAudio(l_story)
-                            
-                          }
-                          
-                          break
-                        }
-                      }
-                      
-                    }
-                    
-                  }
-              }
-              else
-              {
-                print("Error load audio: \(p_error)")
-                print("Request: \(l_audioURL)")
-                
-                if (self.m_AudioLoadIndicator?.isAnimating() == true)
-                {
-                  self.m_AudioLoadIndicator?.stopAnimating()
-                }
-              }
-              
-            }//end Alamofire
-            
-            print("Ngoai Alamofire")
-          }
-        }//end if m_AudioPlayerStory == nil
-        else
-        {
-          if m_AudioPlayer?.playing == true
-          {
-            sender.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
-            m_AudioPlayer?.pause()
-          }
-          else
-          {
-            sender.setImage(UIImage(named: "audio_stop"), forState: UIControlState.Normal)
-            m_AudioPlayer?.play()
-          }
-        }//end if m_AudioPlayerStory != nil
-    }
   
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

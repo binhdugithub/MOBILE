@@ -22,18 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     window!.backgroundColor = FSDesign.ShareInstance.COLOR_BACKGROUND
     
-    
-    if DBModel.ShareInstance.CreateDatabase(FILE_DATABASE) == true
-    {
-      print("Create databse \(FILE_DATABASE) ok ")
-      DBModel.ShareInstance.CreateTable("Story")
-    }
-    else
+    if DBModel.ShareInstance.CopyDatabase(FILE_DATABASE) == true
     {
       DBModel.ShareInstance.GetAllStories()
-
     }
-    
+  
     return true
   }
   
@@ -62,35 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   func applicationWillTerminate(application: UIApplication)
   {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    print("Save Story")
-    for i in 0..<FSCore.ShareInstance.m_ArrayTemp.count
-    {
-      if FSCore.ShareInstance.m_ArrayTemp[i].m_liked != FSCore.ShareInstance.m_ArrayStory[i].m_liked!
-      {
-        DBModel.ShareInstance.UpdateFavoriteStory(FSCore.ShareInstance.m_ArrayStory[i])
-      }
-    }
-    
-    var l_savemax: Int = FSCore.ShareInstance.m_ArrayTemp.count - 1
-    for i in FSCore.ShareInstance.m_ArrayTemp.count..<FSCore.ShareInstance.m_ArrayStory.count
-    {
-      if DBModel.ShareInstance.InsertStory(FSCore.ShareInstance.m_ArrayStory[i]) == false
-      {
-        break
-      }
-      
-      l_savemax += 1
-    }
-    
-    
-    
-    //Save currentStory displayed
-    //write current story
-    
-    Configuration.ShareInstance.m_CurrentStory = Configuration.ShareInstance.m_CurrentStory > l_savemax ? l_savemax : Configuration.ShareInstance.m_CurrentStory
-    print("Save current displayed story:\(Configuration.ShareInstance.m_CurrentStory!)")
-    
-    Configuration.ShareInstance.WriteCurrentStory(Configuration.ShareInstance.m_CurrentStory!)
+//    print("Save Story")
+//    for i in 0..<FSCore.ShareInstance.m_ArrayTemp.count
+//    {
+//      if FSCore.ShareInstance.m_ArrayTemp[i].m_liked != FSCore.ShareInstance.m_ArrayStory[i].m_liked!
+//      {
+//        DBModel.ShareInstance.UpdateFavoriteStory(FSCore.ShareInstance.m_ArrayStory[i])
+//      }
+//    }
 
   }
 }

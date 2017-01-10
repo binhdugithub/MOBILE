@@ -1,5 +1,13 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  Funny Stories-Bridging-Header.h
+//  Funny Stories
+//
+//  Created by Nguyen The Binh on 1/6/17.
+//  Copyright © 2017 Razeware LLC. All rights reserved.
 //
 
+#ifndef Funny_Stories_Bridging_Header_h
+#define Funny_Stories_Bridging_Header_h
+
 #import "FMDB.h"
+#endif /* Funny_Stories_Bridging_Header_h */

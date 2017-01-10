@@ -34,22 +34,16 @@ class FavoriteViewCell: UICollectionViewCell
   }
   
   var m_Story: Story?
+  {
+    didSet
     {
-    didSet {
       if let l_Story = m_Story
       {
         captionLabel.text = l_Story.m_title
         captionLabel.numberOfLines = 2
-        if let l_image = l_Story.m_image
-        {
-          imageView.image = UIImage(data: l_image)
-          //m_ActivityIndicator.stopAnimating()
-        }
-        else
-        {
-          imageView.image = UIImage(named: "story_default")
-        }
-        
+     
+        imageView.image = UIImage(contentsOfFile: l_Story.m_imageurl!)
+      
       }
     }
   }

@@ -43,72 +43,7 @@ class HomeViewCell: UICollectionViewCell
       {
         captionLabel.text = l_Story.m_title
         captionLabel.numberOfLines = 2
-
-        if let l_image = l_Story.m_image
-        {
-          imageView.image = UIImage(data: l_image)
-          //m_ActivityIndicator.stopAnimating()
-        }
-        else
-        {
-          imageView.image = UIImage(named: "story_default")
-          let l_imageURL = m_Story?.m_imageurl
-          let l_id = m_Story?.m_id
-
-          Alamofire.request(.GET, l_imageURL!).validate().response(){
-            (_,_,imgData, p_error) in
-            
-           if p_error == nil
-           {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
-            {
-                if imgData?.length > 0
-                {
-                  if self.m_Story!.m_id == l_id
-                  {
-                    if self.m_Story!.m_image == nil
-                    {
-                      self.m_Story!.m_image = imgData
-
-                      dispatch_async(dispatch_get_main_queue())
-                      {
-                          self.imageView.image = UIImage(data: self.m_Story!.m_image!)
-                      }
-                      
-                    }
-                  }
-                  else
-                  {
-                    print("***********Doi vao day: current id: \(self.m_Story!.m_id) and old id: \(l_id)")
-                    for l_story in FSCore.ShareInstance.m_ArrayStory
-                    {
-                      if l_story.m_id == l_id
-                      {
-                        if l_story.m_image == nil
-                        {
-                          l_story.m_image = imgData
-                          
-                        }
-                        
-                        break
-                      }
-                    }
-                    
-                  }
-                  
-                }
-            }
-
-           }
-           else
-           {
-              print("Load image fail: \(self.m_Story?.m_imageurl)")
-           }
-            
-          }//end Alamofire
-          //m_ActivityIndicator.startAnimating()
-        }
-        
+        imageView.image = UIImage(contentsOfFile: l_Story.m_imageurl!)
       }
     }
   }

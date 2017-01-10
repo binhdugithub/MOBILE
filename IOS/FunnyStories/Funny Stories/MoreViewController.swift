@@ -54,12 +54,7 @@ class MoreViewController: UIViewController
   override func viewDidAppear(animated: Bool)
   {
     super.viewDidAppear(animated)
-    
-    if FSCore.ShareInstance.m_ArrayApp.count == 0
-    {
-        NetWorkModel.ShareInstance.GETApps(self)
-    }
-    
+  
   }
   
   func SetupView()

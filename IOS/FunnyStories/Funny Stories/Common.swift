@@ -25,7 +25,7 @@ let TIME_TO_SHOW_ADS = 5
 let TEXT_COPYRIGHT:String = "CUSIKI @2016"
 
 let FILE_CONFIG = "/config.plist"
-let FILE_DATABASE = "/funnystories.db"
+let FILE_DATABASE = "db_funnystories.db"
 
 let IS_IPAD:Bool               =     (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
 let IS_IPHONE: Bool            =     (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
