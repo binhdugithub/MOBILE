@@ -47,7 +47,7 @@ class FSDesign
   
     //var COLOR_COLLECTION_BG = UIColor()
     let COLOR_STORY_TITLE = UIColor(red: 87.0/255, green: 116.0/255, blue: 189.0/255, alpha: 0.9)
-    var COLOR_COLLECTION_TEXT = UIColor.blackColor()
+    var COLOR_COLLECTION_TEXT = UIColor.black
     var COLOR_TABBAR_BG = UIColor(red: 215.0/255, green: 215.0/255, blue: 215.0/255, alpha: 0.9)
     var COLOR_TABBAR_TINT = UIColor(red: 103.0/255, green: 152.0/255, blue: 5.0/255, alpha: 1)
     var COLOR_CELL_BG = UIColor()
@@ -62,7 +62,7 @@ class FSDesign
   
     let INSET_COLLECTION = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
   
-    private init()
+    fileprivate init()
     {
         let l_image = UIImage(named: "bg_textview")
         //COLOR_COLLECTION_BG = UIColor(patternImage: l_image!)

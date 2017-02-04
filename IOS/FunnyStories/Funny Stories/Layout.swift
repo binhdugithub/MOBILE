@@ -11,42 +11,42 @@ import UIKit
 protocol LayoutDelegate
 {
   // 1
-  func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:NSIndexPath,
+  func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath,
     withWidth:CGFloat) -> CGFloat
   // 2
-  func collectionView(collectionView: UICollectionView,
-    heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
+  func collectionView(_ collectionView: UICollectionView,
+    heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth width: CGFloat) -> CGFloat
 }
 
 class CommonLayout: UICollectionViewLayout
 {
   // 1
   var delegate: LayoutDelegate!
-  private var cache = [LayoutAttributes]()
+  fileprivate var cache = [LayoutAttributes]()
   // 4
-  private var contentHeight: CGFloat  = 0.0
-  private var contentWidth: CGFloat
+  fileprivate var contentHeight: CGFloat  = 0.0
+  fileprivate var contentWidth: CGFloat
   {
       let insets = collectionView!.contentInset
-      return CGRectGetWidth(collectionView!.bounds) - (insets.left + insets.right)
+      return collectionView!.bounds.width - (insets.left + insets.right)
   }
   
   
   
-  override func collectionViewContentSize() -> CGSize
+  override var collectionViewContentSize : CGSize
   {
     return CGSize(width: contentWidth, height: contentHeight)
   }
   
   
-  override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]?
+  override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]?
   {
     
     var layoutAttributes = [UICollectionViewLayoutAttributes]()
     
     for attributes in cache
     {
-      if CGRectIntersectsRect(attributes.frame, rect)
+      if attributes.frame.intersects(rect)
       {
         layoutAttributes.append(attributes)
       }
@@ -56,7 +56,7 @@ class CommonLayout: UICollectionViewLayout
   }
   
   
-  override class func layoutAttributesClass() -> AnyClass
+  override class var layoutAttributesClass : AnyClass
   {
     return LayoutAttributes.self
   }
@@ -64,7 +64,7 @@ class CommonLayout: UICollectionViewLayout
   
   func clearCache()
   {
-    cache.removeAll(keepCapacity: false)
+    cache.removeAll(keepingCapacity: false)
   }
 }
 
@@ -81,7 +81,7 @@ class HomeLayout: CommonLayout
   
   // 3
 
-  override func prepareLayout()
+  override func prepare()
   {
     // 1
     if cache.isEmpty
@@ -95,13 +95,13 @@ class HomeLayout: CommonLayout
         xOffset.append(CGFloat(column) * columnWidth )
       }
       var column = 0
-      var yOffset = [CGFloat](count: numberOfColumns, repeatedValue: 0)
+      var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
       
       // 3
-      for item in 0 ..< collectionView!.numberOfItemsInSection(0)
+      for item in 0 ..< collectionView!.numberOfItems(inSection: 0)
       {
         
-        let indexPath = NSIndexPath(forItem: item, inSection: 0)
+        let indexPath = IndexPath(item: item, section: 0)
         
         // 4
         let width = columnWidth - cellPadding * 2
@@ -110,16 +110,16 @@ class HomeLayout: CommonLayout
         let annotationHeight = delegate.collectionView(collectionView!, heightForAnnotationAtIndexPath: indexPath, withWidth: width)
         let height = cellPadding +  photoHeight + annotationHeight + cellPadding
         let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
-        let insetFrame = CGRectInset(frame, cellPadding, cellPadding)
+        let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
         
         // 5
-        let attributes = LayoutAttributes(forCellWithIndexPath: indexPath)
+        let attributes = LayoutAttributes(forCellWith: indexPath)
         attributes.photoHeight = photoHeight
         attributes.frame = insetFrame
         cache.append(attributes)
         
         // 6
-        contentHeight = max(contentHeight, CGRectGetMaxY(frame))
+        contentHeight = max(contentHeight, frame.maxY)
         yOffset[column] = yOffset[column] + height
         
         column = column >= (numberOfColumns - 1) ? 0 : (column + 1)
@@ -140,7 +140,7 @@ class FavoriteLayout: CommonLayout
   var numberOfColumns = FSDesign.ShareInstance.COLLECTION_COLUMN_NUMBER
   var cellPadding: CGFloat = 4.0
   
-  override func prepareLayout()
+  override func prepare()
   {
     // 1
     if cache.isEmpty
@@ -153,13 +153,13 @@ class FavoriteLayout: CommonLayout
         xOffset.append(CGFloat(column) * columnWidth )
       }
       var column = 0
-      var yOffset = [CGFloat](count: numberOfColumns, repeatedValue: 0)
+      var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
       
       // 3
-      for item in 0 ..< collectionView!.numberOfItemsInSection(0)
+      for item in 0 ..< collectionView!.numberOfItems(inSection: 0)
       {
         
-        let indexPath = NSIndexPath(forItem: item, inSection: 0)
+        let indexPath = IndexPath(item: item, section: 0)
         
         // 4
         let width = columnWidth - cellPadding * 2
@@ -168,16 +168,16 @@ class FavoriteLayout: CommonLayout
         let annotationHeight = delegate.collectionView(collectionView!, heightForAnnotationAtIndexPath: indexPath, withWidth: width)
         let height = cellPadding +  photoHeight + annotationHeight + cellPadding
         let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
-        let insetFrame = CGRectInset(frame, cellPadding, cellPadding)
+        let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
         
         // 5
-        let attributes = LayoutAttributes(forCellWithIndexPath: indexPath)
+        let attributes = LayoutAttributes(forCellWith: indexPath)
         attributes.photoHeight = photoHeight
         attributes.frame = insetFrame
         cache.append(attributes)
         
         // 6
-        contentHeight = max(contentHeight, CGRectGetMaxY(frame))
+        contentHeight = max(contentHeight, frame.maxY)
         yOffset[column] = yOffset[column] + height
         
         column = column >= (numberOfColumns - 1) ? 0 : (column + 1)

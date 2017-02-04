@@ -15,15 +15,15 @@ class LayoutAttributes: UICollectionViewLayoutAttributes
   var photoHeight: CGFloat = 0.0
   
   // 2
-  override func copyWithZone(zone: NSZone) -> AnyObject
+  override func copy(with zone: NSZone?) -> Any
   {
-    let copy = super.copyWithZone(zone) as! LayoutAttributes
+    let copy = super.copy(with: zone) as! LayoutAttributes
     copy.photoHeight = photoHeight
     return copy
   }
   
   // 3
-  override func isEqual(object: AnyObject?) -> Bool
+  override func isEqual(_ object: Any?) -> Bool
   {
     if let attributes = object as? LayoutAttributes
     {

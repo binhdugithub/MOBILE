@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextView
 {
-  func SetFont (p_font: UIFont) -> Void
+  func SetFont (_ p_font: UIFont) -> Void
   {
     let l_content = NSMutableAttributedString(attributedString: self.attributedText)
     let l_attributeFont = [NSFontAttributeName: p_font]

@@ -8,7 +8,31 @@
 
 import UIKit
 import AVFoundation
-import Alamofire
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class StoryViewController: UIViewController
 {
@@ -36,12 +60,12 @@ class StoryViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        self.tabBarController?.tabBar.hidden = true
+        self.tabBarController?.tabBar.isHidden = true
       
       
         UIGraphicsBeginImageContext(self.view.frame.size);
         var l_image = UIImage(named: "bg_textview")
-        l_image?.drawInRect(self.view.bounds)
+        l_image?.draw(in: self.view.bounds)
         l_image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -60,12 +84,13 @@ class StoryViewController: UIViewController
         print("tabbar bar: \(FSDesign.ShareInstance.TABBAR_HEIGHT)")
       
        GADMasterViewController.ShareInstance.ResetBannerView(self, p_ads: self.m_AdView)
+       GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     }
 
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
       
     }
   
@@ -84,13 +109,13 @@ class StoryViewController: UIViewController
     
     //content
     let l_content = NSMutableAttributedString(string: "\n\n")
-    l_content.appendAttributedString(NSAttributedString(string: self.m_Story!.m_content!))
+    l_content.append(NSAttributedString(string: self.m_Story!.m_content!))
     let l_EndContent = NSMutableAttributedString(string: "\n\n[End]")
-    l_content.appendAttributedString(l_EndContent)
+    l_content.append(l_EndContent)
     
     let l_attributeFont = [NSFontAttributeName: UIFont(name: FSDesign.ShareInstance.FONT_NAMES[1], size: FSDesign.ShareInstance.FONT_SIZE_TEXTVIEW)!]
     
-    let l_attributeColor = [NSForegroundColorAttributeName: UIColor.blackColor()]
+    let l_attributeColor = [NSForegroundColorAttributeName: UIColor.black]
     
     l_content.addAttributes(l_attributeFont, range: NSRange(location: 0,length: l_content.length))
     l_content.addAttributes(l_attributeColor, range: NSRange(location: 0,length: l_content.length))
@@ -101,16 +126,16 @@ class StoryViewController: UIViewController
       l_attachment.image = self.m_Story!.GetImage()
     
       let l_scale: CGFloat = (CGFloat(400)) / (self.m_TextView.frame.size.width/2)
-      l_attachment.image = UIImage(CGImage: l_attachment.image!.CGImage!, scale: l_scale, orientation: .Up)
+      l_attachment.image = UIImage(cgImage: l_attachment.image!.cgImage!, scale: l_scale, orientation: .up)
       let attrStringWithImage = NSAttributedString(attachment: l_attachment)
-      l_content.replaceCharactersInRange(NSMakeRange(0, 0), withAttributedString: attrStringWithImage)
+      l_content.replaceCharacters(in: NSMakeRange(0, 0), with: attrStringWithImage)
       
       self.m_TextView.attributedText = l_content
     
 
-    GADMasterViewController.ShareInstance.ResetInterstitialView(self)
+    //GADMasterViewController.ShareInstance.ResetInterstitialView(self)
     
-    if m_AudioLoadIndicator?.isAnimating() == true
+    if m_AudioLoadIndicator?.isAnimating == true
     {
       m_AudioLoadIndicator?.stopAnimating()
     }
@@ -118,11 +143,11 @@ class StoryViewController: UIViewController
     //favorite
     if m_Story!.m_liked == true
     {
-      m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
+      m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), for: UIControlState())
     }
     else
     {
-      m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
+      m_BtnFavorite.setImage(UIImage(named: "favorite_no"), for: UIControlState())
     }
 
     
@@ -136,30 +161,30 @@ class StoryViewController: UIViewController
   {
     //self.navigationItem.setHidesBackButton(true, animated: true)
     //self.navigationController!.navigationBar.barStyle = UIBarStyle.BlackTranslucent
-    self.navigationController!.navigationBar.barStyle = UIBarStyle.Default
+    self.navigationController!.navigationBar.barStyle = UIBarStyle.default
     self.navigationController!.navigationBar.backgroundColor = FSDesign.ShareInstance.COLOR_NAV_HEADER_BG
     
     //Left button: back button
     //
-    let l_rect:CGRect = CGRectMake(
-      0,
-      0,
-      self.navigationController!.navigationBar.frame.size.height - 4,
-      self.navigationController!.navigationBar.frame.size.height - 4)
+    let l_rect:CGRect = CGRect(
+      x: 0,
+      y: 0,
+      width: self.navigationController!.navigationBar.frame.size.height - 4,
+      height: self.navigationController!.navigationBar.frame.size.height - 4)
     
     let l_backButton: UIButton = UIButton(frame: l_rect)
-    l_backButton.setTitle("", forState: .Normal)
-    l_backButton.setImage(UIImage(named: "back_home"), forState: UIControlState.Normal)
-    l_backButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-    l_backButton.addTarget(self, action: #selector(StoryViewController.BackClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    l_backButton.setTitle("", for: UIControlState())
+    l_backButton.setImage(UIImage(named: "back_home"), for: UIControlState())
+    l_backButton.setTitleColor(UIColor.black, for: UIControlState())
+    l_backButton.addTarget(self, action: #selector(StoryViewController.BackClick(_:)), for: UIControlEvents.touchUpInside)
     
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: l_backButton)
     
     //title
     //
     m_LblTitle = UILabel()
-    m_LblTitle.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.navigationController!.navigationBar.frame.size.height)
-    m_LblTitle.textAlignment = NSTextAlignment.Center
+    m_LblTitle.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: self.navigationController!.navigationBar.frame.size.height)
+    m_LblTitle.textAlignment = NSTextAlignment.center
     m_LblTitle.numberOfLines = 2
     m_LblTitle.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_SIZE_TITLE)
     m_LblTitle.textColor = FSDesign.ShareInstance.COLOR_STORY_TITLE
@@ -169,10 +194,10 @@ class StoryViewController: UIViewController
     //
     let l_RectShare:CGRect = l_backButton.frame
     let l_ShareButton: UIButton = UIButton(frame: l_RectShare)
-    l_ShareButton.setTitle("", forState: .Normal)
-    l_ShareButton.setImage(UIImage(named: "share"), forState: UIControlState.Normal)
-    l_ShareButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-    l_ShareButton.addTarget(self, action: #selector(StoryViewController.ShareClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    l_ShareButton.setTitle("", for: UIControlState())
+    l_ShareButton.setImage(UIImage(named: "share"), for: UIControlState())
+    l_ShareButton.setTitleColor(UIColor.black, for: UIControlState())
+    l_ShareButton.addTarget(self, action: #selector(StoryViewController.ShareClick(_:)), for: UIControlEvents.touchUpInside)
     let l_ShareBarButton = UIBarButtonItem(customView: l_ShareButton)
     
     self.navigationItem.rightBarButtonItem = l_ShareBarButton
@@ -182,7 +207,7 @@ class StoryViewController: UIViewController
   
   func InitAd()
   {
-    var l_rect          = CGRectMake(0, 0, 0, 0)
+    var l_rect          = CGRect(x: 0, y: 0, width: 0, height: 0)
     l_rect.origin.x     = 0
     l_rect.size.width   = SCREEN_WIDTH
     l_rect.size.height  = FSDesign.ShareInstance.AD_HEIGHT
@@ -194,10 +219,10 @@ class StoryViewController: UIViewController
     frm.origin.x = 0;
     frm.origin.y =  0;
     let l_LblCopyright = UILabel.init(frame: frm)
-    l_LblCopyright.textColor = UIColor.blackColor()
+    l_LblCopyright.textColor = UIColor.black
     l_LblCopyright.text = TEXT_COPYRIGHT
-    l_LblCopyright.textAlignment = .Center
-    l_LblCopyright.font = UIFont.systemFontOfSize(CGFloat(FSDesign.ShareInstance.FONT_SIZE_COPYRIGHT))
+    l_LblCopyright.textAlignment = .center
+    l_LblCopyright.font = UIFont.systemFont(ofSize: CGFloat(FSDesign.ShareInstance.FONT_SIZE_COPYRIGHT))
     
     m_AdView.addSubview(l_LblCopyright)
     self.view.addSubview(m_AdView)
@@ -207,7 +232,7 @@ class StoryViewController: UIViewController
  
   func InitContentView()
   {
-    var l_rect          = CGRectMake(0, 0, 0, 0)
+    var l_rect          = CGRect(x: 0, y: 0, width: 0, height: 0)
 
     //text view
     l_rect.origin.x = FSDesign.ShareInstance.TEXTVIEW_MARGIN//0.5 * (m_ContentView.frame.size.width - l_rect.size.width)
@@ -216,8 +241,8 @@ class StoryViewController: UIViewController
     l_rect.size.height = SCREEN_HEIGHT - l_rect.origin.y - FSDesign.ShareInstance.AD_HEIGHT - FSDesign.ShareInstance.ICON_HEIGTH - FSDesign.ShareInstance.ICON_VHSPACE * 2 - 1
   
     m_TextView = UITextView(frame: l_rect)
-    m_TextView.textAlignment = NSTextAlignment.Left
-    m_TextView.backgroundColor = UIColor.clearColor()
+    m_TextView.textAlignment = NSTextAlignment.left
+    m_TextView.backgroundColor = UIColor.clear
     m_TextView.delegate = self
 
     print("Frame of content: \(m_TextView.frame)")
@@ -230,16 +255,16 @@ class StoryViewController: UIViewController
 
         let l_HSpaceButton: CGFloat = ((SCREEN_WIDTH - 5.0 * FSDesign.ShareInstance.ICON_WIDTH) / 5)
         //Previous button
-        var l_rect = CGRectMake(
-            0.4 * l_HSpaceButton,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
+        var l_rect = CGRect(
+            x: 0.4 * l_HSpaceButton,
+            y: FSDesign.ShareInstance.ICON_VHSPACE,
+            width: FSDesign.ShareInstance.ICON_WIDTH,
+            height: FSDesign.ShareInstance.ICON_HEIGTH)
         
         let l_UIButtonPrevious = UIButton(frame: l_rect)
-        l_UIButtonPrevious.setImage(UIImage(named: "previous"), forState: UIControlState.Normal)
-        l_UIButtonPrevious.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonPrevious.addTarget(self, action: #selector(StoryViewController.PreviousClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonPrevious.setImage(UIImage(named: "previous"), for: UIControlState())
+        l_UIButtonPrevious.setTitle("", for: UIControlState())
+        l_UIButtonPrevious.addTarget(self, action: #selector(StoryViewController.PreviousClick(_:)), for: UIControlEvents.touchUpInside)
         
         //audio button
 //        l_rect = CGRectMake(
@@ -269,68 +294,68 @@ class StoryViewController: UIViewController
       
       
       //A-
-      l_rect = CGRectMake(
-        l_HSpaceButton + l_UIButtonPrevious.frame.size.width + l_UIButtonPrevious.frame.origin.x,
-        FSDesign.ShareInstance.ICON_VHSPACE,
-        FSDesign.ShareInstance.ICON_WIDTH,
-        FSDesign.ShareInstance.ICON_HEIGTH)
+      l_rect = CGRect(
+        x: l_HSpaceButton + l_UIButtonPrevious.frame.size.width + l_UIButtonPrevious.frame.origin.x,
+        y: FSDesign.ShareInstance.ICON_VHSPACE,
+        width: FSDesign.ShareInstance.ICON_WIDTH,
+        height: FSDesign.ShareInstance.ICON_HEIGTH)
       
       let l_UIButtonASub = UIButton(frame: l_rect)
-      l_UIButtonASub.setImage(UIImage(named: "a_sub"), forState: UIControlState.Normal)
-      l_UIButtonASub.setTitle("", forState: UIControlState.Normal)
-      l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+      l_UIButtonASub.setImage(UIImage(named: "a_sub"), for: UIControlState())
+      l_UIButtonASub.setTitle("", for: UIControlState())
+      l_UIButtonASub.addTarget(self, action: #selector(StoryViewController.ASubClick(_:)), for: UIControlEvents.touchUpInside)
       
         //A+
-        l_rect = CGRectMake(
-            l_HSpaceButton + l_UIButtonASub.frame.size.width + l_UIButtonASub.frame.origin.x,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
+        l_rect = CGRect(
+            x: l_HSpaceButton + l_UIButtonASub.frame.size.width + l_UIButtonASub.frame.origin.x,
+            y: FSDesign.ShareInstance.ICON_VHSPACE,
+            width: FSDesign.ShareInstance.ICON_WIDTH,
+            height: FSDesign.ShareInstance.ICON_HEIGTH)
         
         let l_UIButtonAPlus = UIButton(frame: l_rect)
-        l_UIButtonAPlus.setImage(UIImage(named: "a_plus"), forState: UIControlState.Normal)
-        l_UIButtonAPlus.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonAPlus.addTarget(self, action: #selector(StoryViewController.APlusClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonAPlus.setImage(UIImage(named: "a_plus"), for: UIControlState())
+        l_UIButtonAPlus.setTitle("", for: UIControlState())
+        l_UIButtonAPlus.addTarget(self, action: #selector(StoryViewController.APlusClick(_:)), for: UIControlEvents.touchUpInside)
         
         //Favorite
-        l_rect = CGRectMake(
-            l_HSpaceButton + l_UIButtonAPlus.frame.size.width + l_UIButtonAPlus.frame.origin.x,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
+        l_rect = CGRect(
+            x: l_HSpaceButton + l_UIButtonAPlus.frame.size.width + l_UIButtonAPlus.frame.origin.x,
+            y: FSDesign.ShareInstance.ICON_VHSPACE,
+            width: FSDesign.ShareInstance.ICON_WIDTH,
+            height: FSDesign.ShareInstance.ICON_HEIGTH)
         
         m_BtnFavorite = UIButton(frame: l_rect)
-        m_BtnFavorite.setTitle("", forState: UIControlState.Normal)
-        m_BtnFavorite.addTarget(self, action: #selector(StoryViewController.FavoriteClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        m_BtnFavorite.setTitle("", for: UIControlState())
+        m_BtnFavorite.addTarget(self, action: #selector(StoryViewController.FavoriteClick(_:)), for: UIControlEvents.touchUpInside)
         if m_Story!.m_liked == true
         {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
+          m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), for: UIControlState())
         }
         else
         {
-          m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
+          m_BtnFavorite.setImage(UIImage(named: "favorite_no"), for: UIControlState())
         }
       
         //Next
-        l_rect = CGRectMake(
-            l_HSpaceButton + m_BtnFavorite.frame.size.width + m_BtnFavorite.frame.origin.x,
-            FSDesign.ShareInstance.ICON_VHSPACE,
-            FSDesign.ShareInstance.ICON_WIDTH,
-            FSDesign.ShareInstance.ICON_HEIGTH)
+        l_rect = CGRect(
+            x: l_HSpaceButton + m_BtnFavorite.frame.size.width + m_BtnFavorite.frame.origin.x,
+            y: FSDesign.ShareInstance.ICON_VHSPACE,
+            width: FSDesign.ShareInstance.ICON_WIDTH,
+            height: FSDesign.ShareInstance.ICON_HEIGTH)
         
         let l_UIButtonNext = UIButton(frame: l_rect)
-        l_UIButtonNext.setImage(UIImage(named: "next"), forState: UIControlState.Normal)
-        l_UIButtonNext.setTitle("", forState: UIControlState.Normal)
-        l_UIButtonNext.addTarget(self, action: #selector(StoryViewController.NextClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        l_UIButtonNext.setImage(UIImage(named: "next"), for: UIControlState())
+        l_UIButtonNext.setTitle("", for: UIControlState())
+        l_UIButtonNext.addTarget(self, action: #selector(StoryViewController.NextClick(_:)), for: UIControlEvents.touchUpInside)
       
         // indicator
-        m_AudioLoadIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        m_AudioLoadIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         m_AudioLoadIndicator!.frame = m_BtnAudio.frame
         m_AudioLoadIndicator!.hidesWhenStopped = true
-        m_AudioLoadIndicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        m_AudioLoadIndicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         m_AudioLoadIndicator?.stopAnimating()
         //view Control
-        l_rect = CGRectMake(0, 0, SCREEN_WIDTH, FSDesign.ShareInstance.ICON_HEIGTH + 2 * FSDesign.ShareInstance.ICON_VHSPACE)
+        l_rect = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: FSDesign.ShareInstance.ICON_HEIGTH + 2 * FSDesign.ShareInstance.ICON_VHSPACE)
         l_rect.origin.y    = SCREEN_HEIGHT - l_rect.size.height
       
       
@@ -351,11 +376,11 @@ class StoryViewController: UIViewController
   
     // MARK: - Navigation
 
-    func BackClick(sender: UIButton!)
+    func BackClick(_ sender: UIButton!)
     {
         SoundController.ShareInstance.PlayButton()
       
-        if (m_AudioPlayer?.playing == true)
+        if (m_AudioPlayer?.isPlaying == true)
         {
           m_AudioPlayer?.stop()
         }
@@ -364,13 +389,13 @@ class StoryViewController: UIViewController
         {
           for controller in l_navController.viewControllers
           {
-            if controller.isKindOfClass(HomeViewController)
+            if controller.isKind(of: HomeViewController.self)
             {
               let HomeView: HomeViewController = controller as! HomeViewController
               l_navController.popToViewController(HomeView, animated: true)
             }
             
-            if controller.isKindOfClass(FavoriteViewController)
+            if controller.isKind(of: FavoriteViewController.self)
             {
               let FavoriteView: FavoriteViewController = controller as! FavoriteViewController
               l_navController.popToViewController(FavoriteView, animated: true)
@@ -382,7 +407,7 @@ class StoryViewController: UIViewController
     }
   
     
-    func ShareClick(sender: UIButton!)
+    func ShareClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
         //print("Share click")
@@ -406,7 +431,7 @@ class StoryViewController: UIViewController
       let l_image = ScreenShot()
       var shareItems: NSArray?
       
-      if let l_MyAppWebsite = NSURL(string: l_link)
+      if let l_MyAppWebsite = URL(string: l_link)
       {
         print("\(l_MyAppWebsite)")
         //shareItems = [l_MyAppWebsite, l_image]
@@ -426,7 +451,7 @@ class StoryViewController: UIViewController
         print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
       }
       
-      self.presentViewController(l_ActivityVC, animated: true, completion: nil)
+      self.present(l_ActivityVC, animated: true, completion: nil)
       
       //        l_ActivityVC.excludedActivityTypes = [
       //                      UIActivityTypeAirDrop,
@@ -441,15 +466,15 @@ class StoryViewController: UIViewController
   
      
   
-    func PreviousClick(sender: UIButton!)
+    func PreviousClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
-        if m_AudioPlayer?.playing == true
+        if m_AudioPlayer?.isPlaying == true
         {
             m_AudioPlayer?.stop()
         }
       
-        m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
+        m_BtnAudio.setImage(UIImage(named: "audio_play"), for: UIControlState())
       
         if m_IsHomeView == true
         {
@@ -468,16 +493,16 @@ class StoryViewController: UIViewController
         RefreshStory()
     }
   
-    func NextClick(sender: UIButton!)
+    func NextClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
-        if m_AudioPlayer?.playing == true
+        if m_AudioPlayer?.isPlaying == true
         {
           m_AudioPlayer?.stop()
         }
       
       
-        m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
+        m_BtnAudio.setImage(UIImage(named: "audio_play"), for: UIControlState())
       
         if m_IsHomeView == true
         {
@@ -499,7 +524,7 @@ class StoryViewController: UIViewController
         RefreshStory()
     }
     
-    func APlusClick(sender: UIButton!)
+    func APlusClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
       FSDesign.ShareInstance.FONT_SIZE_TEXTVIEW += FSDesign.ShareInstance.FONT_SIZE_TEXTVIEW_DELTA
@@ -516,7 +541,7 @@ class StoryViewController: UIViewController
     }//end APlusClick
   
   
-    func ASubClick(sender: UIButton!)
+    func ASubClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
         //print("ASub click")
@@ -534,7 +559,7 @@ class StoryViewController: UIViewController
   
   
   
-    func FavoriteClick(sender: UIButton!)
+    func FavoriteClick(_ sender: UIButton!)
     {
       SoundController.ShareInstance.PlayButton()
       //print("Favorite click")
@@ -542,14 +567,14 @@ class StoryViewController: UIViewController
       if m_Story!.m_liked == true
       {
         m_Story!.m_liked = false
-        m_BtnFavorite.setImage(UIImage(named: "favorite_no"), forState: UIControlState.Normal)
+        m_BtnFavorite.setImage(UIImage(named: "favorite_no"), for: UIControlState())
       
       }
       else
       {
 
         m_Story!.m_liked = true
-        m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), forState: UIControlState.Normal)
+        m_BtnFavorite.setImage(UIImage(named: "favorite_yes"), for: UIControlState())
         
       }
       
@@ -559,7 +584,7 @@ class StoryViewController: UIViewController
 
   
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -571,9 +596,9 @@ class StoryViewController: UIViewController
     let refreshAlert = UIAlertView()
     refreshAlert.title = "Rate Funny Short Stories"
     refreshAlert.message = "If you enjoy using Funny Short Stories, please take a moment to rate it in the App Store. Thanks for your support!"
-    refreshAlert.addButtonWithTitle("Yes, Rate It!")
-    refreshAlert.addButtonWithTitle("Remind me later")
-    refreshAlert.addButtonWithTitle("No, Thanks")
+    refreshAlert.addButton(withTitle: "Yes, Rate It!")
+    refreshAlert.addButton(withTitle: "Remind me later")
+    refreshAlert.addButton(withTitle: "No, Thanks")
   
     refreshAlert.show()
     refreshAlert.delegate = self
@@ -583,7 +608,7 @@ class StoryViewController: UIViewController
 
 extension StoryViewController : UIAlertViewDelegate
 {
-  func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+  func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int)
   {
     switch buttonIndex
     {
@@ -592,7 +617,7 @@ extension StoryViewController : UIAlertViewDelegate
         print("APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
       #else
       let l_linkapp = "itms-apps://itunes.apple.com/app/id\(YOUR_APP_ID)"
-       UIApplication.sharedApplication().openURL(NSURL(string : l_linkapp)!)
+       UIApplication.shared.openURL(URL(string : l_linkapp)!)
       Configuration.ShareInstance.WriteRate(2)
       #endif
       break
@@ -614,22 +639,22 @@ extension StoryViewController : UIAlertViewDelegate
 
 extension StoryViewController
 {
-  func PlayerItemDidReachEnd (p_notify: NSNotification)
+  func PlayerItemDidReachEnd (_ p_notify: Notification)
   {
     let newTime = CMTimeMakeWithSeconds(0, 1);
-    SoundController.ShareInstance.m_PlayerStory?.seekToTime(newTime)
+    SoundController.ShareInstance.m_PlayerStory?.seek(to: newTime)
     
-    m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
+    m_BtnAudio.setImage(UIImage(named: "audio_play"), for: UIControlState())
 
   }
 }
 
 extension StoryViewController: AVAudioPlayerDelegate
 {
-  func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool)
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
   {
     print("Play finished")
-    m_BtnAudio.setImage(UIImage(named: "audio_play"), forState: UIControlState.Normal)
+    m_BtnAudio.setImage(UIImage(named: "audio_play"), for: UIControlState())
     m_AudioPlayer?.currentTime = 0
     
   }
@@ -637,27 +662,27 @@ extension StoryViewController: AVAudioPlayerDelegate
 
 extension StoryViewController: UITextViewDelegate
 {
-  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     print("shouldChangeTextInRange")
     return false
   }
   
-  func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
+  func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
     print("shouldInteractWithTextAttachment")
     return false
   }
   
   
-  func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
     print("shouldInteractWithURL")
     return false
   }
   
-  func textViewShouldBeginEditing(textView: UITextView) -> Bool
+  func textViewShouldBeginEditing(_ textView: UITextView) -> Bool
   {
       if self.m_ControlView.frame.origin.y > (SCREEN_HEIGHT - 5)
       {
-        UIView.animateWithDuration(0.4, animations:
+        UIView.animate(withDuration: 0.4, animations:
         {
           var l_frame = self.m_ControlView.frame
           l_frame.origin.y = l_frame.origin.y - l_frame.size.height
@@ -676,7 +701,7 @@ extension StoryViewController: UITextViewDelegate
       }
       else
       {
-        UIView.animateWithDuration(0.4, animations:
+        UIView.animate(withDuration: 0.4, animations:
         {
           var l_frame = self.m_ControlView.frame
           l_frame.origin.y = l_frame.origin.y + l_frame.size.height
@@ -696,7 +721,7 @@ extension StoryViewController: UITextViewDelegate
     return false
   }
   
-  func textViewShouldEndEditing(textView: UITextView) -> Bool
+  func textViewShouldEndEditing(_ textView: UITextView) -> Bool
   {
     //print("textViewShouldEndEditing")
     return false

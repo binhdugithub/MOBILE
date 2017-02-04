@@ -20,15 +20,15 @@ class SoundController: NSObject
     var m_PlayerStory: AVPlayer?
     var m_LastURLStory: String = String("")
   
-    private override init()
+    fileprivate override init()
     {
         do
         {
-            let path: String = NSBundle.mainBundle().pathForResource("click", ofType:"mp3")!
-            let mp3URL: NSURL = NSURL.fileURLWithPath(path)
-            m_AudioPlayerClickButton = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
+            let path: String = Bundle.main.path(forResource: "click", ofType:"mp3")!
+            let mp3URL: URL = URL(fileURLWithPath: path)
+            m_AudioPlayerClickButton = try AVAudioPlayer(contentsOf:mp3URL, fileTypeHint:nil)
          
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: .DefaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .defaultToSpeaker)
             try AVAudioSession.sharedInstance().setActive(true)
             m_AudioPlayerClickButton!.numberOfLoops = 0
           
@@ -88,7 +88,7 @@ class SoundController: NSObject
         
         do
         {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: .DefaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .defaultToSpeaker)
             try AVAudioSession.sharedInstance().setActive(true)
             if m_AudioPlayerGameOver!.prepareToPlay()
             {
@@ -114,12 +114,12 @@ class SoundController: NSObject
         
         do
         {
-            let path = NSBundle.mainBundle().pathForResource("congratulation", ofType:"mp3")!
-            let mp3URL = NSURL.fileURLWithPath(path)
-            m_AudioPlayerGameWin = try AVAudioPlayer(contentsOfURL:mp3URL, fileTypeHint:nil)
+            let path = Bundle.main.path(forResource: "congratulation", ofType:"mp3")!
+            let mp3URL = URL(fileURLWithPath: path)
+            m_AudioPlayerGameWin = try AVAudioPlayer(contentsOf:mp3URL, fileTypeHint:nil)
             
             print("Play win")
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             try AVAudioSession.sharedInstance().setActive(true)
            
         
@@ -180,19 +180,19 @@ class SoundController: NSObject
   
   
   
-  func PlayURL(p_url: String, p_object: AnyObject)
+  func PlayURL(_ p_url: String, p_object: AnyObject)
   {
     print("Play: \(p_url)")
     
     if m_PlayerStory == nil
     {
-      let l_url = NSURL(string: p_url)
+      let l_url = URL(string: p_url)
       m_LastURLStory = p_url
-      m_PlayerStory  = AVPlayer(URL: l_url!)
+      m_PlayerStory  = AVPlayer(url: l_url!)
       m_PlayerStory?.volume = 1.0
 
       
-      NSNotificationCenter.defaultCenter().addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+      NotificationCenter.default.addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: m_PlayerStory?.currentItem)
       
       m_PlayerStory?.play()
       
@@ -203,7 +203,7 @@ class SoundController: NSObject
       {
         print("Rate:\(m_PlayerStory?.rate)")
 
-        if m_PlayerStory?.rate == 0 &&  (m_PlayerStory?.currentItem?.status == .ReadyToPlay)
+        if m_PlayerStory?.rate == 0 &&  (m_PlayerStory?.currentItem?.status == .readyToPlay)
         {
           m_PlayerStory?.play()
         }
@@ -215,14 +215,14 @@ class SoundController: NSObject
       }
       else
       {
-        let l_url = NSURL(string: p_url)
+        let l_url = URL(string: p_url)
         m_LastURLStory = p_url
         
-        m_PlayerStory  = AVPlayer(URL: l_url!)
+        m_PlayerStory  = AVPlayer(url: l_url!)
         m_PlayerStory?.volume = 1.0
         //m_PlayerStory?.actionAtItemEnd = .Pause
-        NSNotificationCenter.defaultCenter().removeObserver(p_object)
-        NSNotificationCenter.defaultCenter().addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+        NotificationCenter.default.removeObserver(p_object)
+        NotificationCenter.default.addObserver(p_object, selector: Selector("PlayerItemDidReachEnd:"), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: m_PlayerStory?.currentItem)
         m_PlayerStory?.play()
         
       }
@@ -232,18 +232,18 @@ class SoundController: NSObject
   }
   
   
-  func PlayURL(p_url: String)
+  func PlayURL(_ p_url: String)
   {
     print("Play: \(p_url)")
     
     if m_PlayerStory == nil
     {
-      let l_url = NSURL(string: p_url)
+      let l_url = URL(string: p_url)
       m_LastURLStory = p_url
-      m_PlayerStory  = AVPlayer(URL: l_url!)
+      m_PlayerStory  = AVPlayer(url: l_url!)
       m_PlayerStory?.volume = 1.0
 
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+      NotificationCenter.default.addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: m_PlayerStory?.currentItem)
       
       m_PlayerStory?.play()
       
@@ -254,7 +254,7 @@ class SoundController: NSObject
       {
         print("Rate:\(m_PlayerStory?.rate)")
         
-        if m_PlayerStory?.rate == 0 &&  (m_PlayerStory?.currentItem?.status == .ReadyToPlay)
+        if m_PlayerStory?.rate == 0 &&  (m_PlayerStory?.currentItem?.status == .readyToPlay)
         {
           m_PlayerStory?.play()
         }
@@ -266,13 +266,13 @@ class SoundController: NSObject
       }
       else
       {
-        let l_url = NSURL(string: p_url)
+        let l_url = URL(string: p_url)
         m_LastURLStory = p_url
         
-        m_PlayerStory  = AVPlayer(URL: l_url!)
+        m_PlayerStory  = AVPlayer(url: l_url!)
         m_PlayerStory?.volume = 1.0
         //m_PlayerStory?.actionAtItemEnd = .Pause
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: AVPlayerItemDidPlayToEndTimeNotification, object: m_PlayerStory?.currentItem)
+        NotificationCenter.default.addObserver(self, selector: Selector("PlayerItemDidReachEnd:"), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: m_PlayerStory?.currentItem)
         m_PlayerStory?.play()
         
       }

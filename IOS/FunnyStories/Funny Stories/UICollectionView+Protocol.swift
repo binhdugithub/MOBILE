@@ -11,14 +11,14 @@ import UIKit
 extension UICollectionView
 {
   
-  func Scroll2Index(p_index: NSIndexPath?) -> Void
+  func Scroll2Index(_ p_index: IndexPath?) -> Void
   {
     
     if let l_index = p_index
     {
-      self.scrollToItemAtIndexPath(
-        l_index,
-        atScrollPosition: .CenteredVertically,
+      self.scrollToItem(
+        at: l_index,
+        at: .centeredVertically,
         animated: true)
       
     }

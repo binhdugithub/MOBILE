@@ -27,12 +27,12 @@ let TEXT_COPYRIGHT:String = "CUSIKI @2016"
 let FILE_CONFIG = "/config.plist"
 let FILE_DATABASE = "db_funnystories.db"
 
-let IS_IPAD:Bool               =     (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
-let IS_IPHONE: Bool            =     (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
-let IS_RETINA: Bool            =     (UIScreen.mainScreen().scale >= 2.0)
+let IS_IPAD:Bool               =     (UIDevice.current.userInterfaceIdiom == .pad)
+let IS_IPHONE: Bool            =     (UIDevice.current.userInterfaceIdiom == .phone)
+let IS_RETINA: Bool            =     (UIScreen.main.scale >= 2.0)
 
-let SCREEN_WIDTH:CGFloat       =     UIScreen.mainScreen().bounds.size.width
-let SCREEN_HEIGHT:CGFloat      =     UIScreen.mainScreen().bounds.size.height
+let SCREEN_WIDTH:CGFloat       =     UIScreen.main.bounds.size.width
+let SCREEN_HEIGHT:CGFloat      =     UIScreen.main.bounds.size.height
 let SCREEN_MAX_LENGTH:CGFloat  =     max(SCREEN_WIDTH, SCREEN_HEIGHT)
 let SCREEN_MIN_LENGTH:CGFloat  =     min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
@@ -45,30 +45,30 @@ let IS_IPAD_1X:Bool           =     (IS_IPAD && (SCREEN_MAX_LENGTH == 512))  //7
 let IS_IPAD_2X:Bool           =     (IS_IPAD && (SCREEN_MAX_LENGTH == 1024)) //1536 x 2048 IPAD, IPADmini 2x
 let IS_IPAD_PRO:Bool          =     (IS_IPAD && (SCREEN_MAX_LENGTH == 1366)) //IPAD pro
 
-let VERSION: String           =     (UIDevice.currentDevice().systemVersion)
+let VERSION: String           =     (UIDevice.current.systemVersion)
 
 let NAVIGATOR_1X_HEIGHT        =     CGFloat(22)
 let STATUS_BAR_HEIGHT         =     CGFloat(10)
-let DISPLAY_X                 =     UIScreen.mainScreen().scale
+let DISPLAY_X                 =     UIScreen.main.scale
 
 //open flash iphone
 func toggleTorch()
 {
-  let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+  let avDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
   // check if the device has torch
-  if  avDevice.hasTorch
+  if  (avDevice?.hasTorch)!
   {
     // lock your device for configuration
     do
     {
-      try avDevice.lockForConfiguration()
+      try avDevice?.lockForConfiguration()
       // check if your torchMode is on or off. If on turns it off otherwise turns it on
-      avDevice.torchMode = avDevice.torchActive ? AVCaptureTorchMode.Off : AVCaptureTorchMode.On
+      avDevice?.torchMode = (avDevice?.isTorchActive)! ? AVCaptureTorchMode.off : AVCaptureTorchMode.on
       
       // sets the torch intensity to 100%
-      try avDevice.setTorchModeOnWithLevel(1.0)
+      try avDevice?.setTorchModeOnWithLevel(1.0)
       // unlock your device
-      avDevice.unlockForConfiguration()
+      avDevice?.unlockForConfiguration()
       
     }
     catch let p_error as NSError
@@ -82,16 +82,16 @@ func toggleTorch()
 //off flash iphone
 func toggleTorchOff()
 {
-  let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-  if (device.hasTorch)
+  let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+  if (device?.hasTorch)!
   {
     do
     {
-      try device.lockForConfiguration()
-      let torchOn = !device.torchActive
-      try device.setTorchModeOnWithLevel(1.0)
-      device.torchMode = torchOn ? AVCaptureTorchMode.On : AVCaptureTorchMode.Off
-      device.unlockForConfiguration()
+      try device?.lockForConfiguration()
+      let torchOn = !(device?.isTorchActive)!
+      try device?.setTorchModeOnWithLevel(1.0)
+      device?.torchMode = torchOn ? AVCaptureTorchMode.on : AVCaptureTorchMode.off
+      device?.unlockForConfiguration()
     }
     catch let p_error as NSError
     {
@@ -102,19 +102,21 @@ func toggleTorchOff()
 }
 
 //random array
-func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C
-{
-  let counts = list.count
-  for i in 0..<(counts - 1)
-  {
-    let j = Int(arc4random_uniform(UInt32(counts - i))) + i
-    swap(&list[i], &list[j])
-  }
-  return list
-}
+//func shuffle<C: MutableCollection>(_ list: C) -> C where C.Index == Int
+//{
+//  var list = list
+//  let counts = list.count
+//  let j = counts - 2
+//  for i in 0..j
+//  {
+//    let j = Int(arc4random_uniform(UInt32(counts - i))) + i
+//    swap(&list[i], &list[j])
+//  }
+//  return list
+//}
 
 //resize image
-func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
+func RBResizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage
 {
   let size = image.size
   
@@ -125,47 +127,47 @@ func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage
   var newSize: CGSize
   if(widthRatio > heightRatio)
   {
-    newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+    newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
   } else
   {
-    newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+    newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
   }
   
   // This is the rect that we've calculated out and this is what is actually used below
-  let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+  let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
   
   // Actually do the resizing to the rect using the ImageContext stuff
   UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-  image.drawInRect(rect)
+  image.draw(in: rect)
   let newImage = UIGraphicsGetImageFromCurrentImageContext()
   UIGraphicsEndImageContext()
   
-  return newImage
+  return newImage!
 }
 
 //capture screenShot
 func ScreenShot() -> UIImage
 {
-  let layer = UIApplication.sharedApplication().keyWindow!.layer
-  let scale = UIScreen.mainScreen().scale
+  let layer = UIApplication.shared.keyWindow!.layer
+  let scale = UIScreen.main.scale
   UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
   
-  layer.renderInContext(UIGraphicsGetCurrentContext()!)
+  layer.render(in: UIGraphicsGetCurrentContext()!)
   let screenshot = UIGraphicsGetImageFromCurrentImageContext()
   UIGraphicsEndImageContext()
   
-  UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+  UIImageWriteToSavedPhotosAlbum(screenshot!, nil, nil, nil)
   
-  return screenshot
+  return screenshot!
 }
 
 //Get full Path
 
-func GetDocPathFile(p_name: String) -> String
+func GetDocPathFile(_ p_name: String) -> String
 {
-  var destinationPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask , true)[0]
-  destinationPath.appendContentsOf("/")
-  destinationPath.appendContentsOf(p_name)
+  var destinationPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask , true)[0]
+  destinationPath.append("/")
+  destinationPath.append(p_name)
   
   //print("Path: \(destinationPath)")
   return destinationPath;
@@ -174,14 +176,14 @@ func GetDocPathFile(p_name: String) -> String
 
 
 //get height of font
-func HeightForText(p_text: String, p_font: UIFont, p_width: CGFloat) -> CGFloat
+func HeightForText(_ p_text: String, p_font: UIFont, p_width: CGFloat) -> CGFloat
 {
   //  let rect = NSString(string: p_text).boundingRectWithSize(CGSize(width: p_width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: p_font], context: nil)
   //  return ceil(rect.height)
   
-  let label:UILabel = UILabel(frame: CGRectMake(0, 0, p_width, CGFloat.max))
+  let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: p_width, height: CGFloat.greatestFiniteMagnitude))
   label.numberOfLines = 0
-  label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+  label.lineBreakMode = NSLineBreakMode.byWordWrapping
   label.font = p_font
   label.text = p_text
   
@@ -192,14 +194,14 @@ func HeightForText(p_text: String, p_font: UIFont, p_width: CGFloat) -> CGFloat
 
 
 //get width of font
-func WidthForText(p_text: String, p_font: UIFont, p_heigh: CGFloat) -> CGFloat
+func WidthForText(_ p_text: String, p_font: UIFont, p_heigh: CGFloat) -> CGFloat
 {
   //    let rect = NSString(string: p_text).boundingRectWithSize(CGSize(width: CGFloat(MAXFLOAT), height: p_heigh), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: p_font], context: nil)
   //    return ceil(rect.width)
   
-  let label:UILabel = UILabel(frame: CGRectMake(0, 0, CGFloat.max, p_heigh))
+  let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: CGFloat.greatestFiniteMagnitude, height: p_heigh))
   label.numberOfLines = 0
-  label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+  label.lineBreakMode = NSLineBreakMode.byWordWrapping
   label.font = p_font
   label.text = p_text
   
@@ -210,10 +212,10 @@ func WidthForText(p_text: String, p_font: UIFont, p_heigh: CGFloat) -> CGFloat
 
 
 //alert
-func ShowAlert(title : String? , message : String?) -> UIAlertController
+func ShowAlert(_ title : String? , message : String?) -> UIAlertController
 {
-  let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-  let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+  let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+  let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
   alert.addAction(action)
   
   //self.presentViewController(alert, animated: true, completion: nil)
@@ -223,17 +225,17 @@ func ShowAlert(title : String? , message : String?) -> UIAlertController
 
 
 //alert
-func ShowSettingsAlert(title : String? , message : String?) -> UIAlertController
+func ShowSettingsAlert(_ title : String? , message : String?) -> UIAlertController
 {
-  let l_alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-  let settingAction = UIAlertAction(title: "Setting", style: .Default, handler: {(action: UIAlertAction) -> Void in
-    dispatch_async(dispatch_get_main_queue())
+  let l_alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+  let settingAction = UIAlertAction(title: "Setting", style: .default, handler: {(action: UIAlertAction) -> Void in
+    DispatchQueue.main.async
     {
-      UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+      UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
     }
   })
   
-  let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+  let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
   
   l_alertController.addAction(settingAction)
   l_alertController.addAction(cancelAction)

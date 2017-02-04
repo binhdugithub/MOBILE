@@ -17,7 +17,7 @@ class Configuration
     static let ShareInstance = Configuration()
   
     
-    private init()
+    fileprivate init()
     {
       m_IsMute = false
       m_Rate = 1
@@ -28,16 +28,16 @@ class Configuration
   
     func GetPathData() -> String
     {
-      var destinationPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask , true)[0]
-      destinationPath.appendContentsOf(FILE_CONFIG)
+      var destinationPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask , true)[0]
+      destinationPath.append(FILE_CONFIG)
       
-      if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath)
+      if !FileManager.default.fileExists(atPath: destinationPath)
       {
-        var sourcePath: String = NSBundle.mainBundle().resourcePath!
-        sourcePath.appendContentsOf(FILE_CONFIG)
+        var sourcePath: String = Bundle.main.resourcePath!
+        sourcePath.append(FILE_CONFIG)
         do
         {
-          try NSFileManager.defaultManager().copyItemAtPath(sourcePath, toPath:destinationPath)
+          try FileManager.default.copyItem(atPath: sourcePath, toPath:destinationPath)
         }
         catch let l_error as NSError
         {
@@ -57,7 +57,7 @@ class Configuration
         let dicData: NSDictionary? = NSDictionary(contentsOfFile: pathData)!
         if dicData != nil
         {
-          if let a = dicData?.objectForKey("IsMute") as? Bool
+          if let a = dicData?.object(forKey: "IsMute") as? Bool
           {
             m_IsMute = a
           }
@@ -66,7 +66,7 @@ class Configuration
             m_IsMute = false
           }
           
-          if let a = dicData?.objectForKey("CurrentStory") as? Int
+          if let a = dicData?.object(forKey: "CurrentStory") as? Int
           {
             m_CurrentStory = a
           }
@@ -75,7 +75,7 @@ class Configuration
             m_CurrentStory = 0
           }
           
-          if let a = dicData?.objectForKey("Rate") as? Int
+          if let a = dicData?.object(forKey: "Rate") as? Int
           {
             m_Rate = a
           }
@@ -102,14 +102,14 @@ class Configuration
     }
     
   
-    func WriteRate(p_rate: Int)
+    func WriteRate(_ p_rate: Int)
     {
         let pathData: String = self.GetPathData()
         let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
         if let l_dicData = dicData
         {
-            l_dicData.setObject(NSNumber(integer: p_rate), forKey:"Rate")
-            l_dicData.writeToFile(pathData, atomically:true)
+            l_dicData.setObject(NSNumber(value: p_rate as Int), forKey:"Rate" as NSCopying)
+            l_dicData.write(toFile: pathData, atomically:true)
             m_Rate = p_rate
             print("write rate:\(m_Rate)")
             
@@ -121,14 +121,14 @@ class Configuration
         }
     }
     
-    func WriteMute(p_ismute: Bool)
+    func WriteMute(_ p_ismute: Bool)
     {
         let pathData: String = self.GetPathData()
         let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
         if dicData != nil
         {
-            dicData!.setObject(p_ismute, forKey:"IsMute")
-            dicData!.writeToFile(pathData, atomically:true)
+            dicData!.setObject(p_ismute, forKey:"IsMute" as NSCopying)
+            dicData!.write(toFile: pathData, atomically:true)
             m_IsMute=p_ismute
         }
         else
@@ -139,7 +139,7 @@ class Configuration
         
     }
   
-    func WriteFavorite(p_favorite: NSMutableArray)
+    func WriteFavorite(_ p_favorite: NSMutableArray)
     {
       let pathData: String = self.GetPathData()
       let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
@@ -147,22 +147,22 @@ class Configuration
       {
         if p_favorite.count > 0
         {
-          l_dicData.setObject(p_favorite, forKey:"Favorite")
-          l_dicData.writeToFile(pathData, atomically:true)
+          l_dicData.setObject(p_favorite, forKey:"Favorite" as NSCopying)
+          l_dicData.write(toFile: pathData, atomically:true)
         }
         
       }
     }
   
   
-    func WriteCurrentStory(p_index: Int)
+    func WriteCurrentStory(_ p_index: Int)
     {
       let pathData: String = self.GetPathData()
       let dicData: NSMutableDictionary? = NSMutableDictionary(contentsOfFile: pathData)!
       if let l_dicData = dicData
       {
-        l_dicData.setObject(p_index, forKey:"CurrentStory")
-        l_dicData.writeToFile(pathData, atomically:true)
+        l_dicData.setObject(p_index, forKey:"CurrentStory" as NSCopying)
+        l_dicData.write(toFile: pathData, atomically:true)
       }
     }
   

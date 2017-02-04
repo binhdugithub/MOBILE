@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class Story
 {
@@ -41,14 +40,14 @@ class Story
   init(p_id: Int?,p_title: String?, p_content: String?, p_imageurl: String?, p_audiourl: String?, p_liked: Bool? = false)
   {
     self.m_id = p_id
-    self.m_title = p_title
+    self.m_title = p_title?.lowercased()
     self.m_content = p_content
     
-    var l_pathimg: String =  NSBundle.mainBundle().resourcePath!
-    l_pathimg.appendContentsOf("/")
-    l_pathimg.appendContentsOf(p_imageurl!)
+    var l_pathimg: String =  Bundle.main.resourcePath!
+    l_pathimg.append("/")
+    l_pathimg.append(p_imageurl!)
     
-    if NSFileManager.defaultManager().fileExistsAtPath(l_pathimg)
+    if FileManager.default.fileExists(atPath: l_pathimg)
     {
       self.m_imageurl = l_pathimg
     }
@@ -76,17 +75,17 @@ class Story
   }
   
   
-  func heightForComment(font: UIFont, width: CGFloat) -> CGFloat
+  func heightForComment(_ font: UIFont, width: CGFloat) -> CGFloat
   {
-    let l_HintContent = self.m_content!.substringToIndex(self.m_content!.startIndex.advancedBy(50))
-    let rect = NSString(string: l_HintContent).boundingRectWithSize(CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+    let l_HintContent = self.m_content!.substring(to: self.m_content!.characters.index(self.m_content!.startIndex, offsetBy: 50))
+    let rect = NSString(string: l_HintContent).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
     return ceil(rect.height)
   }
   
-  func heightForTitle(font: UIFont, width: CGFloat) -> CGFloat
+  func heightForTitle(_ font: UIFont, width: CGFloat) -> CGFloat
   {
-    let l_HintContent = self.m_content!.substringToIndex(self.m_content!.startIndex.advancedBy(5))
-    let rect = NSString(string: l_HintContent).boundingRectWithSize(CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+    let l_HintContent = self.m_content!.substring(to: self.m_content!.characters.index(self.m_content!.startIndex, offsetBy: 5))
+    let rect = NSString(string: l_HintContent).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
     return ceil(rect.height)
   }
 

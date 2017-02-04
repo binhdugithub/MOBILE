@@ -15,25 +15,25 @@ class DBModel
 {
   static let ShareInstance = DBModel()
   
-  private init()
+  fileprivate init()
   {
     
   }
 
   
   //Create Database
-  func CreateDatabase(p_name: String) -> Bool
+  func CreateDatabase(_ p_name: String) -> Bool
   {
     let l_dabPath = GetDocPathFile(FILE_DATABASE)
     
-    if !NSFileManager.defaultManager().fileExistsAtPath(l_dabPath)
+    if !FileManager.default.fileExists(atPath: l_dabPath)
     {
       
       let l_funnyDB = FMDatabase(path: l_dabPath as String)
       
       if l_funnyDB == nil
       {
-        print("Create database \(p_name) failed: \(l_funnyDB.lastErrorMessage())")
+        print("Create database \(p_name) failed: \(l_funnyDB?.lastErrorMessage())")
         return false
       }
       else
@@ -48,22 +48,22 @@ class DBModel
   }//end CreateDatabase
   
   //Copy Data
-  func CopyDatabase(p_name: String) -> Bool
+  func CopyDatabase(_ p_name: String) -> Bool
   {
     let destinationPath = GetDocPathFile(FILE_DATABASE)
     
-    if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath)
+    if !FileManager.default.fileExists(atPath: destinationPath)
     {
       
     
-      var l_path1: String =  NSBundle.mainBundle().resourcePath!
-      l_path1.appendContentsOf("/db_funnystories.db")
+      var l_path1: String =  Bundle.main.resourcePath!
+      l_path1.append("/db_funnystories.db")
       
-      if NSFileManager.defaultManager().fileExistsAtPath(l_path1)
+      if FileManager.default.fileExists(atPath: l_path1)
       {
         do
         {
-          try NSFileManager.defaultManager().copyItemAtPath(l_path1, toPath:destinationPath)
+          try FileManager.default.copyItem(atPath: l_path1, toPath:destinationPath)
         }
         catch let l_error as NSError
         {
@@ -83,7 +83,7 @@ class DBModel
   }//end copy data
   
   
-  func CreateTable(p_name: String) -> Bool
+  func CreateTable(_ p_name: String) -> Bool
   {
     
     let l_dabPath = GetDocPathFile(FILE_DATABASE)
@@ -91,29 +91,29 @@ class DBModel
     
     if l_funnyDB == nil
     {
-      print("Create table \(p_name) failed: \(l_funnyDB.lastErrorMessage())")
+      print("Create table \(p_name) failed: \(l_funnyDB?.lastErrorMessage())")
       return false
     }
     
 
-    if l_funnyDB.open()
+    if (l_funnyDB?.open())!
     {
       let sql_stmt = "CREATE TABLE IF NOT EXISTS Story (id INTEGER PRIMARY KEY NOT NULL, title CHAR (512) NOT NULL, content TEXT NOT NULL,imageurl CHAR(512), image BLOD DEFAULT(NULL),audiourl CHAR(256), audio BLOD DEFAULT (NULL), favorite BOOLEAN NOT NULL DEFAULT (0));"
-      if !l_funnyDB.executeStatements(sql_stmt)
+      if !(l_funnyDB?.executeStatements(sql_stmt))!
       {
-        print("Create table \(p_name) failed:\(l_funnyDB.lastErrorMessage())")
-        l_funnyDB.close()
+        print("Create table \(p_name) failed:\(l_funnyDB?.lastErrorMessage())")
+        l_funnyDB?.close()
         return false
         
       }
       
       print("Create table ok: \(l_dabPath)")
-      l_funnyDB.close()
+      l_funnyDB?.close()
       return true
     }
     else
     {
-      print("Create table Error: \(l_funnyDB.lastErrorMessage())")
+      print("Create table Error: \(l_funnyDB?.lastErrorMessage())")
     }
 
     return false
@@ -125,19 +125,19 @@ class DBModel
   {
     let l_pathDB = GetDocPathFile(FILE_DATABASE)
     let l_funnyDB = FMDatabase(path: l_pathDB)
-    if l_funnyDB.open()
+    if (l_funnyDB?.open())!
     {
       let l_query = "SELECT * from Story"
-      let l_results:FMResultSet? = l_funnyDB.executeQuery(l_query, withArgumentsInArray: nil)
+      let l_results:FMResultSet? = l_funnyDB?.executeQuery(l_query, withArgumentsIn: nil)
       
       while  l_results?.next() == true
       {
-        let l_id = Int((l_results?.intForColumn("id"))!)
-        let l_title = l_results?.stringForColumn("title")
-        let l_content = l_results?.stringForColumn("content")
-        let l_liked = l_results?.boolForColumn("liked")
-        let l_imageurl = l_results?.stringForColumn("urlimage")
-        let l_audiourl = l_results?.stringForColumn("urlaudio")
+        let l_id = Int((l_results?.int(forColumn: "id"))!)
+        let l_title = l_results?.string(forColumn: "title")
+        let l_content = l_results?.string(forColumn: "content")
+        let l_liked = l_results?.bool(forColumn: "liked")
+        let l_imageurl = l_results?.string(forColumn: "urlimage")
+        let l_audiourl = l_results?.string(forColumn: "urlaudio")
         
         let l_Story = Story(p_id: l_id, p_title: l_title, p_content: l_content, p_imageurl: l_imageurl, p_audiourl: l_audiourl, p_liked: l_liked)
         
@@ -149,12 +149,12 @@ class DBModel
       }
       
       print("Loaded \(FSCore.ShareInstance.m_ArrayStory.count) stories from database")
-      l_funnyDB.close()
+      l_funnyDB?.close()
       return l_results
     }
     else
     {
-      print("GetAllStories failed: \(l_funnyDB.lastErrorMessage())")
+      print("GetAllStories failed: \(l_funnyDB?.lastErrorMessage())")
     }
 
     return nil
@@ -164,35 +164,35 @@ class DBModel
   
   
   //UpdateFavoriteStory
-  func UpdateFavoriteStory(p_Story: Story) -> Bool
+  func UpdateFavoriteStory(_ p_Story: Story) -> Bool
   {
     
     let l_pathDB = GetDocPathFile(FILE_DATABASE)
     let l_funnyDB = FMDatabase(path: l_pathDB)
     
-    if l_funnyDB.open()
+    if (l_funnyDB?.open())!
     {
       
       do
       {
         let updateSQL = "UPDATE Story SET liked = ? WHERE id = ?"
-        try l_funnyDB.executeUpdate(updateSQL,values: [p_Story.m_liked!, p_Story.m_id!])
+        try l_funnyDB?.executeUpdate(updateSQL,values: [p_Story.m_liked!, p_Story.m_id!])
         
         print("Update \(p_Story.m_id) set favorite =  \(p_Story.m_liked) ok")
         
-        l_funnyDB.close()
+        l_funnyDB?.close()
         return true
         
       }
       catch let ex as NSError
       {
         print("Error: \(ex.description)")
-        l_funnyDB.close()
+        l_funnyDB?.close()
       }
     }
     else
     {
-      print("Open db failed: \(l_funnyDB.lastErrorMessage())")
+      print("Open db failed: \(l_funnyDB?.lastErrorMessage())")
     }
     
     return false

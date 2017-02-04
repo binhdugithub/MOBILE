@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import Alamofire
+
 
 class HomeViewCell: UICollectionViewCell
 {
   
   @IBOutlet weak var m_View: RoundedCornersView!
-  @IBOutlet private weak var imageView: UIImageView!
-  @IBOutlet private weak var imageViewHeightLayoutConstraint: NSLayoutConstraint!
-  @IBOutlet private weak var captionLabel: UILabel!
+  @IBOutlet fileprivate weak var imageView: UIImageView!
+  @IBOutlet fileprivate weak var imageViewHeightLayoutConstraint: NSLayoutConstraint!
+  @IBOutlet fileprivate weak var captionLabel: UILabel!
   //@IBOutlet private weak var commentLabel: UILabel!
   
   @IBOutlet weak var m_ActivityIndicator: UIActivityIndicatorView!
@@ -23,7 +23,7 @@ class HomeViewCell: UICollectionViewCell
   override func awakeFromNib()
   {
     super.awakeFromNib()
-    m_ActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+    m_ActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
     m_ActivityIndicator.hidesWhenStopped = true
     
     m_View.cornerRadius = 5
@@ -31,7 +31,7 @@ class HomeViewCell: UICollectionViewCell
     captionLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE)!
    
     m_View.backgroundColor = FSDesign.ShareInstance.COLOR_CELL_BG
-    imageView.backgroundColor = UIColor.whiteColor()
+    imageView.backgroundColor = UIColor.white
   }
   
   var m_Story: Story?
@@ -49,9 +49,9 @@ class HomeViewCell: UICollectionViewCell
   }
   
   
-  override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes)
+  override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes)
   {
-    super.applyLayoutAttributes(layoutAttributes)
+    super.apply(layoutAttributes)
     if let attributes = layoutAttributes as? LayoutAttributes
     {
       imageViewHeightLayoutConstraint.constant = attributes.photoHeight
@@ -62,7 +62,7 @@ class HomeViewCell: UICollectionViewCell
 
 class HomeViewLoadingCell: UICollectionReusableView
 {
-  let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+  let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
   
   required init(coder aDecoder: NSCoder)
   {

@@ -16,9 +16,9 @@ class HomeViewController: UICollectionViewController
     var m_IsScrolled: Bool = false
   
   
-  override func preferredStatusBarStyle() -> UIStatusBarStyle
+  override var preferredStatusBarStyle : UIStatusBarStyle
   {
-    return UIStatusBarStyle.LightContent
+    return UIStatusBarStyle.lightContent
   }
   
   override func viewDidLoad()
@@ -30,17 +30,17 @@ class HomeViewController: UICollectionViewController
       layout.delegate = self
     }
     
-    collectionView!.backgroundColor = UIColor.clearColor()
+    collectionView!.backgroundColor = UIColor.clear
     collectionView!.contentInset = FSDesign.ShareInstance.INSET_COLLECTION
     
     
-    var l_rect = CGRectMake(0, 0, 0, 0)
+    var l_rect = CGRect(x: 0, y: 0, width: 0, height: 0)
     l_rect.size.width = 1.0/5 * SCREEN_WIDTH
     l_rect.size.height = l_rect.size.width
     l_rect.origin.x = 0.5 * (SCREEN_WIDTH - l_rect.size.width)
     l_rect.origin.y  = 0.5 * (SCREEN_HEIGHT - l_rect.size.height)
     m_Indicator = UIActivityIndicatorView(frame: l_rect)
-    m_Indicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+    m_Indicator!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
     self.view.addSubview(m_Indicator!)
     
     FSCore.ShareInstance.m_IndexStoryStartDisplayed =  FSCore.ShareInstance.m_IndexStoryStartDisplayed > (FSCore.ShareInstance.m_ArrayStory.count - 1) ? FSCore.ShareInstance.m_ArrayStory.count - 1 : FSCore.ShareInstance.m_IndexStoryStartDisplayed
@@ -48,22 +48,22 @@ class HomeViewController: UICollectionViewController
   
     
     FSDesign.ShareInstance.NAVIGATOR_HEIGHT = (self.navigationController?.navigationBar.bounds.size.height)!
-    FSDesign.ShareInstance.STATUSBAR_HEIGHT = UIApplication.sharedApplication().statusBarFrame.size.height
+    FSDesign.ShareInstance.STATUSBAR_HEIGHT = UIApplication.shared.statusBarFrame.size.height
     
   }
   
-  override func viewWillAppear(animated: Bool)
+  override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
     
-    self.tabBarController?.tabBar.hidden = false
-    self.navigationController?.navigationBarHidden = true
+    self.tabBarController?.tabBar.isHidden = false
+    self.navigationController?.isNavigationBarHidden = true
   
-    m_TxtSearch.hidden = true
+    m_TxtSearch.isHidden = true
 
   }
   
-  override func viewDidAppear(animated: Bool)
+  override func viewDidAppear(_ animated: Bool)
   {
     super.viewDidAppear(animated)
 
@@ -80,12 +80,12 @@ class HomeViewController: UICollectionViewController
     super.viewDidLayoutSubviews()
   }
   
-  func doSomething(p_param: AnyObject)
+  func doSomething(_ p_param: AnyObject)
   {
     let l_indexParam = p_param as! Int
     //print("scrool to: \(l_indexParam)")
     
-    let l_array = self.collectionView?.indexPathsForVisibleItems()
+    let l_array = self.collectionView?.indexPathsForVisibleItems
     var l_row = l_array![0]
     
     for indexPath in l_array!
@@ -106,12 +106,12 @@ class HomeViewController: UICollectionViewController
         print("Scroll to: \(l_row.row)")
         ScrollToRow(l_row)
         
-        NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_row.row)).start()
+        Thread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_row.row)).start()
       }
       else if l_row.row < FSCore.ShareInstance.m_IndexStoryStartDisplayed
       {
         //NSThread.sleepForTimeInterval(0.5)
-        NSThread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_indexParam)).start()
+        Thread(target: self, selector: #selector(HomeViewController.doSomething(_:)), object: Int(l_indexParam)).start()
       }
       else
       {
@@ -126,15 +126,15 @@ class HomeViewController: UICollectionViewController
     
   }
   
-  func ScrollToRow(p_row: NSIndexPath)
+  func ScrollToRow(_ p_row: IndexPath)
   {
  
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async
     {
-        dispatch_async(dispatch_get_main_queue())
+        DispatchQueue.main.async
         {
           self.collectionView?.layoutIfNeeded()
-          self.collectionView?.scrollToItemAtIndexPath(p_row, atScrollPosition: .Top, animated: false)
+          self.collectionView?.scrollToItem(at: p_row, at: .top, animated: false)
         }
     }
     
@@ -145,26 +145,26 @@ class HomeViewController: UICollectionViewController
   {
     if let layout = collectionView?.collectionViewLayout as? HomeLayout
     {
-      if NSThread.isMainThread()
+      if Thread.isMainThread
       {
         layout.clearCache()
         self.collectionView!.reloadData()
-        if (self.m_Indicator!.isAnimating())
+        if (self.m_Indicator!.isAnimating)
         {
           self.m_Indicator!.stopAnimating()
         }
       }
       else
       {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async
           {
           // do your task
           
-          dispatch_async(dispatch_get_main_queue())
+          DispatchQueue.main.async
           {
               layout.clearCache()
               self.collectionView!.reloadData()
-            if (self.m_Indicator!.isAnimating())
+            if (self.m_Indicator!.isAnimating)
             {
               self.m_Indicator!.stopAnimating()
             }
@@ -177,9 +177,9 @@ class HomeViewController: UICollectionViewController
   }
   
   
-  func ShowToast(p_title: String)
+  func ShowToast(_ p_title: String)
   {
-    var l_frm = CGRectMake(0, 0, 0, 0)
+    var l_frm = CGRect(x: 0, y: 0, width: 0, height: 0)
     l_frm.size.width = self.view.frame.size.width - 100
     if IS_IPAD_PRO || IS_IPAD_2X
     {
@@ -196,15 +196,15 @@ class HomeViewController: UICollectionViewController
     let toastLabel = UILabel(frame: l_frm)
     
     toastLabel.font = UIFont(name: FSDesign.ShareInstance.FONT_NAMES[2], size: FSDesign.ShareInstance.FONT_CELL_SIZE - 2)!
-    toastLabel.backgroundColor = UIColor.blackColor()
-    toastLabel.textColor = UIColor.whiteColor()
-    toastLabel.textAlignment = NSTextAlignment.Center;
+    toastLabel.backgroundColor = UIColor.black
+    toastLabel.textColor = UIColor.white
+    toastLabel.textAlignment = NSTextAlignment.center;
     self.view.addSubview(toastLabel)
     toastLabel.text = p_title
     toastLabel.alpha = 1.0
     toastLabel.layer.cornerRadius = 10;
     toastLabel.clipsToBounds  =  true
-    UIView.animateWithDuration(6.0, delay: 0.1, options: .CurveEaseOut, animations: {
+    UIView.animate(withDuration: 6.0, delay: 0.1, options: .curveEaseOut, animations: {
       toastLabel.alpha = 0.0
         }, completion: { (finished: Bool) -> Void in
             toastLabel.removeFromSuperview()
@@ -219,33 +219,33 @@ class HomeViewController: UICollectionViewController
 extension HomeViewController
 {
 
-  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
   {
     //highlightCell(indexPath, flag: true)
-    self.performSegueWithIdentifier("Segue2Story", sender: indexPath)
+    self.performSegue(withIdentifier: "Segue2Story", sender: indexPath)
   }
 
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
+  override func prepare(for segue: UIStoryboardSegue, sender: Any!)
   {
     if segue.identifier == "Segue2Story"
     {
-      let StoryView = segue.destinationViewController as! StoryViewController
-      let l_item: NSIndexPath = sender as! NSIndexPath
+      let StoryView = segue.destination as! StoryViewController
+      let l_item: IndexPath = sender as! IndexPath
       StoryView.m_Story = FSCore.ShareInstance.m_ArrayStory[l_item.row]
       StoryView.m_IsHomeView = true
     }
   }
   
   
-  func highlightCell(indexPath : NSIndexPath, flag: Bool)
+  func highlightCell(_ indexPath : IndexPath, flag: Bool)
   {
     
-    let cell = collectionView!.cellForItemAtIndexPath(indexPath)
+    let cell = collectionView!.cellForItem(at: indexPath)
     
     if flag
     {
-      cell?.contentView.backgroundColor = UIColor.magentaColor()
+      cell?.contentView.backgroundColor = UIColor.magenta
     }
     else
     {
@@ -254,7 +254,7 @@ extension HomeViewController
   }
   
   
-  override func scrollViewDidEndDecelerating(scrollView: UIScrollView)
+  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
   {
     
    // print("****scrollViewDidEndDecelerating****")
@@ -291,16 +291,16 @@ extension HomeViewController
 
   }
   
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   {
     
     return FSCore.ShareInstance.m_ArrayStory.count
     
   }
   
-  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
   {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeViewCell", forIndexPath: indexPath) as! HomeViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
     cell.m_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.row]
     
     return cell
@@ -311,14 +311,14 @@ extension HomeViewController
 extension HomeViewController : LayoutDelegate
 {
   // 1
-  func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
+  func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath, withWidth width: CGFloat) -> CGFloat
   {
       let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
       let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
     
       if let image = UIImage(contentsOfFile: l_Story.m_imageurl!)
       {
-        let rect = AVMakeRectWithAspectRatioInsideRect(image.size, boundingRect)
+        let rect = AVMakeRect(aspectRatio: image.size, insideRect: boundingRect)
         return rect.size.height
       }
     
@@ -326,7 +326,7 @@ extension HomeViewController : LayoutDelegate
   }
   
   // 2
-  func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
+  func collectionView(_ collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth width: CGFloat) -> CGFloat
   {
       let annotationPadding = CGFloat(15)
       let l_Story = FSCore.ShareInstance.m_ArrayStory[indexPath.item]
@@ -345,10 +345,10 @@ extension HomeViewController : LayoutDelegate
 //Text view delegate
 extension HomeViewController : UITextFieldDelegate
 {
-  func textFieldShouldReturn(textField: UITextField) -> Bool
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool
   {
     // 1
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     textField.addSubview(activityIndicator)
     activityIndicator.frame = textField.bounds
     activityIndicator.startAnimating()

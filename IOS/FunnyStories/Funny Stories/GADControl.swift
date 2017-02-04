@@ -18,7 +18,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
     var m_IsLoaded: Bool
     
     
-    private override init()
+    fileprivate override init()
     {
         NSLog("GADMaster:Init")
         m_IsLoaded = false
@@ -27,7 +27,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
     }
 
     
-    func ResetBannerView(p_view: UIViewController?, p_frame: CGRect) -> Bool
+    func ResetBannerView(_ p_view: UIViewController?, p_frame: CGRect) -> Bool
     {
         if p_view != nil
         {
@@ -44,7 +44,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
                 m_Banner!.delegate   =   self
                 m_Banner!.rootViewController = p_view
                 m_Banner!.adUnitID   =   AMOD_BANNER_FOOTER_UNIT
-                m_Banner!.loadRequest(GADRequest())
+                m_Banner!.load(GADRequest())
                 m_Banner!.frame = p_frame
                 p_view!.view.addSubview(m_Banner!)
             }
@@ -57,7 +57,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         }
     }
   
-    func ResetBannerView(p_view: UIViewController?, p_ads: UIView) -> Bool
+    func ResetBannerView(_ p_view: UIViewController?, p_ads: UIView) -> Bool
     {
       if p_view != nil
       {
@@ -75,7 +75,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
           m_Banner!.delegate   =   self
           m_Banner!.rootViewController = p_view
           m_Banner!.adUnitID   =   AMOD_BANNER_FOOTER_UNIT
-          m_Banner!.loadRequest(GADRequest())
+          m_Banner!.load(GADRequest())
           var l_frame = p_ads.frame
           l_frame.origin.x = 0
           l_frame.origin.y = 0
@@ -98,11 +98,11 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         NSLog("GADMaster:GetInterstitialAds")
         m_Interstitial = GADInterstitial(adUnitID:AMOD_INTERSTITIAL_UNIT)
         m_Interstitial!.delegate = self
-        m_Interstitial!.loadRequest(GADRequest())
+        m_Interstitial!.load(GADRequest())
     }
     
     
-    func ResetInterstitialView(p_view: UIViewController)
+    func ResetInterstitialView(_ p_view: UIViewController)
     {
         NSLog("GADMaster:ResetAdInterstitialView")
         if m_Interstitial!.hasBeenUsed
@@ -114,7 +114,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         {
             if m_Interstitial!.isReady
             {
-                m_Interstitial!.presentFromRootViewController(p_view)
+                m_Interstitial!.present(fromRootViewController: p_view)
                 
             }
             else
@@ -125,7 +125,7 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
                 sleep(1)
                 if m_Interstitial!.isReady
                 {
-                    m_Interstitial!.presentFromRootViewController(p_view)
+                    m_Interstitial!.present(fromRootViewController: p_view)
                 }
                 
             }
@@ -138,24 +138,24 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
     // GADelegate
     //
     
-    func interstitialWillDismissScreen(ad: GADInterstitial!)
+    func interstitialWillDismissScreen(_ ad: GADInterstitial!)
     {
         print("GADMaster:WillDismissScreen")
     }
     
-    func interstitialDidDismissScreen(ad: GADInterstitial!)
+    func interstitialDidDismissScreen(_ ad: GADInterstitial!)
     {
         print("GADMaster:DidDismissinterstitial")
         self.GETInterstitialAds()
     }
     
     
-    func adViewDidReceiveAd(bannerView: GADBannerView!)
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!)
     {
    
         NSLog("GADMaster:adViewDidReceiveAd")
         bannerView.alpha=0
-        UIView.animateWithDuration(1, animations:
+        UIView.animate(withDuration: 1, animations:
         {
             bannerView.alpha=1
         })
@@ -163,24 +163,24 @@ class GADMasterViewController: NSObject, GADBannerViewDelegate, GADInterstitialD
         m_IsLoaded = true
     }
     
-    func adViewWillDismissScreen(bannerView: GADBannerView!)
+    func adViewWillDismissScreen(_ bannerView: GADBannerView!)
     {
          NSLog("GADMaster:adViewWillDismissScreen")
     }
 
-    func adViewDidDismissScreen(bannerView: GADBannerView!)
+    func adViewDidDismissScreen(_ bannerView: GADBannerView!)
     {
         NSLog("GADMaster:adViewDidDismissScreen")
         m_IsLoaded = false
     }
     
-    func adViewWillPresentScreen(bannerView: GADBannerView!)
+    func adViewWillPresentScreen(_ bannerView: GADBannerView!)
     {
         NSLog("adViewWillPresentScreen")
     }
  
     
-    func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!)
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!)
     {
         NSLog(error.localizedFailureReason!)
         print("Rootview: ", m_Banner!.rootViewController)

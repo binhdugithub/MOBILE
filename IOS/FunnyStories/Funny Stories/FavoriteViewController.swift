@@ -11,9 +11,9 @@ import AVFoundation
 
 class FavoriteViewController: UICollectionViewController
 {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    override var preferredStatusBarStyle : UIStatusBarStyle
     {
-      return UIStatusBarStyle.LightContent
+      return UIStatusBarStyle.lightContent
     }
   
     override func viewDidLoad()
@@ -25,22 +25,22 @@ class FavoriteViewController: UICollectionViewController
           layout.delegate = self
         }
       
-        collectionView!.backgroundColor = UIColor.clearColor()
+        collectionView!.backgroundColor = UIColor.clear
         collectionView!.contentInset = FSDesign.ShareInstance.INSET_COLLECTION
     }
   
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
       super.viewWillAppear(animated)
       
-      self.tabBarController?.tabBar.hidden = false
-      self.navigationController?.navigationBarHidden = true
+      self.tabBarController?.tabBar.isHidden = false
+      self.navigationController?.isNavigationBarHidden = true
 
       self.ReloadData()
 
     }
   
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
       super.viewDidAppear(animated)
 
@@ -59,7 +59,7 @@ class FavoriteViewController: UICollectionViewController
 
 extension FavoriteViewController
 {
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   {
     var l_count = 0
     for p_story in FSCore.ShareInstance.m_ArrayStory
@@ -73,26 +73,26 @@ extension FavoriteViewController
     return l_count
   }
   
-  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
   {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FavoriteViewCell", forIndexPath: indexPath) as! FavoriteViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteViewCell", for: indexPath) as! FavoriteViewCell
  
     cell.m_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)
     return cell
   }
   
-  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
   {
-    self.performSegueWithIdentifier("SegueFavorite2Story", sender: indexPath)
+    self.performSegue(withIdentifier: "SegueFavorite2Story", sender: indexPath)
   }
   
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
+  override func prepare(for segue: UIStoryboardSegue, sender: Any!)
   {
     if segue.identifier == "SegueFavorite2Story"
     {
-      let StoryView = segue.destinationViewController as! StoryViewController
-      let l_index = (sender as! NSIndexPath).row
+      let StoryView = segue.destination as! StoryViewController
+      let l_index = (sender as! IndexPath).row
       
       StoryView.m_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(l_index)!
       StoryView.m_IsHomeView = false
@@ -104,20 +104,20 @@ extension FavoriteViewController
 extension FavoriteViewController : LayoutDelegate
 {
   // 1
-  func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
+  func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath, withWidth width: CGFloat) -> CGFloat
   {
       
     let l_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)!
     let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
    
       let image = UIImage(contentsOfFile: l_Story.m_imageurl!)
-      let rect = AVMakeRectWithAspectRatioInsideRect(image!.size, boundingRect)
+      let rect = AVMakeRect(aspectRatio: image!.size, insideRect: boundingRect)
       return rect.size.height
  
   }
   
   // 2
-  func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
+  func collectionView(_ collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth width: CGFloat) -> CGFloat
   {
     let annotationPadding = CGFloat(15)
     let l_Story = FSCore.ShareInstance.GetStoryAtIndexFavorite(indexPath.row)!

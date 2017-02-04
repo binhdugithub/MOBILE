@@ -350,7 +350,7 @@
             startingLineNumber = "458"
             endingLineNumber = "458"
             landmarkName = "-MoreAppClick:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -366,7 +366,7 @@
             startingLineNumber = "475"
             endingLineNumber = "475"
             landmarkName = "-GetImageForBtn:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -382,7 +382,7 @@
             startingLineNumber = "499"
             endingLineNumber = "499"
             landmarkName = "-GetImageForBtn:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -398,7 +398,7 @@
             startingLineNumber = "448"
             endingLineNumber = "448"
             landmarkName = "-SetupMoreAppView"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -414,7 +414,7 @@
             startingLineNumber = "95"
             endingLineNumber = "95"
             landmarkName = "-CalculateView"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -430,7 +430,7 @@
             startingLineNumber = "282"
             endingLineNumber = "282"
             landmarkName = "-CalculateView"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

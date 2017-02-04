@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import Alamofire
+
 
 
 extension NSTextAttachment
 {
-  func GetImageFromStory(p_story: Story)
+  func GetImageFromStory(_ p_story: Story)
   {
     if p_story.m_imageurl == ""
     {

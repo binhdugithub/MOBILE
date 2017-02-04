@@ -20,7 +20,7 @@ class FSCore
   var m_IndexStoryStartDisplayed = 0
   
   
-  private init()
+  fileprivate init()
   {
     if let abc = Configuration.ShareInstance.m_CurrentStory
     {
@@ -35,7 +35,7 @@ class FSCore
   }
   
   //NextStoryFavorite
-  func NextStoryFavorite(p_story: Story?) -> Story?
+  func NextStoryFavorite(_ p_story: Story?) -> Story?
   {
     if p_story == nil
     {
@@ -64,7 +64,7 @@ class FSCore
   
   
   //NextStoryFavorite
-  func PreStoryFavorite(p_story: Story?) -> Story?
+  func PreStoryFavorite(_ p_story: Story?) -> Story?
   {
     if p_story == nil
     {
@@ -100,7 +100,7 @@ class FSCore
   
   
   
-  func IndexOfStoryInArrayStory(p_Story: Story) -> Int
+  func IndexOfStoryInArrayStory(_ p_Story: Story) -> Int
   {
     if m_ArrayStory.count == 0
     {
@@ -128,7 +128,7 @@ class FSCore
     return 0
   }
   
-  func GetStoryAtIndexFavorite(p_indexfavorite: Int) -> Story?
+  func GetStoryAtIndexFavorite(_ p_indexfavorite: Int) -> Story?
   {
     var l_count = -1
     for p_story in FSCore.ShareInstance.m_ArrayStory

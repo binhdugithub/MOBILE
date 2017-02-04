@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AF07CE451C50D2DA00CDEBAC /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF07CE441C50D2DA00CDEBAC /* click.mp3 */; };
+		AF1F50BD1E44AA5000EF5351 /* 1to100numbers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50B71E44AA5000EF5351 /* 1to100numbers.jpg */; };
+		AF1F50BE1E44AA5000EF5351 /* 100boxes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50B81E44AA5000EF5351 /* 100boxes.jpg */; };
+		AF1F50BF1E44AA5000EF5351 /* bomdovui.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50B91E44AA5000EF5351 /* bomdovui.jpg */; };
+		AF1F50C21E44AA5000EF5351 /* testeyes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50BC1E44AA5000EF5351 /* testeyes.jpg */; };
+		AF1F50C41E44AC9000EF5351 /* animalpuzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */; };
+		AF1F50C61E44AF4F00EF5351 /* funnystories.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */; };
 		AF44F27B1C8FD6DD00322F0A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */; };
 		AF44F2831C91661200322F0A /* UIButton+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F2821C91661200322F0A /* UIButton+Protocol.swift */; };
 		AF9DDCDC1C3CC6650047E441 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF9DDCDB1C3CC6650047E441 /* config.plist */; };
@@ -168,6 +174,12 @@
 /* Begin PBXFileReference section */
 		7B0AC7B61AAEF90000885D4A /* Funny Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Funny Stories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF07CE441C50D2DA00CDEBAC /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = "Funny Stories/audio/click.mp3"; sourceTree = SOURCE_ROOT; };
+		AF1F50B71E44AA5000EF5351 /* 1to100numbers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1to100numbers.jpg; sourceTree = SOURCE_ROOT; };
+		AF1F50B81E44AA5000EF5351 /* 100boxes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 100boxes.jpg; sourceTree = SOURCE_ROOT; };
+		AF1F50B91E44AA5000EF5351 /* bomdovui.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomdovui.jpg; sourceTree = SOURCE_ROOT; };
+		AF1F50BC1E44AA5000EF5351 /* testeyes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testeyes.jpg; sourceTree = SOURCE_ROOT; };
+		AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animalpuzzle.png; sourceTree = SOURCE_ROOT; };
+		AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funnystories.jpg; sourceTree = SOURCE_ROOT; };
 		AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreViewController.swift; path = "Funny Stories/MoreViewController.swift"; sourceTree = SOURCE_ROOT; };
 		AF44F2821C91661200322F0A /* UIButton+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Protocol.swift"; path = "Funny Stories/UIButton+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCDB1C3CC6650047E441 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Funny Stories/config.plist"; sourceTree = SOURCE_ROOT; };
@@ -383,6 +395,7 @@
 		7B0AC7DB1AAEF99600885D4A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AF1F50B61E44AA4000EF5351 /* imageapp */,
 				AF3798781DF996C9004BFB7A /* database */,
 				AF3796C31DF995D2004BFB7A /* imagestory */,
 				AF06043D1C32D74300B56812 /* audio */,
@@ -473,6 +486,19 @@
 				AF07CE441C50D2DA00CDEBAC /* click.mp3 */,
 			);
 			name = audio;
+			sourceTree = "<group>";
+		};
+		AF1F50B61E44AA4000EF5351 /* imageapp */ = {
+			isa = PBXGroup;
+			children = (
+				AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */,
+				AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */,
+				AF1F50B71E44AA5000EF5351 /* 1to100numbers.jpg */,
+				AF1F50B81E44AA5000EF5351 /* 100boxes.jpg */,
+				AF1F50B91E44AA5000EF5351 /* bomdovui.jpg */,
+				AF1F50BC1E44AA5000EF5351 /* testeyes.jpg */,
+			);
+			name = imageapp;
 			sourceTree = "<group>";
 		};
 		AF3796C31DF995D2004BFB7A /* imagestory */ = {
@@ -659,6 +685,8 @@
 					7B0AC7B51AAEF90000885D4A = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 59R4ZJFHM6;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -686,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFC79D2A1E1CFD910007417B /* the_genie.png in Resources */,
+				AF1F50C41E44AC9000EF5351 /* animalpuzzle.png in Resources */,
 				AFC79CEE1E1CFD910007417B /* does_your_dog_bite.png in Resources */,
 				AFC79D251E1CFD910007417B /* streng_intelligence.png in Resources */,
 				AFC79D2E1E1CFD910007417B /* the_turtles.png in Resources */,
@@ -700,6 +729,7 @@
 				AFC79D161E1CFD910007417B /* new_driver_license.png in Resources */,
 				AFC79CFD1E1CFD910007417B /* great_mystery.png in Resources */,
 				AFC79D281E1CFD910007417B /* the_best_restaurant.png in Resources */,
+				AF1F50BE1E44AA5000EF5351 /* 100boxes.jpg in Resources */,
 				AFC79D1A1E1CFD910007417B /* physical_training_job.png in Resources */,
 				AFC79CDE1E1CFD910007417B /* beer_test.png in Resources */,
 				AFC79CF31E1CFD910007417B /* elephant_milk.png in Resources */,
@@ -711,7 +741,9 @@
 				AFC79D101E1CFD910007417B /* lost_again.png in Resources */,
 				AFC79CE91E1CFD910007417B /* clever_response.png in Resources */,
 				AFC79D351E1CFD910007417B /* wearing_white.png in Resources */,
+				AF1F50BD1E44AA5000EF5351 /* 1to100numbers.jpg in Resources */,
 				AFC79CD71E1CFD910007417B /* a_talking_frog.png in Resources */,
+				AF1F50C61E44AF4F00EF5351 /* funnystories.jpg in Resources */,
 				AFC79D361E1CFD910007417B /* what_a_gesture.png in Resources */,
 				AFC79CFA1E1CFD910007417B /* frying_eggs.png in Resources */,
 				AFDEC8801C32B522002A4D72 /* LaunchScreen.xib in Resources */,
@@ -732,6 +764,7 @@
 				AFC79CF41E1CFD910007417B /* everybody.png in Resources */,
 				AFC79D1C1E1CFD910007417B /* removing_a_curse.png in Resources */,
 				AF07CE451C50D2DA00CDEBAC /* click.mp3 in Resources */,
+				AF1F50BF1E44AA5000EF5351 /* bomdovui.jpg in Resources */,
 				AFC79CFB1E1CFD910007417B /* general_equations_statistics.png in Resources */,
 				AFC79CD31E1CFD910007417B /* a_man_and_his_wife.png in Resources */,
 				AFC79CF21E1CFD910007417B /* eating_grass.png in Resources */,
@@ -776,6 +809,7 @@
 				AFC79D261E1CFD910007417B /* taking_a_train.png in Resources */,
 				AFC79CDB1E1CFD910007417B /* an_idiot.png in Resources */,
 				AFC79D131E1CFD910007417B /* mental_patient.png in Resources */,
+				AF1F50C21E44AA5000EF5351 /* testeyes.jpg in Resources */,
 				AFC79D3C1E1CFD910007417B /* you_looked_a_lot_like_my_wife.png in Resources */,
 				AFC79D2C1E1CFD910007417B /* the_sign.png in Resources */,
 				AFC79CF61E1CFD910007417B /* fishing.png in Resources */,
@@ -950,8 +984,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -966,8 +1001,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -977,8 +1014,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -993,7 +1031,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cusiki.funnystories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Funny Stories-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

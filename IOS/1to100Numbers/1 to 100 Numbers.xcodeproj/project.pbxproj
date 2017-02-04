@@ -18,6 +18,7 @@
 		AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67321ACE8C3D007FF5BF /* btn_statistics.png */; };
 		AF4C67351ACE95F8007FF5BF /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67341ACE95F8007FF5BF /* data.plist */; };
 		AF4C67381ACE9797007FF5BF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */; };
+		AF52D2071E436BBC00409EEF /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52D2061E436BBC00409EEF /* GoogleMobileAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		AF682F9C1BC8204100B0FF21 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = AF682F9B1BC8204100B0FF21 /* btn_back.png */; };
 		AF91D1E11ACC4785009A1B12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E01ACC4785009A1B12 /* main.m */; };
 		AF91D1E41ACC4785009A1B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D1E31ACC4785009A1B12 /* AppDelegate.m */; };
@@ -30,7 +31,6 @@
 		AF91D2091ACC5BB2009A1B12 /* TwoPalyersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D2081ACC5BB2009A1B12 /* TwoPalyersViewController.m */; };
 		AF91D20C1ACC5BD0009A1B12 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20B1ACC5BD0009A1B12 /* GameOverViewController.m */; };
 		AF91D20F1ACC5BEF009A1B12 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */; };
-		AFC4E1181BC6D87600CE197A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */; };
 		AFC4E11C1BC6DFAE00CE197A /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4E11B1BC6DFAE00CE197A /* GCViewController.m */; };
 		AFDFB4421ACCF3130007C5A9 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDFB4411ACCF3130007C5A9 /* SoundController.m */; };
 		AFDFB44E1ACCF8570007C5A9 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFDFB4441ACCF8570007C5A9 /* click.mp3 */; };
@@ -74,6 +74,7 @@
 		AF4C67341ACE95F8007FF5BF /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		AF4C67361ACE9797007FF5BF /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AF4C67371ACE9797007FF5BF /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AF52D2061E436BBC00409EEF /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		AF682F9B1BC8204100B0FF21 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
 		AF8495781ADA53600034B061 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		AF91D1DB1ACC4785009A1B12 /* 1 to 100 Numbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1 to 100 Numbers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +98,6 @@
 		AF91D20B1ACC5BD0009A1B12 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		AF91D20D1ACC5BEF009A1B12 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		AF91D20E1ACC5BEF009A1B12 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		AFC4E11A1BC6DFAE00CE197A /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		AFC4E11B1BC6DFAE00CE197A /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		AFDFB4401ACCF3130007C5A9 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFC4E1181BC6D87600CE197A /* GoogleMobileAds.framework in Frameworks */,
+				AF52D2071E436BBC00409EEF /* GoogleMobileAds.framework in Frameworks */,
 				AF3A8D4A1B5ACA9A00127415 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,8 +225,8 @@
 		AFC4E1191BC6D87D00CE197A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AF52D2061E436BBC00409EEF /* GoogleMobileAds.framework */,
 				AF3A8D491B5ACA9A00127415 /* GameKit.framework */,
-				AFC4E1171BC6D87600CE197A /* GoogleMobileAds.framework */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -514,18 +514,19 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "1 to 100 Numbers";
-				PROVISIONING_PROFILE = "0d101dbb-812f-460e-9847-bfa94c452718";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -633,18 +634,19 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "1 to 100 Numbers";
-				PROVISIONING_PROFILE = "0d101dbb-812f-460e-9847-bfa94c452718";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -656,17 +658,18 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 100Numbers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appalgo.find100number;
 				PRODUCT_NAME = "1 to 100 Numbers";
-				PROVISIONING_PROFILE = "0d101dbb-812f-460e-9847-bfa94c452718";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
