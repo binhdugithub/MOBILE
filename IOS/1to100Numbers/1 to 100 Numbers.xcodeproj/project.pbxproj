@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		AF02685F1ADAD02A00D5ACAB /* GADMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF02685E1ADAD02A00D5ACAB /* GADMasterViewController.m */; };
 		AF15B3C01B69511A003EE354 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF15B3BF1B69511A003EE354 /* Default-568h@2x.png */; };
+		AF1F7B7F1E45B445009E2814 /* funnystories.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B791E45B445009E2814 /* funnystories.jpg */; };
+		AF1F7B801E45B445009E2814 /* animalpuzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B7A1E45B445009E2814 /* animalpuzzle.png */; };
+		AF1F7B811E45B445009E2814 /* 1to100numbers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B7B1E45B445009E2814 /* 1to100numbers.jpg */; };
+		AF1F7B821E45B445009E2814 /* 100boxes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B7C1E45B445009E2814 /* 100boxes.jpg */; };
+		AF1F7B831E45B445009E2814 /* bomdovui.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B7D1E45B445009E2814 /* bomdovui.jpg */; };
+		AF1F7B841E45B445009E2814 /* testeyes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B7E1E45B445009E2814 /* testeyes.jpg */; };
+		AF1F7B861E45B450009E2814 /* swipepicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B851E45B450009E2814 /* swipepicture.jpg */; };
 		AF3A8D481B5A230400127415 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3A8D471B5A230400127415 /* Configuration.m */; };
 		AF3A8D4A1B5ACA9A00127415 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3A8D491B5ACA9A00127415 /* GameKit.framework */; };
 		AF4C67231ACE3991007FF5BF /* btn_about.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4C67161ACE3991007FF5BF /* btn_about.png */; };
@@ -63,6 +70,13 @@
 		AF02685D1ADAD02A00D5ACAB /* GADMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMasterViewController.h; sourceTree = "<group>"; };
 		AF02685E1ADAD02A00D5ACAB /* GADMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMasterViewController.m; sourceTree = "<group>"; };
 		AF15B3BF1B69511A003EE354 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AF1F7B791E45B445009E2814 /* funnystories.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funnystories.jpg; sourceTree = "<group>"; };
+		AF1F7B7A1E45B445009E2814 /* animalpuzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animalpuzzle.png; sourceTree = "<group>"; };
+		AF1F7B7B1E45B445009E2814 /* 1to100numbers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1to100numbers.jpg; sourceTree = "<group>"; };
+		AF1F7B7C1E45B445009E2814 /* 100boxes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 100boxes.jpg; sourceTree = "<group>"; };
+		AF1F7B7D1E45B445009E2814 /* bomdovui.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomdovui.jpg; sourceTree = "<group>"; };
+		AF1F7B7E1E45B445009E2814 /* testeyes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testeyes.jpg; sourceTree = "<group>"; };
+		AF1F7B851E45B450009E2814 /* swipepicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = swipepicture.jpg; sourceTree = "<group>"; };
 		AF3A8D461B5A230400127415 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		AF3A8D471B5A230400127415 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
 		AF3A8D491B5ACA9A00127415 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -138,6 +152,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF1F7B781E45B427009E2814 /* imagesapp */ = {
+			isa = PBXGroup;
+			children = (
+				AF1F7B851E45B450009E2814 /* swipepicture.jpg */,
+				AF1F7B791E45B445009E2814 /* funnystories.jpg */,
+				AF1F7B7A1E45B445009E2814 /* animalpuzzle.png */,
+				AF1F7B7B1E45B445009E2814 /* 1to100numbers.jpg */,
+				AF1F7B7C1E45B445009E2814 /* 100boxes.jpg */,
+				AF1F7B7D1E45B445009E2814 /* bomdovui.jpg */,
+				AF1F7B7E1E45B445009E2814 /* testeyes.jpg */,
+			);
+			name = imagesapp;
+			sourceTree = "<group>";
+		};
 		AF91D1D21ACC4785009A1B12 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +224,7 @@
 		AF91D1DE1ACC4785009A1B12 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF1F7B781E45B427009E2814 /* imagesapp */,
 				AFDFB4431ACCF8570007C5A9 /* audios */,
 				AFDFB4481ACCF8570007C5A9 /* Base.lproj */,
 				AFDFB44D1ACCF8570007C5A9 /* images */,
@@ -358,9 +387,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1F7B7F1E45B445009E2814 /* funnystories.jpg in Resources */,
 				AFE271721B64BF430050C6C3 /* btn_play1.png in Resources */,
 				AFDFB4511ACCF8570007C5A9 /* gameover.mp3 in Resources */,
+				AF1F7B861E45B450009E2814 /* swipepicture.jpg in Resources */,
 				AFDFB44F1ACCF8570007C5A9 /* congratulation.mp3 in Resources */,
+				AF1F7B831E45B445009E2814 /* bomdovui.jpg in Resources */,
 				AFE2717A1B64CF130050C6C3 /* btn_play1_pressed.png in Resources */,
 				AF4C672F1ACE3991007FF5BF /* btn_unmute.png in Resources */,
 				AFE2717F1B64D54B0050C6C3 /* btn_gamecenter_pressed.png in Resources */,
@@ -374,9 +406,13 @@
 				AFE2717C1B64D35B0050C6C3 /* btn_play2_pressed.png in Resources */,
 				AF4C67231ACE3991007FF5BF /* btn_about.png in Resources */,
 				AF91D1EF1ACC4785009A1B12 /* LaunchScreen.xib in Resources */,
+				AF1F7B841E45B445009E2814 /* testeyes.jpg in Resources */,
 				AFE271781B64C4A40050C6C3 /* btn_gamecenter.png in Resources */,
+				AF1F7B821E45B445009E2814 /* 100boxes.jpg in Resources */,
 				AF4C67331ACE8C3D007FF5BF /* btn_statistics.png in Resources */,
 				AFE271761B64C4960050C6C3 /* btn_rate.png in Resources */,
+				AF1F7B801E45B445009E2814 /* animalpuzzle.png in Resources */,
+				AF1F7B811E45B445009E2814 /* 1to100numbers.jpg in Resources */,
 				AFDFB4531ACCF8570007C5A9 /* Main.storyboard in Resources */,
 				AF91D1EC1ACC4785009A1B12 /* Images.xcassets in Resources */,
 				AFE271741B64C2420050C6C3 /* btn_play2.png in Resources */,
@@ -512,7 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;
@@ -632,7 +668,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;
@@ -656,7 +692,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Binh Nguyen (59R4ZJFHM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 59R4ZJFHM6;
 				ENABLE_BITCODE = NO;

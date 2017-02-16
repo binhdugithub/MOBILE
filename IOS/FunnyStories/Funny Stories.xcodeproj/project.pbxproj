@@ -14,6 +14,7 @@
 		AF1F50C21E44AA5000EF5351 /* testeyes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50BC1E44AA5000EF5351 /* testeyes.jpg */; };
 		AF1F50C41E44AC9000EF5351 /* animalpuzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */; };
 		AF1F50C61E44AF4F00EF5351 /* funnystories.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */; };
+		AF1F7B881E45C298009E2814 /* swipepicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF1F7B871E45C298009E2814 /* swipepicture.jpg */; };
 		AF44F27B1C8FD6DD00322F0A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */; };
 		AF44F2831C91661200322F0A /* UIButton+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44F2821C91661200322F0A /* UIButton+Protocol.swift */; };
 		AF9DDCDC1C3CC6650047E441 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF9DDCDB1C3CC6650047E441 /* config.plist */; };
@@ -180,6 +181,7 @@
 		AF1F50BC1E44AA5000EF5351 /* testeyes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testeyes.jpg; sourceTree = SOURCE_ROOT; };
 		AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animalpuzzle.png; sourceTree = SOURCE_ROOT; };
 		AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funnystories.jpg; sourceTree = SOURCE_ROOT; };
+		AF1F7B871E45C298009E2814 /* swipepicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = swipepicture.jpg; sourceTree = SOURCE_ROOT; };
 		AF44F27A1C8FD6DD00322F0A /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreViewController.swift; path = "Funny Stories/MoreViewController.swift"; sourceTree = SOURCE_ROOT; };
 		AF44F2821C91661200322F0A /* UIButton+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Protocol.swift"; path = "Funny Stories/UIButton+Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		AF9DDCDB1C3CC6650047E441 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Funny Stories/config.plist"; sourceTree = SOURCE_ROOT; };
@@ -491,6 +493,7 @@
 		AF1F50B61E44AA4000EF5351 /* imageapp */ = {
 			isa = PBXGroup;
 			children = (
+				AF1F7B871E45C298009E2814 /* swipepicture.jpg */,
 				AF1F50C51E44AF4F00EF5351 /* funnystories.jpg */,
 				AF1F50C31E44AC9000EF5351 /* animalpuzzle.png */,
 				AF1F50B71E44AA5000EF5351 /* 1to100numbers.jpg */,
@@ -753,6 +756,7 @@
 				AFC79D211E1CFD910007417B /* sports_fishing.png in Resources */,
 				AFC79CEB1E1CFD910007417B /* day_off.png in Resources */,
 				AFC79D041E1CFD910007417B /* improve_your_memory.png in Resources */,
+				AF1F7B881E45C298009E2814 /* swipepicture.jpg in Resources */,
 				AFC79D1B1E1CFD910007417B /* pregnancy.png in Resources */,
 				AFC79CD61E1CFD910007417B /* a_skydiving_lesson.png in Resources */,
 				AFC79CDF1E1CFD910007417B /* beggar.png in Resources */,

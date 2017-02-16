@@ -62,12 +62,14 @@ class MoreViewController: UIViewController
     let T = App(p_name: "Test Eyes", p_imageurl: GetUrlImage(p_imageurl: "testeyes.jpg"), p_link: "itms-apps://itunes.apple.com/app/id1031081322")
     let A = App(p_name: "Animal Puzzle", p_imageurl: GetUrlImage(p_imageurl: "animalpuzzle.png"), p_link: "itms-apps://itunes.apple.com/app/id1111859523")
     let Fun = App(p_name: "Funny Stories", p_imageurl: GetUrlImage(p_imageurl: "funnystories.jpg"), p_link: "itms-apps://itunes.apple.com/app/id1070241747")
+    let L = App(p_name: "Lovely Puzzle", p_imageurl: GetUrlImage(p_imageurl: "swipepicture.jpg"), p_link: "itms-apps://itunes.apple.com/app/id1034155015")
     
     FSCore.ShareInstance.m_ArrayApp.append(F)
-     FSCore.ShareInstance.m_ArrayApp.append(B)
-     FSCore.ShareInstance.m_ArrayApp.append(T)
-     FSCore.ShareInstance.m_ArrayApp.append(A)
-     FSCore.ShareInstance.m_ArrayApp.append(Fun)
+    FSCore.ShareInstance.m_ArrayApp.append(B)
+    FSCore.ShareInstance.m_ArrayApp.append(T)
+    FSCore.ShareInstance.m_ArrayApp.append(A)
+    FSCore.ShareInstance.m_ArrayApp.append(Fun)
+    FSCore.ShareInstance.m_ArrayApp.append(L)
    
     
     self.SetupView()

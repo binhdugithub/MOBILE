@@ -33,65 +33,26 @@
     {
         [self LoadConfig];
         m_more_apps = [[NSMutableArray alloc] init];
-       
+        [self LoadMoreApps];
     }
     
     return self;
 }
 
-- (void) LoadMoreApps: (GameOverViewController*) p_view
+- (void) LoadMoreApps
 {
-     NSURL *url = [NSURL URLWithString:@"http://cusiki.com:8888/api/funnystories/apps"];
-    // Create a download task.
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
-                                                             completionHandler:^(NSData *data,
-                                                                                 NSURLResponse *response,
-                                                                                 NSError *error)
-                                  {
-                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                                         
-                                          if (!error)
-                                          {
-                                              NSError *JSONError = nil;
-                                              NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                         options:0
-                                                                                                           error:&JSONError];
-                                              if (JSONError)
-                                              {
-                                                  NSLog(@"Serialization error: %@", JSONError.localizedDescription);
-                                                  
-                                              }
-                                              else
-                                              {
-                                                  m_more_apps = [[NSMutableArray alloc] init];
-                                                  NSArray *l_arry = dictionary[@"apps"];
-                                                  for (int i = 0; i < l_arry.count; i++)
-                                                  {
-                                                      NSMutableDictionary *l_dict = [[NSMutableDictionary alloc] initWithDictionary:l_arry[i] copyItems:true];
-                                                      //[l_dict setObject: nil  forKey:@"imgdata"];
-                                                      [m_more_apps addObject:l_dict];
-                                                  }
-                                                  
-                                                  //m_more_apps = [[NSMutableArray alloc] initWithArray:l_arry copyItems:true];
-                                                  //m_more_apps = dictionary[@"apps"];
-                                                  
-                                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                                      [p_view SetupMoreAppView];
-                                                  });
-                                              }
-                                          }
-                                          else
-                                          {
-                                              NSLog(@"Error: %@", error.localizedDescription);
-                                          }
-                                          
-                                         
-                                      });
-                                      
-                                      
-                                  }];
-    // Start the task.
-    [task resume];
+
+
+    NSArray *F = [NSArray arrayWithObjects:@"Find 100 Numbers", @"1to100numbers.jpg", @"itms-apps://itunes.apple.com/app/id1048219569", nil];
+    NSArray *B = [NSArray arrayWithObjects:@"Bờm Đố Vui", @"bomdovui.jpg", @"itms-apps://itunes.apple.com/app/id1028819809", nil];
+    NSArray *T = [NSArray arrayWithObjects:@"Test Eyes", @"testeyes.jpg", @"itms-apps://itunes.apple.com/app/id1031081322", nil];
+    NSArray *A = [NSArray arrayWithObjects:@"Animal Puzzle", @"animalpuzzle.png", @"itms-apps://itunes.apple.com/app/id1111859523", nil];
+    NSArray *Fun = [NSArray arrayWithObjects:@"Funny Stories", @"funnystories.jpg", @"itms-apps://itunes.apple.com/app/id1070241747", nil];
+    NSArray *L = [NSArray arrayWithObjects:@"Lovely Puzzle", @"swipepicture.jpg", @"itms-apps://itunes.apple.com/app/id1034155015", nil];
+    
+    m_more_apps = [[NSMutableArray alloc] init];
+    [m_more_apps addObject:F];[m_more_apps addObject:B];[m_more_apps addObject:T];[m_more_apps addObject:A];[m_more_apps addObject:Fun];[m_more_apps addObject:L];
+    
 }
 
 - (void) LoadConfig

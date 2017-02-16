@@ -460,7 +460,7 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
 #else
-    NSString *l_linkapp = [[Configuration GetSingleton] GetMoreApps][sender.tag][@"linkapp"];
+    NSString *l_linkapp = [[Configuration GetSingleton] GetMoreApps][sender.tag][2];
     NSURL *l_url = [[NSURL alloc] initWithString:l_linkapp];
     [[UIApplication sharedApplication] openURL:l_url];
 #endif
@@ -469,53 +469,17 @@ m_UIView3Buttons, m_UIViewHeader, m_UIViewSocre;
 
 - (void) GetImageForBtn: (UIButton*) p_sender
 {
-    NSMutableDictionary *l_dic = [[Configuration GetSingleton] GetMoreApps][p_sender.tag];
-    if ([[l_dic allKeys] containsObject:@"imgdata"])
-    {
-        [p_sender  setBackgroundColor:[UIColor colorWithPatternImage: l_dic[@"imgdata"]]];
-    }
-    else
-    {
-        NSURL *url = [NSURL URLWithString: [[Configuration GetSingleton] GetMoreApps][p_sender.tag][@"imageurl"]];
-        // Create a download task.
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
-                                                                 completionHandler:^(NSData *data,
-                                                                                     NSURLResponse *response,
-                                                                                     NSError *error)
-                                      {
-                                          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                                              
-                                              if (!error)
-                                              {
-                                                  
-                                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                                      UIGraphicsBeginImageContext([p_sender frame].size);
-                                                      [[UIImage imageWithData:data] drawInRect:[p_sender bounds]];
-                                                      UIImage *l_image = UIGraphicsGetImageFromCurrentImageContext();
-                                                      UIGraphicsEndImageContext();
-                                                      
-                                                      //[p_sender setImage:l_image forState:UIControlStateNormal];
-                                                      //[p_sender setBackgroundImage:l_image forState:UIControlStateNormal];
-                                                      [l_dic setObject:l_image  forKey:@"imgdata"];
-                                                      [p_sender  setBackgroundColor:[UIColor colorWithPatternImage:l_dic[@"imgdata"]]];
-                                                      //[p_sender setBackgroundImage:[UIImage imageWithData:data] forState: UIControlStateNormal];
-                                                  });
-                                                  
-                                              }
-                                              else
-                                              {
-                                                  NSLog(@"Error: %@", error.localizedDescription);
-                                              }
-                                              
-                                              
-                                          });
-                                          
-                                          
-                                      }];
-        // Start the task.
-        [task resume];
-    }
+    NSArray *l_dic = [[Configuration GetSingleton] GetMoreApps][p_sender.tag];
+    NSString *l_nameimg = [[NSSearchPathForDirectoriesInDomains(
+                                                                      NSDocumentDirectory,
+                                                                      NSUserDomainMask, YES
+                                                                      ) objectAtIndex:0] stringByAppendingString:[NSString stringWithFormat:@"/%@", l_dic[1]]];
+    UIGraphicsBeginImageContext([p_sender frame].size);
+    [[UIImage imageNamed:l_dic[1]] drawInRect:[p_sender bounds]];
+    UIImage *l_image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    [p_sender  setBackgroundColor:[UIColor colorWithPatternImage:l_image]];
 }
 
 #pragma mark - Navigation
